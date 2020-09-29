@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "ebb06763-2e42-4eb9-9ff4-72804c90d163",
+      "role": "guest",
+      "email": "guest@example.com",
+      "hash": "eG7Tp4rrpNAFRy/h1OS0bxmH7vgmoMTk2fAkQ6inDYTT88xWeaol0VI5Zn51FUYz",
+      "salt": "CST+ogNGfN1FQFDLFb33aExcRrI9zFTlkzxmQIW9FM8="
+    },
+    {
+      "id": "4ff5a3e3-6163-43fb-9f8b-a14e2e5c6dfb",
+      "role": "user",
+      "email": "gotest@example.com",
+      "hash": "GmgxvhmiZ5egRmAj42puPN1aB1dP+/gsZqnV0bS/2pI0Yc+k/YSX+++nVkUEQAdR",
+      "salt": "Ku+G4BEgvqoWoWR0ZCTtx/rsVs4+BS3a7V8dOl33ewo="
+    },
+    {
+      "id": "253ad2b8-0e62-4855-b58c-f82a70dc2046",
+      "role": "admin",
+      "email": "gotest2@example.com",
+      "hash": "VPaYonjiQJHBWq+p11OMrl/zc1F7PHNr7LHUHKMl33PTZIwT1uxHTP8KbbLezw9C",
+      "salt": "nkz525oeRxGa4v3TR9oq4HW8nzy7HIO8HdoQwRhFjLc="
+    }
+  ]
+}

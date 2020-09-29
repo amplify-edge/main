@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+package proto;
+
+message ListSupportRoleRequest {
+}
+
+message GetSupportRoleRequest {
+    string id = 1;
+}
+
+message Campaigns {
+    repeated Campaign campaigns = 1;
+}
+
+message ListCampaignRequest {
+}
+
+message GetCampaignRequest {
+    string id = 1;
+}
+
+message NewAnswerRequest {
+    string id = 1;
+    string sel_support_role_id = 2;
+    string sel_campaign_id = 3;
+    string min_hours_pledged = 4;
+}
+
+message Answer {
+    string id = 1;
+    // selected support role
+    string sel_support_role_id = 2;
+    // selected campaign id
+    string sel_campaign_id = 3;
+    string min_hours_pledged = 4;
+    google.protobuf.Timestamp created_at = 5;
+}
+
+message Answers {
+    repeated Answer answers = 1;
+}
+
+message User {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    string display_name = 5;
+    string avatar = 6;
+    string url = 7;
+    string chatgroup_ids = 8;
+    string campaign = 9;
+}
+
+message SupportRole {
+    string id = 1;
+    string name = 2;
+    string comment = 3;
+    bool mandatory = 4;
+    string uom = 5;
+}
+
+message Campaign {
+    string campaign_id = 1;
+    string campaign_name = 2;
+    string logo_url = 3;
+    string goal = 4;
+    repeated string crg_quantity_many = 5;
+    repeated string crg_ids_many = 6;
+    string already_pledged = 7;
+    google.protobuf.Timestamp action_time = 8;
+    string action_location = 9;
+    string campaign_still = 10;
+    string min_pioneers = 11;
+    string min_rebels_for_media = 12;
+    string min_rebels_to_win = 13;
+    string action_type = 15;
+    repeated string backing_org = 16;
+    string category = 17;
+    string contact = 18;
+    string hist_precedents = 19;
+    string organization = 20;
+    string strategy = 21;
+    repeated string video_url = 22;
+    string uom = 23;
+    oneof action_length {
+        string action_length_string = 24;
+        uint32 action_length_int = 25;
+    };
+}
+
+message NewAnswerResponse {
+    bool success = 1;
+    string id = 2;
+}
+
+message DeleteAnswerResponse {
+    bool success = 1;
+}
+
+message AnswerIdRequest {
+    string id = 1;
+}
+
+message SupportRoles {
+    repeated SupportRole support_roles = 1;
+}
+
+message ListAnswersRequest {
+    string support_role_id = 1;
+    string campaign_id = 2;
+}
+
+message ListUserRequest {
+
+}
+
+message GetUserRequest {
+    string id = 1;
+}
+
+message Users {
+    repeated User users = 1;
+}
+
+message MigrateRequest {
+    string datapath = 1;
+}
+
+message File{
+    string name = 1;
+    uint64 total_chunks = 3;
+}
+
+message Chunk{
+    uint64 id = 1;
+    string data = 2;
+    File file = 3;
+}
+
+message Ack{
+    bool status = 1;
+}
+
+service Question {
+    rpc Migrate(MigrateRequest) returns (google.protobuf.Empty);
+    rpc GetUser (GetUserRequest) returns (User);
+    rpc ListUsers (ListUserRequest) returns (Users);
+    rpc GetCampaign (GetCampaignRequest) returns (Campaign);
+    rpc ListCampaigns (ListCampaignRequest) returns (Campaigns);
+    rpc GetSupportRole (GetSupportRoleRequest) returns (SupportRole);
+    rpc ListSupportRoles (ListSupportRoleRequest) returns (SupportRoles);
+    rpc NewAnswer (NewAnswerRequest) returns (NewAnswerResponse);
+    rpc GetAnswer (AnswerIdRequest) returns (Answer);
+    rpc DeleteAnswer (AnswerIdRequest) returns (DeleteAnswerResponse);
+    rpc ListAnswers (ListAnswersRequest) returns (Answers);
+    rpc NewFile (stream Chunk) returns (stream Ack);
+}
+
