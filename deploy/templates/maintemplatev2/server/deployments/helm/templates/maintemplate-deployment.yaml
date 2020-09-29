@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-maintemplate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-maintemplate
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-maintemplate
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-maintemplate
+        image: {{ .Values.maintemplateServerImage }}
+        args: ["-nats-server", "{{ .Release.Name }}-nats-streaming"]
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9074
+        resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 100m

@@ -1,0 +1,15 @@
+{
+  "hosts": [
+    "maintemplate.default.svc.cluster.local",
+    "maintemplate.default",
+    "maintemplate.default.svc.cluster",
+    "maintemplate.pod.cluster.local",
+    "127.0.0.1",
+    "0.0.0.0"
+  ],
+  "CN": "maintemplate.default.svc.cluster.local",
+  "key": {
+    "algo": "ecdsa",
+    "size": 256
+  }
+}
