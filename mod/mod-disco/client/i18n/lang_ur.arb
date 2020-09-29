@@ -1,0 +1,249 @@
+{
+  "@@last_modified": "2020-09-22T18:03:12.709484",
+  "country": "ملک",
+  "@country": {
+    "description": "Country",
+    "placeholders": {},
+    "type": "text"
+  },
+  "aboutYou": "اپ کے بارے میں",
+  "@aboutYou": {
+    "description": "About You",
+    "placeholders": {},
+    "type": "text"
+  },
+  "newCountrySelected": "نیا ملک منتخب ہوا",
+  "@newCountrySelected": {
+    "description": "New Country Selected",
+    "placeholders": {},
+    "type": "text"
+  },
+  "zipCode": "زپ کوڈ",
+  "@zipCode": {
+    "description": "Zip Code",
+    "placeholders": {},
+    "type": "text"
+  },
+  "whereAreYou": "اپ کہاں ہیں؟",
+  "@whereAreYou": {
+    "description": "Where are you?",
+    "placeholders": {},
+    "type": "text"
+  },
+  "travelDistance": "آپ کتنا سفر کرنے کے لئے تیار ہیں؟",
+  "@travelDistance": {
+    "description": "How far are you willing to travel?",
+    "placeholders": {},
+    "type": "text"
+  },
+  "howOldAreYou": "آپ کتنے سال کے ہو؟",
+  "@howOldAreYou": {
+    "description": "How old are you?",
+    "placeholders": {},
+    "type": "text"
+  },
+  "campaignAffiliation": "کیا آپ کی انتخابی مہم وابستگی ہے؟",
+  "@campaignAffiliation": {
+    "description": "Do you have a campaign affiliation?",
+    "placeholders": {},
+    "type": "text"
+  },
+  "distanceInKM": "کلو میٹر میں فاصلہ درج کریں",
+  "@distanceInKM": {
+    "description": "Enter distance in kilometers",
+    "placeholders": {},
+    "type": "text"
+  },
+  "noItemsSelected": "کوئی آئٹمز منتخب نہیں ہوئے ہیں۔",
+  "@noItemsSelected": {
+    "description": "No items selected.",
+    "placeholders": {},
+    "type": "text"
+  },
+  "category": "قسم",
+  "@category": {
+    "description": "Category",
+    "placeholders": {},
+    "type": "text"
+  },
+  "campaignName": "مہم کا نام",
+  "@campaignName": {
+    "description": "campaignName",
+    "placeholders": {},
+    "type": "text"
+  },
+  "noCampaigns": "کوئی مہمات نہیں",
+  "@noCampaigns": {
+    "description": "No Campaigns",
+    "placeholders": {},
+    "type": "text"
+  },
+  "actionType": "عمل کی قسم",
+  "@actionType": {
+    "description": "Type of Action",
+    "placeholders": {},
+    "type": "text"
+  },
+  "actionLocation": "ایکشن لوکیشن",
+  "@actionLocation": {
+    "description": "Action Location",
+    "placeholders": {},
+    "type": "text"
+  },
+  "time": "وقت",
+  "@time": {
+    "description": "Time",
+    "placeholders": {},
+    "type": "text"
+  },
+  "lengthOfTheAction": "ایکشن کی لمبائی",
+  "@lengthOfTheAction": {
+    "description": "Length of the Action",
+    "placeholders": {},
+    "type": "text"
+  },
+  "goal": "مقصد",
+  "@goal": {
+    "description": "Goal",
+    "placeholders": {},
+    "type": "text"
+  },
+  "strategy": "حکمت عملی",
+  "@strategy": {
+    "description": "strategy",
+    "placeholders": {},
+    "type": "text"
+  },
+  "historicalPrecedents": "تاریخی نظیر",
+  "@historicalPrecedents": {
+    "description": "Historical Precedents",
+    "placeholders": {},
+    "type": "text"
+  },
+  "backingEndorsingOrganizations": "تنظیموں کی حمایت / حمایت کرنا",
+  "@backingEndorsingOrganizations": {
+    "description": "Backing/Endorsing Organizations",
+    "placeholders": {},
+    "type": "text"
+  },
+  "peopleAlreadyPledged": "لوگوں نے پہلے ہی وعدہ کیا تھا",
+  "@peopleAlreadyPledged": {
+    "description": "People already pledged",
+    "placeholders": {},
+    "type": "text"
+  },
+  "weNeed": "ہمیں ضرورت ہے",
+  "@weNeed": {
+    "description": "We Need",
+    "placeholders": {},
+    "type": "text"
+  },
+  "extrapolatedSimilarPastActions": "مندرجہ ذیل اعداد و شمار ماضی کی اسی طرح کی کارروائیوں سے مایوس کن ہیں جو کامیاب اور ناکام رہے",
+  "@extrapolatedSimilarPastActions": {
+    "description": "The following figures are extrapolated from similar past actions that both succeeded and failed",
+    "placeholders": {},
+    "type": "text"
+  },
+  "pioneersToStart": "سرخیلوں کو شروع کرنے کی ضرورت ہے",
+  "@pioneersToStart": {
+    "description": "Pioneers needed to start",
+    "placeholders": {},
+    "type": "text"
+  },
+  "rebelsMedia": "میڈیا کو متحرک کرنے کے لئے باغیوں کی ضرورت ہے",
+  "@rebelsMedia": {
+    "description": "Rebels needed to trigger media",
+    "placeholders": {},
+    "type": "text"
+  },
+  "rebelsWin": "باغیوں کو جیتنے کی ضرورت ہے",
+  "@rebelsWin": {
+    "description": "Rebels needed to win",
+    "placeholders": {},
+    "type": "text"
+  },
+  "contactDetails": "رابطہ کی تفصیلات",
+  "@contactDetails": {
+    "description": "Contact Details",
+    "placeholders": {},
+    "type": "text"
+  },
+  "notReady": "تیار نہیں",
+  "@notReady": {
+    "description": "Not Ready",
+    "placeholders": {},
+    "type": "text"
+  },
+  "ready": "تیار",
+  "@ready": {
+    "description": "Ready",
+    "placeholders": {},
+    "type": "text"
+  },
+  "selectCampaign": "مہم کا انتخاب کریں",
+  "@selectCampaign": {
+    "description": "Select Campaign",
+    "placeholders": {},
+    "type": "text"
+  },
+  "campaignDetails": "مہم کی تفصیلات",
+  "@campaignDetails": {
+    "description": "campaignDetails",
+    "placeholders": {},
+    "type": "text"
+  },
+  "searchCampaigns": "مہمات تلاش کریں",
+  "@searchCampaigns": {
+    "description": "Search Campaigns",
+    "placeholders": {},
+    "type": "text"
+  },
+  "yourNeeds": "آپ کی ضروریات",
+  "@yourNeeds": {
+    "description": "Your Needs",
+    "placeholders": {},
+    "type": "text"
+  },
+  "needsSatisifiedRequirement": "براہ کرم زیادہ سے زیادہ حمایت یا ضرورت کو منتخب کریں تاکہ آپ کو اس عمل میں شامل ہونے کے لئے مطمئن درکار ہو۔",
+  "@needsSatisifiedRequirement": {
+    "description": "Please choose as many supports or needs you need satisfied to join the action.",
+    "placeholders": {},
+    "type": "text"
+  },
+  "next": "اگلے",
+  "@next": {
+    "description": "Next",
+    "placeholders": {},
+    "type": "text"
+  },
+  "supportRole": "سپورٹ رول",
+  "@supportRole": {
+    "description": "Support Role",
+    "placeholders": {},
+    "type": "text"
+  },
+  "provideSupportRole": "اگر ہم آپ کے منتخب کردہ شرائط کو پورا نہیں کرسکتے ہیں ، تو کیا آپ ہڑتال پر جانے کے خواہشمند افراد کو مدد فراہم کرنے پر غور کریں گے؟",
+  "@provideSupportRole": {
+    "description": "If we cannot satisfy your chosen conditions, would you consider providing a support role to those willing to go on strike?",
+    "placeholders": {},
+    "type": "text"
+  },
+  "yes": "جی ہاں",
+  "@yes": {
+    "description": "Yes",
+    "placeholders": {},
+    "type": "text"
+  },
+  "no": "نہیں",
+  "@no": {
+    "description": "No",
+    "placeholders": {},
+    "type": "text"
+  },
+  "supportRoles": "معاون کردار",
+  "@supportRoles": {
+    "description": "Support Roles",
+    "placeholders": {},
+    "type": "text"
+  }
+}
