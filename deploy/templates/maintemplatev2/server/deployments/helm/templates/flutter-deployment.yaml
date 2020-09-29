@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-flutter
+spec:
+  replicas: {{ .Values.flutterReplicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-flutter
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-flutter
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-flutter
+        image: {{ .Values.flutterImage }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 100m

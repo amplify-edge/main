@@ -35,17 +35,16 @@ this-print: ## print
 this-dep:
 	# LOCAL DEVS: go to root make file and call this yourself to get all the tools !!!!
 	# install tools
-	cd ./tool && $(MAKE) this-build
+	cd ./shared/tool && $(MAKE) this-build
 
 	# Install our grpc tools
 	#$(MAKE) grpc-all
 
-### CI
 
 ## Build for CI. Does Big Gen !
-this-build: this-dep
+this-all: this-dep
 	# Does full gen and build (web)
-	cd ./maintemplate && $(MAKE) this-build
+	cd ./deploy/templates/maintemplate && $(MAKE) this-build
 
 ## Build Desk For CI. Does Big Gen !
 this-flu-desk-build: this-dep
