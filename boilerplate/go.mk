@@ -63,14 +63,6 @@ go-print:
 	@echo
 
 
-## Boilerplate is updated from the Boostrap repo ( REDUNDANT )
-go-boilerplate-update:
-	# See: https://github.com/lyft/boilerplate
-	# Example: See: https://github.com/lyft/flytepropeller/tree/master/boilerplate
-	# TODO: This will be redundant once we have BS releases working.
-	@boilerplate/update.sh
-
-
 ## Build the code
 go-build:
 	@echo Building
@@ -89,13 +81,17 @@ go-build-clean-all:
 
 ## Clean golang OS caches
 go-os-clean:
+
+	# damn useful when things go to shit with go mod tools.
+	
 	# go stuff
 	go clean -cache
 	go clean -modcache
 	go clean -testcache
 
 ## Updates go mod file
-go-mod-update:
+go-mod-fix:
+	# whatever is needed here.
 	go mod tidy
 
 ## Run the code

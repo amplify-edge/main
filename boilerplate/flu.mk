@@ -28,22 +28,26 @@ flu-print:
 
 ### FLU
 
-## Configure flutter.
+## Configures flutter to be on right channel.
 flu-config:
 	flutter channel beta
 	flutter upgrade --force
-	$(MAKE) flu-gen-lang
-	$(MAKE) flu-gen-lang-dart
+
+## Updates flutter dependencies.
+flu-pub-update:
+	cd $(FLU_SAMPLE_FSPATH) && flutter clean
+	cd $(FLU_SAMPLE_FSPATH) && flutter packages pub upgrade
+
+	# Validation test.
+	cd $(FLU_SAMPLE_FSPATH) && flutter pub run build_runner build
 
 ## Checks flutter dependencies.
-flu-update:
-	# Attempt to fix build when things are not working.
-	# SO far works really well.
-	flutter clean
-	flutter packages pub upgrade
-	flutter pub run build_runner build
-flu-update-check:
-	flutter pub outdated
+flu-pub-update-check:
+	# print all
+	cd $(FLU_SAMPLE_FSPATH) && flutter packages pub deps
+	
+	# check if any can be upgraded
+	cd $(FLU_SAMPLE_FSPATH) && flutter pub outdated --suppress-analytics
 
 ## Run Flutter Tests
 flu-test:
@@ -56,6 +60,14 @@ flu-test:
 flu-web-run:
 	flutter config --enable-web
 	cd $(FLU_SAMPLE_FSPATH) && flutter run -d chrome
+
+## Runs Flutter Web in release mode
+flu-web-run-release:
+
+	# Release mode is needed to get around firefall issue i found after i setup Chrome to ONLY use DNS-over-HTTP.
+	# Works - no idea why..
+	flutter config --enable-web
+	cd $(FLU_SAMPLE_FSPATH) && flutter run -d chrome --release
 
 ## Builds flutter web as a release version
 flu-web-build:
