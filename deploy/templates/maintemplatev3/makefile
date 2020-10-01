@@ -35,8 +35,6 @@ this-print: ## print
 
 
 
-### CI
-
 ## This builds everything
 this-build: ##
 	$(MAKE) go-build

@@ -1,8 +1,6 @@
 
-# This make file uses composition to keep things KISS and easy.
-# In the boilerpalte make files dont do any includes, because you will create multi permutations of possibilities.
-
-BOILERPLATE_FSPATH=./boilerplate
+SHARED_FSPATH=./../shared
+BOILERPLATE_FSPATH=$(SHARED_FSPATH)/boilerplate
 
 include $(BOILERPLATE_FSPATH)/help.mk
 include $(BOILERPLATE_FSPATH)/os.mk
@@ -11,16 +9,27 @@ include $(BOILERPLATE_FSPATH)/tool.mk
 include $(BOILERPLATE_FSPATH)/flu.mk
 include $(BOILERPLATE_FSPATH)/go.mk
 
-
 # remove the "v" prefix
 VERSION ?= $(shell echo $(TAGGED_VERSION) | cut -c 2-)
 
 override FLU_SAMPLE_NAME =client
 override FLU_LIB_NAME =client
 
+this-all: this-print this-dep this-build this-print-end
 
-## Print all settings
-this-print: ## print
+this-print: 
+	@echo
+	@echo "-- SYS: start --"
+	@echo SDK_BIN: $(SDK_BIN)
+	@echo
+
+this-print-end:
+	@echo
+	@echo "-- SYS: end --"
+	@echo
+	@echo
+
+this-print:
 	
 	$(MAKE) os-print
 	
@@ -33,22 +42,20 @@ this-print: ## print
 	$(MAKE) go-print
 
 this-dep:
-	# LOCAL DEVS: go to root make file and call this yourself to get all the tools !!!!
-	# install tools
-	cd ./shared/tool && $(MAKE) this-build
-
-	# Install our grpc tools
-	#$(MAKE) grpc-all
+	cd $(SHARED_FSPATH) && $(MAKE) this-all
 
 
-## Build for CI. Does Big Gen !
-this-all: this-dep
+this-build: v2 v3
+
+
+v2:
 	# Does full gen and build (web)
-	cd ./deploy/templates/maintemplate && $(MAKE) this-build
+	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-all
 
-## Build Desk For CI. Does Big Gen !
-this-flu-desk-build: this-dep
-	cd ./maintemplate && $(MAKE) flu-desk-build
+v3:
+	# Does full gen and build (web)
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-all
+
 
 ### Developers
 

@@ -1,21 +1,18 @@
-name: CI - main
+name: CI
 
 on:
-  push:
-    branches:
-      - "*"
   pull_request:
     branches:
       - "*"
 
 jobs:
   all:
-    name: CI - main
+    name: CI
    
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [macos-latest]
         go-version: [1.15.2]
         target: ["this-all",]
 
@@ -28,13 +25,17 @@ jobs:
           go-version: ${{ matrix.go-version }}
         id: go
 
-      - name: Check out code into the Go module directory
+      - name: Check out THIS code into the Go module directory
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           path: go/src/github.com/${{ github.repository }}
 
-      # TODO Check out the other 3 repos, so make files just work.
+      - name: Check out the SHARED code into the Go module directory
+        uses: actions/checkout@v2
+        with:
+          path: go/src/github.com/${{ github.repository }}
+          repository: getcouragenow/shared
 
       - name: make ${{ matrix.target }}
         run: |
