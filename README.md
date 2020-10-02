@@ -1,6 +1,6 @@
 # main
 
-All code is compiled from here, except for the SDK down in sys.
+All code is compiled from here.
 
 Follow the rabbit hole down ...
 
