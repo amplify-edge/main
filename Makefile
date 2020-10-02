@@ -29,7 +29,7 @@ this-print-end:
 	@echo
 	@echo
 
-this-print:
+this-print-all:
 	
 	$(MAKE) os-print
 	
@@ -56,23 +56,11 @@ v3:
 	# Does full gen and build (web)
 	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-all
 
+v2-flu-desk-run:
 
-### Developers
-
-# NOTE: At dev time you only want to run long generators IF you know you need then.
-# So here are the make targets to use as you see fit.
-# Manaully do a "make this-dep" to get the golang tools yourself.
-# Manaully do a "make flu-config" to set to beta channnel yourself.
-# Manaully do a "make flu-gen-all" to gen all code yourself.
-# Manually do a "make flu-gen-lang-all" to gen all languages yourself.
+	cd ./deploy/templates/maintemplatev2 && $(MAKE) flu-desk-run
 
 ### For Local dev. Does NOT do big Gen !
-this-flu-desk-run:
+v3--flu-web-run:
 
-	cd ./maintemplate && $(MAKE) flu-desk-run
-
-### For Local dev. Does NOT do big Gen !
-this-flu-web-run:
-	
-
-	cd ./maintemplate && $(MAKE) flu-web-run
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) flu-web-run

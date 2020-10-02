@@ -34,7 +34,7 @@ It is then imported by Repo main/deploy/maintemplatev2 and Repo main/deploy/main
 maintemplatev2
 
 - single binary
-- so maintemplatev2/server imports Repo sys-shared/main/service.
+- so maintemplatev2/server imports Repo sys-shared/main/pkg/service-proxy.go
 - so maintemplatev2/server imports Repo mod/main/service.
 
 maintemplatev3
