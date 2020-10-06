@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:maintemplate/main.dart';
-import 'package:maintemplate/modules/startup/views/startup_view.dart';
+import 'package:maintemplatev2/main.dart';
+import 'package:maintemplatev2/modules/startup/views/startup_view.dart';
 // import 'package:mod_chat/mod_chat.dart';
 
 //import 'package:mod_chat_beta/mod_chat.dart' as chatBeta;
 // import 'package:mod_geo/mod_geo.dart';
 // import 'package:mod_ion/ion_module.dart';
 // import 'package:mod_kanban/kanban_module.dart';
-import 'package:mod_main/modules/mod_main.dart';
+import 'package:mod_disco/modules/mod_disco.dart';
 // import 'package:mod_session/mod_session.dart';
 // import 'package:mod_write/mod_write.dart';
 // import 'package:mod_write/writer_module.dart';
@@ -49,9 +49,9 @@ class AppModule extends MainModule {
         //   customTransition: noTransition,
         // ),
         ModularRouter(
-          Paths.modMain,
+          Paths.modDisco,
           module: MainAppModule(
-            baseRoute: Paths.modMain,
+            baseRoute: Paths.modDisco,
             url: url,
             urlNative: urlNative,
           ),

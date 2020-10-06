@@ -25,11 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "changeThemeSet" : MessageLookupByLibrary.simpleMessage("Change le thème"),
     "tabIon" : MessageLookupByLibrary.simpleMessage("Ion"),
     "tabKanban" : MessageLookupByLibrary.simpleMessage("Kanban"),
-    "tabSettings" : MessageLookupByLibrary.simpleMessage("Paramètres"),
+    "tabSettings" : MessageLookupByLibrary.simpleMessage("Réglages"),
     "tabchat" : MessageLookupByLibrary.simpleMessage("Bavarder"),
     "tabhome" : MessageLookupByLibrary.simpleMessage("Accueil"),
     "tabmap" : MessageLookupByLibrary.simpleMessage("Carte"),
-    "tabsettings" : MessageLookupByLibrary.simpleMessage("Paramètres"),
+    "tabsettings" : MessageLookupByLibrary.simpleMessage("Réglages"),
     "tabwriter" : MessageLookupByLibrary.simpleMessage("Écrivain")
   };
 }

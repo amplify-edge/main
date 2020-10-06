@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:maintemplate/core/core.dart';
-import 'package:maintemplate/modules/settings/view_models/settings_view_model.dart';
+import 'package:maintemplatev2/core/core.dart';
+import 'package:maintemplatev2/modules/settings/view_models/settings_view_model.dart';
 import 'package:provider/provider.dart';
-
 
 class SettingsViewWeb extends StatelessWidget {
   SettingsViewWeb({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-
     final model = Provider.of<SettingsViewModel>(context);
     final env = model.envVariables;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          AppLocalizations.of(context).tabSettings()
-          ),
+        title: Text(AppLocalizations.of(context).tabSettings()),
       ),
       body: SingleChildScrollView(
         child: Column(children: [
-
           ListTile(
             leading: Icon(Icons.palette),
-            title: Text(
-              AppLocalizations.of(context).changeThemeSet()
-              ),
+            title: Text(AppLocalizations.of(context).changeThemeSet()),
             trailing: DropdownButton<ThemeMode>(
               value: model.themeMode,
               onChanged: (ThemeMode value) {
@@ -40,11 +33,9 @@ class SettingsViewWeb extends StatelessWidget {
               }).toList(),
             ),
           ),
-           ListTile(
+          ListTile(
             leading: Icon(Icons.language),
-            title:  Text(
-              AppLocalizations.of(context).changeLanguageSet()
-              ),
+            title: Text(AppLocalizations.of(context).changeLanguageSet()),
             trailing: DropdownButton<Locale>(
               value: model.locale,
               onChanged: (Locale value) {
@@ -54,8 +45,7 @@ class SettingsViewWeb extends StatelessWidget {
                   .map<DropdownMenuItem<Locale>>((Locale value) {
                 return DropdownMenuItem<Locale>(
                   value: value,
-                  child: Text(
-                      model.languageNameLookup(value)),
+                  child: Text(model.languageNameLookup(value)),
                 );
               }).toList(),
             ),

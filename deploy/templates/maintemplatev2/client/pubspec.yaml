@@ -1,4 +1,4 @@
-name: maintemplate
+name: maintemplatev2
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -52,10 +52,15 @@ dependencies:
   #   path: ../../mod-account/client
   # mod_kanban:
   #   path: ../../mod-kanban/client
-  sys_core:
+  # sys_core:
+  # git:
+  # url: git://github.com/getcouragenow/sys.git
+  # path: sys-core/service/flu
+
+  mod_disco:
     git:
-      url: git://github.com/getcouragenow/sys.git
-      path: sys-core/service/flu
+      url: git://github.com/gutterbacon/mod.git
+      path: mod-disco/client
     # path: ../../sys-core/client
   #sys_core:
   #  git:

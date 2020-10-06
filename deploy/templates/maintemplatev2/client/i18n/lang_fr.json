@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-09-21T14:51:41.608826",
+  "@@last_modified": "2020-10-06T22:23:21.241233",
   "tabhome": "Accueil",
   "@tabhome": {
     "description": "text for the home tab",
@@ -18,7 +18,7 @@
     "placeholders": {},
     "type": "text"
   },
-  "tabsettings": "Paramètres",
+  "tabsettings": "Réglages",
   "@tabsettings": {
     "description": "text for the settings tab",
     "placeholders": {},
@@ -42,7 +42,7 @@
     "placeholders": {},
     "type": "text"
   },
-  "tabSettings": "Paramètres",
+  "tabSettings": "Réglages",
   "@tabSettings": {
     "description": "text for the settings tab",
     "placeholders": {},
