@@ -53,7 +53,7 @@ v2:
 	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-all
 
 v2-run:
-	maintemplatev2 -local -dir ./deploy/templates/maintemplatev2/client/build/web -port 9074
+	rm -rf getcouragenow.db && maintemplatev2 -local -dir ./deploy/templates/maintemplatev2/client/build/web -port 9074
 
 v3:
 	# Does full gen and build (web)
