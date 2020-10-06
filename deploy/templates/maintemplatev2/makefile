@@ -15,7 +15,7 @@ override FLU_LIB_NAME =client
 
 # go build
 override GO_FSPATH:=${PWD}/server/cmd
-override GO_BIN_NAME=maintemplate
+override GO_BIN_NAME=maintemplatev2
 override GO_BUILD_OUT_FSPATH:=${GOPATH}/bin/$(GO_BIN_NAME)
 override GO_BUILD_OUT_ALL_FSPATH=${PWD}/server/assets
 
@@ -43,7 +43,8 @@ this-build: ##
 	$(MAKE) flu-gen-all
 	$(MAKE) flu-gen-lang-all
 	$(MAKE) flu-web-build
-	
+
+
 ## This builds maintemplate and all submodules
 this-build-deep: ##
 
