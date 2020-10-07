@@ -1,4 +1,4 @@
-name: maintemplate
+name: maintemplatev2
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -16,13 +16,11 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.6.0 <3.0.0"
 
-
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-
 
   # Responsive Design
   # navigation_rail: ^1.0.4
@@ -36,26 +34,34 @@ dependencies:
   #    url: git://github.com/getcouragenow/packages.git
   #    path: modtemplate02/client/
 
-  mod_write:
-    path: ../../mod-write/client
-  mod_chat:
-    path: ../../mod-chat/client
+  # mod_write:
+  #   path: ../../mod-write/client
+  # mod_chat:
+  #   path: ../../mod-chat/client
   #mod_chat_beta:
   #  path: ../../mod-chat-beta/client
-  mod_ion:
-    path: ../../mod-ion/client
-  mod_geo:
-    path: ../../mod-geo/client
-  mod_session:
-    path: ../../mod-session/client
-  mod_main:
-    path: ../../mod-main/client
-  mod_account:
-    path: ../../mod-account/client
-  mod_kanban:
-    path: ../../mod-kanban/client
-  sys_core:
-    path: ../../sys-core/client
+  # mod_ion:
+  #   path: ../../mod-ion/client
+  # mod_geo:
+  #   path: ../../mod-geo/client
+  # mod_session:
+  #   path: ../../mod-session/client
+  # mod_main:
+  #   path: ../../mod-main/client
+  # mod_account:
+  #   path: ../../mod-account/client
+  # mod_kanban:
+  #   path: ../../mod-kanban/client
+  # sys_core:
+  # git:
+  # url: git://github.com/getcouragenow/sys.git
+  # path: sys-core/service/flu
+
+  mod_disco:
+    git:
+      url: git://github.com/getcouragenow/mod.git
+      path: mod-disco/client
+    # path: ../../sys-core/client
   #sys_core:
   #  git:
   #    url: git://github.com/getcouragenow/core-runtime.git
@@ -80,7 +86,6 @@ dependencies:
 
   cupertino_icons: ^0.1.2
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -100,7 +105,6 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -112,13 +116,10 @@ flutter:
     - assets/env.json
     - assets/icon/placeholder.png
   #   - images/a_dot_ham.jpeg
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

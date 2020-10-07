@@ -3,25 +3,33 @@ package main
 import (
 	"flag"
 	"fmt"
+	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
+	"github.com/sirupsen/logrus"
+	"google.golang.org/grpc"
 	"log"
 	"net"
 	"net/http"
 	"strings"
 
+	"github.com/getcouragenow/sys/main/pkg"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
-	"google.golang.org/grpc"
+)
 
-	"github.com/improbable-eng/grpc-web/go/grpcweb"
+var (
+	defaultUnauthenticatedRoutes = []string{
+		"/v2.services.AuthService/Login",
+		"/v2.services.AuthService/Register",
+		"/v2.services.AuthService/ResetPassword",
+		"/v2.services.AuthService/ForgotPassword",
+		"/v2.services.AuthService/RefreshAccessToken",
+		"/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo",
+	}
+)
 
-	"github.com/nats-io/nats.go"
-	stan "github.com/nats-io/stan.go"
-
-	modchat_pb "github.com/getcouragenow/packages/mod-chat/server/pkg/api"
-	modchat_srv "github.com/getcouragenow/packages/mod-chat/server/pkg/service"
-	// auth "github.com/envoyproxy/go-control-plane/envoy/service/auth/v2"
-	// authz "github.com/getcouragenow/packages/mod-account/server/authz_server"
-	// healthpb "google.golang.org/grpc/health/grpc_health_v1"
+const (
+	errSourcingConfig   = "error while sourcing config: %v"
+	errCreateSysService = "error while creating service: %v"
 )
 
 type FileSystem struct {
@@ -49,43 +57,39 @@ func (fs FileSystem) Open(path string) (http.File, error) {
 var port = flag.Int("port", 9074, "the port to serve on")
 var local = flag.Bool("local", false, "flag for local development")
 var directory = flag.String("dir", "../client/build/web/", "the directory of static file to host")
-var natsAddr = flag.String("nats-server", "127.0.0.1", "nats server address")
 
 func main() {
 	flag.Parse()
 
-	nc, err := nats.Connect(fmt.Sprintf("nats://%s:4222", *natsAddr))
-	if err != nil {
-		log.Fatal(err)
+	logrusLevel := logrus.InfoLevel
+	if *local {
+		logrusLevel = logrus.DebugLevel
 	}
-	defer nc.Close()
+	l := logrus.New()
+	l.SetLevel(logrusLevel)
+	logger := l.WithField("maintemplate", "v2")
 
-	conn, err := stan.Connect("test-cluster", "test-client", stan.NatsConn(nc))
+	// Create / source config
+	sscfg, err := pkg.NewSysServiceConfig(logger, nil, defaultUnauthenticatedRoutes, *port)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatalf(errSourcingConfig, err)
 	}
-	defer conn.Close()
+	sysService, err := pkg.NewService(sscfg)
+	if err != nil {
+		logger.Fatalf(errCreateSysService, err)
+	}
 
-	// opts := []grpc.ServerOption{grpc.MaxConcurrentStreams(10)}
-	// opts = append(opts)
-
-	grpcServer := grpc.NewServer()
-
-	server := &modchat_srv.Server{conn}
-
-	// chat server
-	modchat_pb.RegisterBroadcastServer(grpcServer, server)
-
-	// authz server
-	// auth.RegisterAuthorizationServer(grpcServer, &authz.AuthorizationServer{})
-
-	// health check server
-	// healthpb.RegisterHealthServer(grpcServer, &authz.HealthServer{})
+	unaryInterceptors, streamInterceptors := sysService.InjectInterceptors(nil, nil)
+	grpcServer := grpc.NewServer(
+		grpcMw.WithUnaryServerChain(unaryInterceptors...),
+		grpcMw.WithStreamServerChain(streamInterceptors...),
+	)
+	sysService.RegisterServices(grpcServer)
 
 	if *local {
 		fileServer := http.FileServer(FileSystem{http.Dir(*directory)})
 
-		grpcWebServer := grpcweb.WrapServer(grpcServer)
+		grpcWebServer := sysService.RegisterGrpcWebServer(grpcServer)
 
 		httpServer := &http.Server{
 			Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -95,11 +99,9 @@ func main() {
 					w.Header().Set("Access-Control-Allow-Origin", "*")
 					w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 					w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web")
-					w.Header().Set("grpc-status", "")
-					w.Header().Set("grpc-message", "")
+					logger.Infof("Request Endpoint: %s", r.URL)
 					if grpcWebServer.IsGrpcWebRequest(r) {
 						grpcWebServer.ServeHTTP(w, r)
-						fmt.Println("GRPC Request", r.URL)
 					} else {
 						fileServer.ServeHTTP(w, r)
 					}
@@ -107,15 +109,9 @@ func main() {
 			}), &http2.Server{}),
 		}
 
-		httpServer.Addr = fmt.Sprintf(":%d", *port)
-
-		err := httpServer.ListenAndServe()
-		if err != nil {
-			log.Fatal(err)
-		}
+		sysService.Run(grpcWebServer, httpServer)
 
 	} else {
-
 		lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
 		if err != nil {
 			log.Fatalf("failed to listen: %v", err)

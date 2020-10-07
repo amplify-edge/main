@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:maintemplate/core/views/nav_rail.dart';
+import 'package:maintemplatev2/core/views/nav_rail.dart';
 import 'package:sys_core/sys_core.dart';
 
 import '../core.dart';
@@ -43,7 +43,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
           ),
           icon: Icon(Icons.home),
           onTap: () {
-            Modular.to.pushNamed(Paths.modMain);
+            Modular.to.pushNamed(Paths.modDisco);
             print("Home tapped");
           },
         ),

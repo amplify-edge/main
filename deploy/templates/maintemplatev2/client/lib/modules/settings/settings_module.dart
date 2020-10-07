@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:maintemplate/core/core.dart';
+import 'package:maintemplatev2/core/core.dart';
 
 import 'views/settings_view.dart';
 
