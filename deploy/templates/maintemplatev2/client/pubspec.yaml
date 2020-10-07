@@ -59,7 +59,7 @@ dependencies:
 
   mod_disco:
     git:
-      url: git://github.com/gutterbacon/mod.git
+      url: git://github.com/getcouragenow/mod.git
       path: mod-disco/client
     # path: ../../sys-core/client
   #sys_core:
