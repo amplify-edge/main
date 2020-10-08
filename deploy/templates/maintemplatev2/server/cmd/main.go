@@ -93,18 +93,14 @@ func main() {
 
 		httpServer := &http.Server{
 			Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-				if r.ProtoMajor == 2 {
+				w.Header().Set("Access-Control-Allow-Origin", "*")
+				w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+				w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web")
+				logger.Infof("Request Endpoint: %s", r.URL)
+				if strings.Contains(r.URL.Path, "v2.services") {
 					grpcWebServer.ServeHTTP(w, r)
 				} else {
-					w.Header().Set("Access-Control-Allow-Origin", "*")
-					w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-					w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web")
-					logger.Infof("Request Endpoint: %s", r.URL)
-					if grpcWebServer.IsGrpcWebRequest(r) {
-						grpcWebServer.ServeHTTP(w, r)
-					} else {
-						fileServer.ServeHTTP(w, r)
-					}
+					fileServer.ServeHTTP(w, r)
 				}
 			}), &http2.Server{}),
 		}
