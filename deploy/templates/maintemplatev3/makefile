@@ -3,22 +3,17 @@ SHARED_FSPATH=./../../../../shared
 BOILERPLATE_FSPATH=$(SHARED_FSPATH)/boilerplate
 
 include $(BOILERPLATE_FSPATH)/help.mk
-include $(BOILERPLATE_FSPATH)/os.mk
 include $(BOILERPLATE_FSPATH)/gitr.mk
-include $(BOILERPLATE_FSPATH)/tool.mk
-include $(BOILERPLATE_FSPATH)/flu.mk
-include $(BOILERPLATE_FSPATH)/go.mk
 
-# flu build
-override FLU_SAMPLE_NAME =client
-override FLU_LIB_NAME =client
 
-# go build
-override GO_FSPATH:=${PWD}/server/cmd
-override GO_BIN_NAME=maintemplate
-override GO_BUILD_OUT_FSPATH:=${GOPATH}/bin/$(GO_BIN_NAME)
-override GO_BUILD_OUT_ALL_FSPATH=${PWD}/server/assets
+SDK_BIN=$(PWD)/bin-all/sdk-cli
+SERVER_BIN=$(PWD)/bin-all/sys-main
+# TODO. Make config.
+SERVER_ADDRESS=127.0.0.1:8888
 
+EXAMPLE_EMAIL = superadmin@getcouragenow.org
+EXAMPLE_PASSWORD = superadmin
+EXAMPLE_SERVER_ADDRESS = 127.0.0.1:9074
 
 this-all: this-build
 
@@ -33,53 +28,46 @@ this-print: ## print
 
 	$(MAKE) go-print
 
+this-build-delete:
+	rm -rf ./bin-all
 
+this-build: this-build-delete
 
-## This builds everything
-this-build: ##
-	$(MAKE) go-build
-	$(MAKE) flu-gen-all
-	$(MAKE) flu-gen-lang-all
-	$(MAKE) flu-web-build
-	
-## This builds maintemplate and all submodules
-this-build-deep: ##
+	mkdir -p ./bin-all
+
+	## Flutter first
+	#$(MAKE) flu-gen-all
+	#$(MAKE) flu-gen-lang-all
+	#$(MAKE) flu-web-build
+
+	cd mainsys/sdk-cli && go build -o $(SDK_BIN) .
+	cd mainsys/server && go build -o $(SERVER_BIN) .
+
+this-build-deep:
 
 	# DO bottom up so we get the embeddings i think.
-	cd ../sys-core && make this-build
+	#cd ../sys-core && make this-build
 
-	# COMENTED OUT stuff we dont need for v2
-	#cd ../mod-account && make this-build
-	#cd ../mod-chat && make this-build
-	cd ../mod-main && make this-build
-	#cd ../mod-geo && make this-build
-	#cd ../mod-chat && make this-build
-	#cd ../mod-write && make this-build
-	#cd ../mod-ion && make this-build
-	#cd ../mod-kanban && make this-build
-
+	#cd ../mod-main && make this-build
+	
 	# finally build the top :)
 	$(MAKE) this-build
-	
-	
 
-### DEV
 
-### DEV
 
-this-example-build:
-	## GO
-	$(MAKE) go-build
+### RUN
 
-	## FLU
-	$(MAKE) flu-gen-all
-	$(MAKE) flu-gen-lang-all
-	$(MAKE) flu-web-build
+this-sdk-run:
+	$(SDK_BIN)
 
-this-example-go-run:
-	$(MAKE) go-run
+this-server-run:
+	rm -rf getcouragenow.db && $(SERVER_BIN)
 
-this-example-flu-run:
-	# web is broken currently.
-	$(MAKE) flu-desk-run
+this-example-sdk-auth:
+	@echo Running Example Registe±–r Client
+	$(SDK_BIN) sys-account auth-service register --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --password-confirm $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
+	@echo Running Example Login Client
+	$(SDK_BIN) sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
+
+
 
