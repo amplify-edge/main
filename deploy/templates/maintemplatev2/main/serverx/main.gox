@@ -3,17 +3,18 @@ package main
 import (
 	"flag"
 	"fmt"
-	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
-	"github.com/sirupsen/logrus"
-	"google.golang.org/grpc"
 	"log"
 	"net"
 	"net/http"
 	"strings"
 
-	"github.com/getcouragenow/sys/main/pkg"
+	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
+	"github.com/sirupsen/logrus"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
+	"google.golang.org/grpc"
+
+	"github.com/getcouragenow/sys/main/pkg"
 )
 
 var (
