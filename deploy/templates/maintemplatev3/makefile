@@ -6,10 +6,13 @@ include $(BOILERPLATE_FSPATH)/help.mk
 include $(BOILERPLATE_FSPATH)/gitr.mk
 
 
-SDK_BIN=$(PWD)/bin-all/sdk-cli
-SERVER_BIN=$(PWD)/bin-all/sys-main
+SYS_SDK_BIN=$(PWD)/bin-all/mainsys-cli
+SYS_SERVER_BIN=$(PWD)/bin-all/mainsys
+MOD_SDK_BIN=$(PWD)/bin-all/mainmod-cli
+MOD_SERVER_BIN=$(PWD)/bin-all/mainmod
+
 # TODO. Make config.
-SERVER_ADDRESS=127.0.0.1:8888
+SYS_SERVER_ADDRESS=127.0.0.1:8888
 
 EXAMPLE_EMAIL = superadmin@getcouragenow.org
 EXAMPLE_PASSWORD = superadmin
@@ -40,8 +43,9 @@ this-build: this-build-delete
 	#$(MAKE) flu-gen-lang-all
 	#$(MAKE) flu-web-build
 
-	cd mainsys/sdk-cli && go build -o $(SDK_BIN) .
-	cd mainsys/server && go build -o $(SERVER_BIN) .
+	go build -o $(SYS_SERVER_BIN) ./mainsys/server/main.go
+	go build -o $(SYS_SDK_BIN) ./mainsys/sdk-cli/main.go
+	go build -o $(MOD_SERVER_BIN) ./mainmod/server/main.go
 
 this-build-deep:
 
@@ -57,17 +61,22 @@ this-build-deep:
 
 ### RUN
 
-this-sdk-run:
-	$(SDK_BIN)
+this-sys-sdk-run:
+	$(SYS_SDK_BIN)
 
-this-server-run:
-	rm -rf getcouragenow.db && $(SERVER_BIN)
+this-sys-server-run:
+	mkdir -p db
+	rm -rf db/getcouragenow.db && $(SYS_SERVER_BIN)
 
-this-example-sdk-auth:
+# Run this only after sysserver is running!
+this-mod-server-run:
+	$(MOD_SERVER_BIN)
+
+this-sys-sdk-auth:
 	@echo Running Example Registe±–r Client
-	$(SDK_BIN) sys-account auth-service register --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --password-confirm $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
+	$(SYS_SDK_BIN) sys-account auth-service register --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --password-confirm $(EXAMPLE_PASSWORD) --server-addr $(SYS_SERVER_ADDRESS)
 	@echo Running Example Login Client
-	$(SDK_BIN) sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
+	$(SYS_SDK_BIN) sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
 
 
 
