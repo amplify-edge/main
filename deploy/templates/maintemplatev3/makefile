@@ -12,7 +12,7 @@ MOD_SDK_BIN=$(PWD)/bin-all/mainmod-cli
 MOD_SERVER_BIN=$(PWD)/bin-all/mainmod
 
 # TODO. Make config.
-SYS_SERVER_ADDRESS=127.0.0.1:8888
+SYS_SERVER_ADDRESS=127.0.0.1:9075
 
 EXAMPLE_EMAIL = superadmin@getcouragenow.org
 EXAMPLE_PASSWORD = superadmin
@@ -46,6 +46,7 @@ this-build: this-build-delete
 	go build -o $(SYS_SERVER_BIN) ./mainsys/server/main.go
 	go build -o $(SYS_SDK_BIN) ./mainsys/sdk-cli/main.go
 	go build -o $(MOD_SERVER_BIN) ./mainmod/server/main.go
+	go build -o $(MOD_SDK_BIN) ./mainmod/cli/main.go
 
 this-build-deep:
 
@@ -76,7 +77,10 @@ this-sys-sdk-auth:
 	@echo Running Example Registe±–r Client
 	$(SYS_SDK_BIN) sys-account auth-service register --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --password-confirm $(EXAMPLE_PASSWORD) --server-addr $(SYS_SERVER_ADDRESS)
 	@echo Running Example Login Client
-	$(SYS_SDK_BIN) sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
+	$(SYS_SDK_BIN) sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(SYS_SERVER_ADDRESS)
 
+this-mod-sdk-list:
+	@echo Running Dummy ListAccounts
+	$(MOD_SDK_BIN) mod-main mod-dummy -h
 
 

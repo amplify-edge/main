@@ -17,7 +17,7 @@ var (
 		"/v2.services.AuthService/ResetPassword",
 		"/v2.services.AuthService/ForgotPassword",
 		"/v2.services.AuthService/RefreshAccessToken",
-		"/v2.mod_services.DummyService/ListAccounts",
+		"/v2.mod_services.DummyService/GetAccount",
 		"/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo",
 	}
 
@@ -33,7 +33,7 @@ var (
 
 const (
 	// TODO: Make config
-	defaultPort          = 8888
+	defaultPort          = 9075
 	errSourcingConfig    = "error while sourcing config: %v"
 	errCreateSysService  = "error while creating sys-* service: %v"
 	errInitDatabase      = "db initialization failed: %v"

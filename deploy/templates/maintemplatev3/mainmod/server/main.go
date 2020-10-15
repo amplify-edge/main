@@ -15,43 +15,24 @@ import (
 	"google.golang.org/grpc"
 
 	modpkg "github.com/getcouragenow/mod/main/pkg"
-	accountConfig "github.com/getcouragenow/sys/sys-account/service/go"
-	accountRepo "github.com/getcouragenow/sys/sys-account/service/go/pkg/repo"
-	corecfg "github.com/getcouragenow/sys/sys-core/service/go"
-	coredb "github.com/getcouragenow/sys/sys-core/service/go/pkg/db"
 )
 
 // TODO @gutterbacon: Every kind of configs are hardcoded for now.
 const (
 	// TODO @gutterbacon: JSONNET config
-	defaultPort                = 9074
-	defaultSysPort             = 9075
-	defaultTimeout             = 5 * time.Second
-	defaultSysHost             = "127.0.0.1"
-	defaultDbName              = "getcouragenow.db"
-	defaultDbEncryptionKey     = "testkey@!" // for test only.
-	defaultDbDir               = "./db"
-	defaultDbBackupDir         = "./db/backups"
-	defaultDbBackupSchedulSpec = "@every 15s"
-	defaultDbRotateSchedulSpec = "@every 1h"
-	defaultSecret              = "XXD54YBnPiSrIW4i6jyxzLybVFXTp0wD\n"
+	defaultPort    = 9074
+	defaultSysPort = 9075
+	defaultTimeout = 5 * time.Second
+	defaultSysHost = "127.0.0.1"
 
-	errSourcingConfig    = "error while sourcing config: %v"
 	errConnectingMainSys = "error while trying to connect to mainsys: %v"
 	errCreateSysService  = "error while creating modmainv3 service: %v"
-	errCreatingDB        = "error while initiating db: %v"
-	errGetSharedDB       = "error getting shared database: %v"
 )
 
 var (
 	port    = flag.Int("port", defaultPort, "the port to serve on")
 	sysPort = flag.Int("sysport", defaultSysPort, "the mainsys port to connect to")
 	sysHost = flag.String("syshost", defaultSysHost, "the IP address mainsys is running at")
-
-	defaultUnauthenticatedRoutes = []string{
-		"/v2.mod_services.DummyService/ListAccounts",
-		"/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo",
-	}
 )
 
 func recoveryHandler(l *logrus.Entry) func(panic interface{}) error {
@@ -73,44 +54,7 @@ func main() {
 		l.Fatalf(errConnectingMainSys, err)
 	}
 
-	csc := &corecfg.SysCoreConfig{
-		DbConfig: corecfg.DbConfig{
-			Name:             defaultDbName,
-			EncryptKey:       defaultDbEncryptionKey,
-			RotationDuration: 1,
-			DbDir:            defaultDbDir,
-		},
-		CronConfig: corecfg.CronConfig{
-			BackupSchedule: defaultDbBackupSchedulSpec,
-			RotateSchedule: defaultDbRotateSchedulSpec,
-			BackupDir:      defaultDbBackupDir,
-		},
-	}
-
-	if err := coredb.InitDatabase(csc); err != nil {
-		l.Fatalf(errCreatingDB, err)
-	}
-
-	gdb, err := coredb.SharedDatabase()
-	if err != nil {
-		l.Fatalf(errGetSharedDB, err)
-	}
-	accountCfg := accountConfig.SysAccountConfig{
-		UnauthenticatedRoutes: defaultUnauthenticatedRoutes,
-		JWTConfig: accountConfig.JWTConfig{
-			Access: accountConfig.TokenConfig{
-				Secret: defaultSecret,
-			},
-			Refresh: accountConfig.TokenConfig{
-				Secret: defaultSecret,
-			},
-		},
-	}
-	sysAccRepo, err := accountRepo.NewAuthRepo(l, gdb, &accountCfg)
-	if err != nil {
-		l.Fatalf(errCreateSysService, err)
-	}
-	modsvc, err := modpkg.NewModService(l, *port, nil, nil, dialConn, sysAccRepo.DefaultInterceptor)
+	modsvc, err := modpkg.NewModService(l, *port, nil, nil, dialConn, nil)
 	if err != nil {
 		l.Fatalf(errCreateSysService, err)
 	}

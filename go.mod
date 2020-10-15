@@ -13,3 +13,5 @@ require (
 )
 
 replace github.com/getcouragenow/sys => ../sys
+
+replace github.com/getcouragenow/mod => ../mod
