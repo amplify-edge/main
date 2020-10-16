@@ -9,6 +9,7 @@ import 'package:maintemplatev2/modules/startup/views/startup_view.dart';
 // import 'package:mod_ion/ion_module.dart';
 // import 'package:mod_kanban/kanban_module.dart';
 import 'package:mod_disco/modules/mod_disco.dart';
+import 'package:mod_survey/mod_survey.dart';
 // import 'package:mod_session/mod_session.dart';
 // import 'package:mod_write/mod_write.dart';
 // import 'package:mod_write/writer_module.dart';
@@ -48,6 +49,12 @@ class AppModule extends MainModule {
         //   transition: TransitionType.custom,
         //   customTransition: noTransition,
         // ),
+        ModularRouter(
+          Paths.modSurvey,
+          module: SurveyModule(
+            Paths.modSurvey,
+          ),
+        ),
         ModularRouter(
           Paths.modDisco,
           module: MainAppModule(

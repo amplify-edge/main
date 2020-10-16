@@ -48,6 +48,15 @@ class _NavigationLayoutState extends State<NavigationLayout> {
           },
         ),
         TabItem(
+            title: Text(
+              AppLocalizations.of(context).tabsurvey(),
+            ),
+            icon: Icon(Icons.notes),
+            onTap: () {
+              Modular.to.pushNamed(Paths.modSurvey);
+              print("Survey tapped");
+            }),
+        TabItem(
           title: Text(AppLocalizations.of(context).tabKanban()),
           icon: Icon(Icons.storage),
           onTap: () {
