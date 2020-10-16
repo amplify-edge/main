@@ -17,8 +17,6 @@ override FLU_SAMPLE_NAME =client
 override FLU_LIB_NAME =client
 
 
-
-
 this-all: this-print this-dep this-build this-print-end
 
 this-print: 
@@ -56,18 +54,25 @@ v2:
 	# Does full gen and build (web)
 	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-all
 
-v2-run:
+v2-server-run:
 	rm -rf getcouragenow.db && maintemplatev2 -local -dir ./deploy/templates/maintemplatev2/client/build/web -port 9074
+
+v2-flu-web-run:
+
+	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-flu-web-run
+
+v2-flu-desk-run:
+
+	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-flu-desk-run
+
 
 v3:
 	# Does full gen and build (web)
 	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-all
 
-v2-flu-desk-run:
 
-	cd ./deploy/templates/maintemplatev2 && $(MAKE) flu-desk-run
 
 ### For Local dev. Does NOT do big Gen !
-v3--flu-web-run:
+v3-flu-web-run:
 
 	cd ./deploy/templates/maintemplatev3 && $(MAKE) flu-web-run
