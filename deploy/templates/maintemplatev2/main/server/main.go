@@ -5,9 +5,6 @@ import (
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 
-	//"github.com/getcouragenow/sys/main/pkg"
-	// FIX IS:
-
 	corepkg "github.com/getcouragenow/sys/main/pkg"
 	corecfg "github.com/getcouragenow/sys/sys-core/service/go"
 	coredb "github.com/getcouragenow/sys/sys-core/service/go/pkg/db"

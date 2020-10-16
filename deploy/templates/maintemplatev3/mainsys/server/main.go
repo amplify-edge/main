@@ -17,7 +17,7 @@ var (
 		"/v2.services.AuthService/ResetPassword",
 		"/v2.services.AuthService/ForgotPassword",
 		"/v2.services.AuthService/RefreshAccessToken",
-		"/v2.mod_services.DummyService/GetAccount",
+		"/v2.services.AccountService/GetAccount",
 		"/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo",
 	}
 
