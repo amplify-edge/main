@@ -13,6 +13,15 @@ class Translations {
     );
   }
 
+  String tabsurvey() {
+    return Intl.message(
+      'Survey',
+      name: 'tabsurvey',
+      desc: 'text for survey tab',
+      locale: locale.toString(),
+    );
+  }
+
   String tabchat() {
     return Intl.message(
       'Chat',

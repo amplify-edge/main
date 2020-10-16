@@ -61,6 +61,11 @@ dependencies:
     git:
       url: git://github.com/getcouragenow/mod.git
       path: mod-disco/client
+
+  mod_survey:
+    git:
+      url: git://github.com/gutterbacon/mod.git
+      path: mod-survey/service/flu
     # path: ../../sys-core/client
   #sys_core:
   #  git:
@@ -73,7 +78,7 @@ dependencies:
   provider_architecture: ^1.0.6
   grpc: ^2.1.3
   protobuf: ^1.0.1
-  rxdart: ^0.20.0
+  rxdart: ^0.24.0
   shimmer: ^1.0.0
   intl: ^0.16.1
   intl_translation: ^0.17.9
