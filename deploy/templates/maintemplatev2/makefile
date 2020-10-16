@@ -3,8 +3,14 @@ SHARED_FSPATH=./../../../../shared
 BOILERPLATE_FSPATH=$(SHARED_FSPATH)/boilerplate
 
 include $(BOILERPLATE_FSPATH)/help.mk
+include $(BOILERPLATE_FSPATH)/os.mk
 include $(BOILERPLATE_FSPATH)/gitr.mk
+include $(BOILERPLATE_FSPATH)/go.mk
+include $(BOILERPLATE_FSPATH)/flu.mk
 
+
+FLU_SAMPLE_NAME = client
+FLU_SAMPLE_FSPATH = $(PWD)/$(FLU_SAMPLE_NAME)
 
 SDK_BIN=$(PWD)/bin-all/sdk-cli
 SERVER_BIN=$(PWD)/bin-all/main
@@ -69,5 +75,10 @@ this-example-sdk-auth:
 	@echo Running Example Login Client
 	$(SDK_BIN) sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
 
+this-flu-web-run:
+	$(MAKE) flu-web-run
 
+this-flu-desk-run:
+	$(MAKE) flu-desk-run
+	
 
