@@ -70,9 +70,12 @@ v3:
 	# Does full gen and build (web)
 	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-all
 
-
+v3-sys-server-run:
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-sys-server-run
+	
+v3-mod-server-run:
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-mod-server-run
 
 ### For Local dev. Does NOT do big Gen !
 v3-flu-web-run:
-
 	cd ./deploy/templates/maintemplatev3 && $(MAKE) flu-web-run
