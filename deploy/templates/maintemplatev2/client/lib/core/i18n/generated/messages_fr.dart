@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tabhome" : MessageLookupByLibrary.simpleMessage("Accueil"),
     "tabmap" : MessageLookupByLibrary.simpleMessage("Carte"),
     "tabsettings" : MessageLookupByLibrary.simpleMessage("Réglages"),
+    "tabsurvey" : MessageLookupByLibrary.simpleMessage("Enquête"),
     "tabwriter" : MessageLookupByLibrary.simpleMessage("Écrivain")
   };
 }
