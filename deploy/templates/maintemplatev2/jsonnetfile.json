@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "dependencies": [
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/sys-share.git",
+          "subdir": "sys-core/service/config"
+        }
+      },
+      "version": "master"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/sys.git",
+          "subdir": "sys-account/service/go"
+        }
+      },
+      "version": "master"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/sys.git",
+          "subdir": "sys-core/service/go"
+        }
+      },
+      "version": "master"
+    }
+  ],
+  "legacyImports": false
+}

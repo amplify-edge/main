@@ -1,8 +1,14 @@
 {
-  "@@last_modified": "2020-10-08T14:20:41.974036",
+  "@@last_modified": "2020-10-19T11:37:14.727136",
   "tabhome": "Home",
   "@tabhome": {
     "description": "text for the home tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tabsurvey": "Survey",
+  "@tabsurvey": {
+    "description": "text for survey tab",
     "type": "text",
     "placeholders": {}
   },

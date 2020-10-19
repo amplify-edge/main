@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "dependencies": [
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/sys-share.git",
+          "subdir": "sys-core/service/config"
+        }
+      },
+      "version": "3ae732e3de932255e00558df9528bf87191915ac",
+      "sum": "9B8A8T+41y8SKp+pTQHUH+nqf5IQRSR5TW3Og8VaEko="
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/sys.git",
+          "subdir": "sys-account/service/go"
+        }
+      },
+      "version": "c9e86b3afdb1efbbb0dd3f1e9c4baddc01306d0a",
+      "sum": "Q9XzvnGSD1iuRz7lmytrl6+CpXl1+yGxM2da+CBgSf4="
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/sys.git",
+          "subdir": "sys-core/service/go"
+        }
+      },
+      "version": "c9e86b3afdb1efbbb0dd3f1e9c4baddc01306d0a",
+      "sum": "1Qq/iHd6nzH5W66Lwl0GLNzyxNWuROEp5UTJ74g0egc="
+    }
+  ],
+  "legacyImports": false
+}

@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tabhome" : MessageLookupByLibrary.simpleMessage("گھر"),
     "tabmap" : MessageLookupByLibrary.simpleMessage("نقشہ"),
     "tabsettings" : MessageLookupByLibrary.simpleMessage("ترتیبات"),
+    "tabsurvey" : MessageLookupByLibrary.simpleMessage("سروے"),
     "tabwriter" : MessageLookupByLibrary.simpleMessage("لکھاری")
   };
 }

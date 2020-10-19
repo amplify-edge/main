@@ -7,8 +7,9 @@ include $(BOILERPLATE_FSPATH)/os.mk
 include $(BOILERPLATE_FSPATH)/gitr.mk
 include $(BOILERPLATE_FSPATH)/go.mk
 include $(BOILERPLATE_FSPATH)/flu.mk
+include $(BOILERPLATE_FSPATH)/tool.mk
 
-
+FLU_LIB_NAME = client
 FLU_SAMPLE_NAME = client
 FLU_SAMPLE_FSPATH = $(PWD)/$(FLU_SAMPLE_NAME)
 
@@ -20,6 +21,9 @@ SERVER_ADDRESS=127.0.0.1:8888
 EXAMPLE_EMAIL = superadmin@getcouragenow.org
 EXAMPLE_PASSWORD = superadmin
 EXAMPLE_SERVER_ADDRESS = 127.0.0.1:9074
+
+CONFIG_OUTPUT_DIR = $(PWD)/config
+DB_ENCRYPT_KEY = yYz8Xjb4HBn4irGQpBWulURjQk2XmwES
 
 this-all: this-build
 
@@ -37,17 +41,29 @@ this-print: ## print
 this-build-delete:
 	rm -rf ./bin-all
 
-this-build: this-build-delete
+this-build: this-build-delete this-config-delete this-config-gen
 
 	mkdir -p ./bin-all
 
 	## Flutter first
-	#$(MAKE) flu-gen-all
-	#$(MAKE) flu-gen-lang-all
-	#$(MAKE) flu-web-build
+	$(MAKE) flu-gen-all
+	$(MAKE) flu-gen-lang-all
+	$(MAKE) flu-web-build
 
-	cd main/sdk-cli && go build -o $(SDK_BIN) .
-	cd main/server && go build -o $(SERVER_BIN) .
+	go build -o $(SDK_BIN) main/sdk-cli/main.go
+	go build -o $(SERVER_BIN) main/server/main.go
+
+this-config-delete:
+	rm -rf $(CONFIG_OUTPUT_DIR)/*
+
+this-config-gen: this-config-dep
+	mkdir -p $(CONFIG_OUTPUT_DIR)
+	@echo Generating Config
+	jsonnet -S sysaccount.jsonnet > $(CONFIG_OUTPUT_DIR)/sysaccount.yml
+	jsonnet -S syscore.jsonnet -V SYS_CORE_DB_ENCRYPT_KEY=$(DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/syscore.yml
+
+this-config-dep:
+	jb install
 
 this-build-deep:
 
@@ -67,10 +83,10 @@ this-sdk-run:
 	$(SDK_BIN)
 
 this-server-run:
-	rm -rf getcouragenow.db && $(SERVER_BIN)
+	rm -rf db/gcn.db && $(SERVER_BIN) -c ./config/syscore.yml -a ./config/sysaccount.yml -p 9074
 
 this-example-sdk-auth:
-	@echo Running Example Registe±–r Client
+	@echo Running Example Register Client
 	$(SDK_BIN) sys-account auth-service register --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --password-confirm $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
 	@echo Running Example Login Client
 	$(SDK_BIN) sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
