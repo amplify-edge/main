@@ -1,2 +1,4 @@
 bin-all
 db
+config/**
+vendor

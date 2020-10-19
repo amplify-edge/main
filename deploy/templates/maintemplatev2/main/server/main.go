@@ -3,83 +3,63 @@ package main
 import (
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 
-	corepkg "github.com/getcouragenow/sys/main/pkg"
-	corecfg "github.com/getcouragenow/sys/sys-core/service/go"
-	coredb "github.com/getcouragenow/sys/sys-core/service/go/pkg/db"
-)
-
-var (
-	defaultUnauthenticatedRoutes = []string{
-		"/v2.services.AuthService/Login",
-		"/v2.services.AuthService/Register",
-		"/v2.services.AuthService/ResetPassword",
-		"/v2.services.AuthService/ForgotPassword",
-		"/v2.services.AuthService/RefreshAccessToken",
-		"/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo",
-	}
-
-	defaultDbName          = "getcouragenow.db"
-	defaultDbEncryptionKey = "testkey@!" //for test only.
-	// TODO: Make config
-	defaultDbDir               = "./db"
-	defaultDbBackupDir         = "./db/backups"
-	defaultDbBackupSchedulSpec = "@every 15s"
-	defaultDbRotateSchedulSpec = "@every 1h"
+	"github.com/getcouragenow/sys/main/pkg"
 )
 
 const (
-	// TODO: Make config
-	defaultPort          = 8888
-	errSourcingConfig    = "error while sourcing config: %v"
-	errCreateSysService  = "error while creating sys-* service: %v"
-	errInitDatabase      = "db initialization failed: %v"
-	errGetSharedDatabase = "failed to get shared database: %v"
+	errSourcingConfig   = "error while sourcing config for %s: %v"
+	errCreateSysService = "error while creating sys-* service: %v"
+
+	defaultPort                 = 8888
+	defaultSysCoreConfigPath    = "./config/syscore.yml"
+	defaultSysAccountConfigPath = "./config/sysaccount.yml"
+)
+
+var (
+	rootCmd        = &cobra.Command{Use: "maintemplatev2"}
+	coreCfgPath    string
+	accountCfgPath string
+	mainexPort     int
 )
 
 func main() {
-	logger := logrus.New().WithField("sys-main", "sys-*")
+	// persistent flags
+	rootCmd.PersistentFlags().StringVarP(&coreCfgPath, "sys-core-config-path", "c", defaultSysCoreConfigPath, "sys-core config path to use")
+	rootCmd.PersistentFlags().StringVarP(&accountCfgPath, "sys-account-config-path", "a", defaultSysAccountConfigPath, "sys-account config path to use")
+	rootCmd.PersistentFlags().IntVarP(&mainexPort, "port", "p", defaultPort, "grpc port to run")
 
-	csc := &corecfg.SysCoreConfig{
-		DbConfig: corecfg.DbConfig{
-			Name:             defaultDbName,
-			EncryptKey:       defaultDbEncryptionKey,
-			RotationDuration: 1,
-			DbDir:            defaultDbDir,
-		},
-		CronConfig: corecfg.CronConfig{
-			BackupSchedule: defaultDbBackupSchedulSpec,
-			RotateSchedule: defaultDbRotateSchedulSpec,
-			BackupDir:      defaultDbBackupDir,
-		},
-	}
+	// logging
+	logger := logrus.New().WithField("bin", "maintemplatev2")
 
-	if err := coredb.InitDatabase(csc); err != nil {
-		logger.Fatalf(errInitDatabase, err)
-	}
+	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
+		// configs
+		sspaths := pkg.NewServiceConfigPaths(coreCfgPath, accountCfgPath)
+		sscfg, err := pkg.NewSysServiceConfig(logger, nil, sspaths, defaultPort)
+		if err != nil {
+			logger.Fatalf(errSourcingConfig, err)
+		}
 
-	gdb, err := coredb.SharedDatabase()
-	if err != nil {
-		logger.Fatalf(errGetSharedDatabase, err)
-	}
+		// initiate all sys-* service
+		sysSvc, err := pkg.NewService(sscfg)
+		if err != nil {
+			logger.Fatalf(errCreateSysService, err)
+		}
 
-	//sscfg, err := pkg.NewSysServiceConfig(logger, gdb, defaultUnauthenticatedRoutes, defaultPort)
-	sscfg, err := corepkg.NewSysServiceConfig(logger, gdb, defaultUnauthenticatedRoutes, defaultPort)
-	if err != nil {
-		logger.Fatalf(errSourcingConfig, err)
+		// initiate grpc server
+		unaryInterceptors, streamInterceptors := sysSvc.InjectInterceptors(nil, nil)
+		grpcServer := grpc.NewServer(
+			grpcMw.WithUnaryServerChain(unaryInterceptors...),
+			grpcMw.WithStreamServerChain(streamInterceptors...),
+		)
+		sysSvc.RegisterServices(grpcServer)
+		grpcWebServer := sysSvc.RegisterGrpcWebServer(grpcServer)
+		// rutn server
+		return sysSvc.Run(grpcWebServer, nil)
 	}
-	//sysSvc, err := pkg.NewService(sscfg)
-	sysSvc, err := corepkg.NewService(sscfg)
-	if err != nil {
-		logger.Fatalf(errCreateSysService, err)
+	if err := rootCmd.Execute(); err != nil {
+		logger.Fatalf("error running sys-main: %v", err)
 	}
-	unaryInterceptors, streamInterceptors := sysSvc.InjectInterceptors(nil, nil)
-	grpcServer := grpc.NewServer(
-		grpcMw.WithUnaryServerChain(unaryInterceptors...),
-		grpcMw.WithStreamServerChain(streamInterceptors...),
-	)
-	sysSvc.RegisterServices(grpcServer)
-	grpcWebServer := sysSvc.RegisterGrpcWebServer(grpcServer)
-	sysSvc.Run(grpcWebServer, nil)
 }

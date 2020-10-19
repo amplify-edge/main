@@ -83,7 +83,7 @@ this-sdk-run:
 	$(SDK_BIN)
 
 this-server-run:
-	rm -rf getcouragenow.db && $(SERVER_BIN)
+	rm -rf db/gcn.db && $(SERVER_BIN) -c ./config/syscore.yml -a ./config/sysaccount.yml -p 9074
 
 this-example-sdk-auth:
 	@echo Running Example Register Client

@@ -1,4 +1,4 @@
-local accMixin = import "../../sys-account/service/go/template.sysaccount.libsonnet";
+local accMixin = import "vendor/github.com/getcouragenow/sys/sys-account/service/go/template.sysaccount.libsonnet";
 
 local cfg = {
     sysAccountConfig: accMixin.sysAccountConfig {
