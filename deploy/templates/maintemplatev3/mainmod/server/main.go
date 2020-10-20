@@ -30,7 +30,7 @@ const (
 	defaultTimeout   = 5 * time.Second
 	defaultSysHost   = "127.0.0.1"
 	defaultLocal     = true
-	defaultStaticDir = "./deploy/templates/maintemplatev3/client/build/web"
+	defaultStaticDir = "./client/build/web"
 
 	errConnectingMainSys = "error while trying to connect to mainsys: %v"
 	errCreateSysService  = "error while creating mainmodv3 service: %v"

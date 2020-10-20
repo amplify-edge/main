@@ -92,7 +92,7 @@ this-sys-server-run:
 
 # Run this only after sysserver is running!
 this-mod-server-run:
-	$(MOD_SERVER_BIN) -p 9074 -s 9075 -m 127.0.0.1
+	$(MOD_SERVER_BIN) -p 9074 -s 9075 -m 127.0.0.1 -d ./client/build/web
 
 this-sys-sdk-auth-signup:
 	@echo Running Example Register Client
