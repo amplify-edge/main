@@ -1,7 +1,8 @@
+config
 vendor
 .idea
 .vscode
-getcouragenow.db
+db
 deploy/templates/maintemplatev2/client/i18n/intl_messages.arb
 deploy/templates/maintemplatev2/client/i18n/*.arb
 deploy/templates/maintemplatev2/client/i18n/*.json

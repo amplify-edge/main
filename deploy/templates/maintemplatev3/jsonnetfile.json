@@ -8,8 +8,7 @@
           "subdir": "sys-core/service/config"
         }
       },
-      "version": "2e9df84724a90ec8a7f9e67209006e76b6f817ed",
-      "sum": "IpXYXF1AQ1j+Neehu/PQ0F/X+j32ZvfV7gyIRckV3k8="
+      "version": "master"
     },
     {
       "source": {
@@ -18,8 +17,7 @@
           "subdir": "sys-account/service/go"
         }
       },
-      "version": "e9c8e4863cdd94fab65f11583c77bb549ad162dc",
-      "sum": "F6+JdUytcQ1+g9K2TTKwC0jPocj75HzXdSyNJxaCymo="
+      "version": "master"
     },
     {
       "source": {
@@ -28,8 +26,7 @@
           "subdir": "sys-core/service/go"
         }
       },
-      "version": "e9c8e4863cdd94fab65f11583c77bb549ad162dc",
-      "sum": "1Qq/iHd6nzH5W66Lwl0GLNzyxNWuROEp5UTJ74g0egc="
+      "version": "master"
     }
   ],
   "legacyImports": false

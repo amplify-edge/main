@@ -13,10 +13,14 @@ MOD_SERVER_BIN=$(PWD)/bin-all/mainmod
 
 # TODO. Make config.
 SYS_SERVER_ADDRESS=127.0.0.1:9075
+MOD_SERVER_ADDRESS=127.0.0.1:9074
 
 EXAMPLE_EMAIL = superadmin@getcouragenow.org
 EXAMPLE_PASSWORD = superadmin
 EXAMPLE_SERVER_ADDRESS = 127.0.0.1:9074
+
+CONFIG_OUTPUT_DIR = $(PWD)/config
+DB_ENCRYPT_KEY = yYz8Xjb4HBn4irGQpBWulURjQk2XmwES
 
 this-all: this-build
 
@@ -34,8 +38,7 @@ this-print: ## print
 this-build-delete:
 	rm -rf ./bin-all
 
-this-build: this-build-delete
-
+this-build: this-build-delete this-config-delete this-config-gen
 	mkdir -p ./bin-all
 
 	## Flutter first
@@ -47,6 +50,18 @@ this-build: this-build-delete
 	go build -o $(SYS_SDK_BIN) ./mainsys/sdk-cli/main.go
 	go build -o $(MOD_SERVER_BIN) ./mainmod/server/main.go
 	go build -o $(MOD_SDK_BIN) ./mainmod/cli/main.go
+
+this-config-delete:
+	rm -rf $(CONFIG_OUTPUT_DIR)/*
+
+this-config-gen: this-config-dep
+	mkdir -p $(CONFIG_OUTPUT_DIR)
+	@echo Generating Config
+	jsonnet -S sysaccount.jsonnet > $(CONFIG_OUTPUT_DIR)/sysaccount.yml
+	jsonnet -S syscore.jsonnet -V SYS_CORE_DB_ENCRYPT_KEY=$(DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/syscore.yml
+
+this-config-dep:
+	jb install
 
 this-build-deep:
 

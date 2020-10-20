@@ -49,20 +49,19 @@ this-dep:
 
 this-build: v2 v3
 
-
 v2:
 	# Does full gen and build (web)
 	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-all
 
 v2-server-run:
-	rm -rf getcouragenow.db && maintemplatev2 -local -dir ./deploy/templates/maintemplatev2/client/build/web -port 9074
+	mkdir -p db
+	cp -R ./deploy/templates/maintemplatev2/config config
+	rm -rf db/* && maintemplatev2 -l -d ./deploy/templates/maintemplatev2/client/build/web -p 9074
 
 v2-flu-web-run:
-
 	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-flu-web-run
 
 v2-flu-desk-run:
-
 	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-flu-desk-run
 
 
