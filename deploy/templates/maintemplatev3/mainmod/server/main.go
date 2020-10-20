@@ -5,14 +5,18 @@ import (
 	// stdlib
 	"context"
 	"fmt"
+	"net/http"
+	"strings"
 	"time"
 
-	// external
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpcLogrus "github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
 	grpcRecovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	// external
+	"golang.org/x/net/http2"
+	"golang.org/x/net/http2/h2c"
 	"google.golang.org/grpc"
 
 	// gcn packages
@@ -21,10 +25,12 @@ import (
 
 const (
 	// TODO @gutterbacon: JSONNET config for mod-*
-	defaultPort    = 9074
-	defaultSysPort = 9075
-	defaultTimeout = 5 * time.Second
-	defaultSysHost = "127.0.0.1"
+	defaultPort      = 9074
+	defaultSysPort   = 9075
+	defaultTimeout   = 5 * time.Second
+	defaultSysHost   = "127.0.0.1"
+	defaultLocal     = true
+	defaultStaticDir = "./deploy/templates/maintemplatev3/client/build/web"
 
 	errConnectingMainSys = "error while trying to connect to mainsys: %v"
 	errCreateSysService  = "error while creating mainmodv3 service: %v"
@@ -32,10 +38,12 @@ const (
 )
 
 var (
-	rootCmd = &cobra.Command{Use: "mainmod"}
-	port    int
-	sysPort int
-	sysHost string
+	rootCmd   = &cobra.Command{Use: "mainmod"}
+	port      int
+	sysPort   int
+	sysHost   string
+	local     bool
+	staticDir string
 )
 
 func recoveryHandler(l *logrus.Entry) func(panic interface{}) error {
@@ -49,7 +57,9 @@ func recoveryHandler(l *logrus.Entry) func(panic interface{}) error {
 func main() {
 	rootCmd.PersistentFlags().IntVarP(&port, "port", "p", defaultPort, "the port to serve on")
 	rootCmd.PersistentFlags().IntVarP(&sysPort, "mainsys-port", "s", defaultSysPort, "TCP port of running mainsys process")
-	rootCmd.PersistentFlags().StringVarP(&sysHost, "mainsys-host", "h", defaultSysHost, "Host IP of running mainsys process")
+	rootCmd.PersistentFlags().StringVarP(&sysHost, "mainsys-host", "m", defaultSysHost, "Host IP of running mainsys process")
+	rootCmd.PersistentFlags().BoolVarP(&local, "local", "l", defaultLocal, "serve locally")
+	rootCmd.PersistentFlags().StringVarP(&staticDir, "directory", "d", defaultStaticDir, "directory to serve flutter build")
 
 	l := logrus.New().WithField("svc", "mainmodv3")
 
@@ -85,7 +95,25 @@ func main() {
 		// register service
 		modsvc.RegisterServices(grpcServer)
 		grpcWebServer := modsvc.RegisterGrpcWebServer(grpcServer)
-		modsvc.Run(grpcWebServer, nil)
+		if local {
+			fileServer := http.FileServer(http.Dir(staticDir))
+			httpServer := &http.Server{
+				Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+					w.Header().Set("Access-Control-Allow-Origin", "*")
+					w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+					w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web")
+					l.Infof("Request Endpoint: %s", r.URL)
+					if strings.Contains(r.URL.Path, "v2") {
+						grpcWebServer.ServeHTTP(w, r)
+					} else {
+						fileServer.ServeHTTP(w, r)
+					}
+				}), &http2.Server{}),
+			}
+			modsvc.Run(grpcWebServer, httpServer)
+		} else {
+			modsvc.Run(grpcWebServer, nil)
+		}
 		return nil
 	}
 	if err := rootCmd.Execute(); err != nil {

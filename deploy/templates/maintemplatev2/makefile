@@ -13,8 +13,8 @@ FLU_LIB_NAME = client
 FLU_SAMPLE_NAME = client
 FLU_SAMPLE_FSPATH = $(PWD)/$(FLU_SAMPLE_NAME)
 
-SDK_BIN=$(PWD)/bin-all/sdk-cli
-SERVER_BIN=$(PWD)/bin-all/main
+SDK_BIN=$(GOPATH)/bin/maintemplatev2-sdk-cli
+SERVER_BIN=$(GOPATH)/bin/maintemplatev2
 # TODO. Make config.
 SERVER_ADDRESS=127.0.0.1:9074
 
@@ -28,7 +28,6 @@ this-all: this-build
 
 ## Print all settings
 this-print: ## print
-
 	$(MAKE) os-print
 	
 	$(MAKE) flu-print
@@ -38,12 +37,9 @@ this-print: ## print
 	$(MAKE) go-print
 
 this-build-delete:
-	rm -rf ./bin-all
+	rm -rf $(SDK_BIN) $(SERVER_BIN)
 
 this-build: this-build-delete this-config-delete this-config-gen
-
-	mkdir -p ./bin-all
-
 	## Flutter first
 	$(MAKE) flu-gen-all
 	$(MAKE) flu-gen-lang-all
@@ -65,7 +61,6 @@ this-config-dep:
 	jb install
 
 this-build-deep:
-
 	# DO bottom up so we get the embeddings i think.
 	#cd ../sys-core && make this-build
 
@@ -82,19 +77,20 @@ this-sdk-run:
 	$(SDK_BIN)
 
 this-server-run:
-	rm -rf db/gcn.db && $(SERVER_BIN) -c ./config/syscore.yml -a ./config/sysaccount.yml -p 9074
+	mkdir db
+	rm -rf db/gcn.db && $(SERVER_BIN) -c ./config/syscore.yml -a ./config/sysaccount.yml -p 9074 -l -d ./client/build/web
 
-this-example-sdk-auth-signup:
+this-sdk-auth-signup:
 	@echo Running Example Register Client
-	maintemplatev2-sdk-cli mod-dummy mod-dummy sys-share sys-account auth-service register --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --password-confirm $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
+	$(SDK_BIN) mod-dummy mod-dummy sys-share sys-account auth-service register --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --password-confirm $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
 
-this-example-sdk-auth-signin:
+this-sdk-auth-signin:
 	@echo Running Example Login Client
-	maintemplatev2-sdk-cli mod-dummy mod-dummy sys-share sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
+	$(SDK_BIN) mod-dummy mod-dummy sys-share sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(SERVER_ADDRESS)
 
-this-example-sdk-accounts-list:
+this-sdk-accounts-list:
 	@echo Running Example List Users
-	maintemplatev2-sdk-cli mod-dummy mod-dummy sys-share sys-account account-service list-accounts --server-addr $(SERVER_ADDRESS)
+	$(SDK_BIN) mod-dummy mod-dummy sys-share sys-account account-service list-accounts --server-addr $(SERVER_ADDRESS)
 
 this-flu-web-run:
 	$(MAKE) flu-web-run

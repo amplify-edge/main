@@ -6,3 +6,6 @@ db
 deploy/templates/maintemplatev2/client/i18n/intl_messages.arb
 deploy/templates/maintemplatev2/client/i18n/*.arb
 deploy/templates/maintemplatev2/client/i18n/*.json
+deploy/templates/maintemplatev3/client/i18n/intl_messages.arb
+deploy/templates/maintemplatev3/client/i18n/*.arb
+deploy/templates/maintemplatev3/client/i18n/*.json
