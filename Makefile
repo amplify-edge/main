@@ -16,7 +16,6 @@ VERSION ?= $(shell echo $(TAGGED_VERSION) | cut -c 2-)
 override FLU_SAMPLE_NAME =client
 override FLU_LIB_NAME =client
 
-
 this-all: this-print this-dep this-build this-print-end
 
 this-print: 
@@ -49,22 +48,27 @@ this-dep:
 
 this-build: v2 v3
 
-
 v2:
 	# Does full gen and build (web)
 	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-all
 
 v2-server-run:
-	rm -rf getcouragenow.db && maintemplatev2 -local -dir ./deploy/templates/maintemplatev2/client/build/web -port 9074
+	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-server-run
 
 v2-flu-web-run:
-
 	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-flu-web-run
 
 v2-flu-desk-run:
-
 	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-flu-desk-run
 
+v2-sdk-auth-signup:
+	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-sdk-auth-signup
+
+v2-sdk-auth-signin:
+	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-sdk-auth-signin
+
+v2-sdk-accounts-list:
+	cd ./deploy/templates/maintemplatev2 && $(MAKE) this-sdk-accounts-list
 
 v3:
 	# Does full gen and build (web)
@@ -75,6 +79,18 @@ v3-sys-server-run:
 	
 v3-mod-server-run:
 	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-mod-server-run
+
+v3-sys-sdk-auth-signup:
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-sys-sdk-auth-signup
+
+v3-sys-sdk-auth-signin:
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-sys-sdk-auth-signin
+
+v3-sys-sdk-accounts-list:
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-sys-sdk-accounts-list
+
+v3-mod-sdk-get:
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-mod-sdk-get
 
 ### For Local dev. Does NOT do big Gen !
 v3-flu-web-run:

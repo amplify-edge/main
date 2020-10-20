@@ -5,9 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	syspkg "github.com/getcouragenow/sys-share/sys-account/service/go/pkg"
-
-	modpkg "github.com/getcouragenow/mod/mod-account/service/go/pkg"
+	modpkg "github.com/getcouragenow/mod/mod-dummy/service/go/pkg"
 )
 
 func main() {
@@ -18,14 +16,10 @@ func main() {
 		Short: "maintemplate v2",
 	}
 
-	// load up sys
-	spsc := syspkg.NewSysShareProxyClient()
-	rootCmd.AddCommand(spsc.CobraCommand())
+	// load up sys & mod
+	mpsc := modpkg.NewModDummyProxyClient()
 
-	// load up mod
-	mpsc := modpkg.NewSysShareProxyClient()
 	rootCmd.AddCommand(mpsc.CobraCommand())
-
 	// starts proxy
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatalf("command failed: %v", err)
