@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Info
-      - uses: actions-hub/gcloud@master
+        uses: actions-hub/gcloud@master
         env:
           PROJECT_ID: v2-ci-getcouragenow-org
           APPLICATION_CREDENTIALS: ${{ secrets.GCP_KEY }}
