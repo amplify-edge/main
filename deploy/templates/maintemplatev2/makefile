@@ -68,6 +68,7 @@ this-gen-delete:
 this-config-gen: this-config-dep
 	mkdir -p $(CONFIG_OUTPUT_DIR)
 	@echo Generating Config
+	# OVERRIDES IF you need them
 	jsonnet -S sysaccount.jsonnet > $(CONFIG_OUTPUT_DIR)/sysaccount.yml
 	jsonnet -S syscore.jsonnet -V SYS_CORE_DB_ENCRYPT_KEY=$(DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/syscore.yml
 
