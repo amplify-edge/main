@@ -10,11 +10,41 @@ include $(BOILERPLATE_FSPATH)/grpc.mk
 include $(BOILERPLATE_FSPATH)/flu.mk
 include $(BOILERPLATE_FSPATH)/go.mk
 
-# remove the "v" prefix
-VERSION ?= $(shell echo $(TAGGED_VERSION) | cut -c 2-)
 
-override FLU_SAMPLE_NAME =client
-override FLU_LIB_NAME =client
+
+# For deploy to linux
+GOOS=linux
+GOARCH=amd64
+
+# For dev
+GOOS=darwin
+GOARCH=amd64
+
+# brew cask install google-cloud-sdk
+GCLOUD_PROJECT_ID=v2-ci-getcouragenow-org
+
+gcloud-print:
+	#gcloud auth login
+	gcloud config set project $(GCLOUD_PROJECT_ID)
+	gcloud iam service-accounts list --project $(GCLOUD_PROJECT_ID)
+	gcloud run services list --platform managed
+	gcloud compute instances list
+	gcloud container images list --repository
+gcloud-key:
+	# makes the key 
+	gcloud iam service-accounts keys \
+       create ~/my_awesome_secret_key.json \
+       --iam-account 519128392337-compute@developer.gserviceaccount.com \
+       --project $(GCLOUD_PROJECT_ID)
+gcloud-key-encode:
+	# encodes the key and uplaods to github
+	cat ~/my_awesome_secret_key.json | base64 | pbcopy
+	open https://github.com/organizations/getcouragenow/settings/secrets
+	#- GCP_KEY: paste in encoded key
+
+
+
+
 
 this-all: this-print this-dep this-build this-print-end
 
