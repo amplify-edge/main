@@ -7,8 +7,6 @@ import (
 	"log"
 	"time"
 
-	"github.com/asticode/go-astikit"
-	"github.com/asticode/go-astilectron"
 	bootstrap "github.com/asticode/go-astilectron-bootstrap"
 )
 

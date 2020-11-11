@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "main_bootstrap_models.proto";
+import "google/protobuf/empty.proto";
+
+package v2.main_bootstrap.services;
+
+option go_package = "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2";
+
+service BSService {
+  rpc NewBootstrap(v2.main_bootstrap.services.NewBSRequest) returns (v2.main_bootstrap.services.NewBSResponse) {};
+  rpc GetBootstrap(v2.main_bootstrap.services.GetBSRequest) returns (v2.main_bootstrap.services.BS) {};
+  rpc ListBootstrap(v2.main_bootstrap.services.ListBSRequest) returns (v2.main_bootstrap.services.ListBSResponse) {};
+  rpc ExecuteBootstrap(v2.main_bootstrap.services.GetBSRequest) returns (google.protobuf.Empty) {};
+  rpc DeleteBootstrap(v2.main_bootstrap.services.GetBSRequest) returns (google.protobuf.Empty) {};
+}

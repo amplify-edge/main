@@ -1,0 +1,230 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "properties": {
+        "orgs": {
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "properties": {
+                    "org": {
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "logo_filepath": {
+                                "type": "string"
+                            },
+                            "contact": {
+                                "type": "string"
+                            },
+                            "creator_id": {
+                                "type": "string"
+                            },
+                            "logo_upload_bytes": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "type": "object"
+                    }
+                },
+                "additionalProperties": true,
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "projects": {
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "properties": {
+                    "project": {
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "logo_filepath": {
+                                "type": "string"
+                            },
+                            "creator_id": {
+                                "type": "string"
+                            },
+                            "org_id": {
+                                "type": "string"
+                            },
+                            "org_name": {
+                                "type": "string"
+                            },
+                            "logo_upload_bytes": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "type": "object"
+                    },
+                    "project_details": {
+                        "properties": {
+                            "sys_account_project_ref_id": {
+                                "type": "string",
+                                "description": "account project id"
+                            },
+                            "sys_account_org_ref_id": {
+                                "type": "string",
+                                "description": "account org id"
+                            },
+                            "goal": {
+                                "type": "string"
+                            },
+                            "already_pledged": {
+                                "oneOf": [
+                                    {
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "action_time": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "action_location": {
+                                "type": "string"
+                            },
+                            "min_pioneers": {
+                                "oneOf": [
+                                    {
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "min_rebels_media": {
+                                "oneOf": [
+                                    {
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "min_rebels_to_win": {
+                                "oneOf": [
+                                    {
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "action_length": {
+                                "type": "string"
+                            },
+                            "action_type": {
+                                "type": "string"
+                            },
+                            "category": {
+                                "type": "string"
+                            },
+                            "contact": {
+                                "type": "string"
+                            },
+                            "hist_precedents": {
+                                "type": "string"
+                            },
+                            "strategy": {
+                                "type": "string"
+                            },
+                            "video_url": {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "unit_of_measures": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "type": "object"
+                    },
+                    "survey_schema": {
+                        "properties": {
+                            "sys_account_project_ref_id": {
+                                "type": "string"
+                            },
+                            "support_role_types": {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "user_need_types": {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "type": "object"
+                    }
+                },
+                "additionalProperties": true,
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "superusers": {
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "properties": {
+                    "initial_superuser": {
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "type": "object"
+                    },
+                    "survey_value": {
+                        "properties": {
+                            "survey_project_ref_id": {
+                                "type": "string"
+                            },
+                            "sys_account_user_ref_id": {
+                                "type": "string"
+                            },
+                            "support_role_values": {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "user_need_values": {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "type": "object"
+                    }
+                },
+                "additionalProperties": true,
+                "type": "object"
+            },
+            "type": "array"
+        }
+    },
+    "additionalProperties": true,
+    "type": "object"
+}
