@@ -32,7 +32,7 @@ func NewBootstrapRepo(logger *log.Entry, domain, savePath string, accRepo *accou
 	}
 	ex, err := sharedConfig.PathExists(savePath)
 	if !ex || err != nil {
-		_ = os.MkdirAll(savePath, 0600)
+		_ = os.MkdirAll(savePath, 0755)
 	}
 	absPath, err := filepath.Abs(savePath)
 	if err != nil {

@@ -3,9 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/getcouragenow/sys/sys-core/service/go/pkg/coredb"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -16,6 +13,11 @@ import (
 	"strings"
 	"time"
 
+	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
+	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/getcouragenow/sys/sys-core/service/go/pkg/coredb"
+
+	bootstrapRepo "github.com/getcouragenow/main/bootstrapper/service/go/pkg/repo"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	discoPkg "github.com/getcouragenow/mod/mod-disco/service/go/pkg"
 	"github.com/getcouragenow/sys/main/pkg"
@@ -123,6 +125,24 @@ func main() {
 		sysSvc, err := pkg.NewService(sscfg)
 		if err != nil {
 			logger.Fatalf(errCreateSysService, err)
+		}
+
+		bsRepo := bootstrapRepo.NewBootstrapRepo(
+			logger,
+			"getcouragenow.org",
+			"./bses",
+			sysSvc.SysAccountSvc.AuthRepo,
+			modDiscoSvc.ModDiscoRepo,
+			clientConn,
+		)
+
+		bsId, err := bsRepo.GenBSFile("yaml")
+		if err != nil {
+			logger.Fatalf("error generating yaml: %v", err)
+		}
+
+		if err = bsRepo.ExecuteBSCli(bsId); err != nil {
+			logger.Fatalf("error executing generated yaml: %v", err)
 		}
 
 		// initiate grpc server
