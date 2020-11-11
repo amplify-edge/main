@@ -5,7 +5,7 @@
       "source": {
         "git": {
           "remote": "https://github.com/getcouragenow/sys-share.git",
-          "subdir": "sys-core/service/config"
+          "subdir": "sys-core/service/config/mixins"
         }
       },
       "version": "master"

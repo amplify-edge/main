@@ -9,3 +9,6 @@ deploy/templates/maintemplatev2/client/i18n/*.json
 deploy/templates/maintemplatev3/client/i18n/intl_messages.arb
 deploy/templates/maintemplatev3/client/i18n/*.arb
 deploy/templates/maintemplatev3/client/i18n/*.json
+jsonnetfile.lock.json
+/bootstrapper/service/go/pkg/fakedata/bs-all.json
+/bootstrapper/service/go/pkg/fakedata/bs-all.yaml

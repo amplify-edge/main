@@ -2,3 +2,4 @@ bin-all
 db
 config/**
 vendor
+/certs/

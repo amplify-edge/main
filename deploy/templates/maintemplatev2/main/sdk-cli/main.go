@@ -5,7 +5,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	modpkg "github.com/getcouragenow/mod/mod-dummy/service/go/pkg"
+	discoRpc "github.com/getcouragenow/mod/mod-disco/service/go/rpc/v2"
+	sysPkg "github.com/getcouragenow/sys-share/sys-account/service/go/pkg"
+	corepkg "github.com/getcouragenow/sys-share/sys-core/service/go/pkg"
 )
 
 func main() {
@@ -16,10 +18,15 @@ func main() {
 		Short: "maintemplate v2",
 	}
 
-	// load up sys & mod
-	mpsc := modpkg.NewModDummyProxyClient()
+	accountCli := sysPkg.NewSysShareProxyClient()
+	coreProxyCli := corepkg.NewSysCoreProxyClient()
+	busProxyCli := corepkg.NewSysBusProxyClient()
+	mailProxyCli := corepkg.NewSysMailProxyClient()
+	fileProxyCli := corepkg.NewFileServiceClientCommand()
 
-	rootCmd.AddCommand(mpsc.CobraCommand())
+	// load up sys & mod
+	rootCmd.AddCommand(discoRpc.SurveyServiceClientCommand(), accountCli.CobraCommand(),
+		busProxyCli.CobraCommand(), coreProxyCli.CobraCommand(), mailProxyCli.CobraCommand(), fileProxyCli)
 	// starts proxy
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatalf("command failed: %v", err)

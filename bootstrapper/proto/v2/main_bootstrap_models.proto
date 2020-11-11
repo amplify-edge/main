@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+import "vendor/github.com/getcouragenow/sys-share/sys-account/proto/v2/sys_account_models.proto";
+import "vendor/github.com/getcouragenow/mod/mod-disco/proto/v2/mod_disco_models.proto";
+import "google/protobuf/timestamp.proto";
+
+package v2.main_bootstrap.services;
+
+option go_package = "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2";
+
+message BSProject {
+  v2.sys_account.services.ProjectRequest project = 1;
+  v2.mod_disco.services.NewDiscoProjectRequest project_details = 2;
+  v2.mod_disco.services.NewSurveyProjectRequest survey_schema = 3;
+}
+
+message BSOrg {
+  v2.sys_account.services.OrgRequest org = 1;
+}
+
+message BSRequest {
+  repeated BSOrg orgs = 1;
+  repeated BSProject projects = 2;
+  repeated BSAccount superusers = 3;
+}
+
+message BSAccount {
+  v2.sys_account.services.LoginRequest initial_superuser = 1;
+  v2.mod_disco.services.NewSurveyUserRequest survey_value = 2;
+}
+
+message NewBSRequest {
+  // either file_path or file content (in bytes)
+  string file_path = 1;
+  BSRequest bs_request = 2;
+}
+
+message NewBSResponse {
+  string id = 1;
+  string file_id = 2;
+}
+
+message GetBSRequest {
+  string id = 1;
+}
+
+message BS {
+  string id = 1;
+  google.protobuf.Timestamp created_at = 2;
+}
+
+message ListBSResponse {
+  repeated BS bootstraps = 1;
+}
+
+message ListBSRequest {
+  int64 per_page_entries = 1;
+  string order_by = 2;
+  string current_page_id = 3;
+  bool isDescending = 4;
+  bytes filters = 5;
+}
