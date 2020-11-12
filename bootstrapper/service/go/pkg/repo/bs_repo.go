@@ -50,3 +50,11 @@ func NewBootstrapRepo(logger *log.Entry, domain, savePath string, accRepo *accou
 		discoClient: discoClient,
 	}
 }
+
+func (b *BootstrapRepo) ChangeInterceptor(cc grpc.ClientConnInterface) {
+	accClient := sysSharePkg.NewSysAccountProxyServiceClient(cc)
+	dc := discoRpc.NewSurveyServiceClient(cc)
+	discoClient := dc
+	b.accClient = accClient
+	b.discoClient = discoClient
+}

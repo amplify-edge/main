@@ -3,8 +3,9 @@ package wrapper
 import (
 	"context"
 	"fmt"
-	"github.com/getcouragenow/sys-share/sys-core/service/clihelper"
 	"time"
+
+	"github.com/getcouragenow/sys-share/sys-core/service/clihelper"
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -120,10 +121,10 @@ func NewMainCLI(
 	bsconfig *bscfg.BootstrapConfig,
 ) (*MainSdkCli, error) {
 	var clientConn *grpc.ClientConn
-	var dialOpts grpc.DialOption
+	dialOpts := []grpc.DialOption{grpc.WithBlock()}
 	// cli options
 	var cliOpts *clihelper.CLIOptions
-	var err error
+
 	hostPort := fmt.Sprintf("%s:%d", mainCfg.MainConfig.HostAddress, mainCfg.MainConfig.Port)
 	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
 	defer cancel()
@@ -133,16 +134,19 @@ func NewMainCLI(
 		if err != nil {
 			return nil, fmt.Errorf("unable to load CA Root path: %v", err)
 		}
-		dialOpts = grpc.WithTransportCredentials(creds)
+		dialOpts = append(dialOpts, grpc.WithTransportCredentials(creds))
 		cliOpts = clihelper.CLIWrapper(mainCfg.MainConfig.TLS.RootCAPath, hostPort, ".env")
 	} else {
-		dialOpts = grpc.WithInsecure()
+		dialOpts = append(dialOpts, grpc.WithInsecure())
 		cliOpts = clihelper.CLIWrapper("", hostPort, ".env")
 	}
+	clientOptions := cliOpts.GetAllOptions()
+	cliOpts.RegisterAuthDialer()
+	var err error
 	clientConn, err = grpc.DialContext(
 		ctx,
 		hostPort,
-		dialOpts,
+		dialOpts...,
 	)
 	if err != nil {
 		return nil, fmt.Errorf("unable to create new client conn: %v", err)
@@ -155,9 +159,8 @@ func NewMainCLI(
 		nil,
 		clientConn,
 	)
+	sysSharePkg.NewSysShareProxyClient(clientOptions...)
 
-	clientOptions := cliOpts.GetAllOptions()
-	cliOpts.RegisterAuthDialer()
 	bootstrapCli := bsPkg.NewBootstrapCLI(bsService.BsRepo, clientOptions...)
 	mcli := &MainSdkCli{
 		SysAccount:   sysSharePkg.NewSysShareProxyClient(clientOptions...),

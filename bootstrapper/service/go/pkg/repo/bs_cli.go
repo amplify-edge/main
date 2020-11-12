@@ -5,6 +5,7 @@ import (
 	"github.com/getcouragenow/protoc-gen-cobra/flag"
 	"github.com/getcouragenow/protoc-gen-cobra/iocodec"
 	"github.com/spf13/cobra"
+	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"os"
 	"time"
@@ -56,11 +57,14 @@ func (b *BootstrapRepo) ExecBSBypassCmd(cfg *client.Config) *cobra.Command {
 					return err
 				}
 			}
-			err := b.ExecuteBSCli(cmd.Context(), fileId)
-			if err != nil {
-				return err
-			}
-			return nil
+			return client.RoundTrip(cmd.Context(), cfg, func(cc grpc.ClientConnInterface, in iocodec.Decoder, out iocodec.Encoder) error {
+				b.ChangeInterceptor(cc)
+				err := b.ExecuteBSCli(cmd.Context(), fileId)
+				if err != nil {
+					return err
+				}
+				return nil
+			})
 		},
 	}
 	cmd.PersistentFlags().StringVar(&fileId, "filename", "<file_id>.[json|yaml]", "file id with extension (yaml or json) ex: 1kBAJ7zRCuGNoHCW4KHxo4opyoW.json")
