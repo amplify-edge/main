@@ -24,12 +24,13 @@ func (b *BootstrapRepo) GenBSFile(extension string) (string, error) {
 	return b.sharedGenBS(bsAll, joined, extension)
 }
 
-func (b *BootstrapRepo) ExecuteBSCli(filename string) error {
-	bsAll, err := fakedata.BootstrapAllFromFilepath(filename)
+func (b *BootstrapRepo) ExecuteBSCli(ctx context.Context, filename string) error {
+	joined := filepath.Join(b.savePath, filename)
+	bsAll, err := fakedata.BootstrapAllFromFilepath(joined)
 	if err != nil {
 		return err
 	}
-	return b.sharedExecutor(bsAll)
+	return b.sharedExecutor(ctx, bsAll)
 }
 
 func (b *BootstrapRepo) ExecuteBS(ctx context.Context, in *bsrpc.GetBSRequest) (*emptypb.Empty, error) {
@@ -42,7 +43,7 @@ func (b *BootstrapRepo) ExecuteBS(ctx context.Context, in *bsrpc.GetBSRequest) (
 	if err != nil {
 		return nil, err
 	}
-	err = b.sharedExecutor(bsAll)
+	err = b.sharedExecutor(ctx, bsAll)
 	if err != nil {
 		return nil, err
 	}

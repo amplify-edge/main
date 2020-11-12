@@ -12,23 +12,23 @@ import (
 	accountRepo "github.com/getcouragenow/sys/sys-account/service/go/pkg/repo"
 )
 
-func (b *BootstrapRepo) sharedExecutor(bsAll *fakedata.BootstrapAll) (err error) {
+func (b *BootstrapRepo) sharedExecutor(ctx context.Context, bsAll *fakedata.BootstrapAll) (err error) {
 	supers := bsAll.GetSuperUsers()
 	orgs := bsAll.GetOrgs()
 	projects := bsAll.GetProjects()
 	if b.accRepo != nil && b.discoRepo != nil {
-		return b.sharedExecv2(supers, orgs, projects)
+		return b.sharedExecv2(ctx, supers, orgs, projects)
 	}
 	if b.accClient != nil && b.discoClient != nil {
-		return b.sharedExecv3(supers, orgs, projects)
+		return b.sharedExecv3(ctx, supers, orgs, projects)
 	}
 	return fmt.Errorf("invalid argument, no repo or client defined for bootstrap")
 }
 
-func (b *BootstrapRepo) sharedExecv3(supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject) error {
+func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject) error {
 	var err error
 	for _, supe := range supers {
-		newCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
 		supeRequest := &accountPkg.AccountNewRequest{
 			Email:    supe.GetInitialSuperuser().GetEmail(),
 			Password: supe.GetInitialSuperuser().GetPassword(),
@@ -48,14 +48,14 @@ func (b *BootstrapRepo) sharedExecv3(supers []*bsrpc.BSAccount, orgs []*bsrpc.BS
 		}
 	}
 	for _, org := range orgs {
-		newCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
 		if _, err = b.accClient.NewOrg(newCtx, accountPkg.OrgRequestFromProto(org.GetOrg())); err != nil {
 			cancel()
 			return err
 		}
 	}
 	for _, proj := range projects {
-		newCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
 		if _, err = b.accClient.NewProject(newCtx, accountPkg.ProjectRequestFromProto(proj.GetProject())); err != nil {
 			cancel()
 			return err
@@ -70,7 +70,7 @@ func (b *BootstrapRepo) sharedExecv3(supers []*bsrpc.BSAccount, orgs []*bsrpc.BS
 		}
 	}
 	for _, supe := range supers {
-		newCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
 		if supe.GetSurveyValue() != nil {
 			if _, err = b.discoClient.NewSurveyUser(newCtx, supe.GetSurveyValue()); err != nil {
 				cancel()
@@ -81,7 +81,7 @@ func (b *BootstrapRepo) sharedExecv3(supers []*bsrpc.BSAccount, orgs []*bsrpc.BS
 	return nil
 }
 
-func (b *BootstrapRepo) sharedExecv2(supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject) error {
+func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject) error {
 	var err error
 	for _, supe := range supers {
 		superReq := &accountRepo.SuperAccountRequest{
@@ -94,14 +94,14 @@ func (b *BootstrapRepo) sharedExecv2(supers []*bsrpc.BSAccount, orgs []*bsrpc.BS
 		}
 	}
 	for _, org := range orgs {
-		newCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
 		if _, err = b.accRepo.NewOrg(newCtx, accountPkg.OrgRequestFromProto(org.GetOrg())); err != nil {
 			cancel()
 			return err
 		}
 	}
 	for _, proj := range projects {
-		newCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
 		if _, err = b.accRepo.NewProject(newCtx, accountPkg.ProjectRequestFromProto(proj.GetProject())); err != nil {
 			cancel()
 			return err
@@ -116,7 +116,7 @@ func (b *BootstrapRepo) sharedExecv2(supers []*bsrpc.BSAccount, orgs []*bsrpc.BS
 		}
 	}
 	for _, supe := range supers {
-		newCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
 		if supe.GetSurveyValue() != nil {
 			if _, err = b.discoRepo.NewSurveyUser(newCtx, supe.GetSurveyValue()); err != nil {
 				cancel()

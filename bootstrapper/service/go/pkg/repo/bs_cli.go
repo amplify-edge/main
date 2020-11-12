@@ -1,15 +1,16 @@
 package repo
 
 import (
-	bsrpc "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2"
 	"github.com/getcouragenow/protoc-gen-cobra/client"
 	"github.com/getcouragenow/protoc-gen-cobra/flag"
 	"github.com/getcouragenow/protoc-gen-cobra/iocodec"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	"github.com/spf13/cobra"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"os"
 	"time"
+
+	bsrpc "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2"
+	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 )
 
 func (b *BootstrapRepo) GenerateBSBypassCmd(cfg *client.Config) *cobra.Command {
@@ -55,7 +56,7 @@ func (b *BootstrapRepo) ExecBSBypassCmd(cfg *client.Config) *cobra.Command {
 					return err
 				}
 			}
-			err := b.ExecuteBSCli(fileId)
+			err := b.ExecuteBSCli(cmd.Context(), fileId)
 			if err != nil {
 				return err
 			}
