@@ -31,6 +31,8 @@ const (
 	defaultSysCoreConfigPath    = "./config/syscore.yml"
 	defaultSysAccountConfigPath = "./config/sysaccount.yml"
 	defaultDiscoConfigPath      = "./config/moddisco.yml"
+	defaultBsConfigPath         = "./config/bootstrap.yml"
+	defaultMainCfgPath          = "./config/main.yml"
 	defaultLocal                = true
 	defaultStaticDir            = "./client/build/web"
 	defaultLocalTLSCert         = "./certs/local.pem"
@@ -46,8 +48,10 @@ var (
 	localTlsCertPath string
 	localTlsKeyPath  string
 	localRootCAPath  string
+	bsCfgPath        string
 	coreCfgPath      string
 	fileCfgPath      string
+	mainCfgPath      string
 	accountCfgPath   string
 	discoCfgPath     string
 	mainexPort       int
@@ -62,6 +66,9 @@ func main() {
 	rootCmd.PersistentFlags().StringVarP(&accountCfgPath, "sys-account-config-path", "a", defaultSysAccountConfigPath, "sys-account config path to use")
 	rootCmd.PersistentFlags().StringVarP(&discoCfgPath, "mod-disco-config-path", "i", defaultDiscoConfigPath, "mod-disco config path to use")
 	rootCmd.PersistentFlags().StringVarP(&fileCfgPath, "sys-file-config-path", "f", defaultSysFileConfigPath, "sys-account config path to use")
+	rootCmd.PersistentFlags().StringVarP(&bsCfgPath, "bootstrap-config-path", "b", defaultBsConfigPath, "bs config path to use")
+	rootCmd.PersistentFlags().StringVarP(&mainCfgPath, "main-config-path", "m", defaultMainCfgPath, "main config path to use")
+
 	rootCmd.PersistentFlags().IntVarP(&mainexPort, "port", "p", defaultPort, "grpc port to run")
 	rootCmd.PersistentFlags().BoolVarP(&local, "local", "l", defaultLocal, "serve locally")
 	rootCmd.PersistentFlags().StringVarP(&staticDir, "directory", "d", defaultStaticDir, "directory to serve flutter build")

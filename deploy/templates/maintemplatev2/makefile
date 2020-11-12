@@ -33,6 +33,7 @@ EXAMPLE_NEW_SUPER_PASSWORD = SmokeOnTheWater70s
 EXAMPLE_SYS_CORE_DB_ENCRYPT_KEY   = yYz8Xjb4HBn4irGQpBWulURjQk2XmwES
 EXAMPLE_SYS_CORE_SENDGRID_API_KEY = SOME_SENDGRID_API_KEY
 EXAMPLE_SYS_FILE_DB_ENCRYPT_KEY   = A9bhbid5ODrKQVvd9MY17P5MZ
+EXAMPLE_MOD_DISCO_DB_ENCRYPT_KEY = ZSXV8lTrfPeSuysDVm
 
 EXAMPLE_CERT_DIR = ./certs
 EXAMPLE_CERT_SERVER_NAME ?= $(EXAMPLE_CERT_DIR)/local.pem
@@ -97,11 +98,14 @@ this-config-gen: this-config-dep
 		-V SYS_CORE_SENDGRID_API_KEY=$(shell echo ${SENDGRID_API_KEY}) > $(CONFIG_OUTPUT_DIR)/syscore.yml
 	jsonnet -S sysfile.jsonnet \
 		-V SYS_FILE_DB_ENCRYPT_KEY=$(EXAMPLE_SYS_FILE_DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/sysfile.yml
+	jsonnet -S moddisco.jsonnet -V MOD_DISCO_DB_ENCRYPT_KEY=$(EXAMPLE_MOD_DISCO_DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/moddisco.yml
+	jsonnet -S bootstrap.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap.yml
 
 this-config-dep:
 	jb install && jb update
 	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb install && jb update
 	cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update
+	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb install && jb update
 
 this-gen-cert: this-gen-cert-delete
 	@mkdir -p $(EXAMPLE_CERT_DIR)

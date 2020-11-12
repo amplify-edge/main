@@ -19,16 +19,16 @@ type BootstrapRepo struct {
 	accRepo     *accountRepo.SysAccountRepo
 	discoRepo   *discoRepo.ModDiscoRepo
 	accClient   *sysSharePkg.SysAccountProxyServiceClient // v3 via grpc
-	discoClient *discoRpc.SurveyServiceClient             // v3 via grpc
+	discoClient discoRpc.SurveyServiceClient              // v3 via grpc
 }
 
 func NewBootstrapRepo(logger *log.Entry, domain, savePath string, accRepo *accountRepo.SysAccountRepo, discoRepo *discoRepo.ModDiscoRepo, cc grpc.ClientConnInterface) *BootstrapRepo {
 	var accClient *sysSharePkg.SysAccountProxyServiceClient
-	var discoClient *discoRpc.SurveyServiceClient
+	var discoClient discoRpc.SurveyServiceClient
 	if cc != nil {
 		accClient = sysSharePkg.NewSysAccountProxyServiceClient(cc)
 		dc := discoRpc.NewSurveyServiceClient(cc)
-		discoClient = &dc
+		discoClient = dc
 	}
 	ex, err := sharedConfig.PathExists(savePath)
 	if !ex || err != nil {

@@ -20,57 +20,12 @@ func BSServiceClientCommand(options ...client.Option) *cobra.Command {
 	}
 	cfg.BindFlags(cmd.PersistentFlags())
 	cmd.AddCommand(
-		_BSServiceGenBootstrapCommand(cfg),
 		_BSServiceNewBootstrapCommand(cfg),
 		_BSServiceGetBootstrapCommand(cfg),
 		_BSServiceListBootstrapCommand(cfg),
 		_BSServiceExecuteBootstrapCommand(cfg),
 		_BSServiceDeleteBootstrapCommand(cfg),
 	)
-	return cmd
-}
-
-func _BSServiceGenBootstrapCommand(cfg *client.Config) *cobra.Command {
-	req := &NewBSRequest{
-		BsRequest: &BSRequest{},
-	}
-
-	cmd := &cobra.Command{
-		Use:   cfg.CommandNamer("GenBootstrap"),
-		Short: "GenBootstrap RPC client",
-		Long:  "",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			if cfg.UseEnvVars {
-				if err := flag.SetFlagsFromEnv(cmd.Parent().PersistentFlags(), true, cfg.EnvVarNamer, cfg.EnvVarPrefix, "BSService"); err != nil {
-					return err
-				}
-				if err := flag.SetFlagsFromEnv(cmd.PersistentFlags(), false, cfg.EnvVarNamer, cfg.EnvVarPrefix, "BSService", "GenBootstrap"); err != nil {
-					return err
-				}
-			}
-			return client.RoundTrip(cmd.Context(), cfg, func(cc grpc.ClientConnInterface, in iocodec.Decoder, out iocodec.Encoder) error {
-				cli := NewBSServiceClient(cc)
-				v := &NewBSRequest{}
-
-				if err := in(v); err != nil {
-					return err
-				}
-				proto.Merge(v, req)
-
-				res, err := cli.GenBootstrap(cmd.Context(), v)
-
-				if err != nil {
-					return err
-				}
-
-				return out(res)
-
-			})
-		},
-	}
-
-	cmd.PersistentFlags().StringVar(&req.FilePath, cfg.FlagNamer("FilePath"), "", "either file_path or file content (in bytes)")
-
 	return cmd
 }
 
@@ -113,7 +68,7 @@ func _BSServiceNewBootstrapCommand(cfg *client.Config) *cobra.Command {
 		},
 	}
 
-	cmd.PersistentFlags().StringVar(&req.FilePath, cfg.FlagNamer("FilePath"), "", "either file_path or file content (in bytes)")
+	cmd.PersistentFlags().StringVar(&req.FileExtension, cfg.FlagNamer("FileExtension"), "", "either file_path or file content (in bytes)")
 
 	return cmd
 }
@@ -155,7 +110,7 @@ func _BSServiceGetBootstrapCommand(cfg *client.Config) *cobra.Command {
 		},
 	}
 
-	cmd.PersistentFlags().StringVar(&req.Id, cfg.FlagNamer("Id"), "", "")
+	cmd.PersistentFlags().StringVar(&req.FileId, cfg.FlagNamer("FileId"), "", "")
 
 	return cmd
 }
@@ -243,7 +198,7 @@ func _BSServiceExecuteBootstrapCommand(cfg *client.Config) *cobra.Command {
 		},
 	}
 
-	cmd.PersistentFlags().StringVar(&req.Id, cfg.FlagNamer("Id"), "", "")
+	cmd.PersistentFlags().StringVar(&req.FileId, cfg.FlagNamer("FileId"), "", "")
 
 	return cmd
 }
@@ -285,7 +240,7 @@ func _BSServiceDeleteBootstrapCommand(cfg *client.Config) *cobra.Command {
 		},
 	}
 
-	cmd.PersistentFlags().StringVar(&req.Id, cfg.FlagNamer("Id"), "", "")
+	cmd.PersistentFlags().StringVar(&req.FileId, cfg.FlagNamer("FileId"), "", "")
 
 	return cmd
 }
