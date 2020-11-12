@@ -20,7 +20,7 @@ func (b BootstrapConfig) Validate() error {
 
 type Config struct {
 	SavePath string `yaml:"savePath" json:"savePath"`
-	Domain   string `yaml:"dommain" json:"domain"`
+	Domain   string `yaml:"domain" json:"domain"`
 }
 
 func (c Config) validate() error {

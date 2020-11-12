@@ -19,14 +19,21 @@ func (m MainConfig) Validate() error {
 }
 
 type Config struct {
-	Port     int       `yaml:"port" json:"port"`
-	IsLocal  bool      `yaml:"isLocal" json:"isLocal"`
-	EmbedDir string    `yaml:"embedDir" json:"embedDir"`
-	TLS      TLSConfig `yaml:""`
+	HostAddress string    `yaml:"host" json:"host"`
+	Port        int       `yaml:"port" json:"port"`
+	IsLocal     bool      `yaml:"isLocal" json:"isLocal"`
+	EmbedDir    string    `yaml:"embedDir" json:"embedDir"`
+	TLS         TLSConfig `yaml:"tls" json:"tls"`
 }
 
 func (c Config) validate() error {
-	return nil
+	if c.HostAddress == "" {
+		c.HostAddress = "127.0.0.1"
+	}
+	if c.Port == 0 {
+		c.Port = 9074
+	}
+	return c.TLS.validate()
 }
 
 type TLSConfig struct {

@@ -23,6 +23,9 @@ type BootstrapRepo struct {
 }
 
 func NewBootstrapRepo(logger *log.Entry, domain, savePath string, accRepo *accountRepo.SysAccountRepo, discoRepo *discoRepo.ModDiscoRepo, cc grpc.ClientConnInterface) *BootstrapRepo {
+	if cc == nil && accRepo == nil && discoRepo == nil {
+		logger.Fatalf("invalid bootstrap repo argument: all repos and clients are nil")
+	}
 	var accClient *sysSharePkg.SysAccountProxyServiceClient
 	var discoClient discoRpc.SurveyServiceClient
 	if cc != nil {

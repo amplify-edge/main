@@ -15,6 +15,7 @@ require (
 	golang.org/x/net v0.0.0-20201029221708-28c70e62bb1d
 	google.golang.org/grpc v1.32.0
 	google.golang.org/protobuf v1.25.0
+	gopkg.in/yaml.v2 v2.3.0
 )
 
 replace github.com/getcouragenow/sys-share => ../sys-share/

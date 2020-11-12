@@ -20,7 +20,7 @@ type BootstrapService struct {
 func NewBootstrapService(cfg *bscfg.BootstrapConfig, l *log.Entry, accRepo *accountRepo.SysAccountRepo, discoRepo *discoRepo.ModDiscoRepo, cc grpc.ClientConnInterface) *BootstrapService {
 	bsrepo := repo.NewBootstrapRepo(l, cfg.BSConfig.Domain, cfg.BSConfig.SavePath, accRepo, discoRepo, cc)
 	svc := bsrpc.NewBSServiceService(bsrepo)
-	return &BootstrapService{proxyService: svc}
+	return &BootstrapService{proxyService: svc, BsRepo: bsrepo}
 }
 
 func (b *BootstrapService) RegisterSvc(srv *grpc.Server) {

@@ -16,10 +16,13 @@ func (b *BootstrapRepo) sharedExecutor(bsAll *fakedata.BootstrapAll) (err error)
 	supers := bsAll.GetSuperUsers()
 	orgs := bsAll.GetOrgs()
 	projects := bsAll.GetProjects()
+	if b.accRepo != nil && b.discoRepo != nil {
+		return b.sharedExecv2(supers, orgs, projects)
+	}
 	if b.accClient != nil && b.discoClient != nil {
 		return b.sharedExecv3(supers, orgs, projects)
 	}
-	return b.sharedExecv2(supers, orgs, projects)
+	return fmt.Errorf("invalid argument, no repo or client defined for bootstrap")
 }
 
 func (b *BootstrapRepo) sharedExecv3(supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject) error {

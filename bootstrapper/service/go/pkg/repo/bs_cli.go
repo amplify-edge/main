@@ -62,6 +62,6 @@ func (b *BootstrapRepo) ExecBSBypassCmd(cfg *client.Config) *cobra.Command {
 			return nil
 		},
 	}
-	cmd.PersistentFlags().StringVarP(&fileId, "file-id", "f", "<file_id>.[json|yaml]", "file id with extension (yaml or json) ex: 1kBAJ7zRCuGNoHCW4KHxo4opyoW.json")
+	cmd.PersistentFlags().StringVar(&fileId, "filename", "<file_id>.[json|yaml]", "file id with extension (yaml or json) ex: 1kBAJ7zRCuGNoHCW4KHxo4opyoW.json")
 	return cmd
 }

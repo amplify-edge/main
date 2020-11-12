@@ -1,63 +1,47 @@
 package main
 
 import (
-	"context"
 	"fmt"
+	"net/http"
+	"strings"
+
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 	"google.golang.org/grpc"
-	"net/http"
-	"strings"
-	"time"
 
+	bsSvc "github.com/getcouragenow/main/bootstrapper/service/go"
+	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
+	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/getcouragenow/sys/sys-core/service/go/pkg/coredb"
-
-	bootstrapRepo "github.com/getcouragenow/main/bootstrapper/service/go/pkg/repo"
-	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
-	discoPkg "github.com/getcouragenow/mod/mod-disco/service/go/pkg"
 	"github.com/getcouragenow/sys/main/pkg"
 )
 
 const (
-	errSourcingConfig   = "error while sourcing config for %s: %v"
-	errCreateSysService = "error while creating sys-* service: %v"
+	errSourcingConfig = "error while sourcing config for %s: %v"
+	errCreateService  = "error while creating %s service: %v"
 
-	defaultPort                 = 9074
 	defaultSysCoreConfigPath    = "./config/syscore.yml"
 	defaultSysAccountConfigPath = "./config/sysaccount.yml"
 	defaultDiscoConfigPath      = "./config/moddisco.yml"
 	defaultBsConfigPath         = "./config/bootstrap.yml"
 	defaultMainCfgPath          = "./config/main.yml"
-	defaultLocal                = true
-	defaultStaticDir            = "./client/build/web"
-	defaultLocalTLSCert         = "./certs/local.pem"
-	defaultLocalTLSKey          = "./certs/local.key.pem"
-	defaultCARootPath           = "./certs/rootca.pem"
-	defaultTlsEnabled           = true
-	defaultTimeout              = 5 * time.Second
 	defaultSysFileConfigPath    = "./config/sysfile.yml"
+	defaultDebug                = true
 )
 
 var (
-	rootCmd          = &cobra.Command{Use: "maintemplatev2"}
-	localTlsCertPath string
-	localTlsKeyPath  string
-	localRootCAPath  string
-	bsCfgPath        string
-	coreCfgPath      string
-	fileCfgPath      string
-	mainCfgPath      string
-	accountCfgPath   string
-	discoCfgPath     string
-	mainexPort       int
-	local            bool
-	staticDir        string
-	tlsEnabled       bool
+	rootCmd        = &cobra.Command{Use: "maintemplatev2"}
+	bsCfgPath      string
+	coreCfgPath    string
+	fileCfgPath    string
+	mainCfgPath    string
+	accountCfgPath string
+	discoCfgPath   string
+	isDebug        bool
 )
 
 func main() {
@@ -68,96 +52,55 @@ func main() {
 	rootCmd.PersistentFlags().StringVarP(&fileCfgPath, "sys-file-config-path", "f", defaultSysFileConfigPath, "sys-account config path to use")
 	rootCmd.PersistentFlags().StringVarP(&bsCfgPath, "bootstrap-config-path", "b", defaultBsConfigPath, "bs config path to use")
 	rootCmd.PersistentFlags().StringVarP(&mainCfgPath, "main-config-path", "m", defaultMainCfgPath, "main config path to use")
-
-	rootCmd.PersistentFlags().IntVarP(&mainexPort, "port", "p", defaultPort, "grpc port to run")
-	rootCmd.PersistentFlags().BoolVarP(&local, "local", "l", defaultLocal, "serve locally")
-	rootCmd.PersistentFlags().StringVarP(&staticDir, "directory", "d", defaultStaticDir, "directory to serve flutter build")
-	rootCmd.PersistentFlags().StringVarP(&localTlsCertPath, "tls-cert-path", "t", defaultLocalTLSCert, "local TLS Cert path")
-	rootCmd.PersistentFlags().StringVarP(&localTlsKeyPath, "tls-key-path", "k", defaultLocalTLSKey, "local TLS Key path")
-	rootCmd.PersistentFlags().StringVarP(&localRootCAPath, "ca-root-path", "r", defaultCARootPath, "root CA path")
-	rootCmd.PersistentFlags().BoolVar(&tlsEnabled, "tls", defaultTlsEnabled, "enable tls on server (note that it needs the path to certificates as well)")
+	rootCmd.PersistentFlags().BoolVar(&isDebug, "debug", defaultDebug, "debug")
 
 	// logging
 	log := logrus.New()
-	log.SetLevel(logrus.DebugLevel)
+	if isDebug {
+		log.SetLevel(logrus.DebugLevel)
+	} else {
+		log.SetLevel(logrus.InfoLevel)
+	}
 	logger := log.WithField("maintemplate", "v2")
 
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
 		// configs
+		mainCfg, err := wrapper.NewConfig(mainCfgPath)
+		if err != nil {
+			logger.Fatalf(errSourcingConfig, "main-wrapper", err)
+		}
 		sspaths := pkg.NewServiceConfigPaths(coreCfgPath, fileCfgPath, accountCfgPath)
 		cbus := corebus.NewCoreBus()
-		sscfg, err := pkg.NewSysServiceConfig(logger, nil, sspaths, mainexPort, cbus)
+		sscfg, err := pkg.NewSysServiceConfig(logger, nil, sspaths, mainCfg.MainConfig.Port, cbus)
 		if err != nil {
-			logger.Fatalf(errSourcingConfig, err)
+			logger.Fatalf(errSourcingConfig, "sys-all", err)
 		}
 		discocfg, err := discoSvc.NewConfig(discoCfgPath)
 		if err != nil {
-			logger.Fatalf(errSourcingConfig, err)
+			logger.Fatalf(errSourcingConfig, "mod-disco", err)
 		}
-		discodb, err := coredb.NewCoreDB(logger, &discocfg.ModDiscoConfig.SysCoreConfig, nil)
+		bscfg, err := bsSvc.NewConfig(bsCfgPath)
 		if err != nil {
-			logger.Fatalf("error creating mod-disco database: %v", err)
+			logger.Fatalf(errSourcingConfig, "bootstrapper", err)
 		}
 
-		var clientConn *grpc.ClientConn
-		var dialOpts grpc.DialOption
-		ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
-		defer cancel()
-
-		if tlsEnabled {
-			creds, err := sharedConfig.ClientLoadCA(localRootCAPath)
-			if err != nil {
-				logger.Fatalf("unable to load CA Root path: %v", err)
-			}
-			dialOpts = grpc.WithTransportCredentials(creds)
-
-		} else {
-			dialOpts = grpc.WithInsecure()
-		}
-		clientConn, err = grpc.DialContext(ctx, fmt.Sprintf("127.0.0.1:%d", mainexPort),
-			dialOpts)
-		if err != nil {
-			logger.Fatalf("unable to create new client conn: %v", err)
-		}
-		discoSvcCfg, err := discoPkg.NewModDiscoServiceConfig(logger, discodb, discoCfgPath, cbus, clientConn)
-		if err != nil {
-			logger.Fatalf("error creating mod-disco: %v", err)
-		}
-		modDiscoSvc, err := discoPkg.NewModDiscoService(discoSvcCfg)
-		if err != nil {
-			logger.Fatalf("error creating mod-disco service: %v", err)
-		}
-
-		// initiate all sys-* service
-		sysSvc, err := pkg.NewService(sscfg)
-		if err != nil {
-			logger.Fatalf(errCreateSysService, err)
-		}
-
-		bsRepo := bootstrapRepo.NewBootstrapRepo(
+		mainSvc,err := wrapper.NewMainService(
 			logger,
-			"getcouragenow.org",
-			"./bses",
-			sysSvc.SysAccountSvc.AuthRepo,
-			modDiscoSvc.ModDiscoRepo,
-			clientConn,
+			sscfg,
+			cbus,
+			mainCfg,
+			discocfg,
+			bscfg,
 		)
-
-		bsId, err := bsRepo.GenBSFile("yaml")
 		if err != nil {
-			logger.Fatalf("error generating yaml: %v", err)
+			logger.Fatalf(errCreateService, "maintemplatev2", err)
 		}
-
-		if err = bsRepo.ExecuteBSCli(bsId); err != nil {
-			logger.Fatalf("error executing generated yaml: %v", err)
-		}
-
 		// initiate grpc server
 		var grpcServer *grpc.Server
-		unaryInterceptors, streamInterceptors := sysSvc.InjectInterceptors(nil, nil)
-		if tlsEnabled {
+		unaryInterceptors, streamInterceptors := mainSvc.Sys.InjectInterceptors(nil, nil)
+		if mainCfg.MainConfig.TLS.Enable && mainCfg.MainConfig.TLS.IsLocal {
 			logger.Info("Running server with tls enabled")
-			tlsCreds, err := sharedConfig.LoadTLSKeypair(localTlsCertPath, localTlsKeyPath)
+			tlsCreds, err := sharedConfig.LoadTLSKeypair(mainCfg.MainConfig.TLS.LocalCertPath, mainCfg.MainConfig.TLS.LocalCertKeyPath)
 			if err != nil {
 				logger.Fatalf("error loading local tls certificate path and key path: %v", err)
 			}
@@ -172,11 +115,15 @@ func main() {
 				grpcMw.WithStreamServerChain(streamInterceptors...),
 			)
 		}
-		sysSvc.RegisterServices(grpcServer)
-		modDiscoSvc.RegisterServices(grpcServer)
-		grpcWebServer := sysSvc.RegisterGrpcWebServer(grpcServer)
-		if local && tlsEnabled {
-			fileServer := http.FileServer(http.Dir(staticDir))
+		mainSvc.Sys.RegisterServices(grpcServer)
+		mainSvc.Disco.RegisterServices(grpcServer)
+		mainSvc.BS.RegisterSvc(grpcServer)
+		grpcWebServer := mainSvc.Sys.RegisterGrpcWebServer(grpcServer)
+		hostAddr := fmt.Sprintf("%s:%d", mainCfg.MainConfig.HostAddress, mainCfg.MainConfig.Port)
+		if mainCfg.MainConfig.IsLocal && mainCfg.MainConfig.TLS.Enable {
+			localTlsCertPath := mainCfg.MainConfig.TLS.LocalCertPath
+			localTlsKeyPath := mainCfg.MainConfig.TLS.LocalCertKeyPath
+			fileServer := http.FileServer(http.Dir(mainCfg.MainConfig.EmbedDir))
 			httpServer := &http.Server{
 				Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 					w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -190,9 +137,10 @@ func main() {
 					}
 				}), &http2.Server{}),
 			}
-			return sysSvc.Run(grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
+			return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
 		}
-		return sysSvc.Run(grpcWebServer, nil, "", "")
+
+		return mainSvc.Sys.Run(hostAddr, grpcWebServer, nil, "", "")
 	}
 	if err := rootCmd.Execute(); err != nil {
 		logger.Fatalf("error running sys-main: %v", err)

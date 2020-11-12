@@ -8,6 +8,7 @@ local cfg = {
         rootCaPath: "./certs/rootca.pem"
     },
     mainConfig: {
+        host: "127.0.0.1",
         port: 9074,
         isLocal: true,
         embedDir: "../client/build",
