@@ -18,7 +18,7 @@ const (
 	errCreateCli      = "error creating cli for " + commandName + ": %v"
 	errSourcingConfig = "error while sourcing config for %s: %v"
 
-	defaultBsConfigPath = "./config/bootstrap.yml"
+	defaultBsConfigPath = "./config/bootstrap-client.yml"
 	defaultMainCfgPath  = "./config/main.yml"
 	defaultDebug        = true
 )

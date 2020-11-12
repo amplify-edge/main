@@ -101,7 +101,8 @@ this-config-gen: #this-config-dep
 	jsonnet -S sysfile.jsonnet \
 		-V SYS_FILE_DB_ENCRYPT_KEY=$(EXAMPLE_SYS_FILE_DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/sysfile.yml
 	jsonnet -S moddisco.jsonnet -V MOD_DISCO_DB_ENCRYPT_KEY=$(EXAMPLE_MOD_DISCO_DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/moddisco.yml
-	jsonnet -S bootstrap.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap.yml
+	jsonnet -S bootstrap-server.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap.yml
+	jsonnet -S bootstrap-client.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap-client.yml
 	jsonnet -S main.jsonnet > $(CONFIG_OUTPUT_DIR)/main.yml
 
 this-config-dep:
