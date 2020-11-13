@@ -18,8 +18,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BSServiceClient interface {
-	GenBootstrap(ctx context.Context, in *NewBSRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	NewBootstrap(ctx context.Context, in *NewBSRequest, opts ...grpc.CallOption) (*NewBSResponse, error)
+	// hide
+	NewBootstrap(ctx context.Context, opts ...grpc.CallOption) (BSService_NewBootstrapClient, error)
 	GetBootstrap(ctx context.Context, in *GetBSRequest, opts ...grpc.CallOption) (*BS, error)
 	ListBootstrap(ctx context.Context, in *ListBSRequest, opts ...grpc.CallOption) (*ListBSResponse, error)
 	ExecuteBootstrap(ctx context.Context, in *GetBSRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -34,30 +34,43 @@ func NewBSServiceClient(cc grpc.ClientConnInterface) BSServiceClient {
 	return &bSServiceClient{cc}
 }
 
-var bSServiceGenBootstrapStreamDesc = &grpc.StreamDesc{
-	StreamName: "GenBootstrap",
-}
-
-func (c *bSServiceClient) GenBootstrap(ctx context.Context, in *NewBSRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/v2.main_bootstrap.services.BSService/GenBootstrap", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 var bSServiceNewBootstrapStreamDesc = &grpc.StreamDesc{
-	StreamName: "NewBootstrap",
+	StreamName:    "NewBootstrap",
+	ClientStreams: true,
 }
 
-func (c *bSServiceClient) NewBootstrap(ctx context.Context, in *NewBSRequest, opts ...grpc.CallOption) (*NewBSResponse, error) {
-	out := new(NewBSResponse)
-	err := c.cc.Invoke(ctx, "/v2.main_bootstrap.services.BSService/NewBootstrap", in, out, opts...)
+func (c *bSServiceClient) NewBootstrap(ctx context.Context, opts ...grpc.CallOption) (BSService_NewBootstrapClient, error) {
+	stream, err := c.cc.NewStream(ctx, bSServiceNewBootstrapStreamDesc, "/v2.main_bootstrap.services.BSService/NewBootstrap", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &bSServiceNewBootstrapClient{stream}
+	return x, nil
+}
+
+type BSService_NewBootstrapClient interface {
+	Send(*NewBSRequest) error
+	CloseAndRecv() (*NewBSResponse, error)
+	grpc.ClientStream
+}
+
+type bSServiceNewBootstrapClient struct {
+	grpc.ClientStream
+}
+
+func (x *bSServiceNewBootstrapClient) Send(m *NewBSRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *bSServiceNewBootstrapClient) CloseAndRecv() (*NewBSResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(NewBSResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 var bSServiceGetBootstrapStreamDesc = &grpc.StreamDesc{
@@ -117,53 +130,19 @@ func (c *bSServiceClient) DeleteBootstrap(ctx context.Context, in *GetBSRequest,
 // RegisterBSServiceService is called.  Any unassigned fields will result in the
 // handler for that method returning an Unimplemented error.
 type BSServiceService struct {
-	GenBootstrap     func(context.Context, *NewBSRequest) (*empty.Empty, error)
-	NewBootstrap     func(context.Context, *NewBSRequest) (*NewBSResponse, error)
+	// hide
+	NewBootstrap     func(BSService_NewBootstrapServer) error
 	GetBootstrap     func(context.Context, *GetBSRequest) (*BS, error)
 	ListBootstrap    func(context.Context, *ListBSRequest) (*ListBSResponse, error)
 	ExecuteBootstrap func(context.Context, *GetBSRequest) (*empty.Empty, error)
 	DeleteBootstrap  func(context.Context, *GetBSRequest) (*empty.Empty, error)
 }
 
-func (s *BSServiceService) genBootstrap(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	if s.GenBootstrap == nil {
-		return nil, status.Errorf(codes.Unimplemented, "method GenBootstrap not implemented")
-	}
-	in := new(NewBSRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return s.GenBootstrap(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     s,
-		FullMethod: "/v2.main_bootstrap.services.BSService/GenBootstrap",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return s.GenBootstrap(ctx, req.(*NewBSRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-func (s *BSServiceService) newBootstrap(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func (s *BSServiceService) newBootstrap(_ interface{}, stream grpc.ServerStream) error {
 	if s.NewBootstrap == nil {
-		return nil, status.Errorf(codes.Unimplemented, "method NewBootstrap not implemented")
+		return status.Errorf(codes.Unimplemented, "method NewBootstrap not implemented")
 	}
-	in := new(NewBSRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return s.NewBootstrap(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     s,
-		FullMethod: "/v2.main_bootstrap.services.BSService/NewBootstrap",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return s.NewBootstrap(ctx, req.(*NewBSRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	return s.NewBootstrap(&bSServiceNewBootstrapServer{stream})
 }
 func (s *BSServiceService) getBootstrap(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	if s.GetBootstrap == nil {
@@ -246,19 +225,33 @@ func (s *BSServiceService) deleteBootstrap(_ interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+type BSService_NewBootstrapServer interface {
+	SendAndClose(*NewBSResponse) error
+	Recv() (*NewBSRequest, error)
+	grpc.ServerStream
+}
+
+type bSServiceNewBootstrapServer struct {
+	grpc.ServerStream
+}
+
+func (x *bSServiceNewBootstrapServer) SendAndClose(m *NewBSResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *bSServiceNewBootstrapServer) Recv() (*NewBSRequest, error) {
+	m := new(NewBSRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // RegisterBSServiceService registers a service implementation with a gRPC server.
 func RegisterBSServiceService(s grpc.ServiceRegistrar, srv *BSServiceService) {
 	sd := grpc.ServiceDesc{
 		ServiceName: "v2.main_bootstrap.services.BSService",
 		Methods: []grpc.MethodDesc{
-			{
-				MethodName: "GenBootstrap",
-				Handler:    srv.genBootstrap,
-			},
-			{
-				MethodName: "NewBootstrap",
-				Handler:    srv.newBootstrap,
-			},
 			{
 				MethodName: "GetBootstrap",
 				Handler:    srv.getBootstrap,
@@ -276,7 +269,13 @@ func RegisterBSServiceService(s grpc.ServiceRegistrar, srv *BSServiceService) {
 				Handler:    srv.deleteBootstrap,
 			},
 		},
-		Streams:  []grpc.StreamDesc{},
+		Streams: []grpc.StreamDesc{
+			{
+				StreamName:    "NewBootstrap",
+				Handler:       srv.newBootstrap,
+				ClientStreams: true,
+			},
+		},
 		Metadata: "main_bootstrap_services.proto",
 	}
 
@@ -292,12 +291,7 @@ func RegisterBSServiceService(s grpc.ServiceRegistrar, srv *BSServiceService) {
 func NewBSServiceService(s interface{}) *BSServiceService {
 	ns := &BSServiceService{}
 	if h, ok := s.(interface {
-		GenBootstrap(context.Context, *NewBSRequest) (*empty.Empty, error)
-	}); ok {
-		ns.GenBootstrap = h.GenBootstrap
-	}
-	if h, ok := s.(interface {
-		NewBootstrap(context.Context, *NewBSRequest) (*NewBSResponse, error)
+		NewBootstrap(BSService_NewBootstrapServer) error
 	}); ok {
 		ns.NewBootstrap = h.NewBootstrap
 	}
@@ -329,8 +323,8 @@ func NewBSServiceService(s interface{}) *BSServiceService {
 // definition, which is not a backward-compatible change.  For this reason,
 // use of this type is not recommended.
 type UnstableBSServiceService interface {
-	GenBootstrap(context.Context, *NewBSRequest) (*empty.Empty, error)
-	NewBootstrap(context.Context, *NewBSRequest) (*NewBSResponse, error)
+	// hide
+	NewBootstrap(BSService_NewBootstrapServer) error
 	GetBootstrap(context.Context, *GetBSRequest) (*BS, error)
 	ListBootstrap(context.Context, *ListBSRequest) (*ListBSResponse, error)
 	ExecuteBootstrap(context.Context, *GetBSRequest) (*empty.Empty, error)

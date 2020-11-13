@@ -4,3 +4,5 @@ config/**
 vendor
 /certs/
 /bses/
+/.env
+/bses-client/

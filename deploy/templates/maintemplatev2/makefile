@@ -9,6 +9,8 @@ include $(BOILERPLATE_FSPATH)/go.mk
 include $(BOILERPLATE_FSPATH)/flu.mk
 include $(BOILERPLATE_FSPATH)/tool.mk
 
+# KEY_PATH = ???
+
 FLU_LIB_NAME = client
 FLU_SAMPLE_NAME = client
 FLU_SAMPLE_FSPATH = $(PWD)/$(FLU_SAMPLE_NAME)
@@ -33,6 +35,7 @@ EXAMPLE_NEW_SUPER_PASSWORD = SmokeOnTheWater70s
 EXAMPLE_SYS_CORE_DB_ENCRYPT_KEY   = yYz8Xjb4HBn4irGQpBWulURjQk2XmwES
 EXAMPLE_SYS_CORE_SENDGRID_API_KEY = SOME_SENDGRID_API_KEY
 EXAMPLE_SYS_FILE_DB_ENCRYPT_KEY   = A9bhbid5ODrKQVvd9MY17P5MZ
+EXAMPLE_MOD_DISCO_DB_ENCRYPT_KEY = ZSXV8lTrfPeSuysDVm
 
 EXAMPLE_CERT_DIR = ./certs
 EXAMPLE_CERT_SERVER_NAME ?= $(EXAMPLE_CERT_DIR)/local.pem
@@ -87,7 +90,7 @@ this-gen-delete:
 #this-config-delete:
 #	rm -rf $(CONFIG_OUTPUT_DIR)/*
 
-this-config-gen: this-config-dep
+this-config-gen: #this-config-dep
 	mkdir -p $(CONFIG_OUTPUT_DIR)
 	@echo Generating Config
 	# OVERRIDES IF you need them
@@ -97,11 +100,16 @@ this-config-gen: this-config-dep
 		-V SYS_CORE_SENDGRID_API_KEY=$(shell echo ${SENDGRID_API_KEY}) > $(CONFIG_OUTPUT_DIR)/syscore.yml
 	jsonnet -S sysfile.jsonnet \
 		-V SYS_FILE_DB_ENCRYPT_KEY=$(EXAMPLE_SYS_FILE_DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/sysfile.yml
+	jsonnet -S moddisco.jsonnet -V MOD_DISCO_DB_ENCRYPT_KEY=$(EXAMPLE_MOD_DISCO_DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/moddisco.yml
+	jsonnet -S bootstrap-server.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap.yml
+	jsonnet -S bootstrap-client.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap-client.yml
+	jsonnet -S main.jsonnet > $(CONFIG_OUTPUT_DIR)/main.yml
 
 this-config-dep:
 	jb install && jb update
 	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb install && jb update
 	cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update
+	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb install && jb update
 
 this-gen-cert: this-gen-cert-delete
 	@mkdir -p $(EXAMPLE_CERT_DIR)
@@ -157,107 +165,105 @@ this-server-run-clean:
 this-server-open:
 	open http://$(SERVER_ADDRESS)
 
-this-ex-sdk-auth-signup:
+this-sdk-auth-signup:
 	@echo Running Example Register Client
-	$(SDK_BIN) sys-account auth-service register --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --password-confirm $(EXAMPLE_PASSWORD) --server-addr $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson
+	$(SDK_BIN) sys-account auth-service register --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --password-confirm $(EXAMPLE_PASSWORD)
 
-this-ex-sdk-auth-signin:
+this-sdk-auth-signin:
+	@echo Running Example Login Client
+	$(SDK_BIN) sys-account auth-service signin --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(EXAMPLE_SERVER_ADDRESS)
+
+this-sdk-auth-signin-super:
 	@echo Running Example Login Client
 	# export access token to the .token file
-	#$(SDK_BIN) sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson | jq -r .accessToken > .token
-	$(SDK_BIN) sys-account auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson
+	$(SDK_BIN) sys-account auth-service signin --email $(EXAMPLE_SUPER_EMAIL) --password $(EXAMPLE_SUPER_PASSWORD)
 
-this-ex-sdk-auth-signin-super:
-	@echo Running Example Login Client
-	# export access token to the .token file
-	$(SDK_BIN) sys-account auth-service login --email $(EXAMPLE_SUPER_EMAIL) --password $(EXAMPLE_SUPER_PASSWORD) --server-addr $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson | jq -r .accessToken > .token
-
-this-ex-sdk-auth-verify:
+this-sdk-auth-verify:
 	@echo Running Example Verify Client
-	$(SDK_BIN) sys-account auth-service verify-account --account-id $(EXAMPLE_ACCOUNT_ID) --verify-token $(EXAMPLE_VERIFY_TOKEN) --server-addr $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson
+	$(SDK_BIN) sys-account auth-service verify-account --account-id $(EXAMPLE_ACCOUNT_ID) --verify-token $(EXAMPLE_VERIFY_TOKEN)
 
-this-ex-sdk-accounts-new:
+this-sdk-accounts-new:
 	@echo Running Example New Account
-	$(SDK_BIN) sys-account account-service new-account -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --email gutterbacon@example.com --password gutterbacon123 --avatar-filepath ./testdata/avatar.png --jwt-access-token $(shell awk '1' ./.token | tr -d '\n')
+	$(SDK_BIN) sys-account account-service new-account -s $(EXAMPLE_SERVER_ADDRESS) --email gutterbacon@example.com --password gutterbacon123 --avatar-filepath ./testdata/avatar.png
 
-this-ex-sdk-accounts-list:
+this-sdk-accounts-list:
 	@echo Running Example Accounts List
-	$(SDK_BIN) sys-account account-service list-accounts --server-addr $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --jwt-access-token $(shell awk '1' ./.token | tr -d '\n')
+	$(SDK_BIN) sys-account account-service list-accounts
 
-this-ex-sdk-accounts-get:
+this-sdk-accounts-get:
 	@echo Running Example Accounts Get
-	$(SDK_BIN) sys-account account-service get-account -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --id $(EXAMPLE_ACCOUNT_ID) --jwt-access-token $(shell awk '1' ./.token | tr -d '\n')
+	$(SDK_BIN) sys-account account-service get-account --id $(EXAMPLE_ACCOUNT_ID)
 
-this-ex-sdk-accounts-update:
+this-sdk-accounts-update:
 	@echo Running Example Accounts Update
-	$(SDK_BIN) sys-account account-service update-account -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --id $(EXAMPLE_ACCOUNT_ID) --jwt-access-token $(shell awk '1' ./.token | tr -d '\n') --disabled
+	$(SDK_BIN) sys-account account-service update-account --id $(EXAMPLE_ACCOUNT_ID)  --disabled
 
-this-ex-sdk-accounts-assign-super:
+this-sdk-accounts-assign-super:
 	@echo Assigning Account to Superuser
-	$(SDK_BIN) sys-account account-service assign-account-to-role --assigned-account-id $(EXAMPLE_ACCOUNT_ID) --role-all --role-role 4 -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --jwt-access-token $(shell awk '1' ./.token | tr -d '\n')
+	$(SDK_BIN) sys-account account-service assign-account-to-role --assigned-account-id $(EXAMPLE_ACCOUNT_ID) --role-all --role-role 4
 
-this-ex-sdk-org-new:
+this-sdk-org-new:
 	@echo Running Example Create Org
-	$(SDK_BIN) sys-account org-proj-service -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --jwt-access-token $(shell awk '1' ./.token | tr -d '\n') new-org --name "ORG 1" --logo-filepath "./testdata/avatar.png"
+	$(SDK_BIN) sys-account org-proj-service new-org --name "ORG 1" --logo-filepath "./testdata/avatar.png"
 
-this-ex-sdk-org-get:
+this-sdk-org-get:
 	@echo Running Example Get Org
-	$(SDK_BIN) sys-account org-proj-service -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --jwt-access-token $(shell awk '1' ./.token | tr -d '\n') get-org --id $(EXAMPLE_ORG_ID)
+	$(SDK_BIN) sys-account org-proj-service get-org --id $(EXAMPLE_ORG_ID)
 
-this-ex-sdk-org-list:
+this-sdk-org-list:
 	@echo Running Example List Org
-	$(SDK_BIN) sys-account org-proj-service -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --jwt-access-token $(shell awk '1' ./.token | tr -d '\n') list-org
+	$(SDK_BIN) sys-account org-proj-service list-org
 
-this-ex-sdk-org-update:
+this-sdk-org-update:
 	@echo Running Example Update Org
-	$(SDK_BIN) sys-account org-proj-service -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --jwt-access-token $(shell awk '1' ./.token | tr -d '\n') update-org --id $(EXAMPLE_ORG_ID) --name "ORG 2" --contact "contact@getcouragenow.org"
+	$(SDK_BIN) sys-account org-proj-service update-org --id $(EXAMPLE_ORG_ID) --name "ORG 2" --contact "contact@getcouragenow.org"
 
-this-ex-sdk-project-new:
+this-sdk-project-new:
 	@echo Running Example Create New Project
-	$(SDK_BIN) sys-account org-proj-service -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --jwt-access-token $(shell awk '1' ./.token | tr -d '\n') new-project --org-id $(EXAMPLE_ORG_ID) --name PROJECT1 --logo-filepath "./testdata/avatar.png"
+	$(SDK_BIN) sys-account org-proj-service new-project --org-id $(EXAMPLE_ORG_ID) --name PROJECT1 --logo-filepath "./testdata/avatar.png"
 
-this-ex-sdk-project-list:
+this-sdk-project-list:
 	@echo Running Example List Project
-	$(SDK_BIN) sys-account org-proj-service -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --jwt-access-token $(shell awk '1' ./.token | tr -d '\n') list-project
+	$(SDK_BIN) sys-account org-proj-service list-project
 
-this-ex-sdk-project-get:
+this-sdk-project-get:
 	@echo Running Example Get Project
-	$(SDK_BIN) sys-account org-proj-service -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson --jwt-access-token $(shell awk '1' ./.token | tr -d '\n') get-project --id $(EXAMPLE_PROJECT_ID)
+	$(SDK_BIN) sys-account org-proj-service get-project --id $(EXAMPLE_PROJECT_ID)
 
-this-ex-sdk-bench: this-ex-sdk-bench-start this-ex-sdk-bench-01 this-ex-sdk-bench-02
+this-sdk-bench: this-sdk-bench-start this-sdk-bench-01 this-sdk-bench-02
 	@echo -- Example SDK Benchmark: End --
 
-this-ex-sdk-bench-start:
+this-sdk-bench-start:
 	@echo -- Example SDK Benchmark: Start --
 
 	@echo Running Example SDK Benchmark, Run server first!
 
-this-ex-sdk-bench-01:
+this-sdk-bench-01:
 	# Small
 	@echo USERS: 10
 	@echo DB CONNECTIONS: 1
 	$(SDK_BIN) sys-bench -e -t $(EXAMPLE_CA_ROOT_NAME) -s $(EXAMPLE_SERVER_ADDRESS) -j "./bench/fake-register-data.json" -p "../sys-share/sys-account/proto/v2/sys_account_services.proto" -n "v2.sys_account.services.AuthService.Register" -r 10 -c 1
 
 
-this-ex-sdk-bench-02:
+this-sdk-bench-02:
 	# Medium
 	@echo USERS: 100
 	@echo DB CONNECTIONS: 10
 	$(SDK_BIN) sys-bench -e -t $(EXAMPLE_CA_ROOT_NAME) -s $(EXAMPLE_SERVER_ADDRESS) -j "./bench/fake-register-data.json" -p "../sys-share/sys-account/proto/v2/sys_account_services.proto" -n "v2.sys_account.services.AuthService.Register" -r 100 -c 10
 
-this-ex-sdk-bench-03:
+this-sdk-bench-03:
 	# Medium
 	@echo USERS: 1000
 	@echo DB CONNECTIONS: 100
 	$(SDK_BIN) sys-bench -e -t $(EXAMPLE_CA_ROOT_NAME) -s $(EXAMPLE_SERVER_ADDRESS) -j "./bench/fake-register-data.json" -p "../sys-share/sys-account/proto/v2/sys_account_services.proto" -n "v2.sys_account.services.AuthService.Register" -r 1000 -c 100
 
-this-ex-sdk-backup:
+this-sdk-backup:
 	$(SDK_BIN) db-admin-service backup -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson
 
-this-ex-sdk-list-backup:
+this-sdk-list-backup:
 	$(SDK_BIN) db-admin-service list-backup -s $(EXAMPLE_SERVER_ADDRESS) --tls --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson
 
-this-ex-sdk-restore:
+this-sdk-restore:
 	$(SDK_BIN) db-admin-service restore --backup-file $(EXAMPLE_BACKUP_FILE) --tls -s $(EXAMPLE_SERVER_ADDRESS) --tls-ca-cert-file $(EXAMPLE_CA_ROOT_NAME) -o prettyjson
 
 this-flu-web-run:

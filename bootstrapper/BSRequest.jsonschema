@@ -8,19 +8,24 @@
                     "org": {
                         "properties": {
                             "name": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{nameseq:sys_account_org,false,none,false,false}\" yaml:\"name,omitempty\""
                             },
                             "logo_filepath": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{randomstring:[./testdata/logo.png]}\" yaml:\"logo_filepath,omitempty\""
                             },
                             "contact": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{email}\" yaml:\"contact,omitempty\""
                             },
                             "creator_id": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{randomstring:[ops@getcouragenow.org,contact@getcouragenow.org]}\" yaml:\"creator_id,omitempty\""
                             },
                             "logo_upload_bytes": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"logo_upload_bytes,omitempty\""
                             }
                         },
                         "additionalProperties": true,
@@ -39,22 +44,28 @@
                     "project": {
                         "properties": {
                             "name": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{nameseq:sys_account_project,false,none,false,false}\" yaml:\"name,omitempty\""
                             },
                             "logo_filepath": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{randomstring:[./testdata/logo.png]}\" yaml:\"logo_filepath,omitempty\""
                             },
                             "creator_id": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{randomstring:[ops@getcouragenow.org, dev@getcouragenow.org]}\" yaml:\"creator_id,omitempty\""
                             },
                             "org_id": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"org_id,omitempty\""
                             },
                             "org_name": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{nameseq:sys_account_org,true,sys_account_org,false,false}\" yaml:\"org_name,omitempty\""
                             },
                             "logo_upload_bytes": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"logo_upload_bytes,omitempty\""
                             }
                         },
                         "additionalProperties": true,
@@ -185,10 +196,12 @@
                     "initial_superuser": {
                         "properties": {
                             "email": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{mailseq:ops,false,none,false}\" yaml:\"email\""
                             },
                             "password": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{password:true,true,true,false,false,16}\" yaml:\"password\""
                             }
                         },
                         "additionalProperties": true,

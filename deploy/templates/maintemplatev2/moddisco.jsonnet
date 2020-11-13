@@ -1,4 +1,4 @@
-local discoTpl = import "../mod-disco/service/go/template.moddisco.libsonnet";
+local discoTpl = import "vendor/github.com/getcouragenow/mod/mod-disco/service/go/template.moddisco.libsonnet";
 
 local cfg = {
     modDiscoConfig: discoTpl.modDiscoConfig {

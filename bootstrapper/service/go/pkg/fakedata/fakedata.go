@@ -1,8 +1,6 @@
 package fakedata
 
 import (
-	"fmt"
-
 	bsrpc "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2"
 	discoFake "github.com/getcouragenow/mod/mod-disco/service/go/pkg/fakedata"
 	accFake "github.com/getcouragenow/sys-share/sys-account/service/go/pkg/fakedata"
@@ -22,33 +20,41 @@ type bootstrapBSAccounts struct {
 	BSAccounts []*bsrpc.BSAccount `json:"main_bootstrap_superusers" yaml:"main_bootstrap_superusers"`
 }
 
-type bootstrapAll struct {
+type BootstrapAll struct {
 	Orgs       bootstrapBSOrgs     `json:"orgs" yaml:"orgs"`
 	Projects   bootstrapBsProjects `json:"projects" yaml:"projects"`
 	Superusers bootstrapBSAccounts `json:"superusers" yaml:"superusers"`
 }
 
-func (b *bootstrapAll) GetOrgs() []*bsrpc.BSOrg {
+func (b *BootstrapAll) GetOrgs() []*bsrpc.BSOrg {
 	return b.Orgs.BSOrgs
 }
 
-func (b *bootstrapAll) GetSuperUsers() []*bsrpc.BSAccount {
+func (b *BootstrapAll) GetSuperUsers() []*bsrpc.BSAccount {
 	return b.Superusers.BSAccounts
 }
 
-func (b *bootstrapAll) GetProjects() []*bsrpc.BSProject {
+func (b *BootstrapAll) GetProjects() []*bsrpc.BSProject {
 	return b.Projects.BSProjects
 }
 
-func (b *bootstrapAll) MarshalPretty() ([]byte, error) {
+func (b *BootstrapAll) MarshalPretty() ([]byte, error) {
 	return sharedConfig.MarshalPretty(b)
 }
 
-func (b *bootstrapAll) MarshalYaml() ([]byte, error) {
+func (b *BootstrapAll) MarshalYaml() ([]byte, error) {
 	return sharedConfig.MarshalYAML(b)
 }
 
-func BootstrapFakeData(domain string) (*bootstrapAll, error) {
+func BootstrapFromBSRequest(in *bsrpc.BSRequest) *BootstrapAll {
+	return &BootstrapAll{
+		Orgs:       bootstrapBSOrgs{in.GetOrgs()},
+		Projects:   bootstrapBsProjects{in.GetProjects()},
+		Superusers: bootstrapBSAccounts{in.GetSuperusers()},
+	}
+}
+
+func BootstrapFakeData(domain string) (*BootstrapAll, error) {
 	sysAccRc, sysOrgRc, sysProjRc, accFakeData, err := accFake.BootstrapFakeData(domain)
 	if err != nil {
 		return nil, err
@@ -95,16 +101,15 @@ func BootstrapFakeData(domain string) (*bootstrapAll, error) {
 		}
 		bsProjects = append(bsProjects, bsProject)
 	}
-	return &bootstrapAll{
+	return &BootstrapAll{
 		Orgs:       bootstrapBSOrgs{bsOrgs},
 		Projects:   bootstrapBsProjects{bsProjects},
 		Superusers: bootstrapBSAccounts{bsAccounts},
 	}, nil
 }
 
-func BootstrapAllFromFilepath(path string) (*bootstrapAll, error) {
-	var bsAll bootstrapAll
-	fmt.Println(path)
+func BootstrapAllFromFilepath(path string) (*BootstrapAll, error) {
+	var bsAll BootstrapAll
 	if err := fakehelper.UnmarshalFromFilepath(path, &bsAll); err != nil {
 		return nil, err
 	}

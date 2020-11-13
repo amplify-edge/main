@@ -27,6 +27,15 @@
         }
       },
       "version": "master"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/mod.git",
+          "subdir": "mod-disco/service/go"
+        }
+      },
+      "version": "master"
     }
   ],
   "legacyImports": false
