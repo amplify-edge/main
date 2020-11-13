@@ -158,7 +158,8 @@ this-sdk-run:
 
 this-server-run: this-server-run-clean
 	mkdir -p db
-	$(SERVER_BIN) -c ./config/syscore.yml -a ./config/sysaccount.yml -p 8888 -l -d ./client/build/web #&
+	$(SERVER_BIN) -c ./config/syscore.yml -a ./config/sysaccount.yml 
+
 this-server-run-clean:
 	rm -rf db
 
