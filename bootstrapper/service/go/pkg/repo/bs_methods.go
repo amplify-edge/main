@@ -1,9 +1,14 @@
 package repo
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"io"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -12,6 +17,13 @@ import (
 	"github.com/getcouragenow/main/bootstrapper/service/go/pkg/fakedata"
 	bsrpc "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
+)
+
+const (
+	maxFileSize = 4 << 20 // max upload bootstrap 4MB
+	chunkSize   = 1 << 20 // chunk to 1MB
+
+	errUpload = "cannot upload bootstrap file: %s, reason: %v"
 )
 
 func (b *BootstrapRepo) GenBSFile(extension string) (string, error) {
@@ -75,27 +87,42 @@ func (b *BootstrapRepo) GetBS(ctx context.Context, in *bsrpc.GetBSRequest) (*bsr
 	}, nil
 }
 
-func (b *BootstrapRepo) NewBootstrap(ctx context.Context, in *bsrpc.NewBSRequest) (*bsrpc.NewBSResponse, error) {
-	_, err := b.AuthOverride(ctx)
+func (b *BootstrapRepo) NewBootstrap(stream bsrpc.BSService_NewBootstrapServer) error {
+	in, err := stream.Recv()
 	if err != nil {
-		return nil, err
+		return status.Errorf(codes.InvalidArgument, errUpload, "", err)
 	}
 	filename := fmt.Sprintf("%s.%s", sharedConfig.NewID(), in.GetFileExtension())
 	joined := filepath.Join(b.savePath, filename)
-	var bsAll *fakedata.BootstrapAll
-	if in.GetBsRequest() != nil {
-		bsAll = fakedata.BootstrapFromBSRequest(in.GetBsRequest())
-	} else {
-		bsAll, err = fakedata.BootstrapFakeData(b.domain)
+	fileBuf := bytes.Buffer{}
+	fileSize := 0
+	for {
+		in, err = stream.Recv()
 		if err != nil {
-			return nil, err
+			if err == io.EOF {
+				break
+			}
+			return status.Errorf(codes.Unknown, "cannot receive stream chunk: %v", err)
+		}
+		chunk := in.GetBsRequest() // as chunk
+		chunkSize := len(chunk)
+		fileSize += chunkSize
+		if fileSize > maxFileSize {
+			return status.Error(codes.Aborted, "file size exceeds maximum file size, aborting")
+		}
+		_, err = fileBuf.Write(chunk)
+		if err != nil {
+			return status.Errorf(codes.Internal, "cannot write file data to buffer: %v", err)
 		}
 	}
-	fileId, err := b.sharedGenBS(bsAll, joined, in.GetFileExtension())
-	if err != nil {
-		return nil, err
+	if err = ioutil.WriteFile(joined, fileBuf.Bytes(), 0644); err != nil {
+		return err
 	}
-	return &bsrpc.NewBSResponse{FileId: fileId}, nil
+	resp := &bsrpc.NewBSResponse{FileId: filename}
+	if err = stream.SendAndClose(resp); err != nil {
+		return status.Errorf(codes.Internal, "cannot encode upload resp: %v", err)
+	}
+	return nil
 }
 
 func (b *BootstrapRepo) ListBootstrap(ctx context.Context, in *bsrpc.ListBSRequest) (*bsrpc.ListBSResponse, error) {

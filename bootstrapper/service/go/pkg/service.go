@@ -30,6 +30,6 @@ func (b *BootstrapService) RegisterSvc(srv *grpc.Server) {
 func NewBootstrapCLI(bsRepo *repo.BootstrapRepo, option ...client.Option) *cobra.Command {
 	rootCmd := bsrpc.BSServiceClientCommand(option...)
 	cfg := client.NewConfig(option...)
-	rootCmd.AddCommand(bsRepo.GenerateBSBypassCmd(cfg), bsRepo.ExecBSBypassCmd(cfg))
+	rootCmd.AddCommand(bsRepo.GenerateBSBypassCmd(cfg), bsRepo.ExecBSBypassCmd(cfg), bsRepo.NewBootstrapUpload(cfg))
 	return rootCmd
 }

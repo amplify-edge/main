@@ -32,7 +32,7 @@ message BSAccount {
 message NewBSRequest {
   // either file_path or file content (in bytes)
   string file_extension = 1;
-  BSRequest bs_request = 2;
+  bytes bs_request = 2;
 }
 
 message NewBSResponse {

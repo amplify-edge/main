@@ -42,6 +42,7 @@ func main() {
 	}
 	logger := log.WithField("maintemplate", "v2")
 	// configs
+	logger.Infof("Running maintemplatev2-sdk-cli")
 	mainCfg, err := wrapper.NewConfig(mainCfgPath)
 	if err != nil {
 		logger.Fatalf(errSourcingConfig, "main-wrapper", err)

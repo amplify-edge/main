@@ -1,8 +1,6 @@
 package fakedata
 
 import (
-	"fmt"
-
 	bsrpc "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2"
 	discoFake "github.com/getcouragenow/mod/mod-disco/service/go/pkg/fakedata"
 	accFake "github.com/getcouragenow/sys-share/sys-account/service/go/pkg/fakedata"
@@ -112,7 +110,6 @@ func BootstrapFakeData(domain string) (*BootstrapAll, error) {
 
 func BootstrapAllFromFilepath(path string) (*BootstrapAll, error) {
 	var bsAll BootstrapAll
-	fmt.Println(path)
 	if err := fakehelper.UnmarshalFromFilepath(path, &bsAll); err != nil {
 		return nil, err
 	}
