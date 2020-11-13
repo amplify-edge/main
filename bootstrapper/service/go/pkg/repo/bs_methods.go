@@ -45,7 +45,7 @@ func (b *BootstrapRepo) ExecuteBSCli(ctx context.Context, filename string) error
 	return b.sharedExecutor(ctx, bsAll)
 }
 
-func (b *BootstrapRepo) ExecuteBS(ctx context.Context, in *bsrpc.GetBSRequest) (*emptypb.Empty, error) {
+func (b *BootstrapRepo) ExecuteBootstrap(ctx context.Context, in *bsrpc.GetBSRequest) (*emptypb.Empty, error) {
 	_, err := b.AuthOverride(ctx)
 	if err != nil {
 		return nil, err
@@ -62,7 +62,7 @@ func (b *BootstrapRepo) ExecuteBS(ctx context.Context, in *bsrpc.GetBSRequest) (
 	return &emptypb.Empty{}, nil
 }
 
-func (b *BootstrapRepo) GetBS(ctx context.Context, in *bsrpc.GetBSRequest) (*bsrpc.BS, error) {
+func (b *BootstrapRepo) GetBootstrap(ctx context.Context, in *bsrpc.GetBSRequest) (*bsrpc.BS, error) {
 	_, err := b.AuthOverride(ctx)
 	if err != nil {
 		return nil, err
