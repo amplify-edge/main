@@ -3,15 +3,16 @@ local accMixin = import "vendor/github.com/getcouragenow/sys/sys-account/service
 local cfg = {
     sysAccountConfig: accMixin.sysAccountConfig {
         unauthenticatedRoutes: accMixin.UnauthenticatedRoutes + [
-            "/v2.sys_core.services.DbAdminService/Backup",
-            "/v2.sys_core.services.DbAdminService/ListBackup",
-            "/v2.sys_core.services.DbAdminService/Restore",
+    "/v2.sys_account.services.OrgProjService/ListOrg",
+    "/v2.sys_account.services.OrgProjService/ListProject",
+    "/v2.mod_disco.services.SurveyService/ListDiscoProject",
+    "/v2.mod_disco.services.SurveyService/GetDiscoProject",
         ],
         initialSuperUsers: [
             {
                 email: "superadmin@getcouragenow.org",
                 password: "superadmin",
-                avatarFilepath: "./testdata/avatar.png",
+                avatarFilepath: "./testdata/default/default_root_avatar.png",
             }
         ],
     }
