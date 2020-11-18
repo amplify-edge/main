@@ -6,9 +6,11 @@ local cfg = {
         unauthenticatedRoutes: accMixin.UnauthenticatedRoutes + [
             "/v2.sys_account.services.OrgProjService/ListOrg",
             "/v2.sys_account.services.OrgProjService/ListProject",
+            "/v2.sys_account.services.OrgProjService/GetOrg",
+            "/v2.sys_account.services.OrgProjService/GetProject",
             "/v2.mod_disco.services.SurveyService/ListDiscoProject",
             "/v2.mod_disco.services.SurveyService/GetDiscoProject",
-            "/v2.mod_disco.services.SurveyService/GetTempId",
+            "/v2.mod_disco.services.SurveyService/GenTempId",
             "/v2.mod_disco.services.SurveyService/ListSurveyProject",
             "/v2.mod_disco.services.SurveyService/GetSurveyProject",
         ],
