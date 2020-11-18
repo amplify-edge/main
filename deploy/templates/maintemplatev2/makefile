@@ -32,9 +32,9 @@ EXAMPLE_SUPER_EMAIL = superadmin@getcouragenow.org
 EXAMPLE_SUPER_PASSWORD = superadmin
 EXAMPLE_NEW_SUPER_EMAIL = gutterbacon@getcouragenow.org
 EXAMPLE_NEW_SUPER_PASSWORD = SmokeOnTheWater70s
-EXAMPLE_SYS_CORE_DB_ENCRYPT_KEY   = yYz8Xjb4HBn4irGQpBWulURjQk2XmwES
-EXAMPLE_SYS_CORE_SENDGRID_API_KEY = SOME_SENDGRID_API_KEY
-EXAMPLE_SYS_FILE_DB_ENCRYPT_KEY   = A9bhbid5ODrKQVvd9MY17P5MZ
+EXAMPLE_SYS_ACCOUNT_DB_ENCRYPT_KEY   = yYz8Xjb4HBn4irGQpBWulURjQk2XmwES
+EXAMPLE_SYS_ACCOUNT_SENDGRID_API_KEY = SOME_SENDGRID_API_KEY
+EXAMPLE_SYS_ACCOUNT_FILEDB_ENCRYPT_KEY   = A9bhbid5ODrKQVvd9MY17P5MZ
 EXAMPLE_MOD_DISCO_DB_ENCRYPT_KEY = ZSXV8lTrfPeSuysDVm
 
 EXAMPLE_CERT_DIR = ./certs
@@ -94,21 +94,19 @@ this-config-gen: #this-config-dep
 	mkdir -p $(CONFIG_OUTPUT_DIR)
 	@echo Generating Config
 	# OVERRIDES IF you need them
-	jsonnet -S sysaccount.jsonnet > $(CONFIG_OUTPUT_DIR)/sysaccount.yml
-	jsonnet -S syscore.jsonnet \
-		-V SYS_CORE_DB_ENCRYPT_KEY=$(EXAMPLE_SYS_CORE_DB_ENCRYPT_KEY) \
-		-V SYS_CORE_SENDGRID_API_KEY=$(shell echo ${SENDGRID_API_KEY}) > $(CONFIG_OUTPUT_DIR)/syscore.yml
-	jsonnet -S sysfile.jsonnet \
-		-V SYS_FILE_DB_ENCRYPT_KEY=$(EXAMPLE_SYS_FILE_DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/sysfile.yml
+	jsonnet -S sysaccount.jsonnet \
+		-V SYS_ACCOUNT_DB_ENCRYPT_KEY=$(EXAMPLE_SYS_ACCOUNT_DB_ENCRYPT_KEY) \
+		-V SYS_ACCOUNT_FILEDB_ENCRYPT_KEY=$(EXAMPLE_SYS_ACCOUNT_FILEDB_ENCRYPT_KEY) \
+		-V SYS_ACCOUNT_SENDGRID_API_KEY=$(EXAMPLE_SYS_ACCOUNT_SENDGRID_API_KEY)> $(CONFIG_OUTPUT_DIR)/sysaccount.yml
 	jsonnet -S moddisco.jsonnet -V MOD_DISCO_DB_ENCRYPT_KEY=$(EXAMPLE_MOD_DISCO_DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/moddisco.yml
-	jsonnet -S bootstrap-server.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap.yml
+	jsonnet -S bootstrap-server.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap-server.yml
 	jsonnet -S bootstrap-client.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap-client.yml
 	jsonnet -S main.jsonnet > $(CONFIG_OUTPUT_DIR)/main.yml
 
 this-config-dep:
 	jb install && jb update
 	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb install && jb update
-	cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update
+	#cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update
 	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb install && jb update
 
 this-gen-cert: this-gen-cert-delete
@@ -158,7 +156,8 @@ this-sdk-run:
 
 this-server-run: this-server-run-clean
 	mkdir -p db
-	$(SERVER_BIN) -c ./config/syscore.yml -a ./config/sysaccount.yml -p 8888 -l -d ./client/build/web #&
+	$(SERVER_BIN) -a ./config/sysaccount.yml
+
 this-server-run-clean:
 	rm -rf db
 

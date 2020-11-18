@@ -3,6 +3,7 @@ package repo
 import (
 	"context"
 	"fmt"
+	"github.com/getcouragenow/sys-share/sys-core/service/fakehelper"
 	"io/ioutil"
 	"time"
 
@@ -40,8 +41,12 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 					All:       true,
 				},
 			},
-			AvatarFilepath: "./testdata/avatar.png",
 		}
+		avatar, err := fakehelper.GenFakeLogo("./bootstrap-data/client/generated", 128)
+		if err != nil {
+			return err
+		}
+		supeRequest.AvatarFilepath = avatar
 		if _, err = b.accClient.NewAccount(newCtx, supeRequest); err != nil {
 			cancel()
 			return err
@@ -87,8 +92,14 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAcco
 		superReq := &accountRepo.SuperAccountRequest{
 			Email:          supe.InitialSuperuser.GetEmail(),
 			Password:       supe.GetInitialSuperuser().GetPassword(),
-			AvatarFilePath: "./testdata/default_root_avatar.png",
+			AvatarFilePath: "./bootstrap-data/default/default_root_avatar.png",
 		}
+
+		avatar, err := fakehelper.GenFakeLogo("./bootstrap-data/client/generated", 128)
+		if err != nil {
+			return err
+		}
+		superReq.AvatarFilePath = avatar
 		if err = b.accRepo.InitSuperUser(superReq); err != nil {
 			return err
 		}
