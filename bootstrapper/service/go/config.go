@@ -4,6 +4,7 @@ import (
 	"fmt"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	"gopkg.in/yaml.v2"
+	"os"
 )
 
 const (
@@ -26,6 +27,9 @@ type Config struct {
 func (c Config) validate() error {
 	if c.SavePath == "" {
 		return fmt.Errorf(errParsingConfig, "savepath is empty")
+	}
+	if ex, _ := sharedConfig.PathExists(c.SavePath); !ex {
+		_ = os.MkdirAll(c.SavePath, 0755)
 	}
 	if c.Domain == "" {
 		return fmt.Errorf(errParsingConfig, "domain is empty")
