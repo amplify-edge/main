@@ -42,7 +42,7 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 				},
 			},
 		}
-		avatar, err := fakehelper.GenFakeLogo("./testdata/generated", 128)
+		avatar, err := fakehelper.GenFakeLogo("./bootstrap-data/client/generated", 128)
 		if err != nil {
 			return err
 		}
@@ -92,10 +92,10 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAcco
 		superReq := &accountRepo.SuperAccountRequest{
 			Email:          supe.InitialSuperuser.GetEmail(),
 			Password:       supe.GetInitialSuperuser().GetPassword(),
-			AvatarFilePath: "./testdata/default_root_avatar.png",
+			AvatarFilePath: "./bootstrap-data/default/default_root_avatar.png",
 		}
 
-		avatar, err := fakehelper.GenFakeLogo("./testdata/generated", 128)
+		avatar, err := fakehelper.GenFakeLogo("./bootstrap-data/client/generated", 128)
 		if err != nil {
 			return err
 		}

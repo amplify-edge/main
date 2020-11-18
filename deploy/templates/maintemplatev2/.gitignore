@@ -6,3 +6,6 @@ vendor
 /bses/
 /.env
 /bses-client/
+/bootstrap-data/client/generated
+/bootstrap-data/server
+/bootstrap-data/client

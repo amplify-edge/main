@@ -24,20 +24,16 @@ const (
 	errSourcingConfig = "error while sourcing config for %s: %v"
 	errCreateService  = "error while creating %s service: %v"
 
-	defaultSysCoreConfigPath    = "./config/syscore.yml"
 	defaultSysAccountConfigPath = "./config/sysaccount.yml"
 	defaultDiscoConfigPath      = "./config/moddisco.yml"
-	defaultBsConfigPath         = "./config/bootstrap.yml"
+	defaultBsConfigPath         = "./config/bootstrap-server.yml"
 	defaultMainCfgPath          = "./config/main.yml"
-	defaultSysFileConfigPath    = "./config/sysfile.yml"
 	defaultDebug                = true
 )
 
 var (
 	rootCmd        = &cobra.Command{Use: "maintemplatev2"}
 	bsCfgPath      string
-	coreCfgPath    string
-	fileCfgPath    string
 	mainCfgPath    string
 	accountCfgPath string
 	discoCfgPath   string
@@ -46,10 +42,8 @@ var (
 
 func main() {
 	// persistent flags
-	rootCmd.PersistentFlags().StringVarP(&coreCfgPath, "sys-core-config-path", "c", defaultSysCoreConfigPath, "sys-core config path to use")
 	rootCmd.PersistentFlags().StringVarP(&accountCfgPath, "sys-account-config-path", "a", defaultSysAccountConfigPath, "sys-account config path to use")
 	rootCmd.PersistentFlags().StringVarP(&discoCfgPath, "mod-disco-config-path", "i", defaultDiscoConfigPath, "mod-disco config path to use")
-	rootCmd.PersistentFlags().StringVarP(&fileCfgPath, "sys-file-config-path", "f", defaultSysFileConfigPath, "sys-account config path to use")
 	rootCmd.PersistentFlags().StringVarP(&bsCfgPath, "bootstrap-config-path", "b", defaultBsConfigPath, "bs config path to use")
 	rootCmd.PersistentFlags().StringVarP(&mainCfgPath, "main-config-path", "m", defaultMainCfgPath, "main config path to use")
 	rootCmd.PersistentFlags().BoolVar(&isDebug, "debug", defaultDebug, "debug")
@@ -69,7 +63,7 @@ func main() {
 		if err != nil {
 			logger.Fatalf(errSourcingConfig, "main-wrapper", err)
 		}
-		sspaths := pkg.NewServiceConfigPaths(coreCfgPath, fileCfgPath, accountCfgPath)
+		sspaths := pkg.NewServiceConfigPaths(accountCfgPath)
 		cbus := corebus.NewCoreBus()
 		sscfg, err := pkg.NewSysServiceConfig(logger, nil, sspaths, mainCfg.MainConfig.Port, cbus)
 		if err != nil {
@@ -84,7 +78,7 @@ func main() {
 			logger.Fatalf(errSourcingConfig, "bootstrapper", err)
 		}
 
-		mainSvc,err := wrapper.NewMainService(
+		mainSvc, err := wrapper.NewMainService(
 			logger,
 			sscfg,
 			cbus,
