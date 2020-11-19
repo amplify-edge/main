@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	maxFileSize = 4 << 20 // max upload bootstrap 4MB
+	maxFileSize = 8 << 20 // max upload bootstrap 8MB
 	chunkSize   = 1 << 20 // chunk to 1MB
 
 	errUpload = "cannot upload bootstrap file: %s, reason: %v"
