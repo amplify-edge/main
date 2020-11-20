@@ -58,14 +58,12 @@ dependencies:
   # path: sys-core/service/flu
 
   mod_disco:
-    git:
-      url: git://github.com/getcouragenow/mod.git
-      path: mod-disco/client
+    path: ../../../../../mod/mod-disco/service/flu
 
-  mod_survey:
-    git:
-      url: git://github.com/getcouragenow/mod.git
-      path: mod-survey/service/flu
+#  mod_survey:
+#    git:
+#      url: git://github.com/getcouragenow/mod.git
+#      path: mod-survey/service/flu
     # path: ../../sys-core/client
   #sys_core:
   #  git:
@@ -89,7 +87,7 @@ dependencies:
   flutter_platform_widgets: ^0.8.1
   # font_awesome_flutter:
 
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^1.0.0
 
 dev_dependencies:
   flutter_test:

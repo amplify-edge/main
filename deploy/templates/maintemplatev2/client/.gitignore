@@ -84,3 +84,4 @@ desktop/windows.syso
 
 packer/build
 packer/packer
+/lib/generated_plugin_registrant.dart
