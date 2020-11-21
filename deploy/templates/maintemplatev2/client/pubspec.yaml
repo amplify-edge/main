@@ -57,8 +57,12 @@ dependencies:
   # url: git://github.com/getcouragenow/sys.git
   # path: sys-core/service/flu
 
+#  sys_share_sys_account_service:
+#    path: ../../../../../sys-share/sys-account/service/flu
+
   mod_disco:
     path: ../../../../../mod/mod-disco/service/flu
+
 
 #  mod_survey:
 #    git:
@@ -79,7 +83,7 @@ dependencies:
   rxdart: ^0.24.0
   shimmer: ^1.0.0
   intl: ^0.16.1
-  intl_translation: ^0.17.9
+  intl_translation: ^0.17.10+1
   get_it: ^3.1.0
   equatable:
   meta:
@@ -92,10 +96,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  build_runner: ^1.7.1
-  hive_generator: ^0.5.2
+  build_runner: ^1.10.2
+  hive_generator: ^0.8.2
   json_serializable: ^3.2.3
-  flutter_launcher_icons: ^0.7.3
+  flutter_launcher_icons: ^0.8.1
 
 flutter_icons:
   android: true
