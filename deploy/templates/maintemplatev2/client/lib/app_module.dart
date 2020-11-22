@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:maintemplatev2/main.dart';
 import 'package:maintemplatev2/modules/startup/views/startup_view.dart';
-import 'package:sys_share_sys_account_service/view/widgets/nav_rail.dart';
-import 'package:sys_share_sys_account_service/view/widgets/auth_nav_layout.dart';
 // import 'package:mod_chat/mod_chat.dart';
 
-import 'package:sys_share_sys_account_service/sys_share_sys_account_service.dart';
+// import 'package:sys_share_sys_account_service/sys_share_sys_account_service.dart';
 
 //import 'package:mod_chat_beta/mod_chat.dart' as chatBeta;
 // import 'package:mod_geo/mod_geo.dart';
