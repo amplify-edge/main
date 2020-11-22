@@ -12,8 +12,7 @@ import 'package:mod_disco/core/i18n/mod_disco_localization.dart';
 // import 'package:mod_write/core/i18n/mod_write_localization.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:sys_core/sys_core.dart';
-import 'package:sys_share_sys_account_service/view/widgets/nav_rail.dart';
-import 'package:sys_share_sys_account_service/view/widgets/auth_nav_layout.dart';
+import 'package:sys_share_sys_account_service/pkg/i18n/sys_account_localization.dart';
 
 import '././core/core.dart';
 import 'modules/settings/settings.dart';
@@ -67,6 +66,7 @@ class _AppState extends State<App> {
       navigatorKey: Modular.navigatorKey,
       localizationsDelegates: [
         AppLocalizationsDelegate(model.locale), //maintemplate delegate
+        SysAccountLocalizationsDelegate(model.locale),
         // ModGeoAppLocalizationsDelegate(model.locale),
         // ModAccountLocalizationsDelegate(model.locale),
         ModDiscoLocalizationsDelegate(model.locale),
