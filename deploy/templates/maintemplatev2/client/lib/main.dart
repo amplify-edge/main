@@ -66,7 +66,7 @@ class _AppState extends State<App> {
       navigatorKey: Modular.navigatorKey,
       localizationsDelegates: [
         AppLocalizationsDelegate(model.locale), //maintemplate delegate
-        SysAccountLocalizationsDelegate(model.locale),
+        SysAccountLocalizationsDelegate(),
         // ModGeoAppLocalizationsDelegate(model.locale),
         // ModAccountLocalizationsDelegate(model.locale),
         ModDiscoLocalizationsDelegate(model.locale),

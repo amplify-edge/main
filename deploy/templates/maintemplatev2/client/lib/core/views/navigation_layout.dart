@@ -16,14 +16,8 @@ class NavigationLayout extends StatefulWidget {
 }
 
 class _NavigationLayoutState extends State<NavigationLayout> {
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    String platform = "phone";
-    if (isTablet(context)) platform = "tablet";
-    if (isDesktop(context)) platform = "desktop";
-
     return AuthNavLayout(
       body: widget.body,
       tabs: <Widget>[
