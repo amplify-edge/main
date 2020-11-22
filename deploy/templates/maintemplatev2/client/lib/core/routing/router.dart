@@ -13,4 +13,5 @@ class Paths {
   static const String modSurvey = '/survey';
   static const String modAccount = '/account';
   static const String modKanban = '/kanban';
+  static const String sysAccount = '/accounts/login';
 }

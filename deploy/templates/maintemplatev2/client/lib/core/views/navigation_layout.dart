@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sys_share_sys_account_service/view/widgets/nav_rail.dart';
-import 'package:sys_core/sys_core.dart';
 import 'package:sys_share_sys_account_service/view/widgets/auth_nav_layout.dart';
+import 'package:sys_core/sys_core.dart';
 
 import '../core.dart';
 
@@ -25,134 +25,31 @@ class _NavigationLayoutState extends State<NavigationLayout> {
     if (isDesktop(context)) platform = "desktop";
 
     return AuthNavLayout(
-      context: context,
       body: widget.body,
       tabs: <Widget>[
         TabItem(
           title: Text(
             AppLocalizations.of(context).tabhome(),
+            style: TextStyle(fontSize: 12),
           ),
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.home, size: 30),
           onTap: () {
             Modular.to.pushNamed(Paths.modDisco);
           },
         ),
         TabItem(
-          title: Text(AppLocalizations.of(context).tabsettings()),
-          icon: Icon(Icons.settings),
+          title: Text(
+            AppLocalizations.of(context).tabsettings(),
+            style: TextStyle(fontSize: 12),
+          ),
+          icon: Icon(Icons.settings, size: 30),
           onTap: () {
             Modular.to.pushNamed(Paths.settings);
             print("Settings tapped");
           },
         ),
       ],
+      navigatorKey: Modular.navigatorKey,
     );
-
-    // return MaterialNavigationRail(
-    //   //rebuild here on every platform change
-    //   //unique keys would lead to rerender on every pixel change when resizing
-    //   // the window
-    //   key: ValueKey(platform),
-    //   currentIndex: _currentIndex,
-    //   drawerHeader: Container(height: 74, child: Text("")),
-    //   body: widget.body,
-    //   bottomNavigationBarSelectedColor:
-    //       (Theme.of(context).brightness == Brightness.dark)
-    //           ? Colors.tealAccent[200]
-    //           : Theme.of(context).primaryColor,
-    //   bottomNavigationBarUnselectedColor: Colors.grey,
-    //   tabs: [
-    //     TabItem(
-    //       title: Text(
-    //         AppLocalizations.of(context).tabhome(),
-    //       ),
-    //       icon: Icon(Icons.home),
-    //       onTap: () {
-    //         Modular.to.pushNamed(Paths.modDisco);
-    //       },
-    //     ),
-    //     // TabItem(
-    //     //     title: Text(
-    //     //       AppLocalizations.of(context).tabsurvey(),
-    //     //     ),
-    //     //     icon: Icon(Icons.notes),
-    //     //     onTap: () {
-    //     //       Modular.to.pushNamed(Paths.modSurvey);
-    //     //       print("Survey tapped");
-    //     //     }),
-    //     // TabItem(
-    //     //   title: Text(AppLocalizations.of(context).tabKanban()),
-    //     //   icon: Icon(Icons.storage),
-    //     //   onTap: () {
-    //     //     Modular.to.pushNamed(Paths.modKanban);
-    //     //     print("Kanban tapped");
-    //     //   },
-    //     // ),
-    //     // TabItem(
-    //     //   title: Text(AppLocalizations.of(context).tabchat()),
-    //     //   icon: Icon(Icons.chat),
-    //     //   onTap: () {
-    //     //     Modular.to.pushNamed(Paths.chat);
-    //     //     print("Chat tapped");
-    //     //   },
-    //     // ),
-    //     /*
-    //     TabItem(
-    //       title: Text(AppLocalizations.of(context).tabchat() + ' Beta'),
-    //       icon: Icon(Icons.chat),
-    //       onTap: () {
-    //         Modular.to.pushNamed(Paths.chat_beta);
-    //         print("ChatBeta tapped");
-    //       },
-    //     ), */
-    //     // TabItem(
-    //     //   title: Text(AppLocalizations.of(context).tabIon()),
-    //     //   icon: Icon(Icons.video_call),
-    //     //   onTap: () {
-    //     //     Modular.to.pushNamed(Paths.ion);
-    //     //     print("ION tapped");
-    //     //   },
-    //     // ),
-    //     // TabItem(
-    //     //   title: Text(AppLocalizations.of(context).tabwriter()),
-    //     //   icon: Icon(Icons.font_download),
-    //     //   onTap: () {
-    //     //     Modular.to.pushNamed(Paths.modWriter);
-    //     //     print("Writer tapped");
-    //     //   },
-    //     // ),
-    //     // TabItem(
-    //     //   title: Text(AppLocalizations.of(context).tabmap()),
-    //     //   icon: Icon(Icons.map),
-    //     //   onTap: () {
-    //     //     Modular.to.pushNamed(Paths.modGeo);
-    //     //     print("Writer tapped");
-    //     //   },
-    //     // ),
-    //     TabItem(
-    //       title: Text(AppLocalizations.of(context).tabsettings()),
-    //       icon: Icon(Icons.settings),
-    //       onTap: () {
-    //         Modular.to.pushNamed(Paths.settings);
-    //         print("Settings tapped");
-    //       },
-    //     ),
-    //     // TabItem(
-    //     //   title: Text("ModWriter"),
-    //     //   icon: Icon(Icons.font_download),
-    //     //   onTap: () {
-    //     //     //  Navigator.of(context).pushNamed(ModularRouter.writer);
-    //     //     // locator<NavigationService>().navigateTo(ModularRouter.writer);
-    //     //     Modular.to.pushNamed(Paths.modWriter);
-    //     //     print("ModWriter tapped");},
-    //     // ),
-    //   ],
-    //   onPressed: (index) {
-    //     print(index);
-    //     setState(() {
-    //       _currentIndex = index;
-    //     });
-    //   },
-    // );
   }
 }
