@@ -4,12 +4,14 @@ import 'package:maintemplatev2/main.dart';
 import 'package:maintemplatev2/modules/startup/views/startup_view.dart';
 // import 'package:mod_chat/mod_chat.dart';
 
+import 'package:sys_share_sys_account_service/view/screens/account.dart';
+
 //import 'package:mod_chat_beta/mod_chat.dart' as chatBeta;
 // import 'package:mod_geo/mod_geo.dart';
 // import 'package:mod_ion/ion_module.dart';
 // import 'package:mod_kanban/kanban_module.dart';
 import 'package:mod_disco/modules/mod_disco.dart';
-import 'package:mod_survey/mod_survey.dart';
+
 // import 'package:mod_session/mod_session.dart';
 // import 'package:mod_write/mod_write.dart';
 // import 'package:mod_write/writer_module.dart';
@@ -43,18 +45,6 @@ class AppModule extends MainModule {
           transition: TransitionType.custom,
           customTransition: noTransition,
         ),
-        // ModularRouter(
-        //   Paths.modAccount,
-        //   module: AccountModule(Paths.modAccount),
-        //   transition: TransitionType.custom,
-        //   customTransition: noTransition,
-        // ),
-        ModularRouter(
-          Paths.modSurvey,
-          module: SurveyModule(
-            Paths.modSurvey,
-          ),
-        ),
         ModularRouter(
           Paths.modDisco,
           module: MainAppModule(
@@ -65,6 +55,16 @@ class AppModule extends MainModule {
           transition: TransitionType.custom,
           customTransition: noTransition,
         ),
+        // ModularRouter(
+        //   Paths.sysAccount,
+        //   module: AccountModule(
+        //       tabs: [],
+        //       navigatorKey: null,
+        //       body: null
+        //   ),
+        //   transition: TransitionType.custom,
+        //   customTransition: noTransition,
+        // ),
         // ModularRouter(
         //   Paths.chat,
         //   module: ChatModule(
