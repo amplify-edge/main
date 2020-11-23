@@ -66,17 +66,19 @@ this-build-delete:
 
 this-build: this-build-delete
 	## Flutter first
-	#$(MAKE) flu-gen-all
-	#$(MAKE) flu-gen-lang-all
-	#$(MAKE) flu-web-build
+	$(MAKE) flu-gen-all
+	$(MAKE) flu-gen-lang-all
+	$(MAKE) flu-web-build
 
 	go build -o $(SDK_BIN) main/sdk-cli/main.go
 	go build -o $(SERVER_BIN) main/server/main.go
 
 
 this-gen: this-gen-delete
+	$(MAKE) this-config-dep
 	$(MAKE) this-config-gen
-	#$(MAKE) config-gen # TODO need a config.mk
+	$(MAKE) this-cert-dep
+	$(MAKE) this-cert-gen
 	$(MAKE) flu-gen-all
 	$(MAKE) flu-gen-lang-all
 	
@@ -90,7 +92,7 @@ this-gen-delete:
 #this-config-delete:
 #	rm -rf $(CONFIG_OUTPUT_DIR)/*
 
-this-config-gen: #this-config-dep
+this-config-gen: this-config-dep
 	mkdir -p $(CONFIG_OUTPUT_DIR)
 	@echo Generating Config
 	# OVERRIDES IF you need them
@@ -109,17 +111,17 @@ this-config-dep:
 	#cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update
 	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb install && jb update
 
-this-gen-cert: this-gen-cert-delete
+this-cert-gen: this-cert-gen-delete
 	@mkdir -p $(EXAMPLE_CERT_DIR)
 	@mkcert -cert-file certs/local.pem -key-file certs/local.key.pem localhost 127.0.0.1 ::1
 	@cp $(MKCERT_CA_ROOT_DIR)/rootCA.pem $(EXAMPLE_CA_ROOT_NAME)
 	mkcert -install
 
-this-gen-cert-delete:
+this-cert-gen-delete:
 	#mkcert -uninstall
 	rm -rf $(EXAMPLE_CERT_DIR)/*.{pem,key,csr,crt}
 
-this-gen-cert-dep:
+this-cert-dep:
 	brew install mkcert nss
 
 
