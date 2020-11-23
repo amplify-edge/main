@@ -66,8 +66,6 @@ this-build-delete:
 
 this-build: this-build-delete
 	## Flutter first
-	$(MAKE) flu-gen-all
-	$(MAKE) flu-gen-lang-all
 	$(MAKE) flu-web-build
 
 	go build -o $(SDK_BIN) main/sdk-cli/main.go
@@ -79,7 +77,8 @@ this-gen: this-gen-delete
 	$(MAKE) this-config-gen
 	$(MAKE) this-cert-dep
 	$(MAKE) this-cert-gen
-	$(MAKE) flu-gen-all
+	$(MAKE) gen-icons
+	$(MAKE) gen-hive
 	$(MAKE) flu-gen-lang-all
 	
 this-gen-delete:
@@ -122,7 +121,7 @@ this-cert-gen-delete:
 	rm -rf $(EXAMPLE_CERT_DIR)/*.{pem,key,csr,crt}
 
 this-cert-dep:
-	brew install mkcert nss
+	#brew install mkcert nss
 
 
 this-build-deep:
