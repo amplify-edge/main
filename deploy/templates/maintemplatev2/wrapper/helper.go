@@ -11,8 +11,8 @@ import (
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 
-	bscfg "github.com/getcouragenow/main/bootstrapper/service/go"
-	bsPkg "github.com/getcouragenow/main/bootstrapper/service/go/pkg"
+	bscfg "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
+	bsPkg "github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	discoPkg "github.com/getcouragenow/mod/mod-disco/service/go/pkg"
 	discoRpc "github.com/getcouragenow/mod/mod-disco/service/go/rpc/v2"
