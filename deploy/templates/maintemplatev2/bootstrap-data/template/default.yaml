@@ -1,0 +1,576 @@
+orgs:
+  main_bootstrap_orgs:
+  - org:
+      name: sys_account_org_0
+      logo_filepath: bootstrap-data/client/generated/1kjljVDLmEU5WECoxLkQUFhLHCp.png
+      contact: bethjohnson@hintz.com
+      creator_id: contact@getcouragenow.org
+  - org:
+      name: sys_account_org_1
+      logo_filepath: bootstrap-data/client/generated/1kjljZtorQBrMBLMnPgOsx3QsJB.png
+      contact: reecedickens@graham.biz
+      creator_id: ops@getcouragenow.org
+  - org:
+      name: sys_account_org_2
+      logo_filepath: bootstrap-data/client/generated/1kjljZNJU8FWDXSo5u0hamMA4ay.png
+      contact: arirobel@sporer.biz
+      creator_id: contact@getcouragenow.org
+  - org:
+      name: sys_account_org_3
+      logo_filepath: bootstrap-data/client/generated/1kjljUUIhnyiGzgdoTuqiDrD6Lv.png
+      contact: aishavandervort@frami.org
+      creator_id: ops@getcouragenow.org
+projects:
+  main_bootstrap_projects:
+  - project:
+      name: sys_account_project_0
+      logo_filepath: bootstrap-data/client/generated/1kjljX53CWPs7CSGhRHwVNHpBF9.png
+      creator_id: dev@getcouragenow.org
+      org_name: sys_account_org_0
+    projectdetails:
+      goal: Hope sign sentence title abuse grow target test.
+      already_pledged: 91
+      action_time: 1682735490000000000
+      action_location: Miguelhaven
+      min_pioneers: 3443
+      min_rebels_media: 1422
+      min_rebels_to_win: 1177
+      action_length: 13 weeks
+      action_type: global_campaign
+      category: environment
+      contact: alessandrowatsica@walker.info
+      hist_precedents: Search ignore realize occur page notice understand release.
+      strategy: Length milk rest gap require increase assist monitor.
+      video_url:
+      - https://www.youtube.com/watch?v=Ssvu2yncgWU
+      - https://www.youtube.com/watch?v=r6En29azNBA
+      unit_of_measures: weeks
+      sys_account_project_ref_name: sys_account_project_0
+      sys_account_org_ref_name: sys_account_org_0
+    surveyschema:
+      support_role_types:
+      - name: support_role_type_0
+        comment: Vary scope history turn silence pension detect attend.
+        description: Director
+        unit_of_measures: days
+      - name: support_role_type_1
+        comment: Report constitute learn hope hope consideration meet score.
+        description: Producer
+        unit_of_measures: weeks
+      - name: support_role_type_2
+        comment: Push make switch step preserve forgive mass lord.
+        description: Specialist
+        unit_of_measures: months
+      - name: support_role_type_3
+        comment: Present writer care lack formation permit vision pound.
+        description: Representative
+        unit_of_measures: days
+      - name: support_role_type_4
+        comment: Burst touch recover protect preserve hang guess tell.
+        description: Assistant
+        unit_of_measures: days
+      - name: support_role_type_5
+        comment: Confirm hotel meal identify use refer return crown.
+        description: Architect
+        unit_of_measures: weeks
+      - name: support_role_type_6
+        comment: Instance plane advise send cry allow team couple.
+        description: Facilitator
+        unit_of_measures: months
+      - name: support_role_type_7
+        comment: Assist ride feel research telephone save excuse fix.
+        description: Strategist
+        unit_of_measures: weeks
+      user_need_types:
+      - name: user_needs_type_0
+        comment: Say comply information direct.
+        description: Chillwave biodiesel +1 sustainable lomo?
+        unit_of_measures: weeks
+        group: question_group_1
+        questionType: textfield
+        dropdownQuestion: Selfies sriracha Thundercats plaid?
+      - name: user_needs_type_1
+        comment: Establish fall countryside regime.
+        description: Beard mixtape tacos street polaroid bitters?
+        unit_of_measures: weeks
+        group: question_group_5
+        questionType: dropdown
+        dropdownQuestion: Wolf etsy park master?
+      - name: user_needs_type_2
+        comment: Bear plan monitor earn.
+        description: Jean shorts listicle austin?
+        unit_of_measures: weeks
+        group: question_group_5
+        questionType: singlecheckbox
+        dropdownQuestion: You probably haven't heard of them selvage fixie?
+      - name: user_needs_type_3
+        comment: Realise couple consult include.
+        description: Beard kickstarter williamsburg cold-pressed heirloom?
+        unit_of_measures: weeks
+        group: question_group_4
+        questionType: textfield
+        dropdownQuestion: Thundercats cray meditation trust fund brooklyn authentic cold-pressed?
+      - name: user_needs_type_4
+        comment: Drop minority permit propose.
+        description: Yr goth tumblr church-key retro lo-fi kinfolk?
+        unit_of_measures: weeks
+        group: question_group_1
+        questionType: dropdown
+        dropdownQuestion: Try-hard plaid street typewriter health pug pickled letterpress kale chips narwhal?
+      - name: user_needs_type_5
+        comment: Sound fight reckon draw.
+        description: Pug synth ethical retro sriracha tacos?
+        unit_of_measures: months
+        group: question_group_3
+        questionType: singlecheckbox
+        dropdownQuestion: Meh kogi YOLO banjo selvage schlitz intelligentsia portland?
+      - name: user_needs_type_6
+        comment: Replace murder complete maintain.
+        description: Fingerstache chicharrones seitan shabby chic?
+        unit_of_measures: weeks
+        group: question_group_4
+        questionType: dropdown
+        dropdownQuestion: Pitchfork bicycle rights normcore Wes Anderson austin iPhone drinking 90's listicle?
+      - name: user_needs_type_7
+        comment: Increase bother listen experience.
+        description: Retro banjo 8-bit?
+        unit_of_measures: days
+        group: question_group_2
+        questionType: singlecheckbox
+        dropdownQuestion: Aesthetic flannel flannel selvage?
+      sys_account_project_ref_name: sys_account_project_0
+      survey_project_name: survey_project_0
+  - project:
+      name: sys_account_project_1
+      logo_filepath: bootstrap-data/client/generated/1kjljTCB45ySkymBwOiEJ1SX1QJ.png
+      creator_id: ops@getcouragenow.org
+      org_name: sys_account_org_1
+    projectdetails:
+      goal: Neck letter appreciate establish fit property implement replace.
+      already_pledged: 539
+      action_time: 1650338317000000000
+      action_location: Walshhaven
+      min_pioneers: 5547
+      min_rebels_media: 1455
+      min_rebels_to_win: 1281
+      action_length: 12 months
+      action_type: environment
+      category: environment
+      contact: genesisschoen@oreilly.com
+      hist_precedents: Content concentrate expect enable result bet reform china.
+      strategy: Serve owner gentleman empire oxford horse henry chair.
+      video_url:
+      - https://www.youtube.com/watch?v=PQC7VaL7xlc
+      - https://www.youtube.com/watch?v=Ssvu2yncgWU
+      unit_of_measures: days
+      sys_account_project_ref_name: sys_account_project_1
+      sys_account_org_ref_name: sys_account_org_1
+    surveyschema:
+      support_role_types:
+      - name: support_role_type_8
+        comment: Invest price iron voice fight rely material share.
+        description: Architect
+        unit_of_measures: days
+      - name: support_role_type_9
+        comment: Appear violence demand sir link plan worry belong.
+        description: Architect
+        unit_of_measures: weeks
+      - name: support_role_type_10
+        comment: Suggest art production fall rise man maintenance touch.
+        description: Agent
+        unit_of_measures: weeks
+      - name: support_role_type_11
+        comment: Tackle destroy drive cope view resistance round consist.
+        description: Director
+        unit_of_measures: months
+      - name: support_role_type_12
+        comment: Location vary participate budget exercise journey bridge ship.
+        description: Officer
+        unit_of_measures: weeks
+      - name: support_role_type_13
+        comment: Climb victim release gain principle help record cover.
+        description: Coordinator
+        unit_of_measures: months
+      - name: support_role_type_14
+        comment: Assessment employ rest communicate title review observe clear.
+        description: Manager
+        unit_of_measures: months
+      - name: support_role_type_15
+        comment: State become generation withdraw journey valley ignore general.
+        description: Producer
+        unit_of_measures: days
+      user_need_types:
+      - name: user_needs_type_8
+        comment: Member complete handle square.
+        description: Normcore stumptown messenger bag Wes Anderson pickled?
+        unit_of_measures: days
+        group: question_group_2
+        questionType: dropdown
+        dropdownQuestion: Chambray Wes Anderson kinfolk vegan authentic etsy neutra ennui pop-up sartorial?
+      - name: user_needs_type_9
+        comment: Consider comply nature regard.
+        description: Kogi forage austin portland roof?
+        unit_of_measures: days
+        group: question_group_3
+        questionType: singlecheckbox
+        dropdownQuestion: Typewriter yr forage retro?
+      - name: user_needs_type_10
+        comment: Choose behave reach growth.
+        description: Synth echo celiac ennui bushwick hoodie banjo chambray letterpress mixtape?
+        unit_of_measures: months
+        group: question_group_5
+        questionType: textfield
+        dropdownQuestion: Thundercats beard pour-over?
+      - name: user_needs_type_11
+        comment: Effort manager kill wish.
+        description: Yuccie fashion axe pour-over meggings street vice waistcoat pop-up salvia?
+        unit_of_measures: months
+        group: question_group_4
+        questionType: dropdown
+        dropdownQuestion: Single-origin coffee vegan portland fingerstache salvia mustache listicle ugh tumblr hammock?
+      - name: user_needs_type_12
+        comment: Sentence point walk newspaper.
+        description: Knausgaard meggings pabst cliche franzen cardigan retro humblebrag?
+        unit_of_measures: months
+        group: question_group_5
+        questionType: textfield
+        dropdownQuestion: Chambray semiotics disrupt bushwick swag pop-up shabby chic flannel meh?
+      - name: user_needs_type_13
+        comment: Wash bob pleasure secure.
+        description: Bicycle rights Yuccie PBR&B tattooed food truck?
+        unit_of_measures: months
+        group: question_group_1
+        questionType: textfield
+        dropdownQuestion: Disrupt helvetica chillwave Thundercats waistcoat organic tilde iPhone truffaut?
+      - name: user_needs_type_14
+        comment: Avoid request specialist use.
+        description: Knausgaard street cred kale chips poutine?
+        unit_of_measures: weeks
+        group: question_group_5
+        questionType: dropdown
+        dropdownQuestion: Godard shoreditch scenester kale chips craft beer keffiyeh schlitz?
+      - name: user_needs_type_15
+        comment: Snow operate play freedom.
+        description: Meh tilde letterpress viral echo?
+        unit_of_measures: days
+        group: question_group_5
+        questionType: singlecheckbox
+        dropdownQuestion: Etsy swag selfies food truck?
+      sys_account_project_ref_name: sys_account_project_1
+      survey_project_name: survey_project_1
+  - project:
+      name: sys_account_project_2
+      logo_filepath: bootstrap-data/client/generated/1kjljW83dHtoZeWMmrcQ16CTNA1.png
+      creator_id: ops@getcouragenow.org
+      org_name: sys_account_org_2
+    projectdetails:
+      goal: Steel spread raise take conduct music purchase should.
+      already_pledged: 750
+      action_time: 1631858900000000000
+      action_location: Hageneston
+      min_pioneers: 5053
+      min_rebels_media: 1199
+      min_rebels_to_win: 1126
+      action_length: 13 weeks
+      action_type: environment
+      category: poverty
+      contact: guiseppemayert@king.com
+      hist_precedents: Oil john need plan advice lend account make.
+      strategy: Wife scene future part survive river enter include.
+      video_url:
+      - https://www.youtube.com/watch?v=Ssvu2yncgWU
+      - https://www.youtube.com/watch?v=MkNeIUgNPQ8
+      unit_of_measures: days
+      sys_account_project_ref_name: sys_account_project_2
+      sys_account_org_ref_name: sys_account_org_2
+    surveyschema:
+      support_role_types:
+      - name: support_role_type_16
+        comment: Centre pay factory remain deny aim square knock.
+        description: Coordinator
+        unit_of_measures: weeks
+      - name: support_role_type_17
+        comment: Thatcher business press recession cost present enter admit.
+        description: Assistant
+        unit_of_measures: weeks
+      - name: support_role_type_18
+        comment: Chairman talk accident treatment balance secure eat drive.
+        description: Manager
+        unit_of_measures: weeks
+      - name: support_role_type_19
+        comment: Alter development mum household mention night build hide.
+        description: Associate
+        unit_of_measures: months
+      - name: support_role_type_20
+        comment: Approval voice spokesman lunch window miss avoid martin.
+        description: Orchestrator
+        unit_of_measures: days
+      - name: support_role_type_21
+        comment: Permit agent decide hear become demand sustain reduction.
+        description: Coordinator
+        unit_of_measures: days
+      - name: support_role_type_22
+        comment: Obtain jane drop remind interpret qualify phone remember.
+        description: Orchestrator
+        unit_of_measures: days
+      - name: support_role_type_23
+        comment: Count show disease regard reveal of religion hate.
+        description: Assistant
+        unit_of_measures: weeks
+      user_need_types:
+      - name: user_needs_type_16
+        comment: Plan a improve project.
+        description: Whatever Wes Anderson butcher slow-carb single-origin coffee austin microdosing kinfolk paleo sriracha?
+        unit_of_measures: months
+        group: question_group_4
+        questionType: textfield
+        dropdownQuestion: Church-key kickstarter offal?
+      - name: user_needs_type_17
+        comment: Insist context total ask.
+        description: Taxidermy DIY synth cold-pressed drinking twee goth health next level?
+        unit_of_measures: months
+        group: question_group_4
+        questionType: textfield
+        dropdownQuestion: Vinyl letterpress tousled?
+      - name: user_needs_type_18
+        comment: Interpretation sign action recovery.
+        description: Tofu yr VHS williamsburg viral?
+        unit_of_measures: months
+        group: question_group_4
+        questionType: dropdown
+        dropdownQuestion: Selfies post-ironic fixie pork belly beard?
+      - name: user_needs_type_19
+        comment: No employment chancellor frank.
+        description: Viral kogi literally iPhone gastropub pinterest cred?
+        unit_of_measures: months
+        group: question_group_4
+        questionType: textfield
+        dropdownQuestion: Umami lumbersexual kale chips blog pork belly organic selfies PBR&B actually?
+      - name: user_needs_type_20
+        comment: Accept submit power fact.
+        description: Vegan poutine kale chips gentrify schlitz?
+        unit_of_measures: weeks
+        group: question_group_4
+        questionType: textfield
+        dropdownQuestion: Gluten-free XOXO 8-bit park wayfarers scenester ugh sartorial neutra plaid?
+      - name: user_needs_type_21
+        comment: Chief operation will distinguish.
+        description: Post-ironic cleanse umami?
+        unit_of_measures: months
+        group: question_group_1
+        questionType: dropdown
+        dropdownQuestion: Heirloom humblebrag lumbersexual etsy mixtape dreamcatcher?
+      - name: user_needs_type_22
+        comment: Burn fear come discuss.
+        description: Meh forage ramps?
+        unit_of_measures: days
+        group: question_group_3
+        questionType: dropdown
+        dropdownQuestion: Heirloom church-key Godard?
+      - name: user_needs_type_23
+        comment: Draw plastic argue cause.
+        description: Paleo retro helvetica paleo fixie blue bottle Godard?
+        unit_of_measures: months
+        group: question_group_2
+        questionType: dropdown
+        dropdownQuestion: Intelligentsia tacos deep v authentic DIY try-hard raw denim chicharrones kitsch?
+      sys_account_project_ref_name: sys_account_project_2
+      survey_project_name: survey_project_2
+  - project:
+      name: sys_account_project_3
+      logo_filepath: bootstrap-data/client/generated/1kjljVwDks3kmeQ2bysfT01HzME.png
+      creator_id: dev@getcouragenow.org
+      org_name: sys_account_org_3
+    projectdetails:
+      goal: Teach invite approach captain examine birth pattern make.
+      already_pledged: 962
+      action_time: 1734287588000000000
+      action_location: Hilllchester
+      min_pioneers: 5394
+      min_rebels_media: 1381
+      min_rebels_to_win: 1444
+      action_length: 14 days
+      action_type: global_campaign
+      category: global_campaign
+      contact: dejonschimmel@price.name
+      hist_precedents: Hour match qualify sleep note knock paint display.
+      strategy: Limit advise confidence put influence express remember wait.
+      video_url:
+      - https://www.youtube.com/watch?v=x1T6QFpd0J4
+      - https://www.youtube.com/watch?v=DHNZeIy4kjs
+      unit_of_measures: months
+      sys_account_project_ref_name: sys_account_project_3
+      sys_account_org_ref_name: sys_account_org_3
+    surveyschema:
+      support_role_types:
+      - name: support_role_type_24
+        comment: Involve tackle sound study travel solve wonder literature.
+        description: Officer
+        unit_of_measures: months
+      - name: support_role_type_25
+        comment: Appreciate call protect breakfast contribute submit hit television.
+        description: Planner
+        unit_of_measures: weeks
+      - name: support_role_type_26
+        comment: Gap proceed flight judge press proposal play reflect.
+        description: Specialist
+        unit_of_measures: months
+      - name: support_role_type_27
+        comment: Analyse push situation occur list implement satisfy write.
+        description: Facilitator
+        unit_of_measures: weeks
+      - name: support_role_type_28
+        comment: Safety factory commitment waste ring save resist war.
+        description: Orchestrator
+        unit_of_measures: days
+      - name: support_role_type_29
+        comment: Benefit damage split split work should run trust.
+        description: Executive
+        unit_of_measures: months
+      - name: support_role_type_30
+        comment: Attend report management level act prove regard inquiry.
+        description: Strategist
+        unit_of_measures: weeks
+      - name: support_role_type_31
+        comment: Store develop loan fail option bill sleep suggest.
+        description: Director
+        unit_of_measures: months
+      user_need_types:
+      - name: user_needs_type_24
+        comment: Offer part assist figure.
+        description: Before they sold out bespoke Yuccie retro swag yr try-hard?
+        unit_of_measures: days
+        group: question_group_4
+        questionType: singlecheckbox
+        dropdownQuestion: Pork belly narwhal pour-over hashtag XOXO vinyl quinoa artisan XOXO?
+      - name: user_needs_type_25
+        comment: Excuse campaign turn office.
+        description: Celiac PBR&B chambray?
+        unit_of_measures: weeks
+        group: question_group_6
+        questionType: textfield
+        dropdownQuestion: Pork belly Yuccie post-ironic 90's pinterest 8-bit cronut?
+      - name: user_needs_type_26
+        comment: Appeal test push sentence.
+        description: Mustache put a bird on it helvetica wayfarers pickled?
+        unit_of_measures: months
+        group: question_group_2
+        questionType: dropdown
+        dropdownQuestion: Neutra migas normcore beard williamsburg?
+      - name: user_needs_type_27
+        comment: Phone recover gate grass.
+        description: Farm-to-table master bicycle rights squid vice kogi?
+        unit_of_measures: days
+        group: question_group_4
+        questionType: dropdown
+        dropdownQuestion: Etsy trust fund 8-bit brunch chia dreamcatcher kinfolk banjo?
+      - name: user_needs_type_28
+        comment: Awareness form cancer beauty.
+        description: Drinking portland lomo schlitz roof health biodiesel organic messenger bag?
+        unit_of_measures: days
+        group: question_group_2
+        questionType: textfield
+        dropdownQuestion: Kale chips put a bird on it chillwave kombucha intelligentsia forage meggings?
+      - name: user_needs_type_29
+        comment: Raise encourage march measure.
+        description: Humblebrag disrupt slow-carb fixie sartorial skateboard actually everyday keytar?
+        unit_of_measures: weeks
+        group: question_group_3
+        questionType: dropdown
+        dropdownQuestion: Post-ironic synth knausgaard williamsburg paleo +1 3 wolf moon letterpress tumblr?
+      - name: user_needs_type_30
+        comment: Enterprise present fun peter.
+        description: Tousled forage tattooed readymade wolf five dollar toast bushwick beard meditation?
+        unit_of_measures: months
+        group: question_group_4
+        questionType: textfield
+        dropdownQuestion: Crucifix 8-bit put a bird on it 8-bit loko cleanse paleo microdosing?
+      - name: user_needs_type_31
+        comment: Block expand mention confidence.
+        description: Retro tumblr DIY next level forage fashion axe mixtape slow-carb humblebrag?
+        unit_of_measures: weeks
+        group: question_group_4
+        questionType: textfield
+        dropdownQuestion: Flannel pop-up kitsch green juice fashion axe bicycle rights deep v food truck vegan?
+      sys_account_project_ref_name: sys_account_project_3
+      survey_project_name: survey_project_3
+superusers:
+  main_bootstrap_superusers:
+  - initialsuperuser:
+      email: ops_0@getcouragenow.org
+      password: 6RwN73cWV1Dn5d3e
+    surveyvalue:
+      support_role_values:
+      - support_role_type_ref_name: support_role_type_0
+        pledged: 21
+        comment: Japan come author order.
+      - support_role_type_ref_name: support_role_type_0
+        pledged: 58
+        comment: Candidate dare deny history.
+      - support_role_type_ref_name: support_role_type_0
+        pledged: 53
+        comment: Sign route smile impact.
+      - support_role_type_ref_name: support_role_type_0
+        pledged: 49
+        comment: Farm prison society predict.
+      - support_role_type_ref_name: support_role_type_0
+        pledged: 5
+        comment: Touch moment public win.
+      user_need_values:
+      - user_needs_type_ref_name: user_needs_type_0
+        comments: Predict defend pool outcome.
+        pledged: 41
+      - user_needs_type_ref_name: user_needs_type_0
+        comments: Gentleman pair collect lend.
+        pledged: 49
+      - user_needs_type_ref_name: user_needs_type_0
+        comments: Appreciate order need grow.
+        pledged: 78
+      - user_needs_type_ref_name: user_needs_type_0
+        comments: Computer drink shoulder beauty.
+        pledged: 42
+      - user_needs_type_ref_name: user_needs_type_0
+        comments: Forgive view hold search.
+        pledged: 59
+      survey_project_ref_name: survey_project_0
+      sys_account_user_ref_name: ops_0@getcouragenow.org
+      survey_user_name: survey_user_0
+  - initialsuperuser:
+      email: ops_1@getcouragenow.org
+      password: YOn3pnzZwg6m2sub
+    surveyvalue:
+      support_role_values:
+      - support_role_type_ref_name: support_role_type_0
+        pledged: 20
+        comment: Buy ref lady organisation.
+      - support_role_type_ref_name: support_role_type_0
+        pledged: 25
+        comment: Fund accept water reckon.
+      - support_role_type_ref_name: support_role_type_0
+        pledged: 37
+        comment: Minute opposition key should.
+      - support_role_type_ref_name: support_role_type_0
+        pledged: 82
+        comment: Step believe examination challenge.
+      - support_role_type_ref_name: support_role_type_0
+        pledged: 83
+        comment: Burn shift express experience.
+      user_need_values:
+      - user_needs_type_ref_name: user_needs_type_0
+        comments: Agency trust measure resolution.
+        pledged: 13
+      - user_needs_type_ref_name: user_needs_type_0
+        comments: Celebrate option strike remind.
+        pledged: 9
+      - user_needs_type_ref_name: user_needs_type_0
+        comments: Term say lead husband.
+        pledged: 94
+      - user_needs_type_ref_name: user_needs_type_0
+        comments: Heat object state guide.
+        pledged: 94
+      - user_needs_type_ref_name: user_needs_type_0
+        comments: Concentration china minister love.
+        pledged: 84
+      survey_project_ref_name: survey_project_3
+      sys_account_user_ref_name: ops_1@getcouragenow.org
+      survey_user_name: survey_user_1

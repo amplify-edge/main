@@ -1,10 +1,11 @@
 package main
 
 import (
-	bsSvc "github.com/getcouragenow/main/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+
+	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
+	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 )
 
 var (
