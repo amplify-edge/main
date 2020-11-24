@@ -41,9 +41,11 @@ local cfg = {
                backupSchedule: "@daily",
            },
         },
-        mailConfig: accMixin.CoreMail {
-            sendgridApiKey: loadVar(prefixName="SYS_ACCOUNT", env="SENDGRID_API_KEY").val,
-        },
+        mailConfig: accMixin.CoreMail //{
+//            sendgrid: accMixin.CoreMail.sendgrid {
+//                apiKey: loadVar (prefixName="SYS_ACCOUNT", env="SENDGRID_API_KEY").val,
+//            }
+//        },
     }
 };
 
