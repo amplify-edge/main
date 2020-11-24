@@ -14,8 +14,8 @@ import (
 
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"github.com/getcouragenow/main/bootstrapper/service/go/pkg/fakedata"
-	bsrpc "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2"
+	"github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg/fakedata"
+	bsrpc "github.com/getcouragenow/main/deploy/bootstrapper/service/go/rpc/v2"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 )
 

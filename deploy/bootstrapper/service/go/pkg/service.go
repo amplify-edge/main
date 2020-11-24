@@ -1,9 +1,9 @@
 package pkg
 
 import (
-	bscfg "github.com/getcouragenow/main/bootstrapper/service/go"
-	"github.com/getcouragenow/main/bootstrapper/service/go/pkg/repo"
-	bsrpc "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2"
+	bscfg "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
+	"github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg/repo"
+	bsrpc "github.com/getcouragenow/main/deploy/bootstrapper/service/go/rpc/v2"
 	discoRepo "github.com/getcouragenow/mod/mod-disco/service/go/pkg/repo"
 	"github.com/getcouragenow/protoc-gen-cobra/client"
 	accountRepo "github.com/getcouragenow/sys/sys-account/service/go/pkg/repo"
