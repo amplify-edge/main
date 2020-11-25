@@ -1,5 +1,6 @@
 name: maintemplatev2
 description: A new Flutter project.
+publish_to: none
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -57,12 +58,8 @@ dependencies:
   # url: git://github.com/getcouragenow/sys.git
   # path: sys-core/service/flu
 
-#  sys_share_sys_account_service:
-#    path: ../../../../../sys-share/sys-account/service/flu
-
   mod_disco:
     path: ../../../../../mod/mod-disco/service/flu
-
 
 #  mod_survey:
 #    git:

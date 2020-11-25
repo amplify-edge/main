@@ -12,7 +12,7 @@ import (
 	"golang.org/x/net/http2/h2c"
 	"google.golang.org/grpc"
 
-	bsSvc "github.com/getcouragenow/main/bootstrapper/service/go"
+	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"

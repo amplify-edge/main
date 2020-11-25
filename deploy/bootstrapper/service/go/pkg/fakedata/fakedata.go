@@ -1,7 +1,7 @@
 package fakedata
 
 import (
-	bsrpc "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2"
+	bsrpc "github.com/getcouragenow/main/deploy/bootstrapper/service/go/rpc/v2"
 	discoFake "github.com/getcouragenow/mod/mod-disco/service/go/pkg/fakedata"
 	accFake "github.com/getcouragenow/sys-share/sys-account/service/go/pkg/fakedata"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"

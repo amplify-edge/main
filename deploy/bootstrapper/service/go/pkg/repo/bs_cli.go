@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"github.com/getcouragenow/main/bootstrapper/service/go/pkg/fakedata"
+	"github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg/fakedata"
 	"github.com/getcouragenow/protoc-gen-cobra/client"
 	"github.com/getcouragenow/protoc-gen-cobra/flag"
 	"github.com/getcouragenow/protoc-gen-cobra/iocodec"
@@ -19,7 +19,7 @@ import (
 	"path/filepath"
 	"time"
 
-	bsrpc "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2"
+	bsrpc "github.com/getcouragenow/main/deploy/bootstrapper/service/go/rpc/v2"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 )
 

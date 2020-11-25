@@ -4,8 +4,6 @@ import 'package:maintemplatev2/main.dart';
 import 'package:maintemplatev2/modules/startup/views/startup_view.dart';
 // import 'package:mod_chat/mod_chat.dart';
 
-import 'package:sys_share_sys_account_service/view/screens/account.dart';
-
 //import 'package:mod_chat_beta/mod_chat.dart' as chatBeta;
 // import 'package:mod_geo/mod_geo.dart';
 // import 'package:mod_ion/ion_module.dart';
