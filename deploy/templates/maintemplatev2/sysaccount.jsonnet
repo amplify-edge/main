@@ -5,6 +5,7 @@ local cfg = {
     sysAccountConfig: accMixin.sysAccountConfig {
         unauthenticatedRoutes: accMixin.UnauthenticatedRoutes + [
             "/v2.sys_account.services.OrgProjService/ListOrg",
+            "/v2.sys_account.services.OrgProjService/ListNonSubscribedOrgs",
             "/v2.sys_account.services.OrgProjService/ListProject",
             "/v2.sys_account.services.OrgProjService/GetOrg",
             "/v2.sys_account.services.OrgProjService/GetProject",
@@ -13,6 +14,7 @@ local cfg = {
             "/v2.mod_disco.services.SurveyService/GenTempId",
             "/v2.mod_disco.services.SurveyService/ListSurveyProject",
             "/v2.mod_disco.services.SurveyService/GetSurveyProject",
+            "/v2.mod_disco.services.SurveyService/NewSurveyUser",
         ],
         initialSuperUsers: [
             {
