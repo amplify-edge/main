@@ -40,6 +40,28 @@ var (
 	isDebug        bool
 )
 
+type FileSystem struct {
+	fs http.FileSystem
+}
+
+// Open opens file
+func (fs FileSystem) Open(path string) (http.File, error) {
+	f, err := fs.fs.Open(path)
+	if err != nil {
+		return nil, err
+	}
+
+	s, err := f.Stat()
+	if s.IsDir() {
+		index := strings.TrimSuffix(path, "/") + "/index.html"
+		if _, err := fs.fs.Open(index); err != nil {
+			return nil, err
+		}
+	}
+
+	return f, nil
+}
+
 func main() {
 	// persistent flags
 	rootCmd.PersistentFlags().StringVarP(&accountCfgPath, "sys-account-config-path", "a", defaultSysAccountConfigPath, "sys-account config path to use")
@@ -117,7 +139,7 @@ func main() {
 		if mainCfg.MainConfig.IsLocal && mainCfg.MainConfig.TLS.Enable {
 			localTlsCertPath := mainCfg.MainConfig.TLS.LocalCertPath
 			localTlsKeyPath := mainCfg.MainConfig.TLS.LocalCertKeyPath
-			fileServer := http.FileServer(http.Dir(mainCfg.MainConfig.EmbedDir))
+			fileServer := http.FileServer(FileSystem{http.Dir(mainCfg.MainConfig.EmbedDir)})
 			httpServer := &http.Server{
 				Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 					w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -133,8 +155,23 @@ func main() {
 			}
 			return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
 		}
-
-		return mainSvc.Sys.Run(hostAddr, grpcWebServer, nil, "", "")
+		localTlsCertPath := mainCfg.MainConfig.TLS.LocalCertPath
+		localTlsKeyPath := mainCfg.MainConfig.TLS.LocalCertKeyPath
+		fileServer := http.FileServer(AssetFile())
+		httpServer := &http.Server{
+			Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				w.Header().Set("Access-Control-Allow-Origin", "*")
+				w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+				w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web")
+				logger.Infof("Request Endpoint: %s", r.URL)
+				if strings.Contains(r.URL.Path, "v2") {
+					grpcWebServer.ServeHTTP(w, r)
+				} else {
+					fileServer.ServeHTTP(w, r)
+				}
+			}), &http2.Server{}),
+		}
+		return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
 	}
 	if err := rootCmd.Execute(); err != nil {
 		logger.Fatalf("error running sys-main: %v", err)
