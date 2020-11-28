@@ -105,6 +105,7 @@ this-config-gen: this-config-dep
 	jsonnet -S main.jsonnet > $(CONFIG_OUTPUT_DIR)/main.yml
 
 this-config-dep:
+	go get -u -v github.com/markbates/pkger/cmd/pkger
 	jb install && jb update
 	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb install && jb update
 	#cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update
