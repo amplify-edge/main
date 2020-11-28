@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/NYTimes/gziphandler"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -158,6 +159,7 @@ func main() {
 		localTlsCertPath := mainCfg.MainConfig.TLS.LocalCertPath
 		localTlsKeyPath := mainCfg.MainConfig.TLS.LocalCertKeyPath
 		fileServer := http.FileServer(AssetFile())
+		gzippedHandler := gziphandler.GzipHandler(fileServer)
 		httpServer := &http.Server{
 			Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -167,7 +169,7 @@ func main() {
 				if strings.Contains(r.URL.Path, "v2") {
 					grpcWebServer.ServeHTTP(w, r)
 				} else {
-					fileServer.ServeHTTP(w, r)
+					gzippedHandler.ServeHTTP(w, r)
 				}
 			}), &http2.Server{}),
 		}
