@@ -63,13 +63,15 @@ this-print: ## print
 
 this-build-delete:
 	rm -rf $(SDK_BIN) $(SERVER_BIN)
+	rm -rf ./assets
 
 this-build: this-build-delete
 	## Flutter first
 	$(MAKE) flu-web-build
+	go-bindata -fs -nomemcopy -o main/server/assets.go -prefix "client/build/web/" client/build/web/...
 
 	go build -o $(SDK_BIN) main/sdk-cli/main.go
-	go build -o $(SERVER_BIN) main/server/main.go
+	go build -o $(SERVER_BIN) main/server/*
 
 
 this-gen: this-gen-delete
@@ -105,6 +107,7 @@ this-config-gen: this-config-dep
 	jsonnet -S main.jsonnet > $(CONFIG_OUTPUT_DIR)/main.yml
 
 this-config-dep:
+	go get -u -v github.com/go-bindata/go-bindata/...
 	jb install && jb update
 	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb install && jb update
 	#cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update

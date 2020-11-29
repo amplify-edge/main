@@ -9,3 +9,5 @@ vendor
 /bootstrap-data/client/generated
 /bootstrap-data/server
 /bootstrap-data/client
+/assets
+/main/server/assets.go
