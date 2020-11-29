@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"net/http"
 	"strings"
 
@@ -46,16 +47,17 @@ type FileSystem struct {
 }
 
 // Open opens file
-func (fs FileSystem) Open(path string) (http.File, error) {
-	f, err := fs.fs.Open(path)
+func (mfs FileSystem) Open(path string) (http.File, error) {
+	f, err := mfs.fs.Open(path)
 	if err != nil {
 		return nil, err
 	}
 
-	s, err := f.Stat()
+	s, _ := f.Stat()
+
 	if s.IsDir() {
 		index := strings.TrimSuffix(path, "/") + "/index.html"
-		if _, err := fs.fs.Open(index); err != nil {
+		if _, err := mfs.fs.Open(index); err != nil {
 			return nil, err
 		}
 	}
@@ -141,41 +143,37 @@ func main() {
 			localTlsCertPath := mainCfg.MainConfig.TLS.LocalCertPath
 			localTlsKeyPath := mainCfg.MainConfig.TLS.LocalCertKeyPath
 			fileServer := http.FileServer(FileSystem{http.Dir(mainCfg.MainConfig.EmbedDir)})
-			httpServer := &http.Server{
-				Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-					w.Header().Set("Access-Control-Allow-Origin", "*")
-					w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-					w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web")
-					logger.Infof("Request Endpoint: %s", r.URL)
-					if strings.Contains(r.URL.Path, "v2") {
-						grpcWebServer.ServeHTTP(w, r)
-					} else {
-						fileServer.ServeHTTP(w, r)
-					}
-				}), &http2.Server{}),
-			}
+			httpServer := createHttpHandler(logger, false, fileServer, grpcWebServer)
 			return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
 		}
 		localTlsCertPath := mainCfg.MainConfig.TLS.LocalCertPath
 		localTlsKeyPath := mainCfg.MainConfig.TLS.LocalCertKeyPath
 		fileServer := http.FileServer(AssetFile())
-		gzippedHandler := gziphandler.GzipHandler(fileServer)
-		httpServer := &http.Server{
-			Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-				w.Header().Set("Access-Control-Allow-Origin", "*")
-				w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-				w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web")
-				logger.Infof("Request Endpoint: %s", r.URL)
-				if strings.Contains(r.URL.Path, "v2") {
-					grpcWebServer.ServeHTTP(w, r)
-				} else {
-					gzippedHandler.ServeHTTP(w, r)
-				}
-			}), &http2.Server{}),
-		}
+		httpServer := createHttpHandler(logger, true, fileServer, grpcWebServer)
 		return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
 	}
 	if err := rootCmd.Execute(); err != nil {
 		logger.Fatalf("error running sys-main: %v", err)
+	}
+}
+
+func createHttpHandler(logger *logrus.Entry, isGzipped bool, fileServer http.Handler, grpcWebServer *grpcweb.WrappedGrpcServer) *http.Server {
+	return &http.Server{
+		Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+			w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web")
+			logger.Infof("Serving Endpoint: %s", r.URL.Path)
+			if strings.Contains(r.URL.Path, "v2") {
+				grpcWebServer.ServeHTTP(w, r)
+			} else {
+				if isGzipped {
+					fileServer = gziphandler.GzipHandler(fileServer)
+					fileServer.ServeHTTP(w, r)
+				} else {
+					fileServer.ServeHTTP(w, r)
+				}
+			}
+		}), &http2.Server{}),
 	}
 }
