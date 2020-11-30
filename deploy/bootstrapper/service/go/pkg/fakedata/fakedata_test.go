@@ -1,7 +1,7 @@
 package fakedata_test
 
 import (
-	"github.com/getcouragenow/main/bootstrapper/service/go/pkg/fakedata"
+	"github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg/fakedata"
 	"github.com/stretchr/testify/require"
 	"io/ioutil"
 	"testing"

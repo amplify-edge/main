@@ -3,6 +3,7 @@ module github.com/getcouragenow/main
 go 1.15
 
 require (
+	github.com/NYTimes/gziphandler v1.1.1
 	github.com/getcouragenow/mod v0.0.0-20201102154256-76639b41d618
 	github.com/getcouragenow/protoc-gen-cobra v0.3.1-0.20201005114840-ccc8cd57bcdc
 	github.com/getcouragenow/sys v0.0.0-20201102153848-4460bc43174f

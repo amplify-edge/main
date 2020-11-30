@@ -26,9 +26,9 @@ dependencies:
   # Responsive Design
   # navigation_rail: ^1.0.4
   responsive_builder:
-  responsive_scaffold: ^1.3.0+2
-  master_detail_scaffold: ^1.1.1+1
-  rflutter_alert: ^1.0.3
+  #  responsive_scaffold: ^1.3.0+2
+  #  master_detail_scaffold: ^1.1.1+1
+  rflutter_alert: ^1.1.0
 
   #modtemplate02:
   #  git:
@@ -61,10 +61,10 @@ dependencies:
   mod_disco:
     path: ../../../../../mod/mod-disco/service/flu
 
-#  mod_survey:
-#    git:
-#      url: git://github.com/getcouragenow/mod.git
-#      path: mod-survey/service/flu
+    #  mod_survey:
+    #    git:
+    #      url: git://github.com/getcouragenow/mod.git
+    #      path: mod-survey/service/flu
     # path: ../../sys-core/client
   #sys_core:
   #  git:
@@ -78,11 +78,11 @@ dependencies:
   grpc:
   protobuf:
   rxdart: ^0.24.0
-  shimmer: ^1.0.0
+  #  shimmer: ^1.0.0
   intl: ^0.16.1
   intl_translation: ^0.17.10+1
   get_it: ^3.1.0
-  equatable:
+  #  equatable:
   meta:
   flutter_modular: ^2.0.0+1
   flutter_platform_widgets: ^0.8.1
