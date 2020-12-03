@@ -22,10 +22,15 @@ message BSRequest {
   repeated BSOrg orgs = 1;
   repeated BSProject projects = 2;
   repeated BSAccount superusers = 3;
+  repeated BSRegularAccount regular_users = 4;
 }
 
 message BSAccount {
   v2.sys_account.services.LoginRequest initial_superuser = 1;
+}
+
+message BSRegularAccount {
+  v2.sys_account.services.AccountNewRequest new_accounts = 1;
   v2.mod_disco.services.NewSurveyUserRequest survey_value = 2;
 }
 

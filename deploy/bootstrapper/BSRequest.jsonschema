@@ -13,7 +13,7 @@
                             },
                             "logo_filepath": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{randomstring:[./testdata/logo.png]}\" yaml:\"logo_filepath,omitempty\""
+                                "description": "@inject_tag: fake:\"{avatargen:./bootstrap-data/client/generated,128}\" yaml:\"logo_filepath,omitempty\""
                             },
                             "contact": {
                                 "type": "string",
@@ -49,7 +49,7 @@
                             },
                             "logo_filepath": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{randomstring:[./testdata/logo.png]}\" yaml:\"logo_filepath,omitempty\""
+                                "description": "@inject_tag: fake:\"{avatargen:./bootstrap-data/client/generated,128}\" yaml:\"logo_filepath,omitempty\""
                             },
                             "creator_id": {
                                 "type": "string",
@@ -75,14 +75,15 @@
                         "properties": {
                             "sys_account_project_ref_id": {
                                 "type": "string",
-                                "description": "account project id"
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"sys_account_project_ref_id,omitempty\"\n\naccount project id"
                             },
                             "sys_account_org_ref_id": {
                                 "type": "string",
-                                "description": "account org id"
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"sys_account_org_ref_id,omitempty\"\n\naccount org id"
                             },
                             "goal": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{sentence:8}\" yaml:\"goal,omitempty\""
                             },
                             "already_pledged": {
                                 "oneOf": [
@@ -92,14 +93,23 @@
                                     {
                                         "type": "string"
                                     }
-                                ]
+                                ],
+                                "description": "@inject_tag: fake:\"{number:1,1000}\" yaml:\"already_pledged\""
                             },
-                            "action_time": {
-                                "type": "string",
-                                "format": "date-time"
+                            "action_time_nano": {
+                                "oneOf": [
+                                    {
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ],
+                                "description": "@inject_tag: fake:\"{randomts}\" yaml:\"action_time\""
                             },
                             "action_location": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{city}\" yaml:\"action_location\""
                             },
                             "min_pioneers": {
                                 "oneOf": [
@@ -109,7 +119,8 @@
                                     {
                                         "type": "string"
                                     }
-                                ]
+                                ],
+                                "description": "@inject_tag: fake:\"{number:1000,10000}\" yaml:\"min_pioneers\""
                             },
                             "min_rebels_media": {
                                 "oneOf": [
@@ -119,7 +130,8 @@
                                     {
                                         "type": "string"
                                     }
-                                ]
+                                ],
+                                "description": "@inject_tag: fake:\"{number:1000,1500}\" yaml:\"min_rebels_media\""
                             },
                             "min_rebels_to_win": {
                                 "oneOf": [
@@ -129,34 +141,65 @@
                                     {
                                         "type": "string"
                                     }
-                                ]
+                                ],
+                                "description": "@inject_tag: fake:\"{number:1000,1500}\" yaml:\"min_rebels_to_win\""
                             },
                             "action_length": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{randomstring:[14 days, 13 weeks, 12 months]}\" yaml:\"action_length\""
                             },
                             "action_type": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{randomstring:[environment,global_campaign,poverty]}\" yaml:\"action_type\""
                             },
                             "category": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{randomstring:[environment,global_campaign,poverty]}\" yaml:\"category\""
                             },
                             "contact": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{email}\" yaml:\"contact\""
                             },
                             "hist_precedents": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{sentence:8}\" yaml:\"hist_precedents\""
                             },
                             "strategy": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{sentence:8}\" yaml:\"strategy\""
                             },
                             "video_url": {
                                 "items": {
                                     "type": "string"
                                 },
-                                "type": "array"
+                                "type": "array",
+                                "description": "@inject_tag: fake:\"{randomyt}\" fakesize:\"2\" yaml:\"video_url\""
                             },
                             "unit_of_measures": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{randomstring:[days,weeks,months]}\" yaml:\"unit_of_measures\""
+                            },
+                            "sys_account_project_ref_name": {
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{nameseq:sys_account_project,true,sys_account_project,true,false}\" yaml:\"sys_account_project_ref_name\""
+                            },
+                            "sys_account_org_ref_name": {
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{nameseq:sys_account_org,true,sys_account_org,false,false}\" yaml:\"sys_account_org_ref_name,omitempty\""
+                            },
+                            "image_filepath": {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array",
+                                "description": "@inject_tag: fake:\"{avatargen:./bootstrap-data/client/generated,300}\" fakesize:\"3\" yaml:\"image_filepath,omitempty\""
+                            },
+                            "image_upload_arrays": {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array",
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"image_upload_arrays,omitempty\""
                             }
                         },
                         "additionalProperties": true,
@@ -165,19 +208,98 @@
                     "survey_schema": {
                         "properties": {
                             "sys_account_project_ref_id": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"sys_account_project_ref_id,omitempty\""
                             },
                             "support_role_types": {
                                 "items": {
-                                    "type": "string"
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "properties": {
+                                        "survey_project_ref_id": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"survey_project_ref_id,omitempty\""
+                                        },
+                                        "survey_project_ref_name": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"survey_project_ref_name,omitempty\""
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{nameseq:support_role_type,false,none,false,false}\" yaml:\"name,omitempty\""
+                                        },
+                                        "comment": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{sentence:8}\" yaml:\"comment,omitempty\""
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{jobtitle}\" yaml:\"description,omitempty\""
+                                        },
+                                        "unit_of_measures": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{randomstring:[days,weeks,months]}\" yaml:\"unit_of_measures,omitempty\""
+                                        }
+                                    },
+                                    "additionalProperties": true,
+                                    "type": "object"
                                 },
-                                "type": "array"
+                                "type": "array",
+                                "description": "@inject_tag: fakesize:\"8\" yaml:\"support_role_types\""
                             },
                             "user_need_types": {
                                 "items": {
-                                    "type": "string"
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"id,omitempty\""
+                                        },
+                                        "survey_project_ref_id": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"survey_project_ref_id,omitempty\""
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{nameseq:user_needs_type,false,none,false,false}\" yaml:\"name,omitempty\""
+                                        },
+                                        "comment": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{sentence:4}\" yaml:\"comment,omitempty\""
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{question}\" yaml:\"description,omitempty\""
+                                        },
+                                        "unit_of_measures": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{randomstring:[days,weeks,months]}\" yaml:\"unit_of_measures,omitempty\""
+                                        },
+                                        "question_group": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{randomstring:[question_group_1,question_group_2,question_group_3,question_group_4,question_group_5,question_group_6]}\" yaml:\"group,omitempty\""
+                                        },
+                                        "question_type": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{randomstring:[dropdown,textfield,singlecheckbox]}\" yaml:\"questionType,omitempty\""
+                                        },
+                                        "dropdown_question": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{question}\" yaml:\"dropdownQuestion,omitempty\""
+                                        }
+                                    },
+                                    "additionalProperties": true,
+                                    "type": "object"
                                 },
-                                "type": "array"
+                                "type": "array",
+                                "description": "@inject_tag: fakesize:\"8\" yaml:\"user_need_types\""
+                            },
+                            "sys_account_project_ref_name": {
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{nameseq:sys_account_project,true,sys_account_project,true,false}\" yaml:\"sys_account_project_ref_name\""
+                            },
+                            "survey_project_name": {
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{nameseq:survey_project,false,none,false,false}\" yaml:\"survey_project_name\""
                             }
                         },
                         "additionalProperties": true,
@@ -206,26 +328,166 @@
                         },
                         "additionalProperties": true,
                         "type": "object"
+                    }
+                },
+                "additionalProperties": true,
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "regular_users": {
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "properties": {
+                    "new_accounts": {
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            },
+                            "roles": {
+                                "items": {
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "properties": {
+                                        "role": {
+                                            "oneOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "integer"
+                                                }
+                                            ],
+                                            "description": "@inject_tag: fake:\"{number:1,3}\" yaml:\"role\""
+                                        },
+                                        "project_id": {
+                                            "type": "string"
+                                        },
+                                        "org_id": {
+                                            "type": "string"
+                                        },
+                                        "all": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "additionalProperties": true,
+                                    "type": "object",
+                                    "description": "UserRole as a message is super simple\n and probably not the very best\n it defines the role as an enum of Roles\n alongside either None (for guest)\n or All ( superadmin)\n or specific project by its id (Project admin)\n or specific org by its id (Org admin)"
+                                },
+                                "type": "array"
+                            },
+                            "avatar_filepath": {
+                                "type": "string",
+                                "description": "local upload i.e. bootstrap, remote upload will be user's directory"
+                            },
+                            "avatar_upload_bytes": {
+                                "type": "string",
+                                "description": "raw bytes upload for remote upload"
+                            }
+                        },
+                        "additionalProperties": true,
+                        "type": "object"
                     },
                     "survey_value": {
                         "properties": {
                             "survey_project_ref_id": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"survey_project_ref_id,omitempty\""
                             },
                             "sys_account_user_ref_id": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"sys_account_user_ref_id,omitempty\""
                             },
                             "support_role_values": {
                                 "items": {
-                                    "type": "string"
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"id,omitempty\""
+                                        },
+                                        "survey_user_ref_id": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"survey_user_ref_id,omitempty\""
+                                        },
+                                        "survey_user_ref_name": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"survey_user_ref_name,omitempty\""
+                                        },
+                                        "support_role_type_ref_id": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"support_role_type_ref_id,omitempty\""
+                                        },
+                                        "support_role_type_ref_name": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{nameseq:support_role_type,true,support_role_type,true,false}\" yaml:\"support_role_type_ref_name,omitempty\""
+                                        },
+                                        "pledged": {
+                                            "oneOf": [
+                                                {
+                                                    "type": "integer"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ],
+                                            "description": "@inject_tag: fake:\"{number:1,100}\" yaml:\"pledged,omitempty\""
+                                        },
+                                        "comment": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{sentence:4}\" yaml:\"comment,omitempty\""
+                                        }
+                                    },
+                                    "additionalProperties": true,
+                                    "type": "object"
                                 },
-                                "type": "array"
+                                "type": "array",
+                                "description": "@inject_tag: fakesize:\"5\" yaml:\"support_role_values\""
                             },
                             "user_need_values": {
                                 "items": {
-                                    "type": "string"
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "properties": {
+                                        "survey_user_ref_name": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"survey_user_ref_name,omitempty\""
+                                        },
+                                        "survey_user_ref_id": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"survey_user_ref_id,omitempty\""
+                                        },
+                                        "user_needs_type_ref_id": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"user_needs_type_ref_id,omitempty\""
+                                        },
+                                        "user_needs_type_ref_name": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{nameseq:user_needs_type,true,user_needs_type,true,false}\" yaml:\"user_needs_type_ref_name,omitempty\""
+                                        },
+                                        "comments": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{sentence:4}\" yaml:\"comments,omitempty\""
+                                        }
+                                    },
+                                    "additionalProperties": true,
+                                    "type": "object"
                                 },
-                                "type": "array"
+                                "type": "array",
+                                "description": "@inject_tag: fakesize:\"5\" yaml:\"user_need_values\""
+                            },
+                            "survey_project_ref_name": {
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{nameseq:survey_project,true,survey_project,false,false}\" yaml:\"survey_project_ref_name\""
+                            },
+                            "sys_account_user_ref_name": {
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{mailseq:ops,true,sys_account_email,true}\" yaml:\"sys_account_user_ref_name\""
+                            },
+                            "survey_user_name": {
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{nameseq:survey_user,false,none,false,false}\" yaml:\"survey_user_name\""
                             }
                         },
                         "additionalProperties": true,

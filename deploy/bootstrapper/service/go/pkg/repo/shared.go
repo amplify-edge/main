@@ -13,23 +13,28 @@ import (
 	accountRepo "github.com/getcouragenow/sys/sys-account/service/go/pkg/repo"
 )
 
+const (
+	defaultTimeout = 5 * time.Second
+)
+
 func (b *BootstrapRepo) sharedExecutor(ctx context.Context, bsAll *fakedata.BootstrapAll) (err error) {
 	supers := bsAll.GetSuperUsers()
 	orgs := bsAll.GetOrgs()
 	projects := bsAll.GetProjects()
+	regs := bsAll.GetRegularUsers()
 	if b.accRepo != nil && b.discoRepo != nil {
-		return b.sharedExecv2(ctx, supers, orgs, projects)
+		return b.sharedExecv2(ctx, supers, orgs, projects, regs)
 	}
 	if b.accClient != nil && b.discoClient != nil {
-		return b.sharedExecv3(ctx, supers, orgs, projects)
+		return b.sharedExecv3(ctx, supers, orgs, projects, regs)
 	}
 	return fmt.Errorf("invalid argument, no repo or client defined for bootstrap")
 }
 
-func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject) error {
+func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject, regularUsers []*bsrpc.BSRegularAccount) error {
 	var err error
 	for _, supe := range supers {
-		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
 		supeRequest := &accountPkg.AccountNewRequest{
 			Email:    supe.GetInitialSuperuser().GetEmail(),
 			Password: supe.GetInitialSuperuser().GetPassword(),
@@ -38,7 +43,6 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 					Role:      accountPkg.SUPERADMIN,
 					OrgID:     "",
 					ProjectID: "",
-					All:       true,
 				},
 			},
 		}
@@ -52,15 +56,16 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 			return err
 		}
 	}
+
 	for _, org := range orgs {
-		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
 		if _, err = b.accClient.NewOrg(newCtx, accountPkg.OrgRequestFromProto(org.GetOrg())); err != nil {
 			cancel()
 			return err
 		}
 	}
 	for _, proj := range projects {
-		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
 		if _, err = b.accClient.NewProject(newCtx, accountPkg.ProjectRequestFromProto(proj.GetProject())); err != nil {
 			cancel()
 			return err
@@ -74,19 +79,22 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 			}
 		}
 	}
-	for _, supe := range supers {
-		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
-		if supe.GetSurveyValue() != nil {
-			if _, err = b.discoClient.NewSurveyUser(newCtx, supe.GetSurveyValue()); err != nil {
-				cancel()
-				return err
-			}
+
+	for _, reg := range regularUsers {
+		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
+		if _, err = b.accClient.NewAccount(newCtx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts())); err != nil {
+			cancel()
+			return err
+		}
+		if _, err = b.discoClient.NewSurveyUser(newCtx, reg.GetSurveyValue()); err != nil {
+			cancel()
+			return err
 		}
 	}
 	return nil
 }
 
-func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject) error {
+func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject, regularAccounts []*bsrpc.BSRegularAccount) error {
 	var err error
 	for _, supe := range supers {
 		superReq := &accountRepo.SuperAccountRequest{
@@ -104,15 +112,16 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAcco
 			return err
 		}
 	}
+
 	for _, org := range orgs {
-		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
 		if _, err = b.accRepo.NewOrg(newCtx, accountPkg.OrgRequestFromProto(org.GetOrg())); err != nil {
 			cancel()
 			return err
 		}
 	}
 	for _, proj := range projects {
-		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
+		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
 		if _, err = b.accRepo.NewProject(newCtx, accountPkg.ProjectRequestFromProto(proj.GetProject())); err != nil {
 			cancel()
 			return err
@@ -126,13 +135,15 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAcco
 			}
 		}
 	}
-	for _, supe := range supers {
-		newCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
-		if supe.GetSurveyValue() != nil {
-			if _, err = b.discoRepo.NewSurveyUser(newCtx, supe.GetSurveyValue()); err != nil {
-				cancel()
-				return err
-			}
+	for _, reg := range regularAccounts {
+		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
+		if _, err = b.accRepo.NewAccount(newCtx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts())); err != nil {
+			cancel()
+			return err
+		}
+		if _, err = b.discoRepo.NewSurveyUser(newCtx, reg.GetSurveyValue()); err != nil {
+			cancel()
+			return err
 		}
 	}
 	return nil
