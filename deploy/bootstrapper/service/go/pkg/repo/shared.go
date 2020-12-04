@@ -3,9 +3,10 @@ package repo
 import (
 	"context"
 	"fmt"
-	"github.com/getcouragenow/sys-share/sys-core/service/fakehelper"
 	"io/ioutil"
 	"time"
+
+	"github.com/getcouragenow/sys-share/sys-core/service/fakehelper"
 
 	"github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg/fakedata"
 	bsrpc "github.com/getcouragenow/main/deploy/bootstrapper/service/go/rpc/v2"
@@ -82,7 +83,16 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 
 	for _, reg := range regularUsers {
 		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
-		if _, err = b.accClient.NewAccount(newCtx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts())); err != nil {
+		acc, err := b.accClient.NewAccount(newCtx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts()))
+		if err != nil {
+			cancel()
+			return err
+		}
+		updRequest := &accountPkg.AccountUpdateRequest{
+			Id:       acc.GetId(),
+			Verified: true,
+		}
+		if _, err = b.accClient.UpdateAccount(newCtx, updRequest); err != nil {
 			cancel()
 			return err
 		}
@@ -137,7 +147,16 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAcco
 	}
 	for _, reg := range regularAccounts {
 		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
-		if _, err = b.accRepo.NewAccount(newCtx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts())); err != nil {
+		acc, err := b.accRepo.NewAccount(newCtx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts()))
+		if err != nil {
+			cancel()
+			return err
+		}
+		updRequest := &accountPkg.AccountUpdateRequest{
+			Id:       acc.GetId(),
+			Verified: true,
+		}
+		if _, err = b.accRepo.UpdateAccount(newCtx, updRequest); err != nil {
 			cancel()
 			return err
 		}
