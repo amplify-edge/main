@@ -88,6 +88,8 @@ dependencies:
   flutter_platform_widgets: ^0.8.1
   # font_awesome_flutter:
   cupertino_icons: ^1.0.0
+  flutter_web_plugins:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

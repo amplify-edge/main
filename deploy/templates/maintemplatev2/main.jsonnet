@@ -8,6 +8,7 @@ local cfg = {
         rootCaPath: "./certs/rootca.pem"
     },
     mainConfig: {
+        domain: "getcourage.org",
         host: "127.0.0.1",
         port: 9074,
         isLocal: true,

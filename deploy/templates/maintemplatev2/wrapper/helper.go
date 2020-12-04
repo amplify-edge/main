@@ -94,7 +94,7 @@ func NewMainService(
 	}
 
 	// initiate all sys-* service
-	sysSvc, err := sysPkg.NewService(sscfg)
+	sysSvc, err := sysPkg.NewService(sscfg, mainCfg.MainConfig.Domain)
 	if err != nil {
 		return nil, fmt.Errorf(errCreateSysService, "all", err)
 	}

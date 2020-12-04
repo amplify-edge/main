@@ -16,12 +16,15 @@ import 'package:sys_share_sys_account_service/pkg/i18n/sys_account_localization.
 
 import '././core/core.dart';
 import 'modules/settings/settings.dart';
+import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
 
 // Bottom Up approach .....
 // import 'package:mod_geo/core/core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  configureApp();
 
   // init settings view model before starting app
   var settingsViewModel = SettingsViewModel();

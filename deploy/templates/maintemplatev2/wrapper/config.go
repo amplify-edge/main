@@ -19,6 +19,7 @@ func (m MainConfig) Validate() error {
 }
 
 type Config struct {
+	Domain      string    `yaml:"domain" json:"domain"`
 	HostAddress string    `yaml:"host" json:"host"`
 	Port        int       `yaml:"port" json:"port"`
 	IsLocal     bool      `yaml:"isLocal" json:"isLocal"`
@@ -27,6 +28,9 @@ type Config struct {
 }
 
 func (c Config) validate() error {
+	if c.Domain == "" {
+		c.Domain = "https://127.0.0.1"
+	}
 	if c.HostAddress == "" {
 		c.HostAddress = "127.0.0.1"
 	}
