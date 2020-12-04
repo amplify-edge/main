@@ -20,10 +20,15 @@ type bootstrapBSAccounts struct {
 	BSAccounts []*bsrpc.BSAccount `json:"main_bootstrap_superusers" yaml:"main_bootstrap_superusers"`
 }
 
+type bootstrapBSRegularAccounts struct {
+	BSRegularAccounts []*bsrpc.BSRegularAccount `json:"main_bootstrap_regular_users" yaml:"main_bootstrap_regular_users"`
+}
+
 type BootstrapAll struct {
-	Orgs       bootstrapBSOrgs     `json:"orgs" yaml:"orgs"`
-	Projects   bootstrapBsProjects `json:"projects" yaml:"projects"`
-	Superusers bootstrapBSAccounts `json:"superusers" yaml:"superusers"`
+	Orgs         bootstrapBSOrgs            `json:"orgs" yaml:"orgs"`
+	Projects     bootstrapBsProjects        `json:"projects" yaml:"projects"`
+	Superusers   bootstrapBSAccounts        `json:"superusers" yaml:"superusers"`
+	RegularUsers bootstrapBSRegularAccounts `json:"regular_users" yaml:"regular_users"`
 }
 
 func (b *BootstrapAll) GetOrgs() []*bsrpc.BSOrg {
@@ -38,6 +43,10 @@ func (b *BootstrapAll) GetProjects() []*bsrpc.BSProject {
 	return b.Projects.BSProjects
 }
 
+func (b *BootstrapAll) GetRegularUsers() []*bsrpc.BSRegularAccount {
+	return b.RegularUsers.BSRegularAccounts
+}
+
 func (b *BootstrapAll) MarshalPretty() ([]byte, error) {
 	return sharedConfig.MarshalPretty(b)
 }
@@ -48,9 +57,10 @@ func (b *BootstrapAll) MarshalYaml() ([]byte, error) {
 
 func BootstrapFromBSRequest(in *bsrpc.BSRequest) *BootstrapAll {
 	return &BootstrapAll{
-		Orgs:       bootstrapBSOrgs{in.GetOrgs()},
-		Projects:   bootstrapBsProjects{in.GetProjects()},
-		Superusers: bootstrapBSAccounts{in.GetSuperusers()},
+		Orgs:         bootstrapBSOrgs{in.GetOrgs()},
+		Projects:     bootstrapBsProjects{in.GetProjects()},
+		Superusers:   bootstrapBSAccounts{in.GetSuperusers()},
+		RegularUsers: bootstrapBSRegularAccounts{in.GetRegularUsers()},
 	}
 }
 
@@ -70,13 +80,25 @@ func BootstrapFakeData(domain string) (*BootstrapAll, error) {
 		bsAccount := &bsrpc.BSAccount{
 			InitialSuperuser: supers[i],
 		}
-		email := supers[i].GetEmail()
+		// email := supers[i].GetEmail()
+		// for _, su := range surveyUsers {
+		// 	if su.SysAccountUserRefName == email {
+		// 		bsAccount.SurveyValue = su
+		// 	}
+		// }
+		bsAccounts = append(bsAccounts, bsAccount)
+	}
+	regUsers := accFakeData.GetUserAccounts()
+	var bsRegularAccounts []*bsrpc.BSRegularAccount
+	for i := 0; i < len(regUsers); i++ {
+		bsRegularAccount := &bsrpc.BSRegularAccount{NewAccounts: regUsers[i]}
+		email := regUsers[i].GetEmail()
 		for _, su := range surveyUsers {
 			if su.SysAccountUserRefName == email {
-				bsAccount.SurveyValue = su
+				bsRegularAccount.SurveyValue = su
 			}
 		}
-		bsAccounts = append(bsAccounts, bsAccount)
+		bsRegularAccounts = append(bsRegularAccounts, bsRegularAccount)
 	}
 	var bsOrgs []*bsrpc.BSOrg
 	for _, org := range accFakeData.GetOrgs() {
@@ -102,9 +124,10 @@ func BootstrapFakeData(domain string) (*BootstrapAll, error) {
 		bsProjects = append(bsProjects, bsProject)
 	}
 	return &BootstrapAll{
-		Orgs:       bootstrapBSOrgs{bsOrgs},
-		Projects:   bootstrapBsProjects{bsProjects},
-		Superusers: bootstrapBSAccounts{bsAccounts},
+		Orgs:         bootstrapBSOrgs{bsOrgs},
+		Projects:     bootstrapBsProjects{bsProjects},
+		Superusers:   bootstrapBSAccounts{bsAccounts},
+		RegularUsers: bootstrapBSRegularAccounts{bsRegularAccounts},
 	}, nil
 }
 

@@ -1,4 +1,4 @@
-SHARED_FSPATH=./../../shared
+SHARED_FSPATH=./../../../shared
 BOILERPLATE_FSPATH=$(SHARED_FSPATH)/boilerplate
 
 include $(BOILERPLATE_FSPATH)/help.mk
