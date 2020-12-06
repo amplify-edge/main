@@ -3,6 +3,7 @@ class Paths {
   static const String login = '/login';
   static const String home = '/home';
   static const String chat = '/chat';
+
   //static const String chat_beta = '/chatBeta';
   static const String ion = '/ion';
   static const String writer = '/writer';
@@ -13,5 +14,5 @@ class Paths {
   static const String modSurvey = '/survey';
   static const String modAccount = '/account';
   static const String modKanban = '/kanban';
-  static const String sysAccount = '/accounts/login';
+  static const String sysAccount = '/sys-account';
 }

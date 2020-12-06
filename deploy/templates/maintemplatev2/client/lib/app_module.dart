@@ -9,6 +9,7 @@ import 'package:maintemplatev2/modules/startup/views/startup_view.dart';
 // import 'package:mod_ion/ion_module.dart';
 // import 'package:mod_kanban/kanban_module.dart';
 import 'package:mod_disco/modules/mod_disco.dart';
+import 'package:sys_share_sys_account_service/view/screens/verify_module.dart';
 
 // import 'package:mod_session/mod_session.dart';
 // import 'package:mod_write/mod_write.dart';
@@ -43,12 +44,27 @@ class AppModule extends MainModule {
           transition: TransitionType.custom,
           customTransition: noTransition,
         ),
+        // ModularRouter(
+        //   Paths.sysAccount,
+        //   child: (_, args) => VerifyModule(),
+        //   transition: TransitionType.custom,
+        //   customTransition: noTransition,
+        // ),
         ModularRouter(
           Paths.modDisco,
           module: MainAppModule(
             baseRoute: Paths.modDisco,
             url: url,
             urlNative: urlNative,
+          ),
+          transition: TransitionType.custom,
+          customTransition: noTransition,
+        ),
+        ModularRouter(
+          Paths.modDisco,
+          module: VerifyModule(
+            baseRoute: Paths.sysAccount,
+            url: url,
           ),
           transition: TransitionType.custom,
           customTransition: noTransition,

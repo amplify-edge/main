@@ -64,7 +64,7 @@ class _AppState extends State<App> {
       ),
       darkTheme: ThemeData.dark(),
       themeMode: model.themeMode,
-      initialRoute: Paths.startup,
+      initialRoute: Paths.modDisco,
       onGenerateRoute: Modular.generateRoute,
       navigatorKey: Modular.navigatorKey,
       localizationsDelegates: [
