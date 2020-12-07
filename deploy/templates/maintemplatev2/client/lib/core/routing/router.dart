@@ -3,6 +3,7 @@ class Paths {
   static const String login = '/login';
   static const String home = '/home';
   static const String chat = '/chat';
+  static const String adminRoute = '/admin';
 
   //static const String chat_beta = '/chatBeta';
   static const String ion = '/ion';

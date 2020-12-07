@@ -76,6 +76,22 @@ class BootstrapViewModel extends ChangeNotifier {
     _isLoading = val;
     notifyListeners();
   }
+  
+  Future<void> getPermissions() async {
+    setLoading(true);
+    await _isLoggedIn();
+    if (!_isUserLoggedIn) {
+      throw "cannot access dashboard, user not logged in";
+    }
+    if (_currentAccount.id.isEmpty) {
+      await _fetchAccountId();
+    }
+    await verifySuperuser();
+    if (!_isUserSuperuser) {
+      throw "cannot access admin page, user is not authorized";
+    }
+    setLoading(false);
+  }
 
   Future<void> fetchBootstraps() async {
     setLoading(true);
