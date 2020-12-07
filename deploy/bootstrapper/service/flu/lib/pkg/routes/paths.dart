@@ -4,6 +4,6 @@ class Paths {
   String bootstrapDetailsPage;
 
   Paths(this.baseRoute)
-      : bootstrapPage = '$baseRoute/bootstrap',
-        bootstrapDetailsPage = '$baseRoute/bootstrap/:id';
+      : bootstrapPage = '$baseRoute/bootstraps',
+        bootstrapDetailsPage = '$baseRoute/bootstraps/:id';
 }

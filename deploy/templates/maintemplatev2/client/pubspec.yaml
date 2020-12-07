@@ -22,7 +22,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-
   # Responsive Design
   # navigation_rail: ^1.0.4
   responsive_builder:
@@ -60,12 +59,9 @@ dependencies:
 
   mod_disco:
     path: ../../../../../mod/mod-disco/service/flu
+  bootstrapper:
+    path: ../../../bootstrapper/service/flu
 
-    #  mod_survey:
-    #    git:
-    #      url: git://github.com/getcouragenow/mod.git
-    #      path: mod-survey/service/flu
-    # path: ../../sys-core/client
   #sys_core:
   #  git:
   #    url: git://github.com/getcouragenow/core-runtime.git
@@ -73,19 +69,19 @@ dependencies:
   #    ref: master
 
   # Architectural packages
-  provider: ^4.0.4
+  provider: ^4.3.2
   provider_architecture: ^1.0.6
   grpc:
   protobuf:
-  rxdart: ^0.24.0
+  rxdart: ^0.24.1
   #  shimmer: ^1.0.0
-  intl: ^0.17.0-nullsafety.2
-  #  intl_translation: ^0.17.10+1
+  intl: ^0.16.1
+  intl_translation: ^0.17.10+1
   #  get_it: ^3.1.0
   #  equatable:
   meta:
   flutter_modular: ^2.0.0+1
-  flutter_platform_widgets: ^0.8.1
+  flutter_platform_widgets: ^0.72.0
   # font_awesome_flutter:
   cupertino_icons: ^1.0.0
   flutter_web_plugins:

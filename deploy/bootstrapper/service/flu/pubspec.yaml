@@ -12,24 +12,24 @@ dependencies:
   flutter:
     sdk: flutter
 
-  provider: ^4.0.4
+  provider: ^4.3.2+2
   provider_architecture: ^1.0.6
   path_provider: ^1.6.7
   equatable:
   meta:
   flutter_modular: ^2.0.0+1
-  intl: ^0.17.0-nullsafety.2
-  #  intl_translation: ^0.17.10+1
+  intl: ^0.16.1
+  intl_translation: ^0.17.10+1
   data_tables: ^1.0.3
-  random_string: ^2.0.1
-  flutter_platform_widgets: ^0.8.1
   cupertino_icons: ^1.0.0
   #  font_awesome_flutter: ^8.7.0
   #  flutter_material_pickers: ^1.8.1
   grpc:
   protobuf:
-  sys_core:
-    path: ../../../../../sys-share/sys-core/service/flu
+  sys_share_sys_account_service:
+    path: ../../../../../sys-share/sys-account/service/flu
+  file_picker: ^2.1.0
+  code_editor: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -42,7 +42,8 @@ dev_dependencies:
 flutter:
 
 # To add assets to your package, add an assets section, like this:
-# assets:
+ assets:
+   - ./i18n/
 #   - images/a_dot_burr.jpeg
 #   - images/a_dot_ham.jpeg
 #

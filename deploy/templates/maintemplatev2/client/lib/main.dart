@@ -1,3 +1,4 @@
+import 'package:bootstrapper/pkg/i18n/bootstrap_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -69,6 +70,7 @@ class _AppState extends State<App> {
       navigatorKey: Modular.navigatorKey,
       localizationsDelegates: [
         AppLocalizationsDelegate(model.locale), //maintemplate delegate
+        BootstrapLocalizationsDelegate(),
         SysCoreLocalizationsDelegate(),
         SysAccountLocalizationsDelegate(),
         // ModGeoAppLocalizationsDelegate(model.locale),

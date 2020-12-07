@@ -1,26 +1,8 @@
-import 'package:bootstrapper/pkg/routes/paths.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+library bootstrapper;
 
-class BootstrapperModule extends ChildModule {
-  final String baseRoute;
-  final String url;
-
-  BootstrapperModule({
-    String baseRoute,
-    String url,
-  })  : this.baseRoute = (baseRoute == '/') ? '' : baseRoute,
-        this.url = url;
-
-  @override
-  List<Bind> get binds => [
-        Bind((i) => Paths(baseRoute)),
-      ];
-
-  @override
-  List<ModularRouter> get routers => [
-        /// Non-Admin Dashboard Routes
-        // ModularRouter("/userInfo", child: (_, args) => UserInfoView()),
-      ];
-
-  static Inject get to => Inject<BootstrapperModule>.of();
-}
+export 'rpc/v2/main_bootstrap_models.pb.dart';
+export 'rpc/v2/main_bootstrap_models.pbenum.dart';
+export 'rpc/v2/main_bootstrap_models.pbjson.dart';
+export 'rpc/v2/main_bootstrap_services.pb.dart';
+export 'rpc/v2/main_bootstrap_services.pbgrpc.dart';
+export 'package:bootstrapper/bootstrapper_module.dart';

@@ -1,3 +1,4 @@
+import 'package:bootstrapper/bootstrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:maintemplatev2/main.dart';
@@ -38,6 +39,15 @@ class AppModule extends MainModule {
         // ModularRouter(Paths.login,
         //     child: (context, args) => LoginView(),
         //     transition: TransitionType.fadeIn),
+        ModularRouter(
+          Paths.adminRoute,
+          module: BootstrapperModule(
+            baseRoute: Paths.adminRoute,
+            url: url,
+          ),
+          transition: TransitionType.custom,
+          customTransition: noTransition,
+        ),
         ModularRouter(
           Paths.startup,
           child: (_, args) => StartupView(),

@@ -1,0 +1,33 @@
+{
+  "@@last_modified": "2020-12-07T10:03:54.608911",
+  "listBootstrap": "Liste Bootstrap",
+  "@listBootstrap": {
+    "description": "List Bootstrap",
+    "placeholders": {},
+    "type": "text"
+  },
+  "editBootstrap": "Modifier Bootstrap",
+  "@editBootstrap": {
+    "description": "Edit Bootstrap",
+    "placeholders": {},
+    "type": "text"
+  },
+  "noBootstraps": "Pas de bootstraps",
+  "@noBootstraps": {
+    "description": "No Bootstrap",
+    "placeholders": {},
+    "type": "text"
+  },
+  "selectBootstrap": "Sélectionnez Bootstrap",
+  "@selectBootstrap": {
+    "description": "Select Bootstrap",
+    "placeholders": {},
+    "type": "text"
+  },
+  "bootstrapDetails": "Détails de Bootstrap",
+  "@bootstrapDetails": {
+    "description": "Bootstrap File Content and Name",
+    "placeholders": {},
+    "type": "text"
+  }
+}
