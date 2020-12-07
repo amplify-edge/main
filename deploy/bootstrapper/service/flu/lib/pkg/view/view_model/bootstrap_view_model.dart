@@ -15,7 +15,7 @@ class BootstrapViewModel extends ChangeNotifier {
   bool _isUserSuperuser = false;
   bool _isUserLoggedIn = false;
   bool _isLoading = false;
-  List<BS> _bootstrapList = [];
+  List<BS> _bootstrapList;
 
   bool get isUserSuperuser => _isUserSuperuser;
 
@@ -76,7 +76,7 @@ class BootstrapViewModel extends ChangeNotifier {
     _isLoading = val;
     notifyListeners();
   }
-  
+
   Future<void> getPermissions() async {
     setLoading(true);
     await _isLoggedIn();
@@ -96,7 +96,7 @@ class BootstrapViewModel extends ChangeNotifier {
   Future<void> fetchBootstraps() async {
     setLoading(true);
     await BootstrapRepo.listBootstrap().then((res) {
-      if (_bootstrapList == null) {
+      if (_bootstrapList == null || _bootstrapList.isEmpty) {
         _bootstrapList = res.bootstraps;
       }
     }).catchError((e) {

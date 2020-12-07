@@ -3,6 +3,15 @@ import 'package:intl/intl.dart';
 
 class Translations {
   Locale locale;
+  
+  String tabadmin() {
+    return Intl.message(
+      'Admin',
+      name: 'tabadmin',
+      desc: 'text for admin tab',
+      locale: locale.toString(),
+    );
+  }
 
   String tabhome() {
     return Intl.message(

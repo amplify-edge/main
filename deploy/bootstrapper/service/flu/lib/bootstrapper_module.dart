@@ -19,11 +19,10 @@ class BootstrapperModule extends ChildModule {
 
   @override
   List<ModularRouter> get routers => [
-        // ModularRouter("/userInfo", child: (_, args) => UserInfoView()),
-        ModularRouter(Paths(baseRoute).bootstrapPage,
-            child: (_, args) => BootstrapView()),
+        ModularRouter('/', child: (_, args) => BootstrapView()),
+        ModularRouter('/bootstraps', child: (_, args) => BootstrapView()),
         ModularRouter(
-          Paths(baseRoute).bootstrapDetailsPage,
+          '/bootstraps/:id',
           child: (_, args) => BootstrapView(
             id: args.params['id'] ?? '',
           ),

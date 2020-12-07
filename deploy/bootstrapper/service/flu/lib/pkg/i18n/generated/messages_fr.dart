@@ -21,7 +21,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "bootstrapDetails" : MessageLookupByLibrary.simpleMessage("Détails de Bootstrap"),
     "editBootstrap" : MessageLookupByLibrary.simpleMessage("Modifier Bootstrap"),
-    "listBootstrap" : MessageLookupByLibrary.simpleMessage("Liste Bootstrap")
+    "listBootstrap" : MessageLookupByLibrary.simpleMessage("Liste Bootstrap"),
+    "noBootstraps" : MessageLookupByLibrary.simpleMessage("Pas de bootstraps"),
+    "selectBootstrap" : MessageLookupByLibrary.simpleMessage("Sélectionnez Bootstrap")
   };
 }

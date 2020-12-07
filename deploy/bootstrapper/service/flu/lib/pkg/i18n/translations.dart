@@ -21,4 +21,31 @@ class Translations {
       locale: locale.toString(),
     );
   }
+
+  String noBootstraps() {
+    return Intl.message(
+      'No Bootstraps',
+      name: 'noBootstraps',
+      desc: 'No Bootstrap',
+      locale: locale.toString(),
+    );
+  }
+
+  String selectBootstrap() {
+    return Intl.message(
+      'Select Bootstrap',
+      name: 'selectBootstrap',
+      desc: 'Select Bootstrap',
+      locale: locale.toString(),
+    );
+  }
+
+  String bootstrapDetails() {
+    return Intl.message(
+      'Bootstrap Details',
+      name: 'bootstrapDetails',
+      desc: 'Bootstrap File Content and Name',
+      locale: locale.toString(),
+    );
+  }
 }

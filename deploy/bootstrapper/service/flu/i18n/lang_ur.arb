@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-12-07T01:25:31.952908",
+  "@@last_modified": "2020-12-07T10:03:54.608911",
   "listBootstrap": "بوٹسٹریپ کی فہرست بنائیں",
   "@listBootstrap": {
     "description": "List Bootstrap",
@@ -9,6 +9,24 @@
   "editBootstrap": "بوٹسٹریپ میں ترمیم کریں",
   "@editBootstrap": {
     "description": "Edit Bootstrap",
+    "placeholders": {},
+    "type": "text"
+  },
+  "noBootstraps": "بوٹسٹریپس نہیں ہیں",
+  "@noBootstraps": {
+    "description": "No Bootstrap",
+    "placeholders": {},
+    "type": "text"
+  },
+  "selectBootstrap": "بوٹسٹریپ منتخب کریں",
+  "@selectBootstrap": {
+    "description": "Select Bootstrap",
+    "placeholders": {},
+    "type": "text"
+  },
+  "bootstrapDetails": "بوٹسٹریپ کی تفصیلات",
+  "@bootstrapDetails": {
+    "description": "Bootstrap File Content and Name",
     "placeholders": {},
     "type": "text"
   }

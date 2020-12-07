@@ -1,5 +1,6 @@
 import 'package:bootstrapper/pkg/i18n/bootstrap_localization.dart';
 import 'package:bootstrapper/pkg/routes/paths.dart';
+import 'package:bootstrapper/pkg/view/bootstrap_detail_view.dart';
 import 'package:bootstrapper/pkg/view/view_model/bootstrap_view_model.dart';
 import 'package:bootstrapper/rpc/v2/main_bootstrap_models.pb.dart';
 import 'package:flutter/material.dart';
@@ -29,12 +30,15 @@ class BootstrapView extends StatelessWidget {
           labelBuilder: (item) => item.fileId,
           routeWithIdPlaceholder: Modular.get<Paths>().bootstrapDetailsPage,
           detailsBuilder: (context, widgetId, isFullScreen) {
-            // model.getSelectedBootstrapAndDetails(widgetId);
-            return Container();
+            return BootstrapDetailsView(
+                id: widgetId, isLoading: model.isLoading);
           },
           noItemsAvailable: Center(
             child: Text(
-                BootstrapLocalizations.of(context).translate('noBootstraps')),
+              BootstrapLocalizations.of(context).translate('noBootstraps'),
+              style: Theme.of(context).copyWith().textTheme.headline4,
+              textAlign: TextAlign.center,
+            ),
           ),
           noItemsSelected: Center(
             child: Container(),
