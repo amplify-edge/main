@@ -1,0 +1,15 @@
+{
+  "@@last_modified": "2020-12-07T01:25:31.952908",
+  "listBootstrap": "List Bootstrap",
+  "@listBootstrap": {
+    "description": "List Bootstrap",
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBootstrap": "Edit Bootstrap",
+  "@editBootstrap": {
+    "description": "Edit Bootstrap",
+    "type": "text",
+    "placeholders": {}
+  }
+}
