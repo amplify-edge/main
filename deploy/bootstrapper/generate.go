@@ -12,5 +12,7 @@ package main
 // Flutter
 // ============================================================================
 // GRPC & Protobuf
-// go:generate /usr/bin/env bash -c "echo 'generating protobuf and grpc services for flutter/dart'"
-// go:generate protoc -I./proto/v2/ -I. --dart_out=grpc:./service/flu/lib/rpc/v2/ ./proto/v2/sys_core_models.proto ./proto/v2/sys_core_services.proto
+//go:generate /usr/bin/env bash -c "echo 'generating protobuf and grpc services for flutter/dart'"
+//go:generate protoc -I./proto/v2/ -I. --dart_out=grpc:./service/flu/lib/rpc/v2/ ./proto/v2/main_bootstrap_models.proto ./proto/v2/main_bootstrap_services.proto
+//go:generate protoc -I./proto/v2/ -I. --dart_out=./service/flu/lib/rpc/v2/ ./proto/v2/vendor/github.com/getcouragenow/mod/mod-disco/proto/v2/mod_disco_models.proto ./proto/v2/vendor/github.com/getcouragenow/sys-share/sys-account/proto/v2/sys_account_models.proto
+//go:generate protoc -I./proto/v2/ -I. --dart_out=./service/flu/lib/rpc/v2/ google/protobuf/timestamp.proto google/protobuf/empty.proto

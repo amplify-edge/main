@@ -244,7 +244,7 @@
                                     "type": "object"
                                 },
                                 "type": "array",
-                                "description": "@inject_tag: fakesize:\"8\" yaml:\"support_role_types\""
+                                "description": "@inject_tag: fakesize:\"5\" yaml:\"support_role_types\""
                             },
                             "user_need_types": {
                                 "items": {
@@ -291,7 +291,7 @@
                                     "type": "object"
                                 },
                                 "type": "array",
-                                "description": "@inject_tag: fakesize:\"8\" yaml:\"user_need_types\""
+                                "description": "@inject_tag: fakesize:\"5\" yaml:\"user_need_types\""
                             },
                             "sys_account_project_ref_name": {
                                 "type": "string",
@@ -342,10 +342,12 @@
                     "new_accounts": {
                         "properties": {
                             "email": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{mailseq:user,false,none,false}\" yaml:\"email,omitempty\""
                             },
                             "password": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "@inject_tag: fake:\"{password}\" yaml:\"password,omitempty\""
                             },
                             "roles": {
                                 "items": {
@@ -367,24 +369,56 @@
                                         },
                                         "org_id": {
                                             "type": "string"
-                                        },
-                                        "all": {
-                                            "type": "boolean"
                                         }
                                     },
                                     "additionalProperties": true,
                                     "type": "object",
                                     "description": "UserRole as a message is super simple\n and probably not the very best\n it defines the role as an enum of Roles\n alongside either None (for guest)\n or All ( superadmin)\n or specific project by its id (Project admin)\n or specific org by its id (Org admin)"
                                 },
-                                "type": "array"
+                                "type": "array",
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"roles,omitempty\""
                             },
                             "avatar_filepath": {
                                 "type": "string",
-                                "description": "local upload i.e. bootstrap, remote upload will be user's directory"
+                                "description": "@inject_tag: fake:\"{avatargen:./bootstrap-data/client/generated,128}\" yaml:\"avatar_filepath,omitempty\"\n\nlocal upload i.e. bootstrap, remote upload will be user's directory"
                             },
                             "avatar_upload_bytes": {
                                 "type": "string",
-                                "description": "raw bytes upload for remote upload"
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"avatar_upload_bytes,omitempty\"\n\nraw bytes upload for remote upload"
+                            },
+                            "new_user_roles": {
+                                "items": {
+                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                    "properties": {
+                                        "role": {
+                                            "oneOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "integer"
+                                                }
+                                            ],
+                                            "description": "@inject_tag: fake:\"{number:2,3}\" yaml:\"role\""
+                                        },
+                                        "project_id": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"project_id,omitempty\""
+                                        },
+                                        "org_id": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"skip\" yaml:\"org_id,omitempty\""
+                                        },
+                                        "project_name": {
+                                            "type": "string",
+                                            "description": "@inject_tag: fake:\"{nameseq:sys_account_project,true,sys_account_project,false,false}\" yaml:\"project_name,omitempty\""
+                                        }
+                                    },
+                                    "additionalProperties": true,
+                                    "type": "object"
+                                },
+                                "type": "array",
+                                "description": "@inject_tag: fakesize:\"1\" yaml:\"new_user_roles,omitempty\""
                             }
                         },
                         "additionalProperties": true,
@@ -483,7 +517,7 @@
                             },
                             "sys_account_user_ref_name": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{mailseq:ops,true,sys_account_email,true}\" yaml:\"sys_account_user_ref_name\""
+                                "description": "@inject_tag: fake:\"{mailseq:user,true,sys_account_email,true}\" yaml:\"sys_account_user_ref_name\""
                             },
                             "survey_user_name": {
                                 "type": "string",

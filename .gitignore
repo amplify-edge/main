@@ -1,5 +1,4 @@
 config
-vendor
 .idea
 .vscode
 db
@@ -12,3 +11,4 @@ deploy/templates/maintemplatev3/client/i18n/*.json
 jsonnetfile.lock.json
 /bootstrapper/service/go/pkg/fakedata/bs-all.json
 /bootstrapper/service/go/pkg/fakedata/bs-all.yaml
+/deploy/bootstrapper/proto/v2/vendor/
