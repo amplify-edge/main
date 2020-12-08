@@ -2,6 +2,7 @@ package repo
 
 import (
 	"context"
+	"encoding/base64"
 	"fmt"
 	"io/ioutil"
 	"time"
@@ -51,7 +52,7 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 		if err != nil {
 			return err
 		}
-		supeRequest.AvatarUploadBytes = avatar
+		supeRequest.AvatarUploadBytes = base64.RawStdEncoding.EncodeToString(avatar)
 		if _, err = b.accClient.NewAccount(newCtx, supeRequest); err != nil {
 			cancel()
 			return err
@@ -115,7 +116,7 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAcco
 		if err != nil {
 			return err
 		}
-		superReq.AvatarBytes = avatar
+		superReq.AvatarBytes = base64.RawStdEncoding.EncodeToString(avatar)
 		if err = b.accRepo.InitSuperUser(superReq); err != nil {
 			return err
 		}
