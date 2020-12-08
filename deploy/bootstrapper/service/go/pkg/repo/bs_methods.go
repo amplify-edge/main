@@ -118,6 +118,10 @@ func (b *BootstrapRepo) NewBootstrap(stream bsrpc.BSService_NewBootstrapServer) 
 	if err = ioutil.WriteFile(joined, fileBuf.Bytes(), 0644); err != nil {
 		return err
 	}
+	// bsAll, err := fakedata.BootstrapAllFromFilepath(joined)
+	// if err != nil {
+	// 	return err
+	// }
 	resp := &bsrpc.NewBSResponse{FileId: filename}
 	if err = stream.SendAndClose(resp); err != nil {
 		return status.Errorf(codes.Internal, "cannot encode upload resp: %v", err)
