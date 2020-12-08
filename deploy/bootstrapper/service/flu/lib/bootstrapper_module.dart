@@ -1,6 +1,8 @@
 import 'package:bootstrapper/pkg/routes/paths.dart';
 import 'package:bootstrapper/pkg/view/bootstrap_view.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sys_share_sys_account_service/pkg/guards/admin_guard.dart';
+import 'pkg/shared_repositories/bootstrap_repo.dart';
 
 class BootstrapperModule extends ChildModule {
   final String baseRoute;
@@ -15,17 +17,21 @@ class BootstrapperModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind((i) => Paths(baseRoute)),
+        Bind((i) => BootstrapRepo()),
       ];
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter('/', child: (_, args) => BootstrapView()),
-        ModularRouter('/bootstraps', child: (_, args) => BootstrapView()),
+        ModularRouter('/',
+            child: (_, args) => GuardianWidget(widget: BootstrapView())),
+        ModularRouter('/bootstraps',
+            child: (_, args) => GuardianWidget(widget: BootstrapView())),
         ModularRouter(
           '/bootstraps/:id',
-          child: (_, args) => BootstrapView(
+          child: (_, args) => GuardianWidget(
+              widget: BootstrapView(
             id: args.params['id'] ?? '',
-          ),
+          )),
         )
       ];
 

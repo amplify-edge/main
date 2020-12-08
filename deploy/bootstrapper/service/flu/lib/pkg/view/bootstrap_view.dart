@@ -18,9 +18,7 @@ class BootstrapView extends StatelessWidget {
     return ViewModelProvider.withConsumer(
       viewModelBuilder: () => BootstrapViewModel(),
       onModelReady: (BootstrapViewModel model) async {
-        await model.getPermissions().then((_) async {
-          await model.fetchBootstraps();
-        });
+        await model.fetchBootstraps();
       },
       builder: (context, BootstrapViewModel model, child) => Scaffold(
         body: AdminMasterDetails<BS>(
