@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-12-07T10:03:54.608911",
+  "@@last_modified": "2020-12-09T07:18:12.199725",
   "listBootstrap": "Liste Bootstrap",
   "@listBootstrap": {
     "description": "List Bootstrap",
@@ -27,6 +27,12 @@
   "bootstrapDetails": "Détails de Bootstrap",
   "@bootstrapDetails": {
     "description": "Bootstrap File Content and Name",
+    "placeholders": {},
+    "type": "text"
+  },
+  "pickImageAndCopyTheResultingValue": "Choisissez l'image et copiez la valeur résultante",
+  "@pickImageAndCopyTheResultingValue": {
+    "description": "For Image / File Picker",
     "placeholders": {},
     "type": "text"
   }

@@ -1,6 +1,6 @@
 {
-  "@@last_modified": "2020-12-07T10:03:54.608911",
-  "listBootstrap": "بوٹسٹریپ کی فہرست بنائیں",
+  "@@last_modified": "2020-12-09T07:18:12.199725",
+  "listBootstrap": "بوٹسٹریپ کی فہرست",
   "@listBootstrap": {
     "description": "List Bootstrap",
     "placeholders": {},
@@ -27,6 +27,12 @@
   "bootstrapDetails": "بوٹسٹریپ کی تفصیلات",
   "@bootstrapDetails": {
     "description": "Bootstrap File Content and Name",
+    "placeholders": {},
+    "type": "text"
+  },
+  "pickImageAndCopyTheResultingValue": "تصویر چنیں اور نتیجے کی قیمت کو کاپی کریں",
+  "@pickImageAndCopyTheResultingValue": {
+    "description": "For Image / File Picker",
     "placeholders": {},
     "type": "text"
   }
