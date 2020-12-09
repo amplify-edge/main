@@ -48,18 +48,25 @@ EXAMPLE_VERIFY_TOKEN = ???
 EXAMPLE_ORG_ID  = ???
 EXAMPLE_PROJECT_ID = ???
 
+FRONTEND_CHANNEL = dev
+FRONTEND_DOMAIN = getcourage.org
+FRONTEND_URL_NATIVE = getcourage.org
+FRONTEND_GITHASH = $(shell git rev-parse --short HEAD)-$(shell date +%s)
+FRONTEND_FLUTTER_CHANNEL = $(shell flutter --version | awk '/channel/ {print $$5}')
 
 this-all: this-gen this-build this-run-server this-run-client
 
 ## Print all settings
 this-print: ## print
 	$(MAKE) os-print
-	
 	$(MAKE) flu-print
-
 	$(MAKE) flu-gen-lang-print
-
 	$(MAKE) go-print
+	@echo FRONTEND_CHANNEL: $(FRONTEND_CHANNEL)
+	@echo FRONTEND_DOMAIN: $(FRONTEND_DOMAIN)
+	@echo FRONTEND_URL_NATIVE: $(FRONTEND_URL_NATIVE)
+	@echo FRONTEND_GITHASH: $(FRONTEND_GITHASH)
+	@echo FRONTEND_FLUTTER_CHANNEL: $(FRONTEND_FLUTTER_CHANNEL)
 
 this-build-delete:
 	rm -rf $(SDK_BIN) $(SERVER_BIN)
@@ -102,9 +109,17 @@ this-config-gen: this-config-dep
 		-V SYS_ACCOUNT_FILEDB_ENCRYPT_KEY=$(EXAMPLE_SYS_ACCOUNT_FILEDB_ENCRYPT_KEY) \
 		-V SYS_ACCOUNT_SENDGRID_API_KEY=$(EXAMPLE_SYS_ACCOUNT_SENDGRID_API_KEY)> $(CONFIG_OUTPUT_DIR)/sysaccount.yml
 	jsonnet -S moddisco.jsonnet -V MOD_DISCO_DB_ENCRYPT_KEY=$(EXAMPLE_MOD_DISCO_DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/moddisco.yml
-	jsonnet -S bootstrap-server.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap-server.yml
-	jsonnet -S bootstrap-client.jsonnet > $(CONFIG_OUTPUT_DIR)/bootstrap-client.yml
+	jsonnet -S bootstrap-server.jsonnet \
+ 		-V BOOTSTRAP_DOMAIN=$(FRONTEND_DOMAIN) > $(CONFIG_OUTPUT_DIR)/bootstrap-server.yml
+	jsonnet -S bootstrap-client.jsonnet \
+ 		-V BOOTSTRAP_DOMAIN=$(FRONTEND_DOMAIN) > $(CONFIG_OUTPUT_DIR)/bootstrap-client.yml
 	jsonnet -S main.jsonnet > $(CONFIG_OUTPUT_DIR)/main.yml
+	jsonnet -S flutter-client.jsonnet \
+ 		-V FRONTEND_CHANNEL=$(FRONTEND_CHANNEL) \
+ 		-V FRONTEND_DOMAIN=$(FRONTEND_DOMAIN) \
+ 		-V FRONTEND_URL_NATIVE=$(FRONTEND_URL_NATIVE) \
+ 		-V FRONTEND_GITHASH=$(FRONTEND_GITHASH) \
+ 		-V FRONTEND_FLUTTER_CHANNEL=$(FRONTEND_FLUTTER_CHANNEL) > $(FLU_LIB_NAME)/assets/env.json
 
 this-config-dep:
 	go get -u -v github.com/go-bindata/go-bindata/...

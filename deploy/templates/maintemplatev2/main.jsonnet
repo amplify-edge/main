@@ -12,7 +12,7 @@ local cfg = {
         host: "127.0.0.1",
         port: 9074,
         isLocal: true,
-        embedDir: "../client/build",
+        embedDir: "./client/build/web",
         tls: s.TLSConfig,
     }
 };
