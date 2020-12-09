@@ -2,6 +2,7 @@ package repo
 
 import (
 	"context"
+	"encoding/base64"
 	"fmt"
 	"io/ioutil"
 	"time"
@@ -47,11 +48,11 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 				},
 			},
 		}
-		avatar, err := fakehelper.GenFakeLogo("./bootstrap-data/client/generated", 128)
+		avatar, err := fakehelper.GenFakeLogoBytes(128)
 		if err != nil {
 			return err
 		}
-		supeRequest.AvatarFilepath = avatar
+		supeRequest.AvatarUploadBytes = base64.RawStdEncoding.EncodeToString(avatar)
 		if _, err = b.accClient.NewAccount(newCtx, supeRequest); err != nil {
 			cancel()
 			return err
@@ -108,16 +109,14 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAcco
 	var err error
 	for _, supe := range supers {
 		superReq := &accountRepo.SuperAccountRequest{
-			Email:          supe.InitialSuperuser.GetEmail(),
-			Password:       supe.GetInitialSuperuser().GetPassword(),
-			AvatarFilePath: "./bootstrap-data/default/default_root_avatar.png",
+			Email:    supe.InitialSuperuser.GetEmail(),
+			Password: supe.GetInitialSuperuser().GetPassword(),
 		}
-
-		avatar, err := fakehelper.GenFakeLogo("./bootstrap-data/client/generated", 128)
+		avatar, err := fakehelper.GenFakeLogoBytes(128)
 		if err != nil {
 			return err
 		}
-		superReq.AvatarFilePath = avatar
+		superReq.AvatarBytes = base64.RawStdEncoding.EncodeToString(avatar)
 		if err = b.accRepo.InitSuperUser(superReq); err != nil {
 			return err
 		}

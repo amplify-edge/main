@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "editBootstrap" : MessageLookupByLibrary.simpleMessage("Modifica Bootstrap"),
     "listBootstrap" : MessageLookupByLibrary.simpleMessage("Elenca Bootstrap"),
     "noBootstraps" : MessageLookupByLibrary.simpleMessage("Nessun bootstrap"),
+    "pickImageAndCopyTheResultingValue" : MessageLookupByLibrary.simpleMessage("Scegli l\'immagine e copia il valore risultante"),
     "selectBootstrap" : MessageLookupByLibrary.simpleMessage("Seleziona Bootstrap")
   };
 }

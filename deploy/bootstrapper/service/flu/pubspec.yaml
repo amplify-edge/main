@@ -30,6 +30,7 @@ dependencies:
     path: ../../../../../sys-share/sys-account/service/flu
   file_picker: ^2.1.0
   code_editor: ^1.0.1
+  clipboard: ^0.1.2+8
 
 dev_dependencies:
   flutter_test:

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 class SettingsViewWeb extends StatelessWidget {
   SettingsViewWeb({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<SettingsViewModel>(context);
@@ -54,22 +55,22 @@ class SettingsViewWeb extends StatelessWidget {
             title: Text("Channel"),
             subtitle: Text(env.channel),
           ),
-          ListTile(
-            title: Text("Url"),
-            subtitle: Text(env.url),
-          ),
-          ListTile(
-            title: Text("UrlNative"),
-            subtitle: Text(env.urlNative),
-          ),
+          // ListTile(
+          //   title: Text("Url"),
+          //   subtitle: Text(env.url),
+          // ),
+          // ListTile(
+          //   title: Text("UrlNative"),
+          //   subtitle: Text(env.urlNative),
+          // ),
           ListTile(
             title: Text("GitHash"),
             subtitle: Text(env.gitHash),
           ),
-          ListTile(
-            title: Text("Flutter channel"),
-            subtitle: Text(env.flutterChannel),
-          ),
+          // ListTile(
+          //   title: Text("Flutter channel"),
+          //   subtitle: Text(env.flutterChannel),
+          // ),
         ]),
       ),
     );

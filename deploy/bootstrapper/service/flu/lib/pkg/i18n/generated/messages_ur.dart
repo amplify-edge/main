@@ -23,8 +23,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "bootstrapDetails" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ کی تفصیلات"),
     "editBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ میں ترمیم کریں"),
-    "listBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ کی فہرست بنائیں"),
+    "listBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ کی فہرست"),
     "noBootstraps" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپس نہیں ہیں"),
+    "pickImageAndCopyTheResultingValue" : MessageLookupByLibrary.simpleMessage("تصویر چنیں اور نتیجے کی قیمت کو کاپی کریں"),
     "selectBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ منتخب کریں")
   };
 }

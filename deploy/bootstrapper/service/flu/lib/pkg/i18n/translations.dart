@@ -48,4 +48,13 @@ class Translations {
       locale: locale.toString(),
     );
   }
+
+  String pickImageAndCopyTheResultingValue() {
+    return Intl.message(
+      'Pick image and copy the resulting value',
+      name: 'pickImageAndCopyTheResultingValue',
+      desc: 'For Image / File Picker',
+      locale: locale.toString(),
+    );
+  }
 }

@@ -13,7 +13,7 @@
                             },
                             "logo_filepath": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{avatargen:./bootstrap-data/client/generated,128}\" yaml:\"logo_filepath,omitempty\""
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"logo_filepath,omitempty\""
                             },
                             "contact": {
                                 "type": "string",
@@ -25,7 +25,7 @@
                             },
                             "logo_upload_bytes": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"skip\" yaml:\"logo_upload_bytes,omitempty\""
+                                "description": "@inject_tag: fake:\"{avatarbytesgen:128}\" yaml:\"logo_upload_bytes,omitempty\""
                             }
                         },
                         "additionalProperties": true,
@@ -49,7 +49,7 @@
                             },
                             "logo_filepath": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{avatargen:./bootstrap-data/client/generated,128}\" yaml:\"logo_filepath,omitempty\""
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"logo_filepath,omitempty\""
                             },
                             "creator_id": {
                                 "type": "string",
@@ -65,7 +65,7 @@
                             },
                             "logo_upload_bytes": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"skip\" yaml:\"logo_upload_bytes,omitempty\""
+                                "description": "@inject_tag: fake:\"{avatarbytesgen:128}\" yaml:\"logo_upload_bytes,omitempty\""
                             }
                         },
                         "additionalProperties": true,
@@ -192,14 +192,14 @@
                                     "type": "string"
                                 },
                                 "type": "array",
-                                "description": "@inject_tag: fake:\"{avatargen:./bootstrap-data/client/generated,300}\" fakesize:\"3\" yaml:\"image_filepath,omitempty\""
+                                "description": "@inject_tag: fake:\"300\" fakesize:\"3\" yaml:\"image_filepath,omitempty\""
                             },
                             "image_upload_arrays": {
                                 "items": {
                                     "type": "string"
                                 },
                                 "type": "array",
-                                "description": "@inject_tag: fake:\"skip\" yaml:\"image_upload_arrays,omitempty\""
+                                "description": "@inject_tag: fake:\"avatargenbytes:300\" yaml:\"image_upload_arrays,omitempty\""
                             }
                         },
                         "additionalProperties": true,
@@ -380,11 +380,11 @@
                             },
                             "avatar_filepath": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{avatargen:./bootstrap-data/client/generated,128}\" yaml:\"avatar_filepath,omitempty\"\n\nlocal upload i.e. bootstrap, remote upload will be user's directory"
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"avatar_filepath,omitempty\"\n\nlocal upload i.e. bootstrap, remote upload will be user's directory"
                             },
                             "avatar_upload_bytes": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"skip\" yaml:\"avatar_upload_bytes,omitempty\"\n\nraw bytes upload for remote upload"
+                                "description": "@inject_tag: fake:\"{avatarbytesgen:128}\" yaml:\"avatar_upload_bytes,omitempty\"\n\nraw bytes upload for remote upload"
                             },
                             "new_user_roles": {
                                 "items": {
