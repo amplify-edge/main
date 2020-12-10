@@ -151,7 +151,7 @@ func MainServerCommand(system http.FileSystem) *cobra.Command {
 		httpServer := createHttpHandler(logger, true, fileServer, grpcWebServer)
 		return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
 	}
-	b, err := version.Asset("version.json")
+	b, err := version.Asset("manifest.json")
 	if err != nil {
 		logger.Fatalf("unable to open build version information: %v", err)
 	}

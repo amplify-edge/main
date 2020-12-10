@@ -1,21 +1,22 @@
 local loadVar = import "vendor/github.com/getcouragenow/sys-share/sys-core/service/config/mixins/mixin.loadfn.libsonnet";
 
-local manifest = {
-    local cfg = self,
-    Version::{
-        frontend: loadVar(prefixName="BUILD", env="FRONTEND_VERSION").val,
-        server: loadVar(prefixName="BUILD", env="SERVER_VERSION").val,
-        cli: loadVar(prefixName="BUILD", env="CLI_VERSION").val,
+local prefix = "BUILD";
+local cfg = {
+    Version:: {
+        frontend: loadVar(prefixName=prefix, env="FRONTEND_VERSION").val,
+        server: loadVar(prefixName=prefix, env="SERVER_VERSION").val,
+        cli: loadVar(prefixName=prefix, env="CLI_VERSION").val,
     },
-    ToolVersion::{
-        golang: loadVar(prefixName="BUILD", env="GO_VERSION").val,
-        flutter: loadVar(prefixName="BUILD", env="FLUTTER_VERSION").val
+    ToolVersion:: {
+        golang: loadVar(prefixName=prefix, env="GO_VERSION").val,
+        flutter: loadVar(prefixName=prefix, env="FLUTTER_VERSION").val
     },
-    version: cfg.Version,
-    branch: loadVar(prefixName="BUILD", env="GITBRANCH").val,
-    user: loadVar(prefixName="BUILD", env="USER").val,
-    date: loadVar(prefixName="BUILD", env="DATE").val,
-    toolVersion: cfg.ToolVersion,
+    version: self.Version,
+    toolVersion: self.ToolVersion,
+    branch: loadVar(prefixName=prefix, env="GITBRANCH").val,
+    user: loadVar(prefixName=prefix, env="USER").val,
+    date: loadVar(prefixName=prefix, env="DATE").val,
+//    inherit: true
 };
 
-std.manifestJson(manifest)
+std.manifestJson(cfg)

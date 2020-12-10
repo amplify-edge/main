@@ -2,8 +2,9 @@ package wrapper
 
 import (
 	"fmt"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	"github.com/spf13/cobra"
+
+	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 )
 
 const (
@@ -24,7 +25,7 @@ type BuildInformationManifest struct {
 
 func (b *BuildInformationManifest) String() string {
 	return fmt.Sprintf("Versions: %s\n Git Branch: %s\n Build User: %s\n Build Date: %s\n Tool Version: %s\n",
-		b.Version.String(), b.Branch, b.User, b.Date, b.ToolVersion)
+		b.Version.String(), b.Branch, b.User, b.Date, b.ToolVersion.String())
 }
 
 // outputs json
@@ -53,7 +54,7 @@ type Version struct {
 }
 
 func (v *Version) String() string {
-	return fmt.Sprintf("Frontend: %s\n, Server: %s\n, Cli: %s\n", v.Frontend, v.Server, v.Cli)
+	return fmt.Sprintf("\n\tFrontend: %s\n Server: %s\n Cli: %s\n", v.Frontend, v.Server, v.Cli)
 }
 
 type ToolVersion struct {

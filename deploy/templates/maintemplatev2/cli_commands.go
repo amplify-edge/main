@@ -1,11 +1,12 @@
 package maintemplatev2
 
 import (
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/version"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
 )
 
 var (
@@ -38,7 +39,7 @@ func MainCliCommand() *cobra.Command {
 	}
 	logger := log.WithField("maintemplate", "v2")
 
-	b, err := version.Asset("version.json")
+	b, err := version.Asset("manifest.json")
 	if err != nil {
 		logger.Fatalf("unable to open build version information: %v", err)
 	}
@@ -53,7 +54,7 @@ func MainCliCommand() *cobra.Command {
 	if err != nil {
 		logger.Fatalf(errSourcingConfig, "main-wrapper", err)
 	}
-	bscfg, err := bsSvc.NewConfig(bsCfgPath)
+	bscfg, err := bsSvc.NewConfig(bsCliCfgPath)
 	if err != nil {
 		logger.Fatalf(errSourcingConfig, "bootstrapper", err)
 	}
