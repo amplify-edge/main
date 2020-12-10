@@ -1,5 +1,6 @@
-include ../../dwn.mk
 include ../../fly.mk
+include ../../gbd.mk
+include ../../gor.mk
 include ../../hug.mk
 
 CONFIG_DIR = $(PWD)/config
@@ -43,31 +44,6 @@ build: dep
 				SDK_BIN=$(CLI_BIN) \
 				SERVER_BIN=$(SERVER_BIN) this-build
 
-	# cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_ABS_PREFIX)
-
-	# Project does ! go mod download...."
-		# ... pulls all code all the way down respective githashes
-	# jump to maintempate/client
-		# ... flutter pub update to force the pubspec git references to pull turtles all the way down...
-			# 		cloud_firestore:
-			#git:
-			#url: https://github.com/theshiftstudio/flutter_plugins.git
-			#ref: 9cabcc57e63fbc9be4fafee08e6435a1a8c71d61
-			#path: packages/cloud_firestore
-		# build flutter into build dir.
-		# will make the flutter/assets/env.json for us...
-			#  "channel: loadVar(prefixName="FRONTEND", env="CHANNEL").val,"
-				# change to "RELEASE_CHANNEL" so we can use it with fly release channels.
-			# "url: loadVar(prefixName="FRONTEND", env="DOMAIN").val,"
-				# change to: "URL_WEB"
-		# copy the build output up to projects/client
-	# build go
-		# projects/cmd/server/main.go, which will embed flutter as assets.go.
-	# version
-		# down at maintemmplate
-	# mains.go
-		# at Project level.... room to do override.
-	
 config:
 	# nothing to do. manually manage it at project level
 	# maybe later can diff against maintemplate for missing name value pairs...

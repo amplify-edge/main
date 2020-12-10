@@ -1,24 +1,24 @@
 {
-  "@@last_modified": "2020-12-10T10:10:10.609089",
-  "tabadmin": "Admin",
+  "@@last_modified": "2020-12-10T11:05:26.319170",
+  "tabadmin": "Administrator",
   "@tabadmin": {
     "description": "text for admin tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabhome": "Casa",
+  "tabhome": "Zuhause",
   "@tabhome": {
     "description": "text for the home tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabsurvey": "Sondaggio",
+  "tabsurvey": "Umfrage",
   "@tabsurvey": {
     "description": "text for survey tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabchat": "Chiacchierare",
+  "tabchat": "Plaudern",
   "@tabchat": {
     "description": "text for the chat tab",
     "placeholders": {},
@@ -30,13 +30,13 @@
     "placeholders": {},
     "type": "text"
   },
-  "tabsettings": "impostazioni",
+  "tabsettings": "die Einstellungen",
   "@tabsettings": {
     "description": "text for the settings tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabwriter": "scrittore",
+  "tabwriter": "Schriftsteller",
   "@tabwriter": {
     "description": "text for the writer tab",
     "placeholders": {},
@@ -48,25 +48,25 @@
     "placeholders": {},
     "type": "text"
   },
-  "tabmap": "Carta geografica",
+  "tabmap": "Karte",
   "@tabmap": {
     "description": "text for the writer tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabSettings": "impostazioni",
+  "tabSettings": "die Einstellungen",
   "@tabSettings": {
     "description": "text for the settings tab",
     "placeholders": {},
     "type": "text"
   },
-  "changeLanguageSet": "Cambia lingua",
+  "changeLanguageSet": "Sprache ändern",
   "@changeLanguageSet": {
     "description": "text for the change language text in settings screen",
     "placeholders": {},
     "type": "text"
   },
-  "changeThemeSet": "Cambia tema",
+  "changeThemeSet": "Thema ändern",
   "@changeThemeSet": {
     "description": "text for the change theme text in settings screen",
     "placeholders": {},

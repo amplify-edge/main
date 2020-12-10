@@ -1,24 +1,24 @@
 {
-  "@@last_modified": "2020-12-10T10:10:10.609089",
-  "tabadmin": "Administración",
+  "@@last_modified": "2020-12-10T11:05:26.319170",
+  "tabadmin": "Administrateur",
   "@tabadmin": {
     "description": "text for admin tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabhome": "Hogar",
+  "tabhome": "Accueil",
   "@tabhome": {
     "description": "text for the home tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabsurvey": "Encuesta",
+  "tabsurvey": "Sondage",
   "@tabsurvey": {
     "description": "text for survey tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabchat": "Charla",
+  "tabchat": "Bavarder",
   "@tabchat": {
     "description": "text for the chat tab",
     "placeholders": {},
@@ -30,13 +30,13 @@
     "placeholders": {},
     "type": "text"
   },
-  "tabsettings": "Configuraciones",
+  "tabsettings": "Réglages",
   "@tabsettings": {
     "description": "text for the settings tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabwriter": "Escritor",
+  "tabwriter": "Écrivain",
   "@tabwriter": {
     "description": "text for the writer tab",
     "placeholders": {},
@@ -48,25 +48,25 @@
     "placeholders": {},
     "type": "text"
   },
-  "tabmap": "Mapa",
+  "tabmap": "Carte",
   "@tabmap": {
     "description": "text for the writer tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabSettings": "Configuraciones",
+  "tabSettings": "Réglages",
   "@tabSettings": {
     "description": "text for the settings tab",
     "placeholders": {},
     "type": "text"
   },
-  "changeLanguageSet": "Cambiar idioma",
+  "changeLanguageSet": "Changer de langue",
   "@changeLanguageSet": {
     "description": "text for the change language text in settings screen",
     "placeholders": {},
     "type": "text"
   },
-  "changeThemeSet": "Cambiar de tema",
+  "changeThemeSet": "Change le thème",
   "@changeThemeSet": {
     "description": "text for the change theme text in settings screen",
     "placeholders": {},

@@ -1,75 +1,75 @@
 {
-  "@@last_modified": "2020-12-10T10:10:10.609089",
+  "@@last_modified": "2020-12-10T11:05:26.319170",
   "tabadmin": "Admin",
   "@tabadmin": {
     "description": "text for admin tab",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
-  "tabhome": "Home",
+  "tabhome": "Casa",
   "@tabhome": {
     "description": "text for the home tab",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
-  "tabsurvey": "Survey",
+  "tabsurvey": "Sondaggio",
   "@tabsurvey": {
     "description": "text for survey tab",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
-  "tabchat": "Chat",
+  "tabchat": "Chiacchierare",
   "@tabchat": {
     "description": "text for the chat tab",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
   "tabIon": "Ion",
   "@tabIon": {
     "description": "text for the ion tab",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
-  "tabsettings": "Settings",
+  "tabsettings": "impostazioni",
   "@tabsettings": {
     "description": "text for the settings tab",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
-  "tabwriter": "Writer",
+  "tabwriter": "scrittore",
   "@tabwriter": {
     "description": "text for the writer tab",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
   "tabKanban": "Kanban",
   "@tabKanban": {
     "description": "Text for the Kanban tab",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
-  "tabmap": "Map",
+  "tabmap": "Carta geografica",
   "@tabmap": {
     "description": "text for the writer tab",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
-  "tabSettings": "Settings",
+  "tabSettings": "impostazioni",
   "@tabSettings": {
     "description": "text for the settings tab",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
-  "changeLanguageSet": "Change Language",
+  "changeLanguageSet": "Cambia lingua",
   "@changeLanguageSet": {
     "description": "text for the change language text in settings screen",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   },
-  "changeThemeSet": "Change Theme",
+  "changeThemeSet": "Cambia tema",
   "@changeThemeSet": {
     "description": "text for the change theme text in settings screen",
-    "type": "text",
-    "placeholders": {}
+    "placeholders": {},
+    "type": "text"
   }
 }
