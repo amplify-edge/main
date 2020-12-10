@@ -58,15 +58,6 @@ dep-os-delete:
 
 ### CODE RUN
 
-client-run:
-	cd ./client && flutter build web
-
-client-build:
-	cd ./client && flutter build web
-
-	# pack into go server
-
-
 local-run:
 	cd $(FLY_CODE_PATH) && go run .
 	# can call the code paths own make file also if you need to...
