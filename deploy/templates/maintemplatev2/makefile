@@ -51,8 +51,17 @@ PROJECT_ID = ???
 FRONTEND_CHANNEL = dev
 FRONTEND_URL_WEB = getcourage.org
 FRONTEND_URL_NATIVE = getcourage.org
-FRONTEND_GITHASH = $(shell git rev-parse --short HEAD)-$(shell date +%s)
+FRONTEND_GITHASH = $(shell git rev-parse HEAD)
 FRONTEND_FLUTTER_CHANNEL = $(shell flutter --version | awk '/channel/ {print $$5}')
+
+BUILD_FRONTEND_VERSION = $(FRONTEND_GITHASH)
+BUILD_SERVER_VERSION = $(shell git rev-parse HEAD)
+BUILD_CLI_VERSION = $(BUILD_SERVER_VERSION)
+BUILD_USER = $(GITR_USER)
+BUILD_DATE = $(shell date +%Y%M%D_%H%M%S)
+BUILD_GO_VERSION = $(shell go version | awk '{print $$3}')
+BUILD_GITBRANCH = $(shell git symbolic-ref --short HEAD)
+BUILD_FLUTTER_VERSION = $(shell flutter --version | awk '/channel/ {print $$2}')
 
 this-all: this-gen this-build this-run-server this-run-client
 
@@ -127,6 +136,16 @@ this-config-dep:
 	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb install && jb update
 	#cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update
 	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb install && jb update
+
+this-version-gen:
+	jsonnet build_info.jsonnet -V BUILD_FRONTEND_VERSION=$(BUILD_FRONTEND_VERSION) \
+		-V BUILD_SERVER_VERSION=$(BUILD_SERVER_VERSION) \
+		-V BUILD_CLI_VERSION=$(BUILD_CLI_VERSION) \
+		-V BUILD_GO_VERSION=$(BUILD_GO_VERSION) \
+		-V BUILD_FLUTTER_VERSION=$(BUILD_FLUTTER_VERSION) \
+		-V BUILD_GITBRANCH=$(BUILD_GITBRANCH) \
+		-V BUILD_USER=$(BUILD_USER) \
+		-V BUILD_DATE=$(BUILD_DATE) > version.json
 
 this-cert-gen: this-cert-gen-delete
 	@mkdir -p $(CERT_DIR)
