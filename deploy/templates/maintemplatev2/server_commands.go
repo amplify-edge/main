@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/NYTimes/gziphandler"
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
+	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/version"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
@@ -150,6 +151,15 @@ func MainServerCommand(system http.FileSystem) *cobra.Command {
 		httpServer := createHttpHandler(logger, true, fileServer, grpcWebServer)
 		return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
 	}
+	b, err := version.Asset("version.json")
+	if err != nil {
+		logger.Fatalf("unable to open build version information: %v", err)
+	}
+	buildInfo, err := wrapper.ManifestFromFile(b)
+	if err != nil {
+		logger.Fatalf("unable to unmarshal build version information: %v", err)
+	}
+	rootCmd.AddCommand(buildInfo.CobraCommand())
 	return rootCmd
 }
 

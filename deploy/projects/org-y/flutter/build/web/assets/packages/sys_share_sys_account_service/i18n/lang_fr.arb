@@ -1,0 +1,99 @@
+{
+  "@@last_modified": "2020-12-08T20:31:19.907789",
+  "email": "Email",
+  "@email": {
+    "description": "Email",
+    "placeholders": {},
+    "type": "text"
+  },
+  "emailHint": "Votre email",
+  "@emailHint": {
+    "description": "Your Email",
+    "placeholders": {},
+    "type": "text"
+  },
+  "password": "Mot de passe",
+  "@password": {
+    "description": "Password",
+    "placeholders": {},
+    "type": "text"
+  },
+  "passwordHint": "Votre mot de passe",
+  "@passwordHint": {
+    "description": "Your Password",
+    "placeholders": {},
+    "type": "text"
+  },
+  "verificationToken": "Jeton de vérification",
+  "@verificationToken": {
+    "description": "Verification Token",
+    "placeholders": {},
+    "type": "text"
+  },
+  "verifyAccount": "vérifier le compte",
+  "@verifyAccount": {
+    "description": "Verifiy Account",
+    "placeholders": {},
+    "type": "text"
+  },
+  "submitNewPassword": "Soumettre un nouveau mot de passe",
+  "@submitNewPassword": {
+    "description": "Submit New Password",
+    "placeholders": {},
+    "type": "text"
+  },
+  "byProceeding": "En continuant, vous acceptez nos conditions d'utilisation et confirmez que vous avez lu notre politique de confidentialité.",
+  "@byProceeding": {
+    "description": "By Proceeding",
+    "placeholders": {},
+    "type": "text"
+  },
+  "signUp": "S'inscrire",
+  "@signUp": {
+    "description": "Sign Up",
+    "placeholders": {},
+    "type": "text"
+  },
+  "signIn": "Se connecter",
+  "@signIn": {
+    "description": "Sign In",
+    "placeholders": {},
+    "type": "text"
+  },
+  "signOut": "Déconnexion",
+  "@signOut": {
+    "description": "Sign Out",
+    "placeholders": {},
+    "type": "text"
+  },
+  "forgotPassword": "Mot de passe oublié",
+  "@forgotPassword": {
+    "description": "Forgot Password",
+    "placeholders": {},
+    "type": "text"
+  },
+  "resetPassword": "réinitialiser le mot de passe",
+  "@resetPassword": {
+    "description": "Reset Password",
+    "placeholders": {},
+    "type": "text"
+  },
+  "invalidEmail": "Email invalide",
+  "@invalidEmail": {
+    "description": "Invalid Email",
+    "placeholders": {},
+    "type": "text"
+  },
+  "invalidPassword": "Mot de passe incorrect",
+  "@invalidPassword": {
+    "description": "Invalid Password",
+    "placeholders": {},
+    "type": "text"
+  },
+  "invalidVerificationToken": "Jeton de vérification non valide",
+  "@invalidVerificationToken": {
+    "description": "Invalid Verification Token",
+    "placeholders": {},
+    "type": "text"
+  }
+}
