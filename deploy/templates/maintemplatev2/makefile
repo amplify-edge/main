@@ -15,8 +15,9 @@ FLU_LIB_NAME = client
 FLU_SAMPLE_NAME = client
 FLU_SAMPLE_FSPATH = $(PWD)/$(FLU_SAMPLE_NAME)
 
-SDK_BIN=./bin-all/maintemplatev2-sdk-cli
-SERVER_BIN=./bin-all/maintemplatev2
+BIN_DIR=bin-all
+SDK_BIN=$(BIN_DIR)/maintemplatev2-sdk-cli
+SERVER_BIN=$(BIN_DIR)/maintemplatev2
 # TODO. Make config.
 SERVER_ADDRESS=127.0.0.1:9074
 
@@ -62,11 +63,15 @@ BUILD_DATE = $(shell date -u +%Y%m%d%H%M%S)
 BUILD_GO_VERSION = $(shell go version | awk '{print $$3}')
 BUILD_GITBRANCH = $(shell git symbolic-ref --short HEAD)
 BUILD_FLUTTER_VERSION = $(shell flutter --version | awk '/channel/ {print $$2}')
+
 GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" -a -tags netgo
+FRONTEND_BUILD_DIR = client/build/web/
 FRONTEND_PREFIX = client/build/web/
 VERSION_OUTPUT_DIR = version
 VERSION_PREFIX = $(VERSION_OUTPUT_DIR)/
 EMBED_OUTPUT_DIR = main/server/
+SERVER_ENTRYPOINT = main/server/*
+CLI_ENTRYPOINT = main/sdk-cli/*
 
 this-all: this-gen this-build this-run-server this-run-client
 
@@ -87,16 +92,17 @@ this-build-delete:
 	rm -rf ./assets
 
 this-embed:
-	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_PREFIX)" $(FRONTEND_PREFIX)...
+	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_PREFIX)" $(FRONTEND_ABS_PREFIX)...
 	go-bindata -pkg version -fs -nomemcopy -o $(VERSION_OUTPUT_DIR)/version.go -prefix "$(VERSION_PREFIX)" $(VERSION_OUTPUT_DIR)/manifest.json
 
 
 this-build: this-build-delete this-version-gen
 	## Flutter first
 	$(MAKE) flu-web-build
+	cp -Rv $(FRONTEND_BUILD_DIR) $(FRONTEND_PREFIX)
 	$(MAKE) this-embed
-	$(GO_LDFLAGS) $(SDK_BIN) main/sdk-cli/main.go
-	$(GO_LDFLAGS) $(SERVER_BIN) main/server/*
+	$(GO_LDFLAGS) $(SDK_BIN) $(CLI_ENTRYPOINT)
+	$(GO_LDFLAGS) $(SERVER_BIN) $(SERVER_ENTRYPOINT)
 
 
 this-gen: this-gen-delete

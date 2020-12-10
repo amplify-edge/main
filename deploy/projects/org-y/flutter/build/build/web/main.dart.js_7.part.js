@@ -1,8 +1,8 @@
 self.$__dart_deferred_initializers__=self.$__dart_deferred_initializers__||Object.create(null)
 $__dart_deferred_initializers__.current=function(a,b,c,$){var C,H,J,P,W,R,L,G={
-ayS:function(d){var x="impostazioni"
+ayU:function(d){var x="impostazioni"
 return P.j(["changeLanguageSet",Z.ay("Cambia lingua"),"changeThemeSet",Z.ay("Cambia tema"),"tabIon",Z.ay("Ion"),"tabKanban",Z.ay("Kanban"),"tabSettings",Z.ay(x),"tabadmin",Z.ay("Admin"),"tabchat",Z.ay("Chiacchierare"),"tabhome",Z.ay("Casa"),"tabmap",Z.ay("Carta geografica"),"tabsettings",Z.ay(x),"tabsurvey",Z.ay("Sondaggio"),"tabwriter",Z.ay("scrittore")],y.e,y.c)},
-Mu:function Mu(d){this.a=d}},M,B,U,A,V,E,O,T,F,Z,N,Q,Y,K,X,S,D
+Mv:function Mv(d){this.a=d}},M,B,U,A,V,E,O,T,F,Z,N,Q,Y,K,X,S,D
 a.setFunctionNamesIfNecessary([G])
 C=c[0]
 H=c[1]
@@ -29,14 +29,14 @@ K=c[21]
 X=c[22]
 S=c[23]
 D=c[24]
-G.Mu.prototype={
+G.Mv.prototype={
 gmJ:function(){return"it"},
 glt:function(){return this.a}}
 var z=a.updateTypes(["@(@)"]);(function installTearOffs(){var x=a._static_1
-x(G,"aWL","ayS",0)})();(function inheritance(){var x=a.inherit
-x(G.Mu,Z.eq)})()
-H.op(b.typeUniverse,JSON.parse('{"oB":"a3","pq":"a3","oA":"ah","pG":"ah","rQ":"dT","oK":"al","qU":"aa","pk":"aa","pK":"eM","rw":"dv","p9":"f_","ph":"eE","p1":"cT","rc":"cT","pL":"fo","pe":"bN","oH":"fz","Mu":{"eq":[]}}'))
+x(G,"aWN","ayU",0)})();(function inheritance(){var x=a.inherit
+x(G.Mv,Z.eq)})()
+H.os(b.typeUniverse,JSON.parse('{"oE":"a3","ps":"a3","oD":"ah","pI":"ah","rQ":"dT","oM":"al","qW":"aa","pm":"aa","pM":"eM","rw":"dv","pb":"f_","pj":"eE","p3":"cT","rd":"cT","pN":"fo","pg":"bN","oK":"fz","Mv":{"eq":[]}}'))
 0
 var y={c:H.T("eB*"),e:H.T("i*")};(function lazyInitializers(){var x=a.lazyOld
-x($,"b3K","aJx",function(){return new G.Mu(G.ayS(G.aWL()))})})()}
-$__dart_deferred_initializers__["FEqb6f3H6JkkeVz5DNJ6brqbmoQ="] = $__dart_deferred_initializers__.current
+x($,"b3O","aJz",function(){return new G.Mv(G.ayU(G.aWN()))})})()}
+$__dart_deferred_initializers__["TC2PLX20m5r7uK+r+z2MWLV8/cQ="] = $__dart_deferred_initializers__.current

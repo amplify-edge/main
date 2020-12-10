@@ -1,8 +1,8 @@
 self.$__dart_deferred_initializers__=self.$__dart_deferred_initializers__||Object.create(null)
 $__dart_deferred_initializers__.current=function(a,b,c,$){var C,H,J,P,W,R,L,G,M,B,U,A,V,E,O={
-ayT:function(d){var x="R\xe9glages"
+ayV:function(d){var x="R\xe9glages"
 return P.j(["changeLanguageSet",Z.ay("Changer de langue"),"changeThemeSet",Z.ay("Change le th\xe8me"),"tabIon",Z.ay("Ion"),"tabKanban",Z.ay("Kanban"),"tabSettings",Z.ay(x),"tabadmin",Z.ay("Administrateur"),"tabchat",Z.ay("Bavarder"),"tabhome",Z.ay("Accueil"),"tabmap",Z.ay("Carte"),"tabsettings",Z.ay(x),"tabsurvey",Z.ay("Sondage"),"tabwriter",Z.ay("\xc9crivain")],y.e,y.c)},
-Mv:function Mv(d){this.a=d}},T,F,Z,N,Q,Y,K,X,S,D
+Mw:function Mw(d){this.a=d}},T,F,Z,N,Q,Y,K,X,S,D
 a.setFunctionNamesIfNecessary([O])
 C=c[0]
 H=c[1]
@@ -29,14 +29,14 @@ K=c[21]
 X=c[22]
 S=c[23]
 D=c[24]
-O.Mv.prototype={
+O.Mw.prototype={
 gmJ:function(){return"fr"},
 glt:function(){return this.a}}
 var z=a.updateTypes(["@(@)"]);(function installTearOffs(){var x=a._static_1
-x(O,"aWK","ayT",0)})();(function inheritance(){var x=a.inherit
-x(O.Mv,Z.eq)})()
-H.op(b.typeUniverse,JSON.parse('{"oB":"a3","pq":"a3","oA":"ah","pG":"ah","rQ":"dT","oK":"al","qU":"aa","pk":"aa","pK":"eM","rw":"dv","p9":"f_","ph":"eE","p1":"cT","rc":"cT","pL":"fo","pe":"bN","oH":"fz","Mv":{"eq":[]}}'))
+x(O,"aWM","ayV",0)})();(function inheritance(){var x=a.inherit
+x(O.Mw,Z.eq)})()
+H.os(b.typeUniverse,JSON.parse('{"oE":"a3","ps":"a3","oD":"ah","pI":"ah","rQ":"dT","oM":"al","qW":"aa","pm":"aa","pM":"eM","rw":"dv","pb":"f_","pj":"eE","p3":"cT","rd":"cT","pN":"fo","pg":"bN","oK":"fz","Mw":{"eq":[]}}'))
 0
 var y={c:H.T("eB*"),e:H.T("i*")};(function lazyInitializers(){var x=a.lazyOld
-x($,"b3J","aJw",function(){return new O.Mv(O.ayT(O.aWK()))})})()}
-$__dart_deferred_initializers__["FQ1ThPmDaTt2Clv55OCoBn0CiSs="] = $__dart_deferred_initializers__.current
+x($,"b3N","aJy",function(){return new O.Mw(O.ayV(O.aWM()))})})()}
+$__dart_deferred_initializers__["djmmdIkV8NkQhj3zzsYK/IZKgVA="] = $__dart_deferred_initializers__.current
