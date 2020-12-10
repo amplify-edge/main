@@ -4,10 +4,10 @@ go 1.15
 
 require (
 	github.com/NYTimes/gziphandler v1.1.1
-	github.com/getcouragenow/mod v0.0.0-20201210073102-d2b9e370dd24
+	github.com/getcouragenow/mod v0.0.0-20201210114124-7544fa4b6846
 	github.com/getcouragenow/protoc-gen-cobra v0.3.1-0.20201005114840-ccc8cd57bcdc
-	github.com/getcouragenow/sys v0.0.0-20201209075502-8ad860946490
-	github.com/getcouragenow/sys-share v0.0.0-20201113132352-54ff99aa8d59
+	github.com/getcouragenow/sys v0.0.0-20201210114100-bbce22eadce6
+	github.com/getcouragenow/sys-share v0.0.0-20201210073032-056b76a9a358
 	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/improbable-eng/grpc-web v0.13.0

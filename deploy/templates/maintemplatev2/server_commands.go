@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/NYTimes/gziphandler"
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/version"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
@@ -30,8 +29,8 @@ const (
 	defaultBsConfigPath         = "./config/bootstrap-server.yml"
 	defaultMainCfgPath          = "./config/main.yml"
 	defaultDebug                = true
-	defaultCorsHeaders = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
-	flyHeaders = "Fly-Client-IP, Fly-Forwarded-Port, Fly-Region, Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
+	defaultCorsHeaders          = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
+	flyHeaders                  = "Fly-Client-IP, Fly-Forwarded-Port, Fly-Region, Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
 )
 
 var (
@@ -65,7 +64,7 @@ func (mfs FileSystem) Open(path string) (http.File, error) {
 	return f, nil
 }
 
-func MainServerCommand(system http.FileSystem) *cobra.Command {
+func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 	// logging
 	log := logrus.New()
 	if isDebug {
@@ -153,11 +152,8 @@ func MainServerCommand(system http.FileSystem) *cobra.Command {
 		httpServer := createHttpHandler(logger, true, fileServer, grpcWebServer)
 		return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
 	}
-	b, err := version.Asset("manifest.json")
-	if err != nil {
-		logger.Fatalf("unable to open build version information: %v", err)
-	}
-	buildInfo, err := wrapper.ManifestFromFile(b)
+
+	buildInfo, err := wrapper.ManifestFromFile(version)
 	if err != nil {
 		logger.Fatalf("unable to unmarshal build version information: %v", err)
 	}

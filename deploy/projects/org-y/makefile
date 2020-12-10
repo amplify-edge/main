@@ -2,16 +2,18 @@ include ../../dwn.mk
 include ../../fly.mk
 include ../../hug.mk
 
-CONFIG_DIR = config
+CONFIG_DIR = $(PWD)/config
 VENDOR_DIR = vendor
-VERSION_DIR = version
-BIN_DIR = bin-all
+VERSION_DIR = $(PWD)/version
+BIN_DIR = $(PWD)/bin-all
+CLI_BIN = $(BIN_DIR)/maintemplatev2-cli
+SERVER_BIN = $(BIN_DIR)/maintemplatev2
 TEMPLATE_DIR = github.com/getcouragenow/main/deploy/templates/maintemplatev2
 FRONTEND_PREFIX = flutter/build/
 FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)web/
-FRONTEND_ABS_PREFIX = $(abspath $(PWD)/$(FRONTEND_PREFIX))
-SERVER_ENTRYPOINT = cmd/server/*
-CLI_ENTRYPOINT = cmd/cli/*
+FRONTEND_ABS_PREFIX = $(PWD)/$(FRONTEND_PREFIX)
+SERVER_ENTRYPOINT = $(PWD)/cmd/server/*.go
+CLI_ENTRYPOINT = $(PWD)/cmd/cli/*.go
 
 .PHONY: all
 all: dep-delete dep gen build
@@ -37,8 +39,11 @@ build: dep
 				VERSION_OUTPUT_DIR=$(VERSION_DIR) \
 				EMBED_OUTPUT_DIR=cmd/server/  \
 				SERVER_ENTRYPOINT=$(SERVER_ENTRYPOINT) \
-				CLI_ENTRYPOINT=$(CLI_ENTRYPOINT) this-build
-	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_PREFIX)
+				CLI_ENTRYPOINT=$(CLI_ENTRYPOINT) \
+				SDK_BIN=$(CLI_BIN) \
+				SERVER_BIN=$(SERVER_BIN) this-build
+
+	# cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_ABS_PREFIX)
 
 	# Project does ! go mod download...."
 		# ... pulls all code all the way down respective githashes
