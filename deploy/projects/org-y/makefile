@@ -8,7 +8,10 @@ VERSION_DIR = version
 BIN_DIR = bin-all
 TEMPLATE_DIR = github.com/getcouragenow/main/deploy/templates/maintemplatev2
 FRONTEND_PREFIX = flutter/build/
-FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)/web/
+FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)web/
+FRONTEND_ABS_PREFIX = $(abspath $(PWD)/$(FRONTEND_PREFIX))
+SERVER_ENTRYPOINT = cmd/server/*
+CLI_ENTRYPOINT = cmd/cli/*
 
 .PHONY: all
 all: dep-delete dep gen build
@@ -16,7 +19,7 @@ all: dep-delete dep gen build
 dep:
 	# Install go-bindata, jsonnet-bundler, go-jsonnet here
 	# Create dirs for binaries
-	mkdir -p $(BIN_DIR) $(VERSION_DIR)
+	mkdir -p $(BIN_DIR) $(VERSION_DIR) $(CONFIG_DIR)
 
 dep-delete:
 	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR)
@@ -28,12 +31,14 @@ gen:
 	@cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/config/* $(CONFIG_DIR)
 
 build: dep
-	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) flu-web-build
-	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_PREFIX)
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
 		$(MAKE) FRONTEND_PREFIX=$(FRONTEND_WEB_PREFIX) \
+				FRONTEND_ABS_PREFIX=$(FRONTEND_ABS_PREFIX) \
 				VERSION_OUTPUT_DIR=$(VERSION_DIR) \
-				EMBED_OUTPUT_DIR=cmd/server/ this-embed
+				EMBED_OUTPUT_DIR=cmd/server/  \
+				SERVER_ENTRYPOINT=$(SERVER_ENTRYPOINT) \
+				CLI_ENTRYPOINT=$(CLI_ENTRYPOINT) this-build
+	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_PREFIX)
 
 	# Project does ! go mod download...."
 		# ... pulls all code all the way down respective githashes
