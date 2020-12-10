@@ -27,16 +27,24 @@ dwn-download: dwn-delete
 	# Curl from github release
 	# switch for OS (https://stackoverflow.com/questions/714100/os-detecting-makefile)
 ifeq ($(OS_detected),Windows)
-   # what does windows use to download stuff ??
+	@echo Detected Windows ...
+   	# what does windows use to download stuff ??
+
+   	# also some releases for windows are zip and others are .tar.gz, so need to sniff that too from the file name.
 endif
 ifeq ($(OS_detected),Darwin)
     # mac
-	curl -LJO $(DWN_URL)
-	tar -vxf $(DWN_FILENAME)
-	tar -vxzf $(DWN_FILENAME)
+	@echo 
+	@echo Detected Darwin ...
+	curl -LO $(DWN_URL)
+	tar -zxvf $(DWN_FILENAME)
+
+
+	
 endif
 ifeq ($(OS_detected),Linux)
     # linux
+	@echo Detected Linux ...
 	wget --no-check-certificate --content-disposition $(DWN_URL)
 	# --no-check-cerftificate was necessary for me to have wget not puke about https
 endif
