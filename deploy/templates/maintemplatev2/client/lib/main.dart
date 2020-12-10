@@ -25,7 +25,7 @@ import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  configureApp();
+  // configureApp();
 
   // init settings view model before starting app
   var settingsViewModel = SettingsViewModel();

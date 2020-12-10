@@ -29,11 +29,6 @@ dependencies:
   #  master_detail_scaffold: ^1.1.1+1
   #  rflutter_alert: ^1.1.0
 
-  #modtemplate02:
-  #  git:
-  #    url: git://github.com/getcouragenow/packages.git
-  #    path: modtemplate02/client/
-
   # mod_write:
   #   path: ../../mod-write/client
   # mod_chat:
@@ -58,9 +53,15 @@ dependencies:
   # path: sys-core/service/flu
 
   mod_disco:
-    path: ../../../../../mod/mod-disco/service/flu
+    git:
+      url: git://github.com/getcouragenow/mod.git
+      path: mod-disco/service/flu
+#    path: ../../../../../mod/mod-disco/service/flu
   bootstrapper:
-    path: ../../../bootstrapper/service/flu
+    git:
+      url: git://github.com/getcouragenow/main.git
+      path: deploy/bootstrapper/service/flu
+#    path: ../../../bootstrapper/service/flu
 
   #sys_core:
   #  git:
@@ -73,8 +74,6 @@ dependencies:
   provider_architecture: ^1.0.6
   grpc:
   protobuf:
-  rxdart: ^0.24.1
-  #  shimmer: ^1.0.0
   intl: ^0.16.1
   intl_translation: ^0.17.10+1
   #  get_it: ^3.1.0

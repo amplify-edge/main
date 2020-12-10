@@ -1,11 +1,13 @@
+# Actually it's githash plus build date
+VERSION_GITHASH = $(shell git rev-parse --short HEAD)
+BUILD_TIME = $(shell date -u +%Y%M%d_%H:%M:%S)
+REPO_MAIN = github.com/getcouragenow/main
 
-# VERSION_GITHASH
-# OTHER???
-
-
+pre-build:
+	go get -u -v $(REPO_MAIN)@VERSION_GITHASH
+	go mod vendor
 
 build:
-
 	# Project does ! go mod download...."
 		# ... pulls all code all the way down respective githashes
 	# jump to maintempate/client
@@ -49,10 +51,3 @@ fly:
 	# depends on genji 
 	# depends on instance delete polcies / behaviour
 	# depends on promotion of RELEASE_CHANNEL of fly ( WEAVE thing )
-
-
-	
-
-
-	
-
