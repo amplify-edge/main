@@ -48,7 +48,7 @@ VERIFY_TOKEN = ???
 ORG_ID  = ???
 PROJECT_ID = ???
 
-FRONTEND_CHANNEL = dev
+FRONTEND_RELEASE_CHANNEL = dev
 FRONTEND_URL_WEB = getcourage.org
 FRONTEND_URL_NATIVE = getcourage.org
 FRONTEND_GITHASH = $(shell git rev-parse HEAD)
@@ -62,6 +62,11 @@ BUILD_DATE = $(shell date -u +%Y%m%d%H%M%S)
 BUILD_GO_VERSION = $(shell go version | awk '{print $$3}')
 BUILD_GITBRANCH = $(shell git symbolic-ref --short HEAD)
 BUILD_FLUTTER_VERSION = $(shell flutter --version | awk '/channel/ {print $$2}')
+GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" -a -tags netgo
+FRONTEND_PREFIX = client/build/web/
+VERSION_OUTPUT_DIR = version
+VERSION_PREFIX = $(VERSION_OUTPUT_DIR)/
+EMBED_OUTPUT_DIR = main/server/
 
 this-all: this-gen this-build this-run-server this-run-client
 
@@ -71,8 +76,8 @@ this-print: ## print
 	$(MAKE) flu-print
 	$(MAKE) flu-gen-lang-print
 	$(MAKE) go-print
-	@echo FRONTEND_CHANNEL: $(FRONTEND_CHANNEL)
-	@echo FRONTEND_DOMAIN: $(FRONTEND_DOMAIN)
+	@echo FRONTEND_RELEASE_CHANNEL: $(FRONTEND_RELEASE_CHANNEL)
+	@echo FRONTEND_URL_WEB: $(FRONTEND_URL_WEB)
 	@echo FRONTEND_URL_NATIVE: $(FRONTEND_URL_NATIVE)
 	@echo FRONTEND_GITHASH: $(FRONTEND_GITHASH)
 	@echo FRONTEND_FLUTTER_CHANNEL: $(FRONTEND_FLUTTER_CHANNEL)
@@ -81,14 +86,17 @@ this-build-delete:
 	rm -rf $(SDK_BIN) $(SERVER_BIN)
 	rm -rf ./assets
 
+this-embed:
+	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_PREFIX)" $(FRONTEND_PREFIX)...
+	go-bindata -pkg version -fs -nomemcopy -o $(VERSION_OUTPUT_DIR)/version.go -prefix "$(VERSION_PREFIX)" $(VERSION_OUTPUT_DIR)/manifest.json
+
+
 this-build: this-build-delete this-version-gen
 	## Flutter first
 	$(MAKE) flu-web-build
-	go-bindata -fs -nomemcopy -o main/server/assets.go -prefix "client/build/web/" client/build/web/...
-	go-bindata -pkg version -fs -nomemcopy -o version/version.go -prefix "version/" version/manifest.json
-
-	go build -o $(SDK_BIN) main/sdk-cli/main.go
-	go build -o $(SERVER_BIN) main/server/*
+	$(MAKE) this-embed
+	$(GO_LDFLAGS) $(SDK_BIN) main/sdk-cli/main.go
+	$(GO_LDFLAGS) $(SERVER_BIN) main/server/*
 
 
 this-gen: this-gen-delete
@@ -120,13 +128,13 @@ this-config-gen: this-config-dep
 		-V SYS_ACCOUNT_SENDGRID_API_KEY=$(SYS_ACCOUNT_SENDGRID_API_KEY)> $(CONFIG_OUTPUT_DIR)/sysaccount.yml
 	jsonnet -S moddisco.jsonnet -V MOD_DISCO_DB_ENCRYPT_KEY=$(MOD_DISCO_DB_ENCRYPT_KEY) > $(CONFIG_OUTPUT_DIR)/moddisco.yml
 	jsonnet -S bootstrap-server.jsonnet \
- 		-V BOOTSTRAP_DOMAIN=$(FRONTEND_DOMAIN) > $(CONFIG_OUTPUT_DIR)/bootstrap-server.yml
+ 		-V BOOTSTRAP_DOMAIN=$(FRONTEND_URL_WEB) > $(CONFIG_OUTPUT_DIR)/bootstrap-server.yml
 	jsonnet -S bootstrap-client.jsonnet \
- 		-V BOOTSTRAP_DOMAIN=$(FRONTEND_DOMAIN) > $(CONFIG_OUTPUT_DIR)/bootstrap-client.yml
+ 		-V BOOTSTRAP_DOMAIN=$(FRONTEND_URL_WEB) > $(CONFIG_OUTPUT_DIR)/bootstrap-client.yml
 	jsonnet -S main.jsonnet > $(CONFIG_OUTPUT_DIR)/main.yml
 	jsonnet -S flutter-client.jsonnet \
- 		-V FRONTEND_CHANNEL=$(FRONTEND_CHANNEL) \
- 		-V FRONTEND_DOMAIN=$(FRONTEND_DOMAIN) \
+ 		-V FRONTEND_RELEASE_CHANNEL=$(FRONTEND_RELEASE_CHANNEL) \
+ 		-V FRONTEND_URL_WEB=$(FRONTEND_URL_WEB) \
  		-V FRONTEND_URL_NATIVE=$(FRONTEND_URL_NATIVE) \
  		-V FRONTEND_GITHASH=$(FRONTEND_GITHASH) \
  		-V FRONTEND_FLUTTER_CHANNEL=$(FRONTEND_FLUTTER_CHANNEL) > $(FLU_LIB_NAME)/assets/env.json
@@ -139,7 +147,7 @@ this-config-dep:
 	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb install && jb update
 
 this-version-gen:
-	mkdir -p version
+	mkdir -p $(VERSION_OUTPUT_DIR)
 	jsonnet -S build_info.jsonnet -V BUILD_FRONTEND_VERSION=$(BUILD_FRONTEND_VERSION) \
 		-V BUILD_SERVER_VERSION=$(BUILD_SERVER_VERSION) \
 		-V BUILD_CLI_VERSION=$(BUILD_CLI_VERSION) \
@@ -147,7 +155,7 @@ this-version-gen:
 		-V BUILD_FLUTTER_VERSION=$(BUILD_FLUTTER_VERSION) \
 		-V BUILD_GITBRANCH=$(BUILD_GITBRANCH) \
 		-V BUILD_USER=$(BUILD_USER) \
-		-V BUILD_DATE=$(BUILD_DATE) > version/manifest.json
+		-V BUILD_DATE=$(BUILD_DATE) > $(VERSION_OUTPUT_DIR)/manifest.json
 
 this-cert-gen: this-cert-gen-delete
 	@mkdir -p $(CERT_DIR)
