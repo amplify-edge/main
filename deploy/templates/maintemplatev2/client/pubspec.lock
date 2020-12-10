@@ -46,9 +46,11 @@ packages:
   bootstrapper:
     dependency: "direct main"
     description:
-      path: "../../../bootstrapper/service/flu"
-      relative: true
-    source: path
+      path: "deploy/bootstrapper/service/flu"
+      ref: HEAD
+      resolved-ref: ab90b8a65fbbd4102b43a08c92ad8b8160d44ba2
+      url: "git://github.com/getcouragenow/main.git"
+    source: git
     version: "0.0.1"
   build:
     dependency: transitive
@@ -500,9 +502,11 @@ packages:
   mod_disco:
     dependency: "direct main"
     description:
-      path: "../../../../../mod/mod-disco/service/flu"
-      relative: true
-    source: path
+      path: "mod-disco/service/flu"
+      ref: HEAD
+      resolved-ref: f1c5d528d6b72fa70cfaded90682625ab4b69f2d
+      url: "git://github.com/getcouragenow/mod.git"
+    source: git
     version: "1.0.0+1"
   nested:
     dependency: transitive
@@ -679,13 +683,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
-  rxdart:
-    dependency: "direct main"
-    description:
-      name: rxdart
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.24.1"
   shared_preferences:
     dependency: transitive
     description:
@@ -799,16 +796,18 @@ packages:
   sys_core:
     dependency: transitive
     description:
-      path: "../../../../../sys-share/sys-core/service/flu"
+      path: "../../../../../../../../../../../opt/flutter/.pub-cache/git/sys-share-d7fca509165d9cb5a1abe051e1888a80e20804c8/sys-core/service/flu"
       relative: true
     source: path
     version: "0.0.1"
   sys_share_sys_account_service:
     dependency: transitive
     description:
-      path: "../../../../../sys-share/sys-account/service/flu"
-      relative: true
-    source: path
+      path: "sys-account/service/flu"
+      ref: d7fca509165d9cb5a1abe051e1888a80e20804c8
+      resolved-ref: d7fca509165d9cb5a1abe051e1888a80e20804c8
+      url: "git://github.com/getcouragenow/sys-share.git"
+    source: git
     version: "1.0.0+1"
   term_glyph:
     dependency: transitive
