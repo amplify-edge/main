@@ -1,8 +1,8 @@
-package wrapper
+package maintemplatev2
 
 import (
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper/helpers"
+	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
@@ -39,7 +39,7 @@ func MainCliCommand() *cobra.Command {
 	logger := log.WithField("maintemplate", "v2")
 	// configs
 	logger.Infof("Running maintemplatev2-sdk-cli")
-	mainCfg, err := helpers.NewConfig(mainCfgPath)
+	mainCfg, err := wrapper.NewConfig(mainCfgPath)
 	if err != nil {
 		logger.Fatalf(errSourcingConfig, "main-wrapper", err)
 	}
@@ -47,7 +47,7 @@ func MainCliCommand() *cobra.Command {
 	if err != nil {
 		logger.Fatalf(errSourcingConfig, "bootstrapper", err)
 	}
-	mainCli, err := helpers.NewMainCLI(
+	mainCli, err := wrapper.NewMainCLI(
 		logger,
 		mainCfg,
 		bscfg,
