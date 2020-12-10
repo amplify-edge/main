@@ -51,9 +51,11 @@ print:
 dep-os: dep-os-delete
 	$(MAKE) hug-dep
 	$(MAKE) fly-dep
+	$(MAKE) gor-dep
 dep-os-delete:
 	$(MAKE) hug-dep-delete
 	$(MAKE) fly-dep-delete
+	$(MAKE) gor-dep-delete
 
 
 ### CODE RUN
