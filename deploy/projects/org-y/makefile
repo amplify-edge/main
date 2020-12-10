@@ -7,25 +7,59 @@ CONFIG_DIR = $(PWD)/config
 VENDOR_DIR = vendor
 VERSION_DIR = $(PWD)/version
 BIN_DIR = $(PWD)/bin-all
-CLI_BIN = $(BIN_DIR)/maintemplatev2-cli
 SERVER_BIN = $(BIN_DIR)/maintemplatev2
 TEMPLATE_DIR = github.com/getcouragenow/main/deploy/templates/maintemplatev2
 FRONTEND_PREFIX = flutter/build/
 FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)web/
 FRONTEND_ABS_PREFIX = $(PWD)/$(FRONTEND_PREFIX)
-SERVER_ENTRYPOINT = $(PWD)/cmd/server/*.go
-CLI_ENTRYPOINT = $(PWD)/cmd/cli/*.go
+GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" -a -tags netgo
 
-.PHONY: all
+FLY_CODE_PATH=$(PWD)/
+FLY_APP_BUILTIN=go
+FLY_APP_NAME=org-y
+FLY_APP_ORG=org
+FLY_APP_PORT=9074
+
+FLY_DNS_DOMAIN=fly.dev
+FLY_DNS_SUBDOMAIN=$(FLY_APP_NAME)
+
+DEPLOY_ENV=DEV
+DEPLOY_BASEURL=
+ifeq ($(DEPLOY_ENV),PROD)
+    DEPLOY_BASEURL=http://$(FLY_PROD_DNS_SUBDOMAIN).$(FLY_PROD_DNS_DOMAIN)
+endif
+ifeq ($(DEPLOY_ENV),DEV)
+     DEPLOY_BASEURL=http://$(FLY_DNS_SUBDOMAIN).$(FLY_DNS_DOMAIN)
+endif
+
+print:
+	@echo
+	$(MAKE) fly-print
+	@echo
+
+	@echo -- DEPLOY environment --
+	@echo DEPLOY_ENV: $(DEPLOY_ENV)
+	@echo DEPLOY_BASEURL: $(DEPLOY_BASEURL)
+	@echo
+
+dep-os: dep-os-delete
+	$(MAKE) hug-dep
+	$(MAKE) fly-dep
+	$(MAKE) gor-dep
+dep-os-delete:
+	$(MAKE) hug-dep-delete
+	$(MAKE) fly-dep-delete
+	$(MAKE) gor-dep-delete
+
 all: dep-delete dep gen build
 
 dep:
 	# Install go-bindata, jsonnet-bundler, go-jsonnet here
 	# Create dirs for binaries
-	mkdir -p $(BIN_DIR) $(VERSION_DIR) $(CONFIG_DIR)
+	mkdir -p $(BIN_DIR) $(VERSION_DIR) $(CONFIG_DIR) $(PWD)/certs
 
 dep-delete:
-	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR)
+	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR) $(PWD)/certs
 
 gen:
 	@jb update
@@ -34,15 +68,16 @@ gen:
 	@cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/config/* $(CONFIG_DIR)
 
 build: dep
+	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) flu-web-build
+	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_ABS_PREFIX)
+	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/certs $(PWD)/certs
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
 		$(MAKE) FRONTEND_PREFIX=$(FRONTEND_WEB_PREFIX) \
 				FRONTEND_ABS_PREFIX=$(FRONTEND_ABS_PREFIX) \
 				VERSION_OUTPUT_DIR=$(VERSION_DIR) \
 				EMBED_OUTPUT_DIR=cmd/server/  \
-				SERVER_ENTRYPOINT=$(SERVER_ENTRYPOINT) \
-				CLI_ENTRYPOINT=$(CLI_ENTRYPOINT) \
-				SDK_BIN=$(CLI_BIN) \
-				SERVER_BIN=$(SERVER_BIN) this-build
+				SERVER_BIN=$(SERVER_BIN) this-embed
+	$(GO_LDFLAGS) -o $(SERVER_BIN) $(FLY_CODE_PATH)
 
 config:
 	# nothing to do. manually manage it at project level

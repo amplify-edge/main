@@ -1,0 +1,32 @@
+{
+    "path":"build",
+    "dir_name":"linux-deb",
+    "app_name":"maintemplate",
+    "control":{
+        "options":{
+            "Package": "{{.app_name}}",
+            "Architecture": "amd64",
+            "Maintainer": "gcn",
+            "Priority": "optional",
+            "Version": "{{.version}}",
+            "Description": "A new Flutter project."
+        }
+    },
+    "desktop":{
+        "options":{
+            "Version": "{{.version}}",
+            "Type": "Application",
+            "Terminal": "false",
+            "Categories":" ",
+            "Name": "{{.app_name}}",
+            "Icon": "/usr/lib/{{.app_name}}/resources/icon.png",
+            "Exec": "/usr/lib/{{.app_name}}/{{.app_name}}"
+        }
+    },
+    "app":{
+        "../desktop/output/linux-amd64/ION Desktop App": "usr/lib/{{.app_name}}/{{.app_name}}"
+    },
+    "cmd":{
+        "dpkg-deb": "--build . {{.app_name}}-{{.version}}.deb"
+    }
+}

@@ -74,7 +74,7 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 	}
 	logger := log.WithField("maintemplate", "v2")
 
-	rootCmd := &cobra.Command{Use: "maintemplatev2"}
+	rootCmd := &cobra.Command{Use: "server"}
 	// persistent flags
 	rootCmd.PersistentFlags().StringVarP(&accountCfgPath, "sys-account-config-path", "a", defaultSysAccountConfigPath, "sys-account config path to use")
 	rootCmd.PersistentFlags().StringVarP(&discoCfgPath, "mod-disco-config-path", "i", defaultDiscoConfigPath, "mod-disco config path to use")

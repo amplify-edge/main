@@ -14,7 +14,7 @@ var (
 )
 
 const (
-	commandName            = "v2-sdk"
+	commandName            = "cli"
 	errCreateCli           = "error creating cli for " + commandName + ": %v"
 	defaultBsCliConfigPath = "./config/bootstrap-client.yml"
 	defaultCliDebug        = true
@@ -37,11 +37,6 @@ func MainCliCommand(version []byte) *cobra.Command {
 		log.SetLevel(logrus.InfoLevel)
 	}
 	logger := log.WithField("maintemplate", "v2")
-
-	// b, err := version.Asset("manifest.json")
-	// if err != nil {
-	// 	logger.Fatalf("unable to open build version information: %v", err)
-	// }
 	buildInfo, err := wrapper.ManifestFromFile(version)
 	if err != nil {
 		logger.Fatalf("unable to unmarshal build version information: %v", err)
