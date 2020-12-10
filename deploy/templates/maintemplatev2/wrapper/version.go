@@ -3,7 +3,6 @@ package wrapper
 import (
 	"fmt"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
-	"github.com/getcouragenow/sys-share/sys-core/service/fakehelper"
 	"github.com/spf13/cobra"
 )
 
@@ -34,12 +33,12 @@ func (b *BuildInformationManifest) Marshal() ([]byte, error) {
 }
 
 // Unmarshal from i.e. json or yaml
-func ManifestFromFile(path string) (*BuildInformationManifest, error) {
-	var b BuildInformationManifest
-	if err := fakehelper.UnmarshalFromFilepath(path, &b); err != nil {
+func ManifestFromFile(b []byte) (*BuildInformationManifest, error) {
+	var buildInfo BuildInformationManifest
+	if err := sharedConfig.UnmarshalJson(b, &buildInfo); err != nil {
 		return nil, err
 	}
-	return &b, nil
+	return &buildInfo, nil
 }
 
 func (b *BuildInformationManifest) JsonString() string {

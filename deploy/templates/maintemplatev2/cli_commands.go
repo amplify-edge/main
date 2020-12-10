@@ -2,6 +2,7 @@ package maintemplatev2
 
 import (
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
+	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/version"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -28,7 +29,6 @@ func MainCliCommand() *cobra.Command {
 	rootCmd.PersistentFlags().BoolVar(&isCliDebug, "debug", defaultCliDebug, "debug")
 	rootCmd.PersistentFlags().StringVarP(&bsCliCfgPath, "bootstrap-config-path", "b", defaultBsCliConfigPath, "bs config path to use")
 	rootCmd.PersistentFlags().StringVarP(&mainCfgPath, "main-config-path", "m", defaultMainCfgPath, "main config path to use")
-
 	// logging
 	log := logrus.New()
 	if isDebug {
@@ -37,6 +37,16 @@ func MainCliCommand() *cobra.Command {
 		log.SetLevel(logrus.InfoLevel)
 	}
 	logger := log.WithField("maintemplate", "v2")
+
+	b, err := version.Asset("version.json")
+	if err != nil {
+		logger.Fatalf("unable to open build version information: %v", err)
+	}
+	buildInfo, err := wrapper.ManifestFromFile(b)
+	if err != nil {
+		logger.Fatalf("unable to unmarshal build version information: %v", err)
+	}
+
 	// configs
 	logger.Infof("Running maintemplatev2-sdk-cli")
 	mainCfg, err := wrapper.NewConfig(mainCfgPath)
@@ -63,6 +73,7 @@ func MainCliCommand() *cobra.Command {
 		mainCli.SysBus.CobraCommand(),
 		mainCli.BootstrapCLI,
 		mainCli.ModDisco,
+		buildInfo.CobraCommand(),
 	)
 	return rootCmd
 }

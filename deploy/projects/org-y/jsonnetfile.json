@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "dependencies": [
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/shared.git"
+        }
+      },
+      "version": "master"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/main.git"
+        }
+      },
+      "version": "f23b0b1eb3633725b98824e2d38d1ee15bf4b24b"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/sys-share.git"
+        }
+      },
+      "version": "414dc77722364156d453cb578fcbf1179e27f620"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/sys.git"
+        }
+      },
+      "version": "8ad860946490656b3627f30b75a750dafed7cb6c"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/mod.git"
+        }
+      },
+      "version": "f1c5d528d6b72fa70cfaded90682625ab4b69f2d"
+    }
+  ],
+  "legacyImports": false
+}

@@ -11,3 +11,4 @@ vendor
 /bootstrap-data/client
 /assets
 /main/server/assets.go
+/version.json
