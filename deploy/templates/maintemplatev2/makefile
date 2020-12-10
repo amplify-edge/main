@@ -58,7 +58,7 @@ BUILD_FRONTEND_VERSION = $(FRONTEND_GITHASH)
 BUILD_SERVER_VERSION = $(shell git rev-parse HEAD)
 BUILD_CLI_VERSION = $(BUILD_SERVER_VERSION)
 BUILD_USER = $(GITR_USER)
-BUILD_DATE = $(shell date +%Y%M%D_%H%M%S)
+BUILD_DATE = $(shell date -u +%Y%m%d%H%M%S)
 BUILD_GO_VERSION = $(shell go version | awk '{print $$3}')
 BUILD_GITBRANCH = $(shell git symbolic-ref --short HEAD)
 BUILD_FLUTTER_VERSION = $(shell flutter --version | awk '/channel/ {print $$2}')
@@ -81,10 +81,11 @@ this-build-delete:
 	rm -rf $(SDK_BIN) $(SERVER_BIN)
 	rm -rf ./assets
 
-this-build: this-build-delete
+this-build: this-build-delete this-version-gen
 	## Flutter first
 	$(MAKE) flu-web-build
 	go-bindata -fs -nomemcopy -o main/server/assets.go -prefix "client/build/web/" client/build/web/...
+	go-bindata -pkg version -fs -nomemcopy -o version/version.go -prefix "version/" version/version.json
 
 	go build -o $(SDK_BIN) main/sdk-cli/main.go
 	go build -o $(SERVER_BIN) main/server/*
@@ -138,6 +139,7 @@ this-config-dep:
 	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb install && jb update
 
 this-version-gen:
+	mkdir -p version
 	jsonnet build_info.jsonnet -V BUILD_FRONTEND_VERSION=$(BUILD_FRONTEND_VERSION) \
 		-V BUILD_SERVER_VERSION=$(BUILD_SERVER_VERSION) \
 		-V BUILD_CLI_VERSION=$(BUILD_CLI_VERSION) \
@@ -145,7 +147,7 @@ this-version-gen:
 		-V BUILD_FLUTTER_VERSION=$(BUILD_FLUTTER_VERSION) \
 		-V BUILD_GITBRANCH=$(BUILD_GITBRANCH) \
 		-V BUILD_USER=$(BUILD_USER) \
-		-V BUILD_DATE=$(BUILD_DATE) > version.json
+		-V BUILD_DATE=$(BUILD_DATE) > version/version.json
 
 this-cert-gen: this-cert-gen-delete
 	@mkdir -p $(CERT_DIR)
