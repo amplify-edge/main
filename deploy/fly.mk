@@ -82,11 +82,7 @@ fly-console:
 fly-open:
 	cd $(FLY_CODE_PATH) && $(FLY_BIN) open
 
-	
-
 fly-status:
-	
-
 	@echo -- STATUS --
 	cd $(FLY_CODE_PATH) && $(FLY_BIN) status --watch
 	#cd $(FLY_CODE_PATH) && $(FLY_BIN) ips list
