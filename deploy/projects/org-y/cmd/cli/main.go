@@ -1,12 +1,17 @@
 package main
 
 import (
+	"github.com/getcouragenow/main/deploy/projects/org-y/version"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2"
 	"github.com/sirupsen/logrus"
 )
 
 func main() {
-	rootCmd := maintemplatev2.MainCliCommand()
+	b, err := version.Asset("manifest.json")
+	if err != nil {
+		logrus.Fatalf("unable to open build version information: %v", err)
+	}
+	rootCmd := maintemplatev2.MainCliCommand(b)
 	if err := rootCmd.Execute(); err != nil {
 		logrus.Fatalf("error running maintemplatev2: %v", err)
 	}
