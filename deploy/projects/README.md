@@ -1,6 +1,5 @@
 # Projects
 
-
 A way to hold all the details needed for different projects and record it all into git.
 
 why ?

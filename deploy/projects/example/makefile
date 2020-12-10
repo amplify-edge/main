@@ -10,10 +10,11 @@ DEPLOY_BOILERPLATE_FSPATH=./../..
 include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
 
 
 ### FLY Deployment Variables
-FLY_CODE_PATH=$(PWD)/cmd/server
+FLY_CODE_PATH=$(PWD)/main/cmd/server
 FLY_APP_BUILTIN=go
 FLY_APP_NAME=joe-gcn-example
 FLY_APP_ORG=personal
