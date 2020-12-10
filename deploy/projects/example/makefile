@@ -6,9 +6,10 @@ include $(BOILERPLATE_FSPATH)/gitr.mk
 
 # main repo make files ( will later be in boot) and fly and hug mapped to tools.mk.
 # also use the dwn.mk for ALL the other tools we need, so we dont need gopaths and that slowness.
-include ./../dwn.mk
-include ./../hug.mk
-include ./../fly.mk
+DEPLOY_BOILERPLATE_FSPATH=./../..
+include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
 
 
 ### FLY Deployment Variables
