@@ -23,7 +23,7 @@ ifeq ($(OS_detected),Linux)
     GOR_BIN_PLATFORM=Linux_arm64.tar.gz
 endif
 GOR_BIN_FILE=goreleaser_$(GOR_BIN_PLATFORM)
-GOR_BIN_URL=https://github.com/gohugoio/hugo/releases/download/v$(GOR_BIN_VERSION)/$(GOR_BIN_FILE)
+GOR_BIN_URL=https://github.com/goreleaser/goreleaser/releases/download/v$(GOR_BIN_VERSION)/$(GOR_BIN_FILE)
 
 
 gor-print:
