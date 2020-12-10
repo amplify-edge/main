@@ -1,6 +1,7 @@
 name: bootstrapper
 description: A new Flutter package project.
 version: 0.0.1
+publish_to: none
 author:
 homepage:
 
@@ -27,7 +28,11 @@ dependencies:
   grpc:
   protobuf:
   sys_share_sys_account_service:
-    path: ../../../../../sys-share/sys-account/service/flu
+    git:
+      url: git://github.com/getcouragenow/sys-share.git
+      path: sys-account/service/flu
+      ref: d7fca509165d9cb5a1abe051e1888a80e20804c8
+  #    path: ../../../../../sys-share/sys-account/service/flu
   file_picker: ^2.1.0
   code_editor: ^1.0.1
   clipboard: ^0.1.2+8
@@ -42,9 +47,9 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
 
-# To add assets to your package, add an assets section, like this:
- assets:
-   - ./i18n/
+  # To add assets to your package, add an assets section, like this:
+  assets:
+    - ./i18n/
 #   - images/a_dot_burr.jpeg
 #   - images/a_dot_ham.jpeg
 #
