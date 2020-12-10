@@ -1,6 +1,6 @@
 # Actually it's githash plus build date
-VERSION_GITHASH = $(shell git rev-parse --short HEAD)
-BUILD_TIME = $(shell date -u +%Y%M%d_%H:%M:%S)
+VERSION_GITHASH = $(shell git rev-parse --short HEAD) # just like go.mod's hash format
+BUILD_TIME = $(shell date -u +%Y%M%d_%H%M%S) # just like go.mod's time format
 REPO_MAIN = github.com/getcouragenow/main
 
 pre-build:

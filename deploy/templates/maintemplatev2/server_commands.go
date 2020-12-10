@@ -1,10 +1,10 @@
-package wrapper
+package maintemplatev2
 
 import (
 	"fmt"
 	"github.com/NYTimes/gziphandler"
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper/helpers"
+	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
@@ -82,7 +82,7 @@ func MainServerCommand(system http.FileSystem) *cobra.Command {
 
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
 		// configs
-		mainCfg, err := helpers.NewConfig(mainCfgPath)
+		mainCfg, err := wrapper.NewConfig(mainCfgPath)
 		if err != nil {
 			logger.Fatalf(errSourcingConfig, "main-wrapper", err)
 		}
@@ -101,7 +101,7 @@ func MainServerCommand(system http.FileSystem) *cobra.Command {
 			logger.Fatalf(errSourcingConfig, "bootstrapper", err)
 		}
 
-		mainSvc, err := helpers.NewMainService(
+		mainSvc, err := wrapper.NewMainService(
 			logger,
 			sscfg,
 			cbus,
