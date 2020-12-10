@@ -1,34 +1,40 @@
-# Actually it's githash plus build date
-VERSION_GITHASH = $(shell git rev-parse --short HEAD) # just like go.mod's hash format
-BUILD_TIME = $(shell date -u +%Y%M%d_%H%M%S) # just like go.mod's time format
+include ../../dwn.mk
+include ../../fly.mk
+include ../../hug.mk
+
+CONFIG_DIR = config
 VENDOR_DIR = vendor
+VERSION_DIR = version
 BIN_DIR = bin-all
 TEMPLATE_DIR = github.com/getcouragenow/main/deploy/templates/maintemplatev2
-GO_LDFLAGS = -ldflags "-X main.build=${VERSION_GITHASH}" -a -tags netgo
+FRONTEND_PREFIX = flutter/build/
+FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)/web/
 
 .PHONY: all
-
-all: dep-delete dep build
+all: dep-delete dep gen build
 
 dep:
 	# Install go-bindata, jsonnet-bundler, go-jsonnet here
 	# Create dirs for binaries
-	mkdir -p $(BIN_DIR)
+	mkdir -p $(BIN_DIR) $(VERSION_DIR)
 
 dep-delete:
-	rm -rf {$(VENDOR_DIR),$(BIN_DIR)}
+	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR)
+
+gen:
+	@jb update
+	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR)/client && flutter pub get
+	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
+	@cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/config/* $(CONFIG_DIR)
 
 build: dep
-	jb install
-	cd $(VENDOR_DIR)/$(TEMPLATE_DIR)/client && flutter pub get
-	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) flu-gen-lang-all
-	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-config-gen
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) flu-web-build
-	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build flutter/build
-	go-bindata -fs -nomemcopy -o cmd/server/assets.go -prefix "flutter/build/web" flutter/build/web/...
-	CGO_ENABLED=0 go build -o $(BIN_DIR)/maintemplatev2 $(GO_LDFLAGS) cmd/server/*
-	CGO_ENABLED=0 go build -o $(BIN_DIR)/maintemplatev2-sdk-cli $(GO_LDFLAGS) cmd/cli/*
-	## TODO VERSION
+	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_PREFIX)
+	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
+		$(MAKE) FRONTEND_PREFIX=$(FRONTEND_WEB_PREFIX) \
+				VERSION_OUTPUT_DIR=$(VERSION_DIR) \
+				EMBED_OUTPUT_DIR=cmd/server/ this-embed
+
 	# Project does ! go mod download...."
 		# ... pulls all code all the way down respective githashes
 	# jump to maintempate/client

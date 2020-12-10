@@ -30,6 +30,8 @@ const (
 	defaultBsConfigPath         = "./config/bootstrap-server.yml"
 	defaultMainCfgPath          = "./config/main.yml"
 	defaultDebug                = true
+	defaultCorsHeaders = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
+	flyHeaders = "Fly-Client-IP, Fly-Forwarded-Port, Fly-Region, Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
 )
 
 var (
@@ -168,7 +170,7 @@ func createHttpHandler(logger *logrus.Entry, isGzipped bool, fileServer http.Han
 		Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Access-Control-Allow-Origin", "*")
 			w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-			w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web")
+			w.Header().Set("Access-Control-Allow-Headers", fmt.Sprintf("%s,%s", defaultCorsHeaders, flyHeaders))
 			logger.Infof("Serving Endpoint: %s", r.URL.Path)
 			if strings.Contains(r.URL.Path, "v2") {
 				grpcWebServer.ServeHTTP(w, r)
