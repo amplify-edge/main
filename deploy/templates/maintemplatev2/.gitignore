@@ -12,3 +12,5 @@ vendor
 /assets
 /main/server/assets.go
 /version.json
+/version/manifest.json
+/version/version.go
