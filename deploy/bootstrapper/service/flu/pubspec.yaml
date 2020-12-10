@@ -31,7 +31,7 @@ dependencies:
     git:
       url: git://github.com/getcouragenow/sys-share.git
       path: sys-account/service/flu
-      ref: d7fca509165d9cb5a1abe051e1888a80e20804c8
+      ref: 414dc77722364156d453cb578fcbf1179e27f620
   #    path: ../../../../../sys-share/sys-account/service/flu
   file_picker: ^2.1.0
   code_editor: ^1.0.1
