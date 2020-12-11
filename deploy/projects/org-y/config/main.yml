@@ -1,5 +1,5 @@
 "mainConfig":
-  "domain": "getcourage.org"
+  "domain": "morning-forest-6352"
   "embedDir": "./client/build/web"
   "host": "127.0.0.1"
   "isLocal": true

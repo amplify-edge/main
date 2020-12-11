@@ -58,9 +58,9 @@ print:
 
 dep-os:
 	# Install go-bindata, jsonnet-bundler, go-jsonnet here
-	GO111MODULE="on" go get github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb
-	go get -u -v github.com/go-bindata/go-bindata/...
-	go get -u -v github.com/google/go-jsonnet/cmd/jsonnet
+#	GO111MODULE="off" go get github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb
+#	go get -u -v github.com/go-bindata/go-bindata/...
+#	go get -u -v github.com/google/go-jsonnet/cmd/jsonnet
 #	$(MAKE) hug-dep
 #	$(MAKE) fly-dep
 #	$(MAKE) gor-dep
@@ -75,7 +75,7 @@ all: dep-delete dep gen build
 dep: dep-os
 	# Create dirs for binaries
 	mkdir -p $(BIN_DIR) $(VERSION_DIR) $(CONFIG_DIR)
-	@go mod vendor
+	@#go mod vendor
 
 dep-delete:
 	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR) $(PWD)/certs
@@ -98,7 +98,17 @@ build: dep
 				SERVER_ENTRYPOINT=$(SERVER_ENTRYPOINT) \
                 CLI_ENTRYPOINT=$(CLI_ENTRYPOINT) \
                 SDK_BIN=$(CLI_BIN) \
-				SERVER_BIN=$(SERVER_BIN) this-build
+				SERVER_BIN=$(SERVER_BIN) this-version-gen
+	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
+		$(MAKE) FRONTEND_PREFIX=$(FRONTEND_WEB_PREFIX) \
+				FRONTEND_ABS_PREFIX=$(FRONTEND_ABS_PREFIX) \
+				VERSION_OUTPUT_DIR=$(VERSION_DIR) \
+				EMBED_OUTPUT_DIR=cmd/server/  \
+				SERVER_ENTRYPOINT=$(SERVER_ENTRYPOINT) \
+                CLI_ENTRYPOINT=$(CLI_ENTRYPOINT) \
+                SDK_BIN=$(CLI_BIN) \
+				SERVER_BIN=$(SERVER_BIN) this-embed
+	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
 
 docker:
 	docker build -t "org-y:${IMAGE_REF}" \

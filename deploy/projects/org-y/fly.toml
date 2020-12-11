@@ -1,23 +1,20 @@
-# fly.toml file generated for org-y on 2020-12-10T12:20:05Z
+# fly.toml file generated for morning-forest-6352 on 2020-12-11T20:17:13+07:00
 
-app = "org-y"
+app = "morning-forest-6352"
 
-[mounts]
-source = "org_y_volume"
-destination = "/app/db"
 
 [[services]]
-internal_port = 9074
-protocol = "tcp"
+  internal_port = 9074
+  protocol = "tcp"
 
-[services.concurrency]
-hard_limit = 25
-soft_limit = 20
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
 
-[[services.ports]]
-handlers = ["tls"]
-port = "443"
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "443"
 
-[[services.tcp_checks]]
-interval = 10000
-timeout = 2000
+  [[services.tcp_checks]]
+    interval = 10000
+    timeout = 2000

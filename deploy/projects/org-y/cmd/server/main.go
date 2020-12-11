@@ -1,9 +1,10 @@
 package main
 
 import (
+	"github.com/sirupsen/logrus"
+
 	"github.com/getcouragenow/main/deploy/projects/org-y/version"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2"
-	"github.com/sirupsen/logrus"
 )
 
 func main() {
