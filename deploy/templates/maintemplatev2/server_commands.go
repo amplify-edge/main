@@ -128,10 +128,7 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 				grpcMw.WithUnaryServerChain(unaryInterceptors...),
 				grpcMw.WithStreamServerChain(streamInterceptors...),
 			)
-		} else if mainCfg.MainConfig.TLS.Enable && !mainCfg.MainConfig.TLS.IsLocal {
-			logger.Info("Running non-local server with tls enabled")
-			tlsCreds, err := sharedConfig.LoadTLSKeypair(mainCfg.MainConfig.TLS.LocalCertPath, mainCfg.MainConfig.TLS.LocalCertKeyPath)
-		} else {
+		}  else {
 			grpcServer = grpc.NewServer(
 				grpcMw.WithUnaryServerChain(unaryInterceptors...),
 				grpcMw.WithStreamServerChain(streamInterceptors...),
@@ -148,8 +145,7 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 			fileServer := http.FileServer(FileSystem{http.Dir(mainCfg.MainConfig.EmbedDir)})
 			httpServer := createHttpHandler(logger, false, fileServer, grpcWebServer)
 			return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
-		} else if !mainCfg.MainConfig.IsLocal && mainCfg.MainConfig.TLS.Enable {
-
+		// } else if !mainCfg.MainConfig.IsLocal && mainCfg.MainConfig.TLS.Enable {
 		} else {
 			fileServer := http.FileServer(system)
 			httpServer := createHttpHandler(logger, true, fileServer, grpcWebServer)
