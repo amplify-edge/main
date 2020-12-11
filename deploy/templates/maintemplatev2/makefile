@@ -101,7 +101,7 @@ this-embed:
 this-build: this-build-delete this-version-gen
 	## Flutter first
 	$(MAKE) flu-web-build
-	cp -Rv $(FRONTEND_BUILD_DIR) $(FRONTEND_ABS_PREFIX)
+#	cp -Rv $(FRONTEND_BUILD_DIR) $(FRONTEND_ABS_PREFIX)
 	$(MAKE) this-embed
 	$(GO_LDFLAGS) -o $(SDK_BIN) $(CLI_ENTRYPOINT)
 	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)

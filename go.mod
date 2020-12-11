@@ -7,7 +7,7 @@ require (
 	github.com/getcouragenow/mod v0.0.0-20201210114124-7544fa4b6846
 	github.com/getcouragenow/protoc-gen-cobra v0.3.1-0.20201005114840-ccc8cd57bcdc
 	github.com/getcouragenow/sys v0.0.0-20201210114100-bbce22eadce6
-	github.com/getcouragenow/sys-share v0.0.0-20201210073032-056b76a9a358
+	github.com/getcouragenow/sys-share v0.0.0-20201211105713-1a260f05ca7d
 	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/improbable-eng/grpc-web v0.13.0
