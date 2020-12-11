@@ -1,4 +1,4 @@
-package main
+package cli
 
 import (
 	"github.com/getcouragenow/main/deploy/projects/org-y/version"
@@ -11,8 +11,8 @@ func main() {
 	if err != nil {
 		logrus.Fatalf("unable to open build version information: %v", err)
 	}
-	rootCmd := maintemplatev2.MainCliCommand(b)
-	if err := rootCmd.Execute(); err != nil {
+	cliCmd := maintemplatev2.MainCliCommand(b)
+	if err := cliCmd.Execute(); err != nil {
 		logrus.Fatalf("error running maintemplatev2: %v", err)
 	}
 }

@@ -1,0 +1,23 @@
+# fly.toml file generated for org-y on 2020-12-10T12:20:05Z
+
+app = "org-y"
+
+[mounts]
+source = "org_y_volume"
+destination = "/app/db"
+
+[[services]]
+internal_port = 9074
+protocol = "tcp"
+
+[services.concurrency]
+hard_limit = 25
+soft_limit = 20
+
+[[services.ports]]
+handlers = ["tls"]
+port = "443"
+
+[[services.tcp_checks]]
+interval = 10000
+timeout = 2000

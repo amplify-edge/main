@@ -1,0 +1,12 @@
+{
+    "path": "build",
+    "dir_name": "windows-msi",
+    "description": "flutter application",
+    "manufacturer":"llc",
+    "app_name": "maintemplate",
+    "icon": "../desktop/resources/icon.ico",
+    "exec": "../desktop/output/windows-386/ION Desktop App.exe",
+    "cmd": {
+        "wixl": "maintemplate.wxs"
+    }
+}
