@@ -1,3 +1,8 @@
 bin-all
 vendor
 /jb-build/
+
+flyctl
+hugo
+goreleaser
+completions
