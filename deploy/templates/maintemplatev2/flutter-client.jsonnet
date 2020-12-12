@@ -10,6 +10,8 @@ local cfg = {
         "ur",
    ],
    channel: loadVar(prefixName="FRONTEND", env="RELEASE_CHANNEL").val,
+   host: "127.0.0.1",
+   port: 9074,
    url: loadVar(prefixName="FRONTEND", env="URL_WEB").val,
    url_native: loadVar(prefixName="FRONTEND", env="URL_NATIVE").val,
    githash: loadVar(prefixName="FRONTEND", env="GITHASH").val,

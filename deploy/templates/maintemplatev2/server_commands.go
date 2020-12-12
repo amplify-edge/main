@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/NYTimes/gziphandler"
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/version"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
@@ -30,8 +29,8 @@ const (
 	defaultBsConfigPath         = "./config/bootstrap-server.yml"
 	defaultMainCfgPath          = "./config/main.yml"
 	defaultDebug                = true
-	defaultCorsHeaders = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
-	flyHeaders = "Fly-Client-IP, Fly-Forwarded-Port, Fly-Region, Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
+	defaultCorsHeaders          = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
+	flyHeaders                  = "Fly-Client-IP, Fly-Forwarded-Port, Fly-Region, Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
 )
 
 var (
@@ -65,7 +64,7 @@ func (mfs FileSystem) Open(path string) (http.File, error) {
 	return f, nil
 }
 
-func MainServerCommand(system http.FileSystem) *cobra.Command {
+func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 	// logging
 	log := logrus.New()
 	if isDebug {
@@ -75,7 +74,7 @@ func MainServerCommand(system http.FileSystem) *cobra.Command {
 	}
 	logger := log.WithField("maintemplate", "v2")
 
-	rootCmd := &cobra.Command{Use: "maintemplatev2"}
+	rootCmd := &cobra.Command{Use: "server"}
 	// persistent flags
 	rootCmd.PersistentFlags().StringVarP(&accountCfgPath, "sys-account-config-path", "a", defaultSysAccountConfigPath, "sys-account config path to use")
 	rootCmd.PersistentFlags().StringVarP(&discoCfgPath, "mod-disco-config-path", "i", defaultDiscoConfigPath, "mod-disco config path to use")
@@ -119,7 +118,7 @@ func MainServerCommand(system http.FileSystem) *cobra.Command {
 		var grpcServer *grpc.Server
 		unaryInterceptors, streamInterceptors := mainSvc.Sys.InjectInterceptors(nil, nil)
 		if mainCfg.MainConfig.TLS.Enable && mainCfg.MainConfig.TLS.IsLocal {
-			logger.Info("Running server with tls enabled")
+			logger.Info("Running local server with tls enabled")
 			tlsCreds, err := sharedConfig.LoadTLSKeypair(mainCfg.MainConfig.TLS.LocalCertPath, mainCfg.MainConfig.TLS.LocalCertKeyPath)
 			if err != nil {
 				logger.Fatalf("error loading local tls certificate path and key path: %v", err)
@@ -129,7 +128,7 @@ func MainServerCommand(system http.FileSystem) *cobra.Command {
 				grpcMw.WithUnaryServerChain(unaryInterceptors...),
 				grpcMw.WithStreamServerChain(streamInterceptors...),
 			)
-		} else {
+		}  else {
 			grpcServer = grpc.NewServer(
 				grpcMw.WithUnaryServerChain(unaryInterceptors...),
 				grpcMw.WithStreamServerChain(streamInterceptors...),
@@ -146,18 +145,15 @@ func MainServerCommand(system http.FileSystem) *cobra.Command {
 			fileServer := http.FileServer(FileSystem{http.Dir(mainCfg.MainConfig.EmbedDir)})
 			httpServer := createHttpHandler(logger, false, fileServer, grpcWebServer)
 			return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
+		// } else if !mainCfg.MainConfig.IsLocal && mainCfg.MainConfig.TLS.Enable {
+		} else {
+			fileServer := http.FileServer(system)
+			httpServer := createHttpHandler(logger, true, fileServer, grpcWebServer)
+			return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, "", "")
 		}
-		localTlsCertPath := mainCfg.MainConfig.TLS.LocalCertPath
-		localTlsKeyPath := mainCfg.MainConfig.TLS.LocalCertKeyPath
-		fileServer := http.FileServer(system)
-		httpServer := createHttpHandler(logger, true, fileServer, grpcWebServer)
-		return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
 	}
-	b, err := version.Asset("manifest.json")
-	if err != nil {
-		logger.Fatalf("unable to open build version information: %v", err)
-	}
-	buildInfo, err := wrapper.ManifestFromFile(b)
+
+	buildInfo, err := wrapper.ManifestFromFile(version)
 	if err != nil {
 		logger.Fatalf("unable to unmarshal build version information: %v", err)
 	}

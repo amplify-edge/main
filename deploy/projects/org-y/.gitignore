@@ -1,2 +1,3 @@
 bin-all
 vendor
+/jb-build/

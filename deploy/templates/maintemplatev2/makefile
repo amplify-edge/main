@@ -67,11 +67,13 @@ BUILD_FLUTTER_VERSION = $(shell flutter --version | awk '/channel/ {print $$2}')
 GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" -a -tags netgo
 FRONTEND_BUILD_DIR = client/build/web/
 FRONTEND_PREFIX = client/build/web/
+FRONTEND_ABS_PREFIX = $(PWD)/client/build/web/
 VERSION_OUTPUT_DIR = version
 VERSION_PREFIX = $(VERSION_OUTPUT_DIR)/
 EMBED_OUTPUT_DIR = main/server/
 SERVER_ENTRYPOINT = main/server/*
 CLI_ENTRYPOINT = main/sdk-cli/*
+
 
 this-all: this-gen this-build this-run-server this-run-client
 
@@ -99,10 +101,10 @@ this-embed:
 this-build: this-build-delete this-version-gen
 	## Flutter first
 	$(MAKE) flu-web-build
-	cp -Rv $(FRONTEND_BUILD_DIR) $(FRONTEND_PREFIX)
+#	cp -Rv $(FRONTEND_BUILD_DIR) $(FRONTEND_ABS_PREFIX)
 	$(MAKE) this-embed
-	$(GO_LDFLAGS) $(SDK_BIN) $(CLI_ENTRYPOINT)
-	$(GO_LDFLAGS) $(SERVER_BIN) $(SERVER_ENTRYPOINT)
+	$(GO_LDFLAGS) -o $(SDK_BIN) $(CLI_ENTRYPOINT)
+	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
 
 
 this-gen: this-gen-delete

@@ -1,0 +1,39 @@
+"modDiscoConfig":
+  "busClientRoutes":
+  - "/v2.sys_account.services.OrgProjService/NewProject"
+  - "/v2.sys_account.services.OrgProjService/UpdateProject"
+  - "/v2.sys_account.services.OrgProjService/DeleteProject"
+  - "/v2.sys_account.services.OrgProjService/NewOrg"
+  - "/v2.sys_account.services.OrgProjService/UpdateOrg"
+  - "/v2.sys_account.services.OrgProjService/DeleteOrg"
+  "jwt":
+    "access":
+      "expiry": 3600
+      "secret": "some_jwt_access_secret"
+    "refresh":
+      "expiry": 360000
+      "secret": "some_jwt_refresh_secret"
+  "sysCoreConfig":
+    "cron":
+      "backupDir": "./db/mod/backup"
+      "backupSchedule": "@daily"
+      "rotateSchedule": "@every 24h"
+    "db":
+      "dbDir": "./db/mod"
+      "deletePrevious": true
+      "encryptKey": "testEncryptKey"
+      "name": "disco.db"
+      "rotationDuration": 1
+  "sysFileConfig":
+    "cron":
+      "backupDir": "./db/mod/file-backup"
+      "backupSchedule": "@daily"
+      "rotateSchedule": "@every 24h"
+    "db":
+      "dbDir": "./db/mod"
+      "deletePrevious": true
+      "encryptKey": "testEncryptKey"
+      "name": "disco-file.db"
+      "rotationDuration": 1
+  "unauthenticatedRoutes":
+  - "/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo"

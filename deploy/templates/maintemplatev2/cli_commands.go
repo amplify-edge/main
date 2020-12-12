@@ -5,7 +5,6 @@ import (
 	"github.com/spf13/cobra"
 
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/version"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 )
 
@@ -15,13 +14,13 @@ var (
 )
 
 const (
-	commandName            = "v2-sdk"
+	commandName            = "cli"
 	errCreateCli           = "error creating cli for " + commandName + ": %v"
 	defaultBsCliConfigPath = "./config/bootstrap-client.yml"
 	defaultCliDebug        = true
 )
 
-func MainCliCommand() *cobra.Command {
+func MainCliCommand(version []byte) *cobra.Command {
 	var rootCmd = &cobra.Command{
 		Use:   commandName,
 		Short: commandName,
@@ -38,12 +37,7 @@ func MainCliCommand() *cobra.Command {
 		log.SetLevel(logrus.InfoLevel)
 	}
 	logger := log.WithField("maintemplate", "v2")
-
-	b, err := version.Asset("manifest.json")
-	if err != nil {
-		logger.Fatalf("unable to open build version information: %v", err)
-	}
-	buildInfo, err := wrapper.ManifestFromFile(b)
+	buildInfo, err := wrapper.ManifestFromFile(version)
 	if err != nil {
 		logger.Fatalf("unable to unmarshal build version information: %v", err)
 	}
