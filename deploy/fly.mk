@@ -40,11 +40,14 @@ FLY_DNS_SUBDOMAIN=hello			# SubDomain for Certs
 
 
 fly-print:
-
-	@echo -- Fly Dep --
+	@echo
+	@echo "-- FlyCTL (fly) Dep --"
 	@echo FLY_BIN_URL: $(FLY_BIN_URL)
 	@echo FLY_BIN_URLFILE: $(FLY_BIN_FILE)
 	@echo FLY_BIN: $(FLY_BIN)
+	@echo
+	@echo
+	$(MAKE) DWN_URL=$(FLY_BIN_URL) DWN_FILENAME=$(FLY_BIN_FILE) DWN_BIN_FSPATH=$(FLY_BIN) dwn-print 
 	@echo
 
 	@echo -- Fly Variables --

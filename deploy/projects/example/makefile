@@ -11,6 +11,8 @@ include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/jb.mk
+
 
 
 ### FLY Deployment Variables
