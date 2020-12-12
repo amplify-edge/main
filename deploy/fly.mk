@@ -12,7 +12,7 @@ include=./dwn.mk
 FLY_BIN=$(PWD)/flyctl
 # https://github.com/superfly/flyctl/releases/tag/v0.0.153
 # https://github.com/superfly/flyctl/releases/download/v0.0.153/flyctl_0.0.153_macOS_x86_64.tar.gz
-FLY_BIN_VERSION=0.0.153
+FLY_BIN_VERSION=0.0.154
 FLY_BIN_PLATFORM=??
 # switch for OS (https://stackoverflow.com/questions/714100/os-detecting-makefile)
 ifeq ($(OS_detected),Windows)
