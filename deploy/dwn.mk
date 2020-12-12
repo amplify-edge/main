@@ -48,19 +48,16 @@ ifeq ($(OS_detected),Darwin)
 	@echo 
 	@echo Detected Darwin ...
 	curl -LO $(DWN_URL)
+	tar -zxvf $(DWN_FILENAME)
 
 	# check file extension
-ifeq ($(DWN_FILENAME_EXT),'.gz')
-	@echo Detected file ext .gz ...
-    tar -zxvf $(DWN_FILENAME)
-else
-	@echo Detected file ext "" ...
-    # if "none", its a pure binary, so just rename it to the requires DWN_BIN_FSPATH
-endif
-	
-	
-	
-
+#ifeq ($(DWN_FILENAME_EXT),'.gz')
+#	@echo Detected file ext .gz ...
+#    tar -zxvf $(DWN_FILENAME)
+#else
+#	@echo Detected file ext "" ...
+#    # if "none", its a pure binary, so just rename it to the requires DWN_BIN_FSPATH
+#endif
 
 	
 endif
