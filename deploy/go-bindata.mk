@@ -1,7 +1,5 @@
 # go-bindata (gbd)
-# https://github.com/go-bindata/go-bindata
-# our fork that does binary releases: https://github.com/getcouragenow/go-bindata
-
+# https://github.com/go-bindata/go-bindata/releases/tag/v3.1.3
 include=./dwn.mk
 
 ## TODO
