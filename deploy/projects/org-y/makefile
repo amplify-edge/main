@@ -74,9 +74,8 @@ dep-os:
 #	GO111MODULE="off" go get github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb
 #	go get -u -v github.com/go-bindata/go-bindata/...
 #	go get -u -v github.com/google/go-jsonnet/cmd/jsonnet
-#	$(MAKE) hug-dep
-#	$(MAKE) fly-dep
-#	$(MAKE) gor-dep
+	$(MAKE) fly-dep
+	$(MAKE) gor-dep
 
 dep-os-delete:
 	$(MAKE) hug-dep-delete
