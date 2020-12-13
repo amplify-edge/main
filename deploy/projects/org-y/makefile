@@ -1,5 +1,3 @@
-
-
 # boot repo makefiles
 BOILERPLATE_FSPATH=./../../../../boot/boilerplate
 include $(BOILERPLATE_FSPATH)/help.mk

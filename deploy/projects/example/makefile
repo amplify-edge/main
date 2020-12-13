@@ -10,10 +10,17 @@ DEPLOY_BOILERPLATE_FSPATH=./../..
 include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/hcl.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/jb.mk
 
-
+# HCL Deployment Variables
+HCL_CODE_PATH=$(PWD)/main/cmd/server
+HCL_APP_NAME=joe-hellofly
+HCL_APP_ORG=getcourage.org
+HCL_APP_PORT=8080
+HCL_DNS_DOMAIN=getcourage.org
+HCL_DNS_SUBDOMAIN=hello
 
 ### FLY Deployment Variables
 FLY_CODE_PATH=$(PWD)/main/cmd/server
@@ -53,10 +60,12 @@ print:
 dep-os: dep-os-delete
 	$(MAKE) hug-dep
 	$(MAKE) fly-dep
+	$(MAKE) hcl-dep
 	$(MAKE) gor-dep
 dep-os-delete:
 	$(MAKE) hug-dep-delete
 	$(MAKE) fly-dep-delete
+	$(MAKE) hcl-dep-delete
 	$(MAKE) gor-dep-delete
 
 
