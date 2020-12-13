@@ -1,5 +1,5 @@
 # jsonnet-bundler, go-jsonnet 
-# 
+# NOT FINISHED: They dont release a darwin version ! this approahc is not working.
 
 include=./dwn.mk
 
@@ -10,9 +10,9 @@ include=./dwn.mk
 ### BIN
 JSONNET_BIN=$(PWD)/goreleaser
 # https://github.com/goreleaser/goreleaser/releases/tag/v0.149.0
-# https://github.com/goreleaser/goreleaser/releases/download/v0.149.0/goreleaser_Windows_x86_64.zip
-# https://github.com/goreleaser/goreleaser/releases/download/v0.149.0/goreleaser_Darwin_x86_64.tar.gz
-# https://github.com/goreleaser/goreleaser/releases/download/v0.149.0/goreleaser_Linux_arm64.tar.gz
+# WINDOWS: https://github.com/google/go-jsonnet/releases/download/v0.17.0/go-jsonnet_0.17.0_Windows_x86_64.tar.gz
+# DARINW: NONE. His is nuts.
+# LINUX: 
 JSONNET_BIN_VERSION=0.149.0
 JSONNET_BIN_PLATFORM=??
 # switch for OS (https://stackoverflow.com/questions/714100/os-detecting-makefile)
