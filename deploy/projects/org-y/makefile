@@ -1,7 +1,18 @@
-#include fly.mk
-#include gbd.mk
-#include gor.mk
-#include hug.mk
+# boot repo makefiles
+BOILERPLATE_FSPATH=./../../../../boot/boilerplate
+include $(BOILERPLATE_FSPATH)/help.mk
+include $(BOILERPLATE_FSPATH)/os.mk
+include $(BOILERPLATE_FSPATH)/gitr.mk
+
+# main repo make files ( will later be in boot) and fly and hug mapped to tools.mk.
+# also use the dwn.mk for ALL the other tools we need, so we dont need gopaths and that slowness.
+DEPLOY_BOILERPLATE_FSPATH=./../..
+include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/jb.mk
+
 
 CONFIG_DIR = $(PWD)/config
 VENDOR_DIR = jb-build
@@ -73,8 +84,8 @@ dep-os:
 		brew install jb \
 		brew install go-jsonnet; \
 	fi
-	curl -L https://github.com/go-bindata/go-bindata/archive/v3.1.3.tar.gz | tar xvz -C /tmp && \
-		cd /tmp/go-bindata-3.1.3/go-bindata && go build && sudo install -Dm755 go-bindata /usr/local/bin/go-bindata
+	curl -L https://github.com/go-bindata/go-bindata/archive/v$(GO_BINDATA_VERSION).tar.gz | tar xvz -C /tmp && \
+		cd /tmp/go-bindata-$(GO_BINDATA_VERSION)/go-bindata && go build && sudo install -Dm755 go-bindata /usr/local/bin/go-bindata
 	git clone https://github.com/FiloSottile/mkcert /tmp/mkcert && cd /tmp/mkcert && \
 		go build -ldflags "-X main.Version=$(git describe --tags)" && sudo install -Dm755 mkcert /usr/local/bin/mkcert
 	git clone https://github.com/getcouragenow/shared /tmp/shared && \
@@ -83,6 +94,7 @@ dep-os:
 #	$(MAKE) hug-dep
 #	$(MAKE) fly-dep
 #	$(MAKE) gor-dep
+
 
 dep-os-delete:
 	$(MAKE) hug-dep-delete

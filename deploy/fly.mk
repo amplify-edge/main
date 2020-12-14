@@ -1,4 +1,4 @@
-# FlyCtl ( Fly)
+# FlyCtl ( Fly )
 # https://fly.io/docs/hands-on/sign-up/
 # https://github.com/fly-examples
 # https://community.fly.io/
@@ -12,7 +12,7 @@ include=./dwn.mk
 FLY_BIN=$(PWD)/flyctl
 # https://github.com/superfly/flyctl/releases/tag/v0.0.153
 # https://github.com/superfly/flyctl/releases/download/v0.0.153/flyctl_0.0.153_macOS_x86_64.tar.gz
-FLY_BIN_VERSION=0.0.153
+FLY_BIN_VERSION=0.0.154
 FLY_BIN_PLATFORM=??
 # switch for OS (https://stackoverflow.com/questions/714100/os-detecting-makefile)
 ifeq ($(OS_detected),Windows)
@@ -40,11 +40,14 @@ FLY_DNS_SUBDOMAIN=hello			# SubDomain for Certs
 
 
 fly-print:
-
-	@echo -- Fly Dep --
+	@echo
+	@echo "-- FlyCTL (fly) Dep --"
 	@echo FLY_BIN_URL: $(FLY_BIN_URL)
 	@echo FLY_BIN_URLFILE: $(FLY_BIN_FILE)
 	@echo FLY_BIN: $(FLY_BIN)
+	@echo
+	@echo
+	$(MAKE) DWN_URL=$(FLY_BIN_URL) DWN_FILENAME=$(FLY_BIN_FILE) DWN_BIN_FSPATH=$(FLY_BIN) dwn-print 
 	@echo
 
 	@echo -- Fly Variables --
