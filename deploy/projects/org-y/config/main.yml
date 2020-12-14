@@ -1,12 +1,12 @@
 "mainConfig":
-  "domain": "getcourage.org"
+  "domain": "withered-morning-8272.fly.dev"
   "embedDir": "./client/build/web"
   "host": "127.0.0.1"
   "isLocal": true
-  "port": 9074
+  "port": 8080
   "tls":
-    "enable": true
-    "isLocal": true
+    "enable": false
+    "isLocal": false
     "localCertKeyPath": "./certs/local.key.pem"
     "localCertPath": "./certs/local.pem"
     "rootCaPath": "./certs/rootca.pem"

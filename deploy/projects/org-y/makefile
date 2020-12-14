@@ -15,15 +15,14 @@
 
 
 CONFIG_DIR = $(PWD)/config
-VENDOR_DIR = jb-build
+#VENDOR_DIR = jb-build
+VENDOR_DIR = $(GOPATH)/src
 VERSION_DIR = $(PWD)/version
 BIN_DIR = $(PWD)/bin-all
 CLI_BIN = $(BIN_DIR)/maintemplatev2-cli
 SERVER_BIN = $(BIN_DIR)/maintemplatev2
-TEMPLATE_DIR = github.com/getcouragenow/main/deploy/templates/maintemplatev2
-FRONTEND_PREFIX = flutter/build/
-FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)web/
-FRONTEND_ABS_PREFIX = $(PWD)/$(FRONTEND_PREFIX)
+TEMPLATE_DIR = github.com/gutterbacon/main/deploy/templates/maintemplatev2
+
 SERVER_ENTRYPOINT = $(PWD)/cmd/server/*.go
 CLI_ENTRYPOINT = $(PWD)/cmd/cli/*.go
 
@@ -33,7 +32,7 @@ FLY_CODE_PATH=$(PWD)/
 FLY_APP_BUILTIN=go
 FLY_APP_NAME=org-y
 FLY_APP_ORG=org
-FLY_APP_PORT=9074
+FLY_APP_PORT=8080
 FLY_DNS_DOMAIN=fly.dev
 FLY_DNS_SUBDOMAIN=$(FLY_APP_NAME)
 
@@ -45,6 +44,14 @@ IMAGE_ORG = $(FLY_APP_ORG)
 IMAGE_EXECUTABLE = maintemplatev2
 IMAGE_REF = $(shell git rev-parse HEAD)
 IMAGE_FLAGS = ""
+
+FRONTEND_PREFIX = flutter/build/
+FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)web/
+FRONTEND_ABS_PREFIX = $(PWD)/$(FRONTEND_PREFIX)
+FRONTEND_HOST = "127.0.0.1"
+FRONTEND_PORT = $(FLY_APP_PORT)
+FRONTEND_URL_WEB = "withered-morning-8272.fly.dev"
+FRONTEND_URL_NATIVE = "withered-morning-8272.fly.dev"
 
 DEPLOY_ENV=DEV
 DEPLOY_BASEURL=
@@ -112,13 +119,18 @@ dep-delete:
 	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR) $(PWD)/certs
 
 gen:
-	@jb --jsonnetpkg-home=$(VENDOR_DIR) update
+#	@jb --jsonnetpkg-home=$(VENDOR_DIR) update
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR)/client && flutter pub get
-	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
-	@cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/config/* $(CONFIG_DIR)
+#	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
+#	@cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/config/* $(CONFIG_DIR)
 
 # build recipe
-build: dep
+build: # dep
+	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
+		$(MAKE) FRONTEND_HOST=$(FRONTEND_HOST) \
+			FRONTEND_PORT=$(FRONTEND_PORT) \
+			FRONTEND_URL_WEB=$(FRONTEND_URL_WEB) \
+			FRONTEND_URL_NATIVE=$(FRONTEND_URL_NATIVE) this-flutter-gen
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) flu-web-build
 	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_ABS_PREFIX)
 	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/certs $(PWD)/certs

@@ -53,17 +53,17 @@ dependencies:
   # path: sys-core/service/flu
 
   mod_disco:
-    git:
-      url: git://github.com/getcouragenow/mod.git
-      path: mod-disco/service/flu
-      ref: d2b9e370dd24ff47ba5329729a9d002ad40afeec
-#    path: ../../../../../mod/mod-disco/service/flu
+#    git:
+#      url: git://github.com/getcouragenow/mod.git
+#      path: mod-disco/service/flu
+#      ref: cfafd56bf659673163d699fc761e4a73d6cb8bdd
+    path: ../../../../../mod/mod-disco/service/flu
   bootstrapper:
-    git:
-      url: git://github.com/getcouragenow/main.git
-      path: deploy/bootstrapper/service/flu
-      ref: e940e1cde842537c62580a467b3e489bfa84085e
-#    path: ../../../bootstrapper/service/flu
+#    git:
+#      url: git://github.com/getcouragenow/main.git
+#      path: deploy/bootstrapper/service/flu
+#      ref: e940e1cde842537c62580a467b3e489bfa84085e
+    path: ../../../bootstrapper/service/flu
 
   #sys_core:
   #  git:
