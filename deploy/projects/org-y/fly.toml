@@ -1,6 +1,6 @@
-# fly.toml file generated for morning-forest-6352 on 2020-12-11T20:17:13+07:00
+# fly.toml file generated for withered-morning-8272 on 2020-12-14T05:32:51Z
 
-app = "morning-forest-6352"
+app = "withered-morning-8272"
 
 
 [[services]]
@@ -12,7 +12,7 @@ app = "morning-forest-6352"
     soft_limit = 20
 
   [[services.ports]]
-    handlers = ["tls", "http"]
+    handlers = ["tls"]
     port = "443"
 
   [[services.tcp_checks]]

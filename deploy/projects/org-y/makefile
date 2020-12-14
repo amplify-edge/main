@@ -44,6 +44,12 @@ ifeq ($(DEPLOY_ENV),DEV)
      DEPLOY_BASEURL=http://$(FLY_DNS_SUBDOMAIN).$(FLY_DNS_DOMAIN)
 endif
 
+JB_VERSION = 0.4.0
+GO_JSONNET_VERSION = 0.17.0
+GO_BINDATA_VERSION = 3.1.3
+uname_s = $(shell uname -s)
+uname_m = $(shell uname -m)
+
 .PHONY: all
 
 print:
@@ -58,9 +64,22 @@ print:
 
 dep-os:
 	# Install go-bindata, jsonnet-bundler, go-jsonnet here
-#	GO111MODULE="off" go get github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb
-#	go get -u -v github.com/go-bindata/go-bindata/...
-#	go get -u -v github.com/google/go-jsonnet/cmd/jsonnet
+	if [ $(uname_s) = Linux ]; then \
+		curl -L -o /tmp/jb https://github.com/jsonnet-bundler/jsonnet-bundler/releases/download/v$(JB_VERSION)/jb-$(uname_s)-amd64 && \
+			chmod +x /tmp/jb && sudo install -Dm755 /tmp/jb /usr/local/bin/jb && \
+		curl -L https://github.com/google/go-jsonnet/releases/download/v$(GO_JSONNET_VERSION)/go-jsonnet_$(GO_JSONNET_VERSION)_$(uname_s)_$(uname_m).tar.gz | tar xvz -C /tmp && \
+			sudo install -Dm755 /tmp/jsonnet /usr/local/bin/jsonnet; \
+	elif [$(uname_s) = Darwin]; then \
+		brew install jb \
+		brew install go-jsonnet; \
+	fi
+	curl -L https://github.com/go-bindata/go-bindata/archive/v3.1.3.tar.gz | tar xvz -C /tmp && \
+		cd /tmp/go-bindata-3.1.3/go-bindata && go build && sudo install -Dm755 go-bindata /usr/local/bin/go-bindata
+	git clone https://github.com/FiloSottile/mkcert /tmp/mkcert && cd /tmp/mkcert && \
+		go build -ldflags "-X main.Version=$(git describe --tags)" && sudo install -Dm755 mkcert /usr/local/bin/mkcert
+	git clone https://github.com/getcouragenow/shared /tmp/shared && \
+		cd /tmp/shared/tool/bs-lang && go build && sudo install -Dm755 bs-lang /usr/local/bin/bs-lang
+	# TODO
 #	$(MAKE) hug-dep
 #	$(MAKE) fly-dep
 #	$(MAKE) gor-dep
@@ -86,6 +105,7 @@ gen:
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
 	@cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/config/* $(CONFIG_DIR)
 
+# build recipe
 build: dep
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) flu-web-build
 	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_ABS_PREFIX)
@@ -110,6 +130,7 @@ build: dep
 				SERVER_BIN=$(SERVER_BIN) this-embed
 	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
 
+# docker recipe for local testing
 docker:
 	docker build -t "org-y:${IMAGE_REF}" \
 		--build-arg IMAGE_REF=$(IMAGE_REF) \
@@ -120,6 +141,7 @@ docker:
 		--build-arg IMAGE_ORG=$(IMAGE_ORG) \
 		--build-arg IMAGE_FLAGS=$(IMAGE_FLAGS) \
 		--build-arg IMAGE_NAME=$(IMAGE_NAME) .
+	docker system prune --volumes -f
 
 fly:
 	# volumes local or SAN ?
