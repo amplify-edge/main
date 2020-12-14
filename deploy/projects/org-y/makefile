@@ -1,17 +1,17 @@
 # boot repo makefiles
-BOILERPLATE_FSPATH=./../../../../boot/boilerplate
-include $(BOILERPLATE_FSPATH)/help.mk
-include $(BOILERPLATE_FSPATH)/os.mk
-include $(BOILERPLATE_FSPATH)/gitr.mk
+# BOILERPLATE_FSPATH=./../../../../boot/boilerplate
+# include $(BOILERPLATE_FSPATH)/help.mk
+# include $(BOILERPLATE_FSPATH)/os.mk
+# include $(BOILERPLATE_FSPATH)/gitr.mk
 
 # main repo make files ( will later be in boot) and fly and hug mapped to tools.mk.
 # also use the dwn.mk for ALL the other tools we need, so we dont need gopaths and that slowness.
-DEPLOY_BOILERPLATE_FSPATH=./../..
-include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
-include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
-include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
-include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
-include $(DEPLOY_BOILERPLATE_FSPATH)/jb.mk
+# DEPLOY_BOILERPLATE_FSPATH=./../..
+# include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
+# include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
+# include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
+# include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
+# include $(DEPLOY_BOILERPLATE_FSPATH)/jb.mk
 
 
 CONFIG_DIR = $(PWD)/config
