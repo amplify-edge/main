@@ -156,10 +156,10 @@ this-flutter-gen:
 
 this-config-dep:
 	go get -u -v github.com/go-bindata/go-bindata/...
-	jb update
-	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb update
-	#cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb update
-	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb update
+	jb install && jb update
+	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb install && jb update
+	#cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update
+	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb install && jb update
 
 this-version-gen:
 	mkdir -p $(VERSION_OUTPUT_DIR)

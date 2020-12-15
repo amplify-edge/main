@@ -8,6 +8,7 @@ require (
 	github.com/getcouragenow/protoc-gen-cobra v0.3.1-0.20201005114840-ccc8cd57bcdc
 	github.com/getcouragenow/sys v0.0.0-20201210114100-bbce22eadce6
 	github.com/getcouragenow/sys-share v0.0.0-20201211115435-35b645d047ee
+	github.com/go-bindata/go-bindata v3.1.2+incompatible // indirect
 	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/improbable-eng/grpc-web v0.13.0

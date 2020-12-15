@@ -542,11 +542,9 @@ packages:
   sys_core:
     dependency: transitive
     description:
-      path: "sys-core/service/flu"
-      ref: "9a2df691224ac65d35f4ba717f5e2bf5a3988a59"
-      resolved-ref: "9a2df691224ac65d35f4ba717f5e2bf5a3988a59"
-      url: "git://github.com/getcouragenow/sys-share.git"
-    source: git
+      path: "../../../../../sys-share/sys-core/service/flu"
+      relative: true
+    source: path
     version: "0.0.1"
   sys_share_sys_account_service:
     dependency: "direct main"
