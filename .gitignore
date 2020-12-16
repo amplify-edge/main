@@ -12,5 +12,3 @@ jsonnetfile.lock.json
 /bootstrapper/service/go/pkg/fakedata/bs-all.yaml
 /deploy/bootstrapper/proto/v2/vendor/
 /deploy/projects/org-y/vendor/
-/deploy/projects/org-y/.env
-/deploy/projects/org-y/-prefix
