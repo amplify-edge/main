@@ -134,7 +134,6 @@ gen:
 build: # dep
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) flu-web-build
 	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_ABS_PREFIX)
-	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/certs $(PWD)/certs
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
 		$(MAKE) VERSION_OUTPUT_DIR=$(VERSION_DIR) this-version-gen
 	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_WEB_PREFIX)" $(PWD)/flutter/build/web/...
