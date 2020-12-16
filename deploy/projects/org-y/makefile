@@ -13,7 +13,6 @@
 # include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
 # include $(DEPLOY_BOILERPLATE_FSPATH)/jb.mk
 
-
 CONFIG_DIR = $(PWD)/config
 #VENDOR_DIR = jb-build
 VENDOR_DIR = $(GOPATH)/src
@@ -104,18 +103,19 @@ dep-os:
 #	$(MAKE) fly-dep
 #	$(MAKE) gor-dep
 
-
 dep-os-delete:
 	$(MAKE) hug-dep-delete
 	$(MAKE) fly-dep-delete
 	$(MAKE) gor-dep-delete
+	$(MAKE) jsonnet-dep-delete
+	$(MAKE) jsonnetb-dep-delete
 
 all: dep-delete dep gen build
 
 dep: dep-os
 	# Create dirs for binaries
 	mkdir -p $(BIN_DIR) $(VERSION_DIR) $(CONFIG_DIR) $(FRONTEND_ABS_PREFIX)
-	@go mod vendor
+#	@go mod vendor
 
 dep-delete:
 	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR) $(PWD)/certs $(FRONTEND_ABS_PREFIX)
@@ -137,7 +137,7 @@ build: # dep
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
 		$(MAKE) VERSION_OUTPUT_DIR=$(VERSION_DIR) this-version-gen
 	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_WEB_PREFIX)" $(PWD)/flutter/build/web/...
-	go-bindata -pkg version -fs -nomemcopy -o $(VERSION_OUTPUT_DIR) -prefix "version/" $(VERSION_DIR)/manifest.json
+	go-bindata -fs -nomemcopy -pkg version -o $(VERSION_DIR)/version.go -prefix "version/" $(VERSION_DIR)/manifest.json
 	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
 
 # docker recipe for local testing
