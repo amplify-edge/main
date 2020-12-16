@@ -47,10 +47,10 @@ IMAGE_FLAGS = ""
 FRONTEND_PREFIX = flutter/build/
 FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)web/
 FRONTEND_ABS_PREFIX = $(PWD)/$(FRONTEND_PREFIX)
-FRONTEND_HOST = "withered-morning-8272.fly.dev"
+FRONTEND_HOST = "org-y.fly.dev"
 FRONTEND_PORT = 443
-FRONTEND_URL_WEB = "withered-morning-8272.fly.dev"
-FRONTEND_URL_NATIVE = "withered-morning-8272.fly.dev"
+FRONTEND_URL_WEB = "org-y.fly.dev"
+FRONTEND_URL_NATIVE = "org-y.fly.dev"
 
 EMBED_OUTPUT_DIR = $(PWD)/cmd/server/
 

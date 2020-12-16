@@ -1,7 +1,7 @@
 "mainConfig":
-  "domain": "withered-morning-8272.fly.dev"
+  "domain": "org-y.fly.dev"
   "embedDir": "./client/build/web"
-  "host": "withered-morning-8272.fly.dev"
+  "host": "org-y.fly.dev"
   "isLocal": false
   "port": 443
   "tls":

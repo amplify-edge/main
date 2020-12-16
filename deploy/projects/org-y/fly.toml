@@ -1,6 +1,6 @@
 # fly.toml file generated for withered-morning-8272 on 2020-12-14T12:15:13Z
 
-app = "withered-morning-8272"
+app = "org-y"
 
 [mount]
 source = "db"
