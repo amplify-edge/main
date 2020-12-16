@@ -20,7 +20,8 @@ VERSION_DIR = $(PWD)/version
 BIN_DIR = $(PWD)/bin-all
 CLI_BIN = $(BIN_DIR)/maintemplatev2-cli
 SERVER_BIN = $(BIN_DIR)/maintemplatev2
-TEMPLATE_DIR = github.com/gutterbacon/main/deploy/templates/maintemplatev2
+#TEMPLATE_DIR = github.com/gutterbacon/main/deploy/templates/maintemplatev2
+TEMPLATE_DIR = github.com/joe-getcourgagenow/main/deploy/templates/maintemplatev2
 
 SERVER_ENTRYPOINT = $(PWD)/cmd/server/*.go
 CLI_ENTRYPOINT = $(PWD)/cmd/cli/*.go
@@ -93,11 +94,11 @@ dep-os:
 		brew install go-jsonnet; \
 	fi
 	curl -L https://github.com/go-bindata/go-bindata/archive/v$(GO_BINDATA_VERSION).tar.gz | tar xvz -C /tmp && \
-		cd /tmp/go-bindata-$(GO_BINDATA_VERSION)/go-bindata && go build && sudo install -Dm755 go-bindata /usr/local/bin/go-bindata
+		cd /tmp/go-bindata-$(GO_BINDATA_VERSION)/go-bindata && go build && sudo install -m755 go-bindata /usr/local/bin/go-bindata
 	git clone https://github.com/FiloSottile/mkcert /tmp/mkcert && cd /tmp/mkcert && \
-		go build -ldflags "-X main.Version=$(git describe --tags)" && sudo install -Dm755 mkcert /usr/local/bin/mkcert
+		go build -ldflags "-X main.Version=$(git describe --tags)" && sudo install -m755 mkcert /usr/local/bin/mkcert
 	git clone https://github.com/getcouragenow/shared /tmp/shared && \
-		cd /tmp/shared/tool/bs-lang && go build && sudo install -Dm755 bs-lang /usr/local/bin/bs-lang
+		cd /tmp/shared/tool/bs-lang && go build && sudo install -m755 bs-lang /usr/local/bin/bs-lang
 	# TODO
 #	$(MAKE) hug-dep
 #	$(MAKE) fly-dep
