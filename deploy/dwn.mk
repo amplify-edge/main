@@ -41,25 +41,31 @@ ifeq ($(OS_detected),Windows)
 	@echo Detected Windows ...
    	# what does windows use to download stuff ??
 
-   	# also some releases for windows are zip and others are .tar.gz, so need to sniff that too from the file name.
 endif
+
 ifeq ($(OS_detected),Darwin)
     # mac
 	@echo 
 	@echo Detected Darwin ...
 	curl -LO $(DWN_URL)
-	tar -zxvf $(DWN_FILENAME)
+	#tar -zxvf $(DWN_FILENAME)
 
 	# check file extension
-#ifeq ($(DWN_FILENAME_EXT),'.gz')
-#	@echo Detected file ext .gz ...
-#    tar -zxvf $(DWN_FILENAME)
-#else
-#	@echo Detected file ext "" ...
-#    # if "none", its a pure binary, so just rename it to the requires DWN_BIN_FSPATH
-#endif
+ifeq ($(DWN_FILENAME_EXT),.gz)
+	@echo Detected file ext .gz
+	tar -zxvf $(DWN_FILENAME)
+endif
+ifeq ($(DWN_FILENAME_EXT),.zip)
+	@echo Detected file ext .zip
+	tar -zxvf $(DWN_FILENAME)
+endif
+ifeq ($(DWN_FILENAME_EXT),)
+	@echo Detected file ext NONE
+    # if "none", its a pure binary, so just rename it to the required DWN_BIN_FSPATH and chmod it.
+	mv $(DWN_FILENAME) $(DWN_BIN_FSPATH)
+	chmod +x $(DWN_BIN_FSPATH)
+endif
 
-	
 endif
 ifeq ($(OS_detected),Linux)
     # linux

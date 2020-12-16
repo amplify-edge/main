@@ -12,7 +12,8 @@ include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/hcl.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
-include $(DEPLOY_BOILERPLATE_FSPATH)/jb.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/jsonnet.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/jsonnetb.mk
 
 # HCL Deployment Variables
 HCL_CODE_PATH=$(PWD)/main/cmd/server

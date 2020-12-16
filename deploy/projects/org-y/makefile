@@ -4,14 +4,16 @@ include $(BOILERPLATE_FSPATH)/help.mk
 include $(BOILERPLATE_FSPATH)/os.mk
 include $(BOILERPLATE_FSPATH)/gitr.mk
 
-# main repo make files ( will later be in boot) and fly and hug mapped to tools.mk.
-# also use the dwn.mk for ALL the other tools we need, so we dont need gopaths and that slowness.
+# local makefiles for deploy. 
 DEPLOY_BOILERPLATE_FSPATH=./../..
 include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/hcl.mk
 include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
-include $(DEPLOY_BOILERPLATE_FSPATH)/jb.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/jsonnetb.mk
+include $(DEPLOY_BOILERPLATE_FSPATH)/jsonnet.mk
+#include $(DEPLOY_BOILERPLATE_FSPATH)/packr.mk
 
 
 CONFIG_DIR = $(PWD)/config
@@ -72,13 +74,18 @@ dep-os:
 #	GO111MODULE="off" go get github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb
 #	go get -u -v github.com/go-bindata/go-bindata/...
 #	go get -u -v github.com/google/go-jsonnet/cmd/jsonnet
+	$(MAKE) hug-dep
 	$(MAKE) fly-dep
 	$(MAKE) gor-dep
+	$(MAKE) jsonnet-dep
+	$(MAKE) jsonnetb-dep
 
 dep-os-delete:
 	$(MAKE) hug-dep-delete
 	$(MAKE) fly-dep-delete
 	$(MAKE) gor-dep-delete
+	$(MAKE) jsonnet-dep-delete
+	$(MAKE) jsonnetb-dep-delete
 
 all: dep-delete dep gen build
 
@@ -91,6 +98,7 @@ dep-delete:
 	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR) $(PWD)/certs
 
 gen:
+	# TODO ALEX: use $(JSONNETB_BIN) instead. See jsonnetb.mk
 	@jb --jsonnetpkg-home=$(VENDOR_DIR) update
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR)/client && flutter pub get
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
