@@ -1,0 +1,12 @@
+"mainConfig":
+  "domain": "org-y.fly.dev"
+  "embedDir": "./client/build/web"
+  "host": "org-y.fly.dev"
+  "isLocal": false
+  "port": 443
+  "tls":
+    "enable": true
+    "isLocal": false
+    "localCertKeyPath": "./certs/local.key.pem"
+    "localCertPath": "./certs/local.pem"
+    "rootCaPath": "./certs/cacert.pem"

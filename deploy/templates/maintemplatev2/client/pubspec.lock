@@ -46,11 +46,9 @@ packages:
   bootstrapper:
     dependency: "direct main"
     description:
-      path: "deploy/bootstrapper/service/flu"
-      ref: e940e1cde842537c62580a467b3e489bfa84085e
-      resolved-ref: e940e1cde842537c62580a467b3e489bfa84085e
-      url: "git://github.com/getcouragenow/main.git"
-    source: git
+      path: "../../../bootstrapper/service/flu"
+      relative: true
+    source: path
     version: "0.0.1"
   build:
     dependency: transitive
@@ -128,7 +126,7 @@ packages:
       name: checked_yaml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.4"
   cli_util:
     dependency: transitive
     description:
@@ -198,7 +196,7 @@ packages:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1+1"
   dart_style:
     dependency: transitive
     description:
@@ -254,7 +252,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.4"
   fixnum:
     dependency: transitive
     description:
@@ -337,7 +335,7 @@ packages:
       name: font_awesome_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.10.0"
+    version: "8.10.1"
   glob:
     dependency: transitive
     description:
@@ -502,11 +500,9 @@ packages:
   mod_disco:
     dependency: "direct main"
     description:
-      path: "mod-disco/service/flu"
-      ref: d2b9e370dd24ff47ba5329729a9d002ad40afeec
-      resolved-ref: d2b9e370dd24ff47ba5329729a9d002ad40afeec
-      url: "git://github.com/getcouragenow/mod.git"
-    source: git
+      path: "../../../../../mod/mod-disco/service/flu"
+      relative: true
+    source: path
     version: "1.0.0+1"
   nested:
     dependency: transitive
@@ -661,7 +657,7 @@ packages:
       name: pubspec_parse
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.5"
+    version: "0.1.7"
   quiver:
     dependency: transitive
     description:
@@ -796,20 +792,16 @@ packages:
   sys_core:
     dependency: transitive
     description:
-      path: "sys-core/service/flu"
-      ref: d7fca509165d9cb5a1abe051e1888a80e20804c8
-      resolved-ref: d7fca509165d9cb5a1abe051e1888a80e20804c8
-      url: "git://github.com/getcouragenow/sys-share.git"
-    source: git
+      path: "../../../../../sys-share/sys-core/service/flu"
+      relative: true
+    source: path
     version: "0.0.1"
   sys_share_sys_account_service:
     dependency: transitive
     description:
-      path: "sys-account/service/flu"
-      ref: "414dc77722364156d453cb578fcbf1179e27f620"
-      resolved-ref: "414dc77722364156d453cb578fcbf1179e27f620"
-      url: "git://github.com/getcouragenow/sys-share.git"
-    source: git
+      path: "../../../../../sys-share/sys-account/service/flu"
+      relative: true
+    source: path
     version: "1.0.0+1"
   term_glyph:
     dependency: transitive
@@ -838,7 +830,7 @@ packages:
       name: timing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1+2"
+    version: "0.1.1+3"
   typed_data:
     dependency: transitive
     description:
@@ -846,6 +838,48 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0-nullsafety.5"
+  url_launcher:
+    dependency: transitive
+    description:
+      name: url_launcher
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.7.10"
+  url_launcher_linux:
+    dependency: transitive
+    description:
+      name: url_launcher_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1+4"
+  url_launcher_macos:
+    dependency: transitive
+    description:
+      name: url_launcher_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1+9"
+  url_launcher_platform_interface:
+    dependency: transitive
+    description:
+      name: url_launcher_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.9"
+  url_launcher_web:
+    dependency: transitive
+    description:
+      name: url_launcher_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5+1"
+  url_launcher_windows:
+    dependency: transitive
+    description:
+      name: url_launcher_windows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1+3"
   uuid:
     dependency: transitive
     description:
@@ -908,7 +942,7 @@ packages:
       name: youtube_player_iframe
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0+2"
 sdks:
   dart: ">=2.12.0-0.0 <3.0.0"
-  flutter: ">=1.20.4 <2.0.0"
+  flutter: ">=1.22.0 <2.0.0"

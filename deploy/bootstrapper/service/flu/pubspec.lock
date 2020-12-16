@@ -542,18 +542,16 @@ packages:
   sys_core:
     dependency: transitive
     description:
-      path: "../../../../../../../../../../../opt/flutter/.pub-cache/git/sys-share-d7fca509165d9cb5a1abe051e1888a80e20804c8/sys-core/service/flu"
+      path: "../../../../../sys-share/sys-core/service/flu"
       relative: true
     source: path
     version: "0.0.1"
   sys_share_sys_account_service:
     dependency: "direct main"
     description:
-      path: "sys-account/service/flu"
-      ref: d7fca509165d9cb5a1abe051e1888a80e20804c8
-      resolved-ref: d7fca509165d9cb5a1abe051e1888a80e20804c8
-      url: "git://github.com/getcouragenow/sys-share.git"
-    source: git
+      path: "../../../../../sys-share/sys-account/service/flu"
+      relative: true
+    source: path
     version: "1.0.0+1"
   term_glyph:
     dependency: transitive

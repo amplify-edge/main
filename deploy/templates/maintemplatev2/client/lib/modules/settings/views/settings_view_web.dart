@@ -53,7 +53,7 @@ class SettingsViewWeb extends StatelessWidget {
           ),
           ListTile(
             title: Text("Channel"),
-            subtitle: Text(env.channel),
+            subtitle: Text(env.releaseChannel),
           ),
           // ListTile(
           //   title: Text("Url"),
@@ -65,12 +65,17 @@ class SettingsViewWeb extends StatelessWidget {
           // ),
           ListTile(
             title: Text("GitHash"),
-            subtitle: Text(env.gitHash),
+            subtitle: Text(env.githash),
           ),
-          // ListTile(
-          //   title: Text("Flutter channel"),
-          //   subtitle: Text(env.flutterChannel),
-          // ),
+          ListTile(
+            title: Text("Host"),
+            subtitle: Text("${env.host}:${env.port}"),
+          ),
+          ListTile(
+            title: Text("Flutter channel"),
+            subtitle: Text(env.flutterChannel),
+
+          ),
         ]),
       ),
     );

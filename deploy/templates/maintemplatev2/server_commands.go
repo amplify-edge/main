@@ -16,6 +16,7 @@ import (
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 	"google.golang.org/grpc"
+	"net"
 	"net/http"
 	"strings"
 )
@@ -27,7 +28,7 @@ const (
 	defaultSysAccountConfigPath = "./config/sysaccount.yml"
 	defaultDiscoConfigPath      = "./config/moddisco.yml"
 	defaultBsConfigPath         = "./config/bootstrap-server.yml"
-	defaultMainCfgPath          = "./config/main.yml"
+	defaultMainCfgPath          = "./config/main-server.yml"
 	defaultDebug                = true
 	defaultCorsHeaders          = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
 	flyHeaders                  = "Fly-Client-IP, Fly-Forwarded-Port, Fly-Region, Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
@@ -128,7 +129,7 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 				grpcMw.WithUnaryServerChain(unaryInterceptors...),
 				grpcMw.WithStreamServerChain(streamInterceptors...),
 			)
-		}  else {
+		} else {
 			grpcServer = grpc.NewServer(
 				grpcMw.WithUnaryServerChain(unaryInterceptors...),
 				grpcMw.WithStreamServerChain(streamInterceptors...),
@@ -145,11 +146,16 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 			fileServer := http.FileServer(FileSystem{http.Dir(mainCfg.MainConfig.EmbedDir)})
 			httpServer := createHttpHandler(logger, false, fileServer, grpcWebServer)
 			return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
-		// } else if !mainCfg.MainConfig.IsLocal && mainCfg.MainConfig.TLS.Enable {
+			// } else if !mainCfg.MainConfig.IsLocal && mainCfg.MainConfig.TLS.Enable {
 		} else {
 			fileServer := http.FileServer(system)
 			httpServer := createHttpHandler(logger, true, fileServer, grpcWebServer)
-			return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, "", "")
+			listener, err := net.Listen("tcp", fmt.Sprintf(":%d", mainCfg.MainConfig.Port))
+			if err != nil {
+				return err
+			}
+			return httpServer.Serve(listener)
+			// return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, "", "")
 		}
 	}
 

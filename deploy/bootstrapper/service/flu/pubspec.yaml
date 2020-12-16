@@ -28,11 +28,11 @@ dependencies:
   grpc:
   protobuf:
   sys_share_sys_account_service:
-    git:
-      url: git://github.com/getcouragenow/sys-share.git
-      path: sys-account/service/flu
-      ref: 414dc77722364156d453cb578fcbf1179e27f620
-  #    path: ../../../../../sys-share/sys-account/service/flu
+#    git:
+#      url: git://github.com/getcouragenow/sys-share.git
+#      path: sys-account/service/flu
+#      ref: 1a260f05ca7de0a0f273225e1d7c234cd53b5e8f
+      path: ../../../../../sys-share/sys-account/service/flu
   file_picker: ^2.1.0
   code_editor: ^1.0.1
   clipboard: ^0.1.2+8

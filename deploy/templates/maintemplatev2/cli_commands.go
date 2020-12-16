@@ -9,15 +9,17 @@ import (
 )
 
 var (
-	bsCliCfgPath string
-	isCliDebug   bool
+	bsCliCfgPath      string
+	mainClientCfgPath string
+	isCliDebug        bool
 )
 
 const (
-	commandName            = "cli"
-	errCreateCli           = "error creating cli for " + commandName + ": %v"
-	defaultBsCliConfigPath = "./config/bootstrap-client.yml"
-	defaultCliDebug        = true
+	commandName                 = "cli"
+	errCreateCli                = "error creating cli for " + commandName + ": %v"
+	defaultBsCliConfigPath      = "./config/bootstrap-client.yml"
+	defaultMainConfigClientPath = "./config/main-client.yml"
+	defaultCliDebug             = true
 )
 
 func MainCliCommand(version []byte) *cobra.Command {
@@ -28,7 +30,7 @@ func MainCliCommand(version []byte) *cobra.Command {
 
 	rootCmd.PersistentFlags().BoolVar(&isCliDebug, "debug", defaultCliDebug, "debug")
 	rootCmd.PersistentFlags().StringVarP(&bsCliCfgPath, "bootstrap-config-path", "b", defaultBsCliConfigPath, "bs config path to use")
-	rootCmd.PersistentFlags().StringVarP(&mainCfgPath, "main-config-path", "m", defaultMainCfgPath, "main config path to use")
+	rootCmd.PersistentFlags().StringVarP(&mainClientCfgPath, "main-config-path", "m", defaultMainConfigClientPath, "main config path to use")
 	// logging
 	log := logrus.New()
 	if isDebug {
@@ -43,8 +45,7 @@ func MainCliCommand(version []byte) *cobra.Command {
 	}
 
 	// configs
-	logger.Infof("Running maintemplatev2-sdk-cli")
-	mainCfg, err := wrapper.NewConfig(mainCfgPath)
+	mainCfg, err := wrapper.NewConfig(mainClientCfgPath)
 	if err != nil {
 		logger.Fatalf(errSourcingConfig, "main-wrapper", err)
 	}

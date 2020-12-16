@@ -54,6 +54,8 @@ FRONTEND_URL_WEB = getcourage.org
 FRONTEND_URL_NATIVE = getcourage.org
 FRONTEND_GITHASH = $(shell git rev-parse HEAD)
 FRONTEND_FLUTTER_CHANNEL = $(shell flutter --version | awk '/channel/ {print $$5}')
+FRONTEND_HOST = 127.0.0.1
+FRONTEND_PORT = 8080
 
 BUILD_FRONTEND_VERSION = $(FRONTEND_GITHASH)
 BUILD_SERVER_VERSION = $(shell git rev-parse HEAD)
@@ -100,6 +102,7 @@ this-embed:
 
 this-build: this-build-delete this-version-gen
 	## Flutter first
+	$(MAKE) this-flutter-gen
 	$(MAKE) flu-web-build
 #	cp -Rv $(FRONTEND_BUILD_DIR) $(FRONTEND_ABS_PREFIX)
 	$(MAKE) this-embed
@@ -113,7 +116,7 @@ this-gen: this-gen-delete
 	$(MAKE) this-cert-dep
 	$(MAKE) this-cert-gen
 	$(MAKE) gen-icons
-	$(MAKE) gen-hive
+#	$(MAKE) gen-hive
 	$(MAKE) flu-gen-lang-all
 	
 this-gen-delete:
@@ -140,7 +143,11 @@ this-config-gen: this-config-dep
 	jsonnet -S bootstrap-client.jsonnet \
  		-V BOOTSTRAP_DOMAIN=$(FRONTEND_URL_WEB) > $(CONFIG_OUTPUT_DIR)/bootstrap-client.yml
 	jsonnet -S main.jsonnet > $(CONFIG_OUTPUT_DIR)/main.yml
+
+this-flutter-gen:
 	jsonnet -S flutter-client.jsonnet \
+		-V FRONTEND_HOST=$(FRONTEND_HOST) \
+		-V FRONTEND_PORT=$(FRONTEND_PORT) \
  		-V FRONTEND_RELEASE_CHANNEL=$(FRONTEND_RELEASE_CHANNEL) \
  		-V FRONTEND_URL_WEB=$(FRONTEND_URL_WEB) \
  		-V FRONTEND_URL_NATIVE=$(FRONTEND_URL_NATIVE) \
