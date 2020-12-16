@@ -48,10 +48,12 @@ IMAGE_FLAGS = ""
 FRONTEND_PREFIX = flutter/build/
 FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)web/
 FRONTEND_ABS_PREFIX = $(PWD)/$(FRONTEND_PREFIX)
-FRONTEND_HOST = "127.0.0.1"
-FRONTEND_PORT = $(FLY_APP_PORT)
+FRONTEND_HOST = "withered-morning-8272.fly.dev"
+FRONTEND_PORT = 443
 FRONTEND_URL_WEB = "withered-morning-8272.fly.dev"
 FRONTEND_URL_NATIVE = "withered-morning-8272.fly.dev"
+
+EMBED_OUTPUT_DIR = $(PWD)/cmd/server/
 
 DEPLOY_ENV=DEV
 DEPLOY_BASEURL=
@@ -112,46 +114,31 @@ all: dep-delete dep gen build
 
 dep: dep-os
 	# Create dirs for binaries
-	mkdir -p $(BIN_DIR) $(VERSION_DIR) $(CONFIG_DIR)
-	@#go mod vendor
+	mkdir -p $(BIN_DIR) $(VERSION_DIR) $(CONFIG_DIR) $(FRONTEND_ABS_PREFIX)
+	@go mod vendor
 
 dep-delete:
-	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR) $(PWD)/certs
+	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR) $(PWD)/certs $(FRONTEND_ABS_PREFIX)
 
 gen:
 #	@jb --jsonnetpkg-home=$(VENDOR_DIR) update
-	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR)/client && flutter pub get
-#	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
-#	@cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/config/* $(CONFIG_DIR)
-
-# build recipe
-build: # dep
+	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR)/client && flutter pub get && flutter pub upgrade
+	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
 		$(MAKE) FRONTEND_HOST=$(FRONTEND_HOST) \
 			FRONTEND_PORT=$(FRONTEND_PORT) \
 			FRONTEND_URL_WEB=$(FRONTEND_URL_WEB) \
 			FRONTEND_URL_NATIVE=$(FRONTEND_URL_NATIVE) this-flutter-gen
+
+# build recipe
+build: # dep
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) flu-web-build
 	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build $(FRONTEND_ABS_PREFIX)
 	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/certs $(PWD)/certs
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
-		$(MAKE) FRONTEND_PREFIX=$(FRONTEND_WEB_PREFIX) \
-				FRONTEND_ABS_PREFIX=$(FRONTEND_ABS_PREFIX) \
-				VERSION_OUTPUT_DIR=$(VERSION_DIR) \
-				EMBED_OUTPUT_DIR=cmd/server/  \
-				SERVER_ENTRYPOINT=$(SERVER_ENTRYPOINT) \
-                CLI_ENTRYPOINT=$(CLI_ENTRYPOINT) \
-                SDK_BIN=$(CLI_BIN) \
-				SERVER_BIN=$(SERVER_BIN) this-version-gen
-	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
-		$(MAKE) FRONTEND_PREFIX=$(FRONTEND_WEB_PREFIX) \
-				FRONTEND_ABS_PREFIX=$(FRONTEND_ABS_PREFIX) \
-				VERSION_OUTPUT_DIR=$(VERSION_DIR) \
-				EMBED_OUTPUT_DIR=cmd/server/  \
-				SERVER_ENTRYPOINT=$(SERVER_ENTRYPOINT) \
-                CLI_ENTRYPOINT=$(CLI_ENTRYPOINT) \
-                SDK_BIN=$(CLI_BIN) \
-				SERVER_BIN=$(SERVER_BIN) this-embed
+		$(MAKE) VERSION_OUTPUT_DIR=$(VERSION_DIR) this-version-gen
+	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_WEB_PREFIX)" $(PWD)/flutter/build/web/...
+	go-bindata -pkg version -fs -nomemcopy -o $(VERSION_OUTPUT_DIR) -prefix "version/" $(VERSION_DIR)/manifest.json
 	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
 
 # docker recipe for local testing
@@ -168,7 +155,5 @@ docker:
 	docker system prune --volumes -f
 
 fly:
-	# volumes local or SAN ?
-	# depends on genji 
-	# depends on instance delete polcies / behaviour
-	# depends on promotion of RELEASE_CHANNEL of fly ( WEAVE thing )
+	flyctl deploy
+

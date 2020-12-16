@@ -1,12 +1,12 @@
 "mainConfig":
   "domain": "withered-morning-8272.fly.dev"
   "embedDir": "./client/build/web"
-  "host": "127.0.0.1"
-  "isLocal": true
-  "port": 8080
+  "host": "withered-morning-8272.fly.dev"
+  "isLocal": false
+  "port": 443
   "tls":
-    "enable": false
+    "enable": true
     "isLocal": false
     "localCertKeyPath": "./certs/local.key.pem"
     "localCertPath": "./certs/local.pem"
-    "rootCaPath": "./certs/rootca.pem"
+    "rootCaPath": "./certs/cacert.pem"

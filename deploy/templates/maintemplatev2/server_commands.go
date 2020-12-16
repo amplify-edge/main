@@ -28,7 +28,7 @@ const (
 	defaultSysAccountConfigPath = "./config/sysaccount.yml"
 	defaultDiscoConfigPath      = "./config/moddisco.yml"
 	defaultBsConfigPath         = "./config/bootstrap-server.yml"
-	defaultMainCfgPath          = "./config/main.yml"
+	defaultMainCfgPath          = "./config/main-server.yml"
 	defaultDebug                = true
 	defaultCorsHeaders          = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
 	flyHeaders                  = "Fly-Client-IP, Fly-Forwarded-Port, Fly-Region, Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"

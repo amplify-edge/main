@@ -1,0 +1,382 @@
+orgs:
+  main_bootstrap_orgs:
+    - org:
+        name: sys_account_org_0
+        contact: jenniebreitenberg@wyman.biz
+        creator_id: contact@getcouragenow.org
+        logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUFLV4aVVvN7byTAAACp0lEQVR4nHyVTRKdOAyE5WHhzdR4lrMa5yZcJUfIDfDNwlE4Akun8opOSS1LZBOqHo/6gEY/bVkOAPiOR3gU2RXsgINNOoAnQZUG4LMDg6BJBTATdNkA3DtwEuxSAFwJDhEA5w5cBBANZAQoEA1EfzfDgEjHk6BCpOGjYDIMKJwJOvS1W8GHYUCFrwSH5oRTAfO3JI8RoBjYLRYwDP37P0G1v78JhoXhhVqgL6B1PN+gOohXrEohyggNbAE68y/ZDi9IgOL5HwvIQbAH6My/B6gELUBh/jWAHM9qQ4isRoXIamWIDG92iAzaIUVOGiZFDLQExQxRE8hXC+QF/rXn5Lcj/HpKGW+wDdlOVoWgDanXG+wizUsaGfX5Atsjsn+8XybxeH0W0Lt2tTnAR++NABumXp40gZV+6uUVYMetxrjNHuZT3Nr9ucCGsHI30BQc5lwCW29Yl+Ca0xAxCDSYoSecNgdMeWgAVAIfU4qbSnZSeUy9fngiKEn5Cv2s00Ioah8k4Gc3C9feY2DVMsQ6w4tiATC5ZnUksPSbeZVLxwrUze8EjWW7CFhvLdsIYG3YH+/vEDbqmAmslcf1coA2m+Z+NXyNEPvvU8p8g3a7lcWnT73Uiy+wnfKXOLBXy5A/Hv+9ru3Rf17gdG/HcflH4zCP15lgLnOvg2EhRXwopojPgBTxqqQIRz5SBL7YQoTz60iRNa5ChPXJDcb1e2wfEqN2BvDJ+gS4CJYI52ZF7kH2ckWI8ImN4EtoOPgWX6HvZUYcBOWTY9mAlTZ2GlvwkZx6e0oza88EXT/gO55tbLuthivBoXd9X+1cf3O1wUAxe/k0bMDkmnsScOIwDM1/skozAbcuhqH562aPS64Ehy1I3951C+KIGAF+AGvbZf4/FTy/AgAA//+mGQr4LxPDRAAAAABJRU5ErkJggg
+    - org:
+        name: sys_account_org_2
+        contact: nolabrown@sanford.name
+        creator_id: contact@getcouragenow.org
+        logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUIDQ5Up/KIO7dSAAAA3ElEQVR4nNzVsU3EMBgFYIdIpCNXUqDLCkxAVmICzqN5FI/g0kUUIw6BuM9Q0XC88qte8fT/4fssbRc2oQpFyEISomCPrzXW1sLyXqOd65yhCkXIQhKiEICj8CDcCwchXCdceZbW2tsyPxf9AbMwCaMwCKGDk7AKizALkzAKgxA6eBGehKNwJ9wKNyFeQghJyEIRqrAJu9A6iEISslCEKmzCLrQOopCELBShXsK/yl+5Y7+Bg/AoPAsFGIRRmIRZWIRVOBWutpMahFGYhLl/7MAqnIDhx2m/BgAA//9hmyEfZJZjWgAAAABJRU5ErkJggg
+projects:
+  main_bootstrap_projects:
+    - project:
+        name: sys_account_project_1
+        logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEVhQUieDlUv83kUAAAC1klEQVR4nISWMY7XPBDFJ18+rakwJQWSOcKWFEi+CkfYkgJtwkn2Kuk4BuYGWWgibeRB78049n8bUszf+9OMY3ueX1b8+U/6c4cQOLxnjFeQr4xpbUFOgrwhAEyVYCkIoLMS6I4AEJR5eiAgLarlnQgAiTFoRUBdZoyqCBguqJakukriUFEtWXWTbDOjWhbVIovNjGpR1d2Sg6J6UtXDkqOiGnnnTJAU1cirgdWZ1cjTSLCgmnn6xOkwOpnHZ8X0WpnHZ5v5Y+DHAFjyHS/0ktTyik8aG979tYE4ANjCZuKpLalwc7sdVuTyhFiS1akd0IazOMX2jKlWHF9F9WmHzIZWVB9sA1ucuP9drJo/qC5sJfJkYnc2jnZTxSqR3RfmiaSNZU0rImGT2RRENYlMRSbTWHJ5fhHh9PLWwTuRBw7+7xq+b4Ofaofwyf+enxx8cxAbeHSQkwN1oBewJc3VwaS26NiBbSufDmbfuHbAtc96OPDDiwPg/rPuDqI1QEewUtDFQWIT4w0odhscZFv/DTgomNXB0jQ2gEphiQMKUm9BlS7WnXfJ6joomON0wBdiPAC7eX6L9kCNhRtQuNndQXSBDqDa+RQH5giyDKDYkW4OsnUydWCai7Y61X0xiYUOrLNwMwMuhukC1eXizqHPh4PHBoqDzw7+rA4+OPjdVPtG/vXciby/0XrsF+Iy6egvuEw62BK6SYfj2paZtN++btKzbbSbtIu8m/Rk5z2YtHVkMGn2bDRpNOeVSR+3Jp3N/i+TNmcaTNpUPpg0xsdo0oh1NOmVAh9MekPhr8GkC8DLYNI06BfLYMkK8Kx6iZjLK8q3mEkDbIvfZm4adZkrNZOWdo22btL11qSX1yad7cZ2k850nMGk2ZLRpOm+o0lHq+smHbWluUmH2tL8mx1O9/b2VZ8PemCTlMiMtGbSq3m2NJPmvw0TffKhCVdEOP9Hkb8BAAD//76m5l0tIyRVAAAAAElFTkSuQmCC
+        creator_id: dev@getcouragenow.org
+        org_name: sys_account_org_2
+      projectdetails:
+        goal: Consider east analysis challenge afford test representation sell.
+        already_pledged: 761
+        action_time: 1637562016000000000
+        action_location: Alexandreton
+        min_pioneers: 4786
+        min_rebels_media: 1055
+        min_rebels_to_win: 1494
+        action_length: 14 days
+        action_type: poverty
+        category: poverty
+        contact: willismitchell@heaney.name
+        hist_precedents: Bottom drink divide prevent command react display escape.
+        strategy: System remind licence selection slip enter defence chance.
+        video_url:
+          - https://www.youtube.com/watch?v=r6En29azNBA
+          - https://www.youtube.com/watch?v=Ssvu2yncgWU
+        unit_of_measures: weeks
+        sys_account_project_ref_name: sys_account_project_1
+        sys_account_org_ref_name: sys_account_org_0
+        image_upload_arrays:
+          - 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
+      surveyschema:
+        support_role_types:
+          - name: support_role_type_5
+            comment: Insist user require voice discipline video morning pub.
+            description: Assistant
+            unit_of_measures: days
+          - name: support_role_type_6
+            comment: Hit northern republic rise thank body play model.
+            description: Administrator
+            unit_of_measures: weeks
+          - name: support_role_type_7
+            comment: City lead background exercise cause silver defence sort.
+            description: Officer
+            unit_of_measures: months
+          - name: support_role_type_8
+            comment: Captain strike office no doubt treat transfer admit.
+            description: Liaison
+            unit_of_measures: weeks
+          - name: support_role_type_9
+            comment: Include college cause accommodate town invite select wash.
+            description: Manager
+            unit_of_measures: months
+        user_need_types:
+          - name: user_needs_type_5
+            comment: Channel respond demonstrate cast.
+            description: Vice kinfolk hoodie?
+            unit_of_measures: days
+            group: question_group_2
+            questionType: singlecheckbox
+            dropdownQuestion: Kickstarter butcher post-ironic carry taxidermy?
+          - name: user_needs_type_6
+            comment: Earth award alan finance.
+            description: Swag YOLO vinegar next level narwhal salvia squid?
+            unit_of_measures: months
+            group: question_group_6
+            questionType: dropdown
+            dropdownQuestion: Deep v kickstarter pork belly aesthetic locavore?
+          - name: user_needs_type_7
+            comment: Notice concern describe vote.
+            description: Franzen hammock YOLO etsy taxidermy?
+            unit_of_measures: days
+            group: question_group_1
+            questionType: singlecheckbox
+            dropdownQuestion: Blue bottle before they sold out before they sold out?
+          - name: user_needs_type_8
+            comment: Breath argue love advise.
+            description: Small batch vinyl meggings blue bottle schlitz bespoke?
+            unit_of_measures: weeks
+            group: question_group_4
+            questionType: singlecheckbox
+            dropdownQuestion: Waistcoat green juice scenester distillery?
+          - name: user_needs_type_9
+            comment: Encourage exhibition average influence.
+            description: Fanny pack Wes Anderson cronut ethical?
+            unit_of_measures: days
+            group: question_group_6
+            questionType: singlecheckbox
+            dropdownQuestion: Semiotics kickstarter skateboard brooklyn?
+        sys_account_project_ref_name: sys_account_project_1
+        survey_project_name: survey_project_1
+    - project:
+        name: sys_account_project_3
+        logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEVeAFzSN8SQOyeRAAAANklEQVR4nGIYQsD+/38Y8///P6MC9BEY4kD+/////z+MCowKDDGB4QIGSzk2sgSGCgAEAAD//xXhtEdW6q72AAAAAElFTkSuQmCC
+        creator_id: ops@getcouragenow.org
+        org_name: sys_account_org_0
+      projectdetails:
+        goal: Team task belong adopt licence resolve administration observe.
+        already_pledged: 96
+        action_time: 1700159963000000000
+        action_location: North Jast
+        min_pioneers: 8861
+        min_rebels_media: 1459
+        min_rebels_to_win: 1142
+        action_length: 13 weeks
+        action_type: poverty
+        category: poverty
+        contact: nyakoch@turner.io
+        hist_precedents: Player vote achieve night feel fill spring wonder.
+        strategy: Recognise driver obtain sequence atmosphere overcome like snow.
+        video_url:
+          - https://www.youtube.com/watch?v=hY4yspCQRaM
+          - https://www.youtube.com/watch?v=hY4yspCQRaM
+        unit_of_measures: months
+        sys_account_project_ref_name: sys_account_project_3
+        sys_account_org_ref_name: sys_account_org_2
+        image_upload_arrays:
+          - iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQMAAABDsxw2AAAABlBMVEUsMk7y5R9tYhWIAAAHZUlEQVR4nJzaMZLlJhMHcPTxVZG4SnMDbebU4QZbZrO9zhzAVShzuEeyHDn0EawbWCGBSrgEAv7dDW+ofcHMG+k3UgsagUAqxM8f8ee/8eepxOdNubhriT//7rH3BruEmg5l4545gu8dZlosCLYcKp7uNHH/3GGuyVYeWjhU3OU1nFow02YbDy0cKp7umOKpO8y12c5DC4fSaUc8dZuZDjt4aOFQU4rmrrOjzVyHeR7a/Y+ppO4625vM9NjJQ7uZi7V4/7E1meuxi4d2Mxu332JtMdNlgYd2syUGc/+TajHXZysL7WZzLCh9n7rBzAu2sdBuFhPgPvjZYt9esJpJ05+Z6bT5PrVkZnN9VjNp2XK5TSkWl5sPYW4zfeZrqW25TlUqJxt2yUxO2CY7a6ltOd+UC3mLYC5sOXsb7KoVuuW2oGzcOodVMBOvzvVYqBW6Pe1UqeVM/6kEc5GZLltLrm3PPUSpORaTvgQzoZZ8k20l17bn/hbv0/cZTsHc88302F6awfbce5XSKb08Z6Yc13XYUZpBZMv995QieefMFWY6zJcWGvdN8d9SKX1izMA1v7fZWVpoYm8KP4Q5YKUY4wYdIJPE0WypR2QitsosZJK40qXkGEk4Vm7ANGYSq4V0jJT/yFidIrOQSSxD0r+dpOQ2mW/INGYSzd6077lv8ISrbYEwC5lEW1bpbyC4Q7ZTwnTNJNbqU0D5fouM3EMos6FeN7kj1QKqwZ05xer9jTIdap2Qu2U6UemnkOG9lzFb8oXeyVOtsAaR87/0C5zpkkmkl0kHgP4dWe2zBLPQ8GoPmEobxh4zts9vXaaxUhZgmo6LkJk+s9BXTsAmOmabsUt1Xaaxr4RyU2w8SbvULrNw5Zjajo51Zywg12Uaa6Xmm7JsHI7M9JmFjKltQS3sGWHGMZzrMo2Ds6W2df78gsz0mYVLr3Vk+LPVTDuEHtNYLUu5wXjFgwNm+sxCykyZTQdnM25xXUaOv+TdO2cKmemzL/C9nOyrYD/hH+9d9j/8403s/rGPhXaaPz8H+PTZX5I5yfQYm3+XLEhmx1gwgk2S6TE2X5JpyewYy0/3yIxgeozNwUsmH5PtGAvhkGzhTI+xOYRdMsuZHWN3dyaZY0yPsfjsLFlgzI6xuEOwiTE9xuY4RBFMM2bHWIjDJ8EMZXqMpckkydhTsh1jz3fBFsL0GEvH3iWzhNkxlr5vkjlkeoyV2TnBAjI7xsp2ziZkeozVSSbONDI7xp6vp2QGmB5jMFfCGT4k2zEGXzlb6j49xvCRnzNbmR1jZfMmmav7hli90Htcx1n+eo4xKDZSOenvCeIZYc0n/rIPkmKEHfRqODM1tBGGbcxLhvO6H7ODt1jGlhraAMPuJg6HGcPH6A/ZQdgmGU7qfMgUYatkENqH7KBMCQZTPx8zRdglmYbQPmIHZadkBkL7iCnKvGQzTum+Zgdjh2QLztK9ZoqxXTJ8gn7NDs42yRxOIL5kirNVMjKt8YodginBJjK3+Yopzi7JNFkUesEOwU7JDJmHeMGUYF6y+Rxjh2SHZMs2xpRku2RfxtgvDbZJ9nWMqR/54FzO/+XuT89vnB/QfYZzC5qvw9b5AZylkRMZhZHVPLkcnk9G5spkKRRGZgV5cOX4ZOHS8eAqw+CcmCi6CoPgLA8OmEfGgjO1X4DgFjalgYzMobHg5ryTrDXOPH+QeWQ0uAW6NjJdeHRZDc7wRWebIwoYnObJTZhHRoJz2DuX4CY+4UJYCW7iK+J0FWOvm0PoM48MgpvoAOOqsZDgGCvBucDnwi882qdSTiQ4xvxnZDU4Q8dI+6/PdpzHlmy1K7Aa3FzCThdq97qdLUlU5pX1yEpwCxnm7c/6Lp3ZF2wtc9aJleBsqchUBzmvNL2hEubjlBSyDSqljFT3m125EjE4wtZ49BUYDu788+16JptqaZOhYmY+MY9sqyHkwfau8osYfH6JsBUXlxwGp2vKpl+lgCwGh8znvV6x1cenThIrB7kUnyhBtpaDrMDOmi8RwErnzhdagfnKvGKL7LAKvFd2sSd+ZGtl5BH1hDkchYkVN5Tnd3YTZkcjLI0K3hqxTR3GrpSwdIjPjXJTHcZqAdnTp//WqFN85CeMZgiyZ2HjauQbLrITRrMXWVrUmUKjLdSpEs5Iy0KWFpz0814AaaeYcJRhqydseR4MN3EPgUwSDO5IhKWb3vy8OYT3N8gkweBuSZiDRf1A7r1kroSzeicnLJe8F/0CeUrmrPYyyKb85tAp+izIpAYrPSCyZ2E41WbcVPpTvMNJhiPCwtIQZ4J5JBxfLn3mWywtqOt0rnSlwOY+W1tsKZNJGxsjYSZJ5psstbY5xcRDq/O6gq1Nll6SWMpsHl3YnXpMvjgZ0rNzTNgE5EudPbY22bMC7/KEJF9zdm3Gl38f9rz48hS/CC1nEmf8ldmHpZdy8mSSfOt3aTKxMv2w9MJQfg1EhJYziTEeWmZLPXXYVOOF5BYToWWWLvj70wjk+rVuMRFaZqky/ok/j/8CAAD//51nWhl0HAfOAAAAAElFTkSuQmCC
+          - iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQMAAABDsxw2AAAABlBMVEU7KR8q2fTQgc94AAAGNElEQVR4nJTZzbGkuBIFYBFaqFdPJtAWvHgGvAjGpPFA5UG7VGNBu4AJzGpYEKUJfoTyZKYSFZu+3ffj3oM4IKnanceU92Nx9RicckgW/lBYEmz8XxdL/1dY5mzIYw8LeXwLNQg25rh0sJTjJpjnbMg55GcWdibCBc7GnH0W4QRLOxPhImP7JQ1ZhOMsnIyHGxnb/+6yCMdZOhkPNyE7Rnu3NguFsXAJ2ZFhP3cxWSqMhcvAziKcl2uwUBmEG5Cdw3OM+WKwVBmE88Cuk65habJAGQ0XgF137jx5abJEGQ0XKSvXU4avwQIyEm6krPzlGvSlwRIyEm4irETL9zCrLHBWwyXCxsr4u5GyxFkNlyu7o+V6OxQWJHuzHu1sJIw95JQlyTbWo7yQaJncNsGCxt7Yo7yQaJm3lbKksQ17lBcSLcPtRRZ09oYe5WUERocdWNLZBj3Kf2dkCcLd7J8We9Me5b8YmyBc/dnJYjUpu9JRZXBLBSOjiHeBjDs+cnhPkdE7DA2hncC+hDaj7YP20r6yLqcmgyeDPlnwLOFzFpoMnlr61GPh8B2QWgzfKCNlSTCYSzWGbzt4nCbBxMuOM4hG3+T47oZoeFMI47PEQFjkrL7W7zkLmZjByHAHxpT5kDExuw6VecacE+EYEzN/WTngWkGsI8o6BJlYldAhQuacDMeYXDFdKy4Hayy5/iIXX5lczV2rQQfrP7k2vNaWyGQ0clkjYXLFHwRTVsFnuOOLSJhQNfDNlBX6+cvq0JxMRju+jUzZPZzhjj99ZYrawyFTdjZnuPuST6ZFc+WX3EzZdZ3fP/+8maqcS8i0HeERrlzKybT95REOmbZbdXW3K/e36lFYJsfc5nRCVsbm53dsIuwl2Z/fMbYK4Mf6HYtVfaQatu8Ymd2VgvrPd8xXtkoWxGrWZmRJodQlliHvZM7s0XjXoZMlq0fTfW4nm6wepfu6Otlo9aiOeSeLVo9qHzpZsHpUT+5k3uyR3D7ZbDB7lEXhbObMHmVRuAeWrB5lUbgHNlk9yqJwD2y0eiQL98Ci1SNRuCcWrB6Jwj0xb/aIF+6JyY9AHVzc6yvmzB7xwj0y/pnMfUxwfiebrB7xwj2y0eoRL9wji1aPWOGeWbB6xAr3zLzZIyzcMxvMHmHhnpkze4SF62DJ6hEWroNNVo+wcB1M2bg58u5ev2PR6hEUrocFq0dQuB7mzR7RwvWwwewRLVwPc2aPaOG6WLJ6RAvXxSarR7RwXWy0ekQL18Wi1SNSuD4WrB6RwvUxb/aoFq6PDWaPauH6mDN7VJvUyZStMd1Dzt8x5aD727J31j8qIAdlP1roJywb/tNib2BRqfp++Df8V3JsXFF8IVMasB/TC+ZzrcT7kXHaj9pzuBe0sO1iarj9lyBTw003+1xMDbf/EGRaOF/Z/cGXEu6IwpgSbiLs5ZqzzfVhHjAZzlP2LkyEOwNzJsJNlM2FiXDnz+CMh/PAlpvNItp+pmCriEbY6hrLwgz/Z1UZhvPItspmHu2jspVHI+xT2YdH21RGw3nG6Cf7M0Y7UihsxWjAXur+7R56hdVwXrA3YTNEO/6qsRWiAZsJ+0C04ydorITzki2UzTTacZLKVhoN2Kp80EJGXmVnOK+wDdjs2E3R2UqiAfsAo9/a2mwP5zWWkc3s1jXYWmdKZC/+iWj5cjFYfnmdvZHNeINbbJ2ATcq1HeHo+Vge+GnIaFLIRq8NCwdXyhgZRRi3+0toMmMrZ+QOwz2tPxeqvLGGcFbbB33L9XSHXYb2clafDHgWyBnsOYMnS7D7qYXntHy94OuJslVj9xsFKka/xvcTvJEkK287eL8VVheKkbFVZ+VNDO9eGoCGW/BNrrBrloB5Id+jjuFWnGUUds1gMGfRq6bhNpwBNXbOrjCfXgx2OZGwtc3OmR/mejrUEA5XDio7ViWwDrkY7nLizVaLHSsmWCOJHpV/fcOKS2fT9YJkcynfl8SL8eeNsX2lCWtL2aPrnxdYqTbYlFdY98oeXeFWWEU3mM9blE+lXFUf7PXIpk8UyyPlM5z4gd1Hi/kMexmtR+c3onh21f3DLxpY69EZ7tfaw/zvWTBt4/X71cX+6wTTtsE/muzfAAAA///aSxS1WaAJFAAAAABJRU5ErkJggg
+          - iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQMAAABDsxw2AAAABlBMVEUBLisd5Y3DBxsnAAAGBklEQVR4nJSaO5bbuBKGCTPAjS6XgNnBLIG9lN7BdOjAx9DStJQOJ5pRqECnOcciiXr8fwGyEuvxUfpQKBRQdE+/9Sjbr8ffI2x5Yv+MsPzE/r0MsHnHPgdY2rH76Fd37GuE1Se2jeTWHRvJlR0byS07NpLLOzaSmw9sIJcObCR3YCO5umMjufXABnLlwAZyy4EN5PKBDeTmE+vLpRMbyJ3YQK4e2EBuPbG+XDmxvtxyYn25fGJ9ublhXbnUsL5cw/py9cT6cmvDunKlYV25pWFdudywrtwsWE8uCdaVE6wrVxvWlVsF68kVwXpyi2A9uSxYT25WWEcuKawnp7Ce3F/bS3J/bi/JLdtLchrryIXf9keIGbf3EDMj/Ywwo5ZCzKjNIWY+yCFm1JYIs1ErEWbnYI0w+36NMJsfW4BZtRRhVm2OMPt2jrCLe5tjLtdKgLnMXQPMrYMaYG5V+esWqpYCzKnNAebUcoA5tYVjfoUWjvn1vnLMV4/KMV+L4MqFqSWOebWZY14tc8yrLRSDulYoBlVypRjU3EoxqOA4rIWoJYqB2kwxUMsUAzUS8oXsBoVhuLesDMOdqjIM9z2SqQuqJYah2swwVMsMQzW2iv4P1NHfWux/iA0f24Y7mN5+v+3/VIVdCZZj7EMPbh/vqrALwco1xHT4j/2uKGwiWL1FWHroSOzXkPOBxtL2iLBZZdB8vJsFexAsHyoEy5sK2zH+WbA7wcoRdILpRXAW7iTYjWD1eJtgpU3uM4Hu5xOXRwpLbWSIqf13buGskEcKy20OEavNUlXzFfJIYaVdjpiqklKBCqSbwmoLFGBJZneS2YGDlcKSpARgs3l6fpAh3QTLYgNYFk11eJgx3RpWJO6Aqb1qlclOmG4Nq/IJYEWmV/8OptuJJT04TLfz+awjWiHdTizrafRYbZ7mrLpCup1Yy4orwSSGq9YuNo8UVnWsHJY2XHR3PJEKJiv9gdjcXkh5+ZLoPABTNQ2x3ERtazSr+TWYqt5XwBaI+x64JLGxmNqnboCVNj1CPX9KJsRgqkA+x2ex9XylqvIzQLX9jMFU2J4jt1g9Tf23rW1sBvNuFvNDay9Li7vFbNwslvyvtDCYo7zC7JxabJahueY5bz7dTCJuusLZdHt+YLN3f3lHzK4Fi+nOz4Rtv+pGMLNOLVZUCMyqt6d7jZkaYrHVx31r810h3XbM1DeLVWVtquX+DReCmdprMRMq/Xwf0cQwtS9YLJn5WXXYdA9ksaLDprHZJIVtnzOkm61wE2CSipPdnfdXPt12LOmwaczdoNFh+3WRT7cDqypsGpNFJ0eeTwm9T7cDKypsGpOV/jlB/1wh3Q4sq7BpTMrLbTKnwf07fLqp1fQgWKPkgCptQYF0U1vqDTFVSB/nkKT7WiDdTqyosAmmqvfXOXly8s6Qbpu0ExNiess4rtOtCKbbgSUVNsHwPqpuxxOmW6svN4Lpruvo6nTTiul2YuVKMN0R7u+ZDvotxPJEMN2t7r7fpt94JPuyqlDoR2YYflshGLl3Xgn2QLWNYHjnIjPshmoMY/deCHZFNYZB2DLFiBrBMGyVYRC2BL9QWdgyxSBshWL0Rh++48OWcPSVhC1zjKkhBmEjIa8YtkQSumLYMsd82ArHyF1lhl2ZGmIXpoYYVQPMh61y7EHVALtTNcBuVA0w+C8Mjl2pGmAXqgYYV/PYF1fz2IOreezO1Tx242oe++RqHrtyNY9duJrHAjWH/QzUHPYjUHPY90DNYR+BmsPeAzWHvQVqZFNkah3sxW8zbm8xpkf6/prcx2ty31+T+9HBlNzPDqbkagdTcrX3BxYiV2Fnp3K193cYIlfx1MHkavdvSZpcxRMRk/M1KJDzFS2Q8/UxkPPVNpCD2s3lYCfgcrCvcDnYpbgc7nlUDndQKof7MZXD3Z3KkbMCkyMnDyZHzjFMjpyKmBw7YxE5dmIjcuz8R+TYaZLI0bMpytGTLsrRczPK0VM4yvEzPcjxDgHkeL8Bcrx7AbmgF/JyQWfl5YI+zcsFXZ+Xi3pIJxd1pE4u6m97j/8CAAD//6fXFr0YWrCvAAAAAElFTkSuQmCC
+          - iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQMAAABDsxw2AAAABlBMVEVLVzPCu2x5Sx/aAAAGUklEQVR4nLTav67dRBDHcS+WMBVLmQJlU/AQVJhHSUVNmQJl/Wh+lEUU27p0YXmR/93zm5nfROhKnOoe5yOy+SJd27PbvePzCX7+7neXfYafv//ssgI///inpwKyj1881iP77S+PDci+fvVYRLZnjyVgYc+Tw0Zg/Z5nh2Vgw47fxKfBH8Q9L1wFZGnPK2c9snHPG2cDsrznnbOIrO25cZaAhYPxcCOw/mA8XAY2HIyHa3A9HoyGC8jSwWi4Htl4MBpuQJYPRsNFZO1gNFwCFi7Gwo3A+ouxcBnYcDEWrsHleDESLiBLFyPhemTjxUi4AVm+GAkXkbWLkXAJWHiYDTcC6x9mw2Vgw8NsuAZX48NMuIAsPcyE65GNDzPhBmT5YSZcRNYeZsIlYOHFdLgRWP9iOlwGNryYDtfgYnyxhWR7WHqxlWR72PhiG8n2sPxiO8n2sPZijWS7WUA22Wzyn3+x2WZjrNhs97UfkC02280+IFtttpv9imyz2W72Bdlus91sRdZstosFySaT7WK9ZLNpdLFhtddEtutSlGwx2S6WJFtNtouNkm0m28WyZLvJdrEmWTPZThY0m3S2k/WazTrbyQbNis52XomaLTrbyZJmq852slGzTWc7WdZs19lO1jRrOtvBgmWTynaw3rJZZTvYYFlR2Y4L0bJFZTtYsmxV2Q42WrapbAfLlu0q28GaZU1la+Vcp2GTzNbKuU7DZvW9nOs0rMhsrZzrNGyR2Vo512nYKrO1cq7TsE1ma6XLjO0yWytdY6zJbK0EziaRrZWes1l+LQNnRWRrJXK2iGytJM5Wka2VkbNNZGslc7aLbK00zprI1v722ITZ2j8em8W36jHvleu9H3bnPz/y3Xn0mHx3Th6T787RY/LdefCYfHfuPSbfnYPH1Luzy+Q1+qh5XJePR6PH5P/I5DH5XBk9Jp8rB4/J58reY/K5MnhMPVe6zIajzIajzIajzIajzIajzIajzIajzIbjzISbcKHXr3jz7jx6zITjzITjzITjzITjzITjzIRzmA7nMB3OYTqcw3Q4h+lwDtPhHKbDOUyH85gK5zEVzmMqnMdUOI+pcB5T4TymwnlMhXOZM1h9sW9+vs3eXtg1+0mw6LEP5O8i7GfBeo99FCx4LMl/g8vIXZUxcldljNxVGSN3VcbIXZUxcldljNxVGSN3VcpsOMpsOMpsOMpsOMpsOMpsOMpsOMpsOM5MOM5MOM5MOPKEnshdlTMTjjMTjjMTjjMTzmE6nMN0OIfpcA7T4RymwzlMh3OYDucwHc5jKpzHVDiPqXAeU+E8psJ5TIXzmArnMRXOZTIc2ae9mAz3yWP/z7tzg/+2GKc/fzA6bJOv/8lhqxwmRIctcjQxOKzIQUfvsFmOTYLDJjmE6RymRjp6EPTs3ujrI2WbHjclylY9vIqULXoUNlBW9GCtp2zWY7pA2aSHfh1lZoRoJo/hWo6+PBK22fFmImy1w9JI2GJHrwNhxQ5ye8JmOxYOhE12yNwRRkbWetQd8NFd7VxKtrFxejJsZcP5aNjCRv2DYYVtHPSGzWwbIhg2sU2NzrCObZGovZVwLcduuIyKbR3dvkmKrR3dDIqKLR3dWhoUKx3dqOoVmzu67RUUmzq6idYphpXwlis288Jur4lwN9uQ4V0tCbYiw3uk2MoM4ncGKLkxet+kycao2GYNuCUingbEpu39Ip1NNrkFHDCSfFLJphG79F+3p69wZJwuHy0isAWZUHe4in81GSbc4Souh4wm7nAVl0MGHXe4isshY5P7YsXlkCHMHa7icshI5w5XcTl04h3fmPhVq9QVruJy7PDqCVeb2rk0x0jCG5uA2dM8bwwT2bNB+WY7XrAPi+PNNmT2+E262YrMjofizRZkRp3hKi6HHzTqbzYDI8eWws0mYOz02M06YOwsWj7Zjt/ZM/Z4sg0ZO+6VTrYiY1O1eDJxhyLqCFdxOc7Btv5keMCAHpMLJ5uA8dOKJ+uA8bOPuVVcjncgcGwVl+MdL0yt4nK8w4qxVVyOd/RxaBWX4x2k7FvF5XjHMkOruBzvkGfXKi7HOzLa5YrLcQ+gjhWX4x5nTRWX4x6OjVXc2B3VDRWX4x7c7Ssuxz0GHCouxz1U3FX84h5R7v7AL/6B51/wi3982v/8GwAA//+Qg0lCN9UHFwAAAABJRU5ErkJggg
+      surveyschema:
+        support_role_types:
+          - name: support_role_type_15
+            comment: Pretend edge discover result grow arm progress spread.
+            description: Director
+            unit_of_measures: months
+          - name: support_role_type_16
+            comment: Search care try text proceed express attract pursue.
+            description: Developer
+            unit_of_measures: months
+          - name: support_role_type_17
+            comment: Justify kingdom mass commitment separate assume encourage settlement.
+            description: Developer
+            unit_of_measures: days
+          - name: support_role_type_18
+            comment: Post search graham extension detail land improve material.
+            description: Director
+            unit_of_measures: days
+          - name: support_role_type_19
+            comment: Worker belong compare suit regime enable bear pretend.
+            description: Specialist
+            unit_of_measures: days
+        user_need_types:
+          - name: user_needs_type_15
+            comment: Border tony exclude produce.
+            description: Street poutine synth microdosing crucifix pabst Godard letterpress iPhone cliche?
+            unit_of_measures: months
+            group: question_group_3
+            questionType: singlecheckbox
+            dropdownQuestion: Cleanse hashtag farm-to-table dreamcatcher microdosing?
+          - name: user_needs_type_16
+            comment: Call sort remember suggest.
+            description: Actually master sriracha food truck scenester stumptown wolf?
+            unit_of_measures: days
+            group: question_group_4
+            questionType: dropdown
+            dropdownQuestion: Cardigan everyday messenger bag tattooed vegan?
+          - name: user_needs_type_17
+            comment: Bag hang imagine let.
+            description: Cleanse keffiyeh listicle yr dreamcatcher schlitz organic neutra echo skateboard?
+            unit_of_measures: months
+            group: question_group_6
+            questionType: dropdown
+            dropdownQuestion: Banjo fixie post-ironic forage franzen knausgaard photo booth irony?
+          - name: user_needs_type_18
+            comment: Channel owe recognize attempt.
+            description: Sartorial slow-carb photo booth typewriter banh mi forage?
+            unit_of_measures: weeks
+            group: question_group_2
+            questionType: dropdown
+            dropdownQuestion: Cardigan loko vinegar bitters?
+          - name: user_needs_type_19
+            comment: Town insurance director sense.
+            description: Hoodie raw denim forage?
+            unit_of_measures: weeks
+            group: question_group_5
+            questionType: textfield
+            dropdownQuestion: Roof schlitz drinking vinyl church-key banjo austin meh Wes Anderson?
+        sys_account_project_ref_name: sys_account_project_3
+        survey_project_name: survey_project_3
+superusers:
+  main_bootstrap_superusers:
+    - initialsuperuser:
+        email: ops_0@getcouragenow.org
+        password: 0ZSKDYllwJ49d0Gs
+regular_users:
+  main_bootstrap_regular_users:
+    - newaccounts:
+        email: user_1@getcouragenow.org
+        password: '&e2.b7A!<PzS'
+        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUlRxuft8UpCIgAAAABzElEQVR4nFyUsZHeIBCFn0YBISVwJfyhgxvjUq6ECx14DI5cxrXgDk6lbAkKFWi0nn0L+uFIxMewvH3LCjxHVkFRm70ASEaX0RuAaHQavQMIRofRDmA1sglsaTESm3CD0WbE4CIo1UJIWVDsu1ImCX7bN5Ci4BeJCQXBT66SVmEWiGpnLcIMkUgQ/HDaeu60tnVfmCbcMtP7QPsXOp6wHDO5QR/rTKcb9BFmutygjziTukEf6Qt9uKVmbyRVVbnFbf1xH2n0eocZ5Tts60u8U9LeMyGdXY3UMv1sxMD1b6N/DPvjdFExVzZCPqioNZHEFFetgVRNMWpdjL5TMWvljX6jYmn0QsXUdrp+aKc8uHNpCq+ed2nq7im1zDb6DS3rnZktH82t16k0R49W98EtwlSJZaqSt32vINJYXYSp8st0K/R33xiKfg73XjQPlDUN/ZKvkdIVhz5L50jxDEN/xmOkcKxDX4d9pHVf9oFkpEUgA20jYfOfso3aqbql2jc96cXDW2nf+M50Ev/x0tVkzyetAn89uBYE+qQo4NnBo8Ub3ikL+Mus1CkC3W9SgR6u5K+bnp3s5dOr526vomqnSOp3lXQsB4D/AQAA//97RRtdwmLlBQAAAABJRU5ErkJggg
+        new_user_roles:
+          - role: 2
+            project_name: sys_account_project_3
+      surveyvalue:
+        support_role_values:
+          - support_role_type_ref_name: support_role_type_15
+            pledged: 19
+            comment: Income colour experience window.
+          - support_role_type_ref_name: support_role_type_16
+            pledged: 39
+            comment: Gallery teach find last.
+          - support_role_type_ref_name: support_role_type_17
+            pledged: 63
+            comment: Hit deal publication parent.
+        user_need_values:
+          - user_needs_type_ref_name: user_needs_type_17
+            comments: Index separate repeat maintenance.
+          - user_needs_type_ref_name: user_needs_type_19
+            comments: Document reveal family write.
+        survey_project_ref_name: survey_project_3
+        sys_account_user_ref_name: user_1@getcouragenow.org
+        survey_user_name: survey_user_1
+    - newaccounts:
+        email: user_2@getcouragenow.org
+        password: wAzpc7J0p9I<
+        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEVJQ0NXVmtEsE0WAAAB2klEQVR4nGyUMW4bMRBF/2ILlpvShWHmCClTBKGOoiO4dGF4ebQ9Co+gUoWgCf6fGUoIzILet7A4fH/IxfP4id349yQ6o5n/5RioondOy8Am+uC0DhTRJ6cysIq+OG0Di2jnVAfg1AG0Ea/3g9MAGuIBNoAqugALaRNdgZVURDegkFbRHdhIi8iASoJT/+/JHVvQobk6LU6b0+pUnIrT6rQ5LU7VCU4tSKquyLciC6pdvw7aulYOKl1Vg9auHQUtXbsNgsKc9Dz67F/+6pLEFZdrEquttyTupNyTuEtvdxrUR5z9uTRf7xm6UjGLgkxsMYuCTHM1i4JMuphFQS6+mUVBdqiaRUF2r5nZgRZlkrKDpv/osS5XaZY1WaHdcz+s3m65V+6sZRzadcuoZJTt9FIt/ZVEm7mx1N+ZKUv9mXmz1O/ZC5b6Nft00e3Lccb3w8/uj0mcX5Lk9Zokr7ckedUkedUw0G2bR9ePaY0O+tGtkcPuwpHRl1Pk9+kU2X5ENE7vj6CmW57d09Ph2dXpIwxp5+f9Jez8LryGnd+Tt7DzO1TTzqmHnaRoqAc1koaykzgNZaf7TEPZ6a7TUHb6DtBQdvpG0NDtjjA8h5UbnmbnHl+iGP8CAAD//1sjBf9uc2gVAAAAAElFTkSuQmCC
+        new_user_roles:
+          - role: 3
+            project_name: sys_account_project_3
+      surveyvalue:
+        support_role_values:
+          - support_role_type_ref_name: support_role_type_15
+            pledged: 19
+            comment: Income colour experience window.
+          - support_role_type_ref_name: support_role_type_16
+            pledged: 39
+            comment: Gallery teach find last.
+          - support_role_type_ref_name: support_role_type_17
+            pledged: 63
+            comment: Hit deal publication parent.
+        user_need_values:
+          - user_needs_type_ref_name: user_needs_type_17
+            comments: Index separate repeat maintenance.
+          - user_needs_type_ref_name: user_needs_type_19
+            comments: Document reveal family write.
+        survey_project_ref_name: survey_project_3
+        sys_account_user_ref_name: user_2@getcouragenow.org
+        survey_user_name: survey_user_2
+    - newaccounts:
+        email: user_3@getcouragenow.org
+        password: o,t|sq#q1-KF
+        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUqQGONkXpDVzSRAAABF0lEQVR4nHzTMW60MBAF4EEUlByBPcJf/kW0vkpugqMtUu4ROApEKVLmCOsjULqw/CJI2JmXaMcN+hCy581g4TUCiBJlAJC+1ZBaUkfqSQMpkEYSrF5IF9Ir6UqaSDMJjmZnl6tz+sWpmhP9ShucLvVOd1tnKveJ6Xr+eQYAi6xWTbZqi1VXrXpYDYhGAYvReBy+C1hVb0BWvQNF9QFU1ScA1W1Pdgh7Dk10/K38fr5r64d+2QNV1QFF1QJZ1QCrSoBkNG6xocGj0QBTmfTVqitWbbZqkpUspG2d6G7+o7n/Jz2RzqTAiqSFlEgrKZMKqZLAmkg3R9PjXapzenaqTk7a+LhLZ6e73Hmeyokkf+6miHwFAAD//2BRAvCWYCI9AAAAAElFTkSuQmCC
+        new_user_roles:
+          - role: 3
+            project_name: sys_account_project_3
+      surveyvalue:
+        support_role_values:
+          - support_role_type_ref_name: support_role_type_15
+            pledged: 19
+            comment: Income colour experience window.
+          - support_role_type_ref_name: support_role_type_16
+            pledged: 39
+            comment: Gallery teach find last.
+          - support_role_type_ref_name: support_role_type_17
+            pledged: 63
+            comment: Hit deal publication parent.
+        user_need_values:
+          - user_needs_type_ref_name: user_needs_type_17
+            comments: Index separate repeat maintenance.
+          - user_needs_type_ref_name: user_needs_type_19
+            comments: Document reveal family write.
+        survey_project_ref_name: survey_project_3
+        sys_account_user_ref_name: user_3@getcouragenow.org
+        survey_user_name: survey_user_3
+    - newaccounts:
+        email: user_4@getcouragenow.org
+        password: 9&&lp!5?EdQp
+        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEVUDF0VAT2VcdWbAAABU0lEQVR4nNzUMW7rMBAE0CFUsPkA/wmia6QIwptZPJqCFOmSNiWPoNKFoA1mdje5g1nYegZXomjuAGUA2GzHfwBYUs9U3UMvVEvdqHWGNqqnTDc4UiyxULEJFLunDmBJ6aLamTqBlqp2ASs/XAb0VDMb2PhTaIelVrNJjT/1lC403XVxLaFNi+J0F1+th1SPxrVTl/bM9aYygF/UlLr0rjKgnZLKgEX68DLgkmbolfoaoUZ9BrBQ3ykM7bWe7a8b43G1mulU+Xh0/Y7Ss085KvUv9US11I2qe5SdUtywSjx7etJdMtcmFT9NxQ6XCqsL6kqsNl0q3EI6hsXYUNLBslBn4Wo2QsYJoTX7NjXV05KalA2aGsoCSVnAnAhdniGSMoSxErp79nRf4uG5FJqeWd3javc8Cw3POpeyru0h5WBNKSOXEVJ+llT+Zz36FD8BAAD//wbY6IjcXS1nAAAAAElFTkSuQmCC
+        new_user_roles:
+          - role: 3
+            project_name: sys_account_project_3
+      surveyvalue:
+        support_role_values:
+          - support_role_type_ref_name: support_role_type_15
+            pledged: 19
+            comment: Income colour experience window.
+          - support_role_type_ref_name: support_role_type_16
+            pledged: 39
+            comment: Gallery teach find last.
+          - support_role_type_ref_name: support_role_type_17
+            pledged: 63
+            comment: Hit deal publication parent.
+        user_need_values:
+          - user_needs_type_ref_name: user_needs_type_17
+            comments: Index separate repeat maintenance.
+          - user_needs_type_ref_name: user_needs_type_19
+            comments: Document reveal family write.
+        survey_project_ref_name: survey_project_3
+        sys_account_user_ref_name: user_4@getcouragenow.org
+        survey_user_name: survey_user_4
+    - newaccounts:
+        email: user_5@getcouragenow.org
+        password: e;5uo*zQSLsi
+        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUiFjwkedYUV2OrAAABOklEQVR4nOyTsU0EMRREbTlw6BJMCXTgViiBkMzXGYcICCmBLeHCC04e5PHf1R+4kBBLSPvEnufP+9pw7zwJXTzEq6d085SHpwJPFSdHDWdHHZsjwAVGwAUmwAVmYPg4wMfBBTbABSrpm3pLFkqSF2WWIHOG7juEJv2qdC/iJYuzJD6juA6yh/As9HA8na3tI2/YjF54+8WI9+brosjMcluUOE8dizJnbVhU2KPjRKrsCJxJbfaPwEbq000CLiR6y8B10hudFuA26Z2+KzAmfXAz82n+fXLWDuAVwBeAjYSDmv1vvVntd+uWYneuhGx5Kz3ZLGuyuM/JqcPegY1Ct36rbbPuhVSxW5peytgNTmfZfEb6TOY6jN9b0Y3dOf/f5pHwN9+mb6sm1JIaVLtqXrfyY2N2vgMAAP//yzGSjg7eEA0AAAAASUVORK5CYII
+        new_user_roles:
+          - role: 2
+            project_name: sys_account_project_3
+      surveyvalue:
+        support_role_values:
+          - support_role_type_ref_name: support_role_type_15
+            pledged: 19
+            comment: Income colour experience window.
+          - support_role_type_ref_name: support_role_type_16
+            pledged: 39
+            comment: Gallery teach find last.
+          - support_role_type_ref_name: support_role_type_17
+            pledged: 63
+            comment: Hit deal publication parent.
+        user_need_values:
+          - user_needs_type_ref_name: user_needs_type_17
+            comments: Index separate repeat maintenance.
+          - user_needs_type_ref_name: user_needs_type_19
+            comments: Document reveal family write.
+        survey_project_ref_name: survey_project_3
+        sys_account_user_ref_name: user_5@getcouragenow.org
+        survey_user_name: survey_user_5
+    - newaccounts:
+        email: user_6@getcouragenow.org
+        password: '>I9svcEZC<,v'
+        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUMFwaAcgzQhCElAAACAklEQVR4nFyUvY3cMBCFn8BAId0BrwSHl+k6cAtbwoYbLJYCHDh0CS7FBC5weC3QcODwFCoQ9Iz5IWlbgQ7fgaOZb2a4AF4gzwUYf6fqdJXX3Ogmr9ToLq/c6CFhbJQlbNAKpEEF+DSoYnodtGEug3aksnQ6kEvsdE4soRNnFgz6xtKNMsmCp05fWUBSs2QGlvCuJ+SbYIm/Sa6WbynLL5JeSyz8SZ5eZ3hlJY/WhDfW7FSAhXXh3twja+LW+hJYoylKz8A6a3Lr51KDJrdexzpxzCFUnH/NqlqEz+8Jz/IxZgvAB/X5lxYLx0dJdDR6VkrHmHHaG92V4m4k/4xbo1NpVi9Mpy5KIyr5eIJQKJ1WoUmdMQtNa6ciBO0AovWlU1VBS558fD5VF4S3QmjImiC8kUJD1gSNdqUha4ImZNRlXdCFlLqeC7rQZxVs9MUFTeiHCjZ663sveu9CfjKRsj6h+Kz1PVfbCui342bbYJnSrpvmVSyH7iRmpXzK9gJRiZQ9B1LRsXHVli5FTVgyX+DBZM3HFdCaI7nl7Y5JKZF7LhlBaSGPjFxsrTN53pE3G6bcuyvykXy04pK5dJLz3ztdkM9x8oa8x04P5HZx9JblNQyqD69Mab951aZ/cSPLtrot2gKlEde71H7o5pGvd7fd42nU2afS7+oL/nv+BAAA///WAV/LU9WliwAAAABJRU5ErkJggg
+        new_user_roles:
+          - role: 2
+            project_name: sys_account_project_3
+      surveyvalue:
+        support_role_values:
+          - support_role_type_ref_name: support_role_type_15
+            pledged: 19
+            comment: Income colour experience window.
+          - support_role_type_ref_name: support_role_type_16
+            pledged: 39
+            comment: Gallery teach find last.
+          - support_role_type_ref_name: support_role_type_17
+            pledged: 63
+            comment: Hit deal publication parent.
+        user_need_values:
+          - user_needs_type_ref_name: user_needs_type_17
+            comments: Index separate repeat maintenance.
+          - user_needs_type_ref_name: user_needs_type_19
+            comments: Document reveal family write.
+        survey_project_ref_name: survey_project_3
+        sys_account_user_ref_name: user_6@getcouragenow.org
+        survey_user_name: survey_user_6
+    - newaccounts:
+        email: user_7@getcouragenow.org
+        password: b=wAY9tMW|=Y
+        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUOByil5V44omevAAACR0lEQVR4nGSUsW3mWAyER1CgUCU8l+DQgeHnUv4SrgO9wwUXugS3sB2YCwcbugSrBIUKBM1ihvolYPcFPzyAKfIjOcSf7xXADY+HCgALng81A92KmqKbgX5DjVQLMOyoi1W/ACNRt1QrUNgqrYYVqIxKBw4bMHGudOC4AeRS6cBxR0eulQ4sO3pyq3RgIQZyr3RgJUaSlQ6sbIXkBx04KXO+kHLamso/NytIzaLNr3RSonWGTr+idUQvJVqH9eRqWicfpEy7pNou2lHKtEi1m9awhdxNuxyKpj2rNS3u6o1kTmUi+U7yx6kOUk+lIXDDAx48h9YFFjzmdIfWR7fiCU8upg3Rb3jOWZc2xrDjBS9O2EqILyc/tRria7WpZ20SXA1V2rExxDdXLQf/ZYhvEdPA//hTfGtdxf4/P8W3ib7wjb/Et9ddfO/88jTVp4kf/PY0P9iseDJWk9+VvnL9pzJcX1H2K4Mqu7Kr6qsyE51Vm/YkcidOWnfp6oQ6eHVJ3b06qM5f3dVUrs6j4fWait85MS9lbrIn2kuVuxq/yV2qeUpf5DbelWjXMfcavWiX4VCjaGftU25TkNEfippf69NHPbW42v0t1zVKOjKXMNKtaxYZ8rW9oiJDF2CizwAZuhWT3JW+C/0xX9vabI9yKBQpVSs+ecn+0zQ3jMabaD65Ls3yaUdaDTSf/AkHig/9fvhDfHJyBkZlQ5dqYBT6wmVgjIpJhSl0qZDnDSV00/BPqiF0/XA7PBe6k+f8Xn1R/3q/AwAA//9DlF9KgAw29wAAAABJRU5ErkJggg
+        new_user_roles:
+          - role: 3
+            project_name: sys_account_project_3
+      surveyvalue:
+        support_role_values:
+          - support_role_type_ref_name: support_role_type_15
+            pledged: 19
+            comment: Income colour experience window.
+          - support_role_type_ref_name: support_role_type_16
+            pledged: 39
+            comment: Gallery teach find last.
+          - support_role_type_ref_name: support_role_type_17
+            pledged: 63
+            comment: Hit deal publication parent.
+        user_need_values:
+          - user_needs_type_ref_name: user_needs_type_17
+            comments: Index separate repeat maintenance.
+          - user_needs_type_ref_name: user_needs_type_19
+            comments: Document reveal family write.
+        survey_project_ref_name: survey_project_3
+        sys_account_user_ref_name: user_7@getcouragenow.org
+        survey_user_name: survey_user_7
