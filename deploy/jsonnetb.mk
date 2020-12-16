@@ -33,6 +33,12 @@ jsonnetb-print:
 	
 jsonnetb-dep: jsonnetb-dep-delete
 	$(MAKE) DWN_URL=$(JSONNETB_BIN_URL) DWN_FILENAME=$(JSONNETB_BIN_FILE) DWN_BIN_FSPATH=$(JSONNETB_BIN) dwn-download
+
+	@echo work around for WINDOWS
+
+ifeq ($(OS_detected),Windows)
+	# ?? not idea
+endif
 jsonnetb-dep-delete:
 	$(MAKE) DWN_URL=$(JSONNETB_BIN_URL) DWN_FILENAME=$(JSONNETB_BIN_FILE) DWN_BIN_FSPATH=$(JSONNETB_BIN) dwn-delete
 

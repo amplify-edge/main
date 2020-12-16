@@ -2,6 +2,8 @@
 
 include=./dwn.mk
 
+uname_s = $(shell uname -s)
+uname_m = $(shell uname -m)
 
 ### go-jsonnet
 #https://github.com/google/go-jsonnet/releases/tag/v0.17.0
@@ -10,7 +12,7 @@ include=./dwn.mk
 JSONNET_BIN=$(PWD)/jsonnet
 # https://github.com/google/go-jsonnet/releases/download/
 # WINDOWS: https://github.com/google/go-jsonnet/releases/download/v0.17.0/go-jsonnet_0.17.0_Windows_x86_64.tar.gz
-# DARINW: See: https://github.com/google/go-jsonnet/pull/486
+# DARWIN: See: https://github.com/google/go-jsonnet/pull/486
 # LINUX: https://github.com/google/go-jsonnet/releases/download/v0.17.0/go-jsonnet_0.17.0_Linux_x86_64.tar.gz
 JSONNET_BIN_VERSION=0.17.0
 JSONNET_BIN_PLATFORM=??
@@ -38,6 +40,19 @@ jsonnet-print:
 	
 jsonnet-dep: jsonnet-dep-delete
 	$(MAKE) DWN_URL=$(JSONNET_BIN_URL) DWN_FILENAME=$(JSONNET_BIN_FILE) DWN_BIN_FSPATH=$(JSONNET_BIN) dwn-download 
+
+	@echo work around for darwin
+
+ifeq ($(OS_detected),Darwin)
+	brew install go-jsonnet
+endif
+
+#	if [$(uname_s)=Darwin]; then \
+#		brew install jb \
+#		brew install go-jsonnet; \
+#	fi
+	
+
 jsonnet-dep-delete:
 	$(MAKE) DWN_URL=$(JSONNET_BIN_URL) DWN_FILENAME=$(JSONNET_BIN_FILE) DWN_BIN_FSPATH=$(JSONNET_BIN) dwn-delete 
 
