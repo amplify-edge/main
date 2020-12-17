@@ -67,8 +67,7 @@ fly-dep: fly-dep-delete
  		DWN_BIN_NAME=$(FLY_BIN) \
  		DWN_BIN_OUTPUT_DIR=$(FLY_OUTPUT_DIR) dwn-download
 	if [[ $(uname_s) = Darwin || $(uname_s) = Linux ]]; then \
-  		sudo install -m755 $(FLY_OUTPUT_DIR)/$(FLY_BIN) $(PREFIX)/$(FLY_BIN) && \
-  		sudo ln -s $(PREFIX)/$(FLY_BIN) $(PREFIX)/fly; \
+  		sudo install -m755 $(FLY_OUTPUT_DIR)/$(FLY_BIN) $(PREFIX)/$(FLY_BIN); \
   	fi
 
 fly-dep-delete:
@@ -76,8 +75,7 @@ fly-dep-delete:
 		DWN_FILENAME=$(FLY_BIN_FILE) \
 		DWN_BIN_NAME=$(FLY_BIN) \
 		DWN_BIN_OUTPUT_DIR=$(FLY_OUTPUT_DIR) dwn-delete
-	if [[ $(uname_s) = darwin || $(uname_s) = linux ]]; then \
-  		sudo unlink $(PREFIX)/fly && \
+	if [[ $(uname_s) = Darwin || $(uname_s) = Linux ]]; then \
 		sudo rm -rf $(PREFIX)/$(FLY_BIN); \
 	fi
 
