@@ -7,22 +7,22 @@
 
 include=./dwn.mk
 
-
 ### BIN
-FLY_BIN=$(PWD)/flyctl
+PREFIX=/usr/local/bin
+FLY_BIN=flyctl
+FLY_OUTPUT_DIR=downloaded
 # https://github.com/superfly/flyctl/releases/tag/v0.0.153
 # https://github.com/superfly/flyctl/releases/download/v0.0.153/flyctl_0.0.153_macOS_x86_64.tar.gz
 FLY_BIN_VERSION=0.0.154
-FLY_BIN_PLATFORM=??
 # switch for OS (https://stackoverflow.com/questions/714100/os-detecting-makefile)
-ifeq ($(OS_detected),Windows)
-    FLY_BIN_PLATFORM=Windows_x86_64
+ifeq ($(OS),Windows)
+    FLY_BIN_PLATFORM:=Windows_x86_64
 endif
-ifeq ($(OS_detected),Darwin)
-    FLY_BIN_PLATFORM=macOS_x86_64
+ifeq ($(uname_s),Darwin)
+    FLY_BIN_PLATFORM:=macOS_x86_64
 endif
-ifeq ($(OS_detected),Linux)
-    FLY_BIN_PLATFORM=Linux_x86_64
+ifeq ($(uname_s),Linux)
+    FLY_BIN_PLATFORM:=Linux_x86_64
 endif
 FLY_BIN_FILE=flyctl_$(FLY_BIN_VERSION)_$(FLY_BIN_PLATFORM).tar.gz
 FLY_BIN_URL=https://github.com/superfly/flyctl/releases/download/v$(FLY_BIN_VERSION)/$(FLY_BIN_FILE)
@@ -62,10 +62,24 @@ fly-print:
 	@echo
 
 fly-dep: fly-dep-delete
-	$(MAKE) DWN_URL=$(FLY_BIN_URL) DWN_FILENAME=$(FLY_BIN_FILE) DWN_BIN_FSPATH=$(FLY_BIN) dwn-download 
+	$(MAKE) DWN_URL=$(FLY_BIN_URL) \
+		DWN_FILENAME=$(FLY_BIN_FILE) \
+ 		DWN_BIN_NAME=$(FLY_BIN) \
+ 		DWN_BIN_OUTPUT_DIR=$(FLY_OUTPUT_DIR) dwn-download
+	if [[ $(uname_s) = Darwin || $(uname_s) = Linux ]]; then \
+  		sudo install -m755 $(FLY_OUTPUT_DIR)/$(FLY_BIN) $(PREFIX)/$(FLY_BIN) && \
+  		sudo ln -s $(PREFIX)/$(FLY_BIN) $(PREFIX)/fly; \
+  	fi
+
 fly-dep-delete:
-	$(MAKE) DWN_URL=$(FLY_BIN_URL) DWN_FILENAME=$(FLY_BIN_FILE) DWN_BIN_FSPATH=$(FLY_BIN) dwn-delete 
-	
+	$(MAKE) DWN_URL=$(FLY_BIN_URL) \
+		DWN_FILENAME=$(FLY_BIN_FILE) \
+		DWN_BIN_NAME=$(FLY_BIN) \
+		DWN_BIN_OUTPUT_DIR=$(FLY_OUTPUT_DIR) dwn-delete
+	if [[ $(uname_s) = darwin || $(uname_s) = linux ]]; then \
+  		sudo unlink $(PREFIX)/fly && \
+		sudo rm -rf $(PREFIX)/$(FLY_BIN); \
+	fi
 
 fly-init:
 	#cd $(FLY_CODE_PATH) && $(FLY_BIN) auth signup
