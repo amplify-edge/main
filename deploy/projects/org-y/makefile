@@ -162,10 +162,26 @@ docker:
 		--build-arg IMAGE_AUTHOR=$(IMAGE_AUTHOR) \
 		--build-arg IMAGE_ORG=$(IMAGE_ORG) \
 		--build-arg IMAGE_FLAGS=$(IMAGE_FLAGS) \
-		--build-arg BS_CRYPT_PASSWORD=$(BS_CRYPT_PASSWORD) \
 		--build-arg IMAGE_NAME=$(IMAGE_NAME)
 	docker system prune --volumes -f
 
 fly:
-	flyctl secrets set BS_CRYPT_PASSWORD=$(BS_CRYPT_PASSWORD)
-	flyctl deploy
+	flyctl deploy \
+			--build-arg IMAGE_REF=$(IMAGE_REF) \
+        	--build-arg IMAGE_BASE=$(IMAGE_BASE) \
+        	--build-arg IMAGE_DATE=$(IMAGE_DATE) \
+        	--build-arg IMAGE_EXECUTABLE=$(IMAGE_EXECUTABLE) \
+        	--build-arg IMAGE_PORT=$(IMAGE_PORT) \
+        	--build-arg IMAGE_AUTHOR=$(IMAGE_AUTHOR) \
+        	--build-arg IMAGE_ORG=$(IMAGE_ORG) \
+        	--build-arg IMAGE_FLAGS=$(IMAGE_FLAGS) \
+        	--build-arg IMAGE_NAME=$(IMAGE_NAME)
+
+fly-create:
+	flyctl init --dockerfile --name org-y --org getcouragenow-org --port 8080 --overwrite
+	#flyctl regions --app $(FLY_APP_NAME) set ams
+	flyctl scale vm shared-cpu-1x --memory=1024 # 1GB
+	flyctl volumes create db --region ams --app $(FLY_APP_NAME)
+	#flyctl secrets --app $(FLY_APP_NAME) set BS_CRYPT_PASSWORD=$(BS_CRYPT_PASSWORD)
+	cp fly.toml.bak fly.toml
+
