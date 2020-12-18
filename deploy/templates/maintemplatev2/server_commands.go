@@ -28,10 +28,6 @@ const (
 	errCreateService  = "error while creating %s service: %v"
 
 	defaultConfigDir                 = "./config"
-	defaultSysAccountConfigPath      = defaultConfigDir + "/sysaccount.yml"
-	defaultDiscoConfigPath           = defaultConfigDir + "/moddisco.yml"
-	defaultBsConfigPath              = defaultConfigDir + "/bootstrap-server.yml"
-	defaultMainCfgPath               = defaultConfigDir + "/main-server.yml"
 	defaultEncryptedConfigServerPath = "./encrypted-config"
 	defaultDebug                     = true
 	defaultCorsHeaders               = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
@@ -39,11 +35,11 @@ const (
 )
 
 var (
-	bsCfgPath           string
 	configPath          string
-	mainCfgPath         string
-	accountCfgPath      string
-	discoCfgPath        string
+	bsCfgPath           = configPath + "/bootstrap-server.yml"
+	mainCfgPath         = configPath + "/main-server.yml"
+	accountCfgPath      = configPath + "/sysaccount.yml"
+	discoCfgPath        = configPath + "/moddisco.yml"
 	isDebug             bool
 	encryptedConfigPath string
 )
@@ -83,10 +79,6 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 
 	rootCmd := &cobra.Command{Use: "server"}
 	// persistent flags
-	rootCmd.PersistentFlags().StringVarP(&accountCfgPath, "sys-account-config-path", "a", defaultSysAccountConfigPath, "sys-account config path to use")
-	rootCmd.PersistentFlags().StringVarP(&discoCfgPath, "mod-disco-config-path", "i", defaultDiscoConfigPath, "mod-disco config path to use")
-	rootCmd.PersistentFlags().StringVarP(&bsCfgPath, "bootstrap-config-path", "b", defaultBsConfigPath, "bs config path to use")
-	rootCmd.PersistentFlags().StringVarP(&mainCfgPath, "main-config-path", "m", defaultMainCfgPath, "path to main config")
 	rootCmd.PersistentFlags().BoolVar(&isDebug, "debug", defaultDebug, "debug")
 	rootCmd.PersistentFlags().StringVarP(&encryptedConfigPath, "encrypted-config-dir", "e", defaultEncryptedConfigServerPath, "path to encrypted config directory")
 	rootCmd.PersistentFlags().StringVarP(&configPath, "config-output-dir", "c", defaultConfigDir, "path to decrypted config")
