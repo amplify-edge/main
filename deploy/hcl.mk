@@ -2,24 +2,24 @@
 # https://github.com/hetznercloud/cli
 include=./dwn.mk
 
-
 ### BIN
-HCL_BIN=$(PWD)/hcloud
+PREFIX=/usr/local/bin
+HCL_OUTPUT_DIR=downloaded
+HCL_BIN=hcloud
 # https://github.com/hetznercloud/cli/releases/tag/v1.20.0
 # WINDOWS: https://github.com/hetznercloud/cli/releases/download/v1.20.0/hcloud-windows-amd64.zip
 # DARWIN: https://github.com/hetznercloud/cli/releases/download/v1.20.0/hcloud-macos-amd64.zip
 # LINUX: https://github.com/hetznercloud/cli/releases/download/v1.20.0/hcloud-linux-amd64.tar.gz
 HCL_BIN_VERSION=1.20.0
-HCL_BIN_PLATFORM=??
 # switch for OS (https://stackoverflow.com/questions/714100/os-detecting-makefile)
-ifeq ($(OS_detected),Windows)
-    HCL_BIN_PLATFORM=windows-amd64.zip
+ifeq ($(OS),Windows)
+    HCL_BIN_PLATFORM:=windows-amd64.zip
 endif
-ifeq ($(OS_detected),Darwin)
-    HCL_BIN_PLATFORM=macos-amd64.zip
+ifeq ($(uname_s),Darwin)
+    HCL_BIN_PLATFORM:=macos-amd64.zip
 endif
-ifeq ($(OS_detected),Linux)
-    HCL_BIN_PLATFORM=linux-amd64.tar.gz
+ifeq ($(uname_s),Linux)
+    HCL_BIN_PLATFORM:=linux-amd64.tar.gz
 endif
 HCL_BIN_FILE=hcloud-$(HCL_BIN_PLATFORM)
 HCL_BIN_URL=https://github.com/hetznercloud/cli/releases/download/v$(HCL_BIN_VERSION)/$(HCL_BIN_FILE)
@@ -56,9 +56,22 @@ hcl-print:
 	@echo
 
 hcl-dep: hcl-dep-delete
-	$(MAKE) DWN_URL=$(HCL_BIN_URL) DWN_FILENAME=$(HCL_BIN_FILE) DWN_BIN_FSPATH=$(HCL_BIN) dwn-download 
+	$(MAKE) DWN_URL=$(HCL_BIN_URL) \
+		DWN_FILENAME=$(HCL_BIN_FILE) \
+ 		DWN_BIN_NAME=$(HCL_BIN) \
+ 		DWN_BIN_OUTPUT_DIR=$(HCL_OUTPUT_DIR) dwn-download
+	if [[ $(uname_s) = Darwin || $(uname_s) = Linux ]]; then \
+  		sudo install -m755 $(HCL_OUTPUT_DIR)/$(HCL_BIN) $(PREFIX)/$(HCL_BIN); \
+  	fi
+
 hcl-dep-delete:
-	$(MAKE) DWN_URL=$(HCL_BIN_URL) DWN_FILENAME=$(HCL_BIN_FILE) DWN_BIN_FSPATH=$(HCL_BIN) dwn-delete 
+	$(MAKE) DWN_URL=$(HCL_BIN_URL) \
+		DWN_FILENAME=$(HCL_BIN_FILE) \
+ 		DWN_BIN_NAME=$(HCL_BIN) \
+ 		DWN_BIN_OUTPUT_DIR=$(HCL_OUTPUT_DIR) dwn-delete
+	if [[ $(uname_s) = Darwin || $(uname_s) = Linux ]]; then \
+  		sudo rm -rf $(PREFIX)/$(HCL_BIN); \
+  	fi
 	
 
 hcl-init:

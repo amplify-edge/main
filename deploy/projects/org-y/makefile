@@ -9,9 +9,13 @@
  DEPLOY_BOILERPLATE_FSPATH=./../..
  include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/hcl.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/go-bindata.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/jsonnet.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/jsonnetb.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/mkcert.mk
 
 CONFIG_DIR = $(PWD)/config
 #VENDOR_DIR = jb-build
@@ -20,8 +24,7 @@ VERSION_DIR = $(PWD)/version
 BIN_DIR = $(PWD)/bin-all
 CLI_BIN = $(BIN_DIR)/maintemplatev2-cli
 SERVER_BIN = $(BIN_DIR)/maintemplatev2
-#TEMPLATE_DIR = github.com/gutterbacon/main/deploy/templates/maintemplatev2
-TEMPLATE_DIR = github.com/joe-getcourgagenow/main/deploy/templates/maintemplatev2
+TEMPLATE_DIR = github.com/gutterbacon/main/deploy/templates/maintemplatev2
 
 SERVER_ENTRYPOINT = $(PWD)/cmd/server/*.go
 CLI_ENTRYPOINT = $(PWD)/cmd/cli/*.go
@@ -82,27 +85,18 @@ print:
 	@echo DEPLOY_BASEURL: $(DEPLOY_BASEURL)
 	@echo
 
-dep-os:
+dep-os: dep-os-delete
 	# Install go-bindata, jsonnet-bundler, go-jsonnet here
-	if [ $(uname_s) = Linux ]; then \
-		curl -L -o /tmp/jb https://github.com/jsonnet-bundler/jsonnet-bundler/releases/download/v$(JB_VERSION)/jb-$(uname_s)-amd64 && \
-			chmod +x /tmp/jb && sudo install -Dm755 /tmp/jb /usr/local/bin/jb && \
-		curl -L https://github.com/google/go-jsonnet/releases/download/v$(GO_JSONNET_VERSION)/go-jsonnet_$(GO_JSONNET_VERSION)_$(uname_s)_$(uname_m).tar.gz | tar xvz -C /tmp && \
-			sudo install -Dm755 /tmp/jsonnet /usr/local/bin/jsonnet; \
-	elif [$(uname_s) = Darwin]; then \
-		brew install jb \
-		brew install go-jsonnet; \
-	fi
-	curl -L https://github.com/go-bindata/go-bindata/archive/v$(GO_BINDATA_VERSION).tar.gz | tar xvz -C /tmp && \
-		cd /tmp/go-bindata-$(GO_BINDATA_VERSION)/go-bindata && go build && sudo install -m755 go-bindata /usr/local/bin/go-bindata
-	git clone https://github.com/FiloSottile/mkcert /tmp/mkcert && cd /tmp/mkcert && \
-		go build -ldflags "-X main.Version=$(git describe --tags)" && sudo install -m755 mkcert /usr/local/bin/mkcert
-	git clone https://github.com/getcouragenow/shared /tmp/shared && \
-		cd /tmp/shared/tool/bs-lang && go build && sudo install -m755 bs-lang /usr/local/bin/bs-lang
-	# TODO
-#	$(MAKE) hug-dep
-#	$(MAKE) fly-dep
-#	$(MAKE) gor-dep
+	$(MAKE) jsonnet-dep
+	$(MAKE) jsonnetb-dep
+	$(MAKE) gb-dep
+	$(MAKE) fly-dep
+	$(MAKE) hug-dep
+	$(MAKE) gor-dep
+	$(MAKE) mkcert-dep
+	# BS-LANG
+	git clone https://github.com/getcouragenow/shared downloaded/shared && \
+		cd downloaded/shared/tool/bs-lang && go build && sudo install -m755 bs-lang /usr/local/bin/bs-lang
 
 dep-os-delete:
 	$(MAKE) hug-dep-delete
@@ -110,6 +104,9 @@ dep-os-delete:
 	$(MAKE) gor-dep-delete
 	$(MAKE) jsonnet-dep-delete
 	$(MAKE) jsonnetb-dep-delete
+	$(MAKE) gb-dep-delete
+	$(MAKE) mkcert-dep-delete
+	rm -rf downloaded
 
 all: dep-delete dep gen build
 
