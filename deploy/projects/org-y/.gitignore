@@ -12,3 +12,4 @@ jsonnetfmt
 
 /flutter/
 /config/
+/.env
