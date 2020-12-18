@@ -6,6 +6,7 @@ import (
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
+	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
 	"github.com/getcouragenow/sys/main/pkg"
@@ -18,6 +19,7 @@ import (
 	"google.golang.org/grpc"
 	"net"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -25,21 +27,25 @@ const (
 	errSourcingConfig = "error while sourcing config for %s: %v"
 	errCreateService  = "error while creating %s service: %v"
 
-	defaultSysAccountConfigPath = "./config/sysaccount.yml"
-	defaultDiscoConfigPath      = "./config/moddisco.yml"
-	defaultBsConfigPath         = "./config/bootstrap-server.yml"
-	defaultMainCfgPath          = "./config/main-server.yml"
-	defaultDebug                = true
-	defaultCorsHeaders          = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
-	flyHeaders                  = "Fly-Client-IP, Fly-Forwarded-Port, Fly-Region, Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
+	defaultConfigDir                 = "./config"
+	defaultSysAccountConfigPath      = defaultConfigDir + "/sysaccount.yml"
+	defaultDiscoConfigPath           = defaultConfigDir + "/moddisco.yml"
+	defaultBsConfigPath              = defaultConfigDir + "/bootstrap-server.yml"
+	defaultMainCfgPath               = defaultConfigDir + "/main-server.yml"
+	defaultEncryptedConfigServerPath = "./encrypted-config"
+	defaultDebug                     = true
+	defaultCorsHeaders               = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
+	flyHeaders                       = "Fly-Client-IP, Fly-Forwarded-Port, Fly-Region, Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
 )
 
 var (
-	bsCfgPath      string
-	mainCfgPath    string
-	accountCfgPath string
-	discoCfgPath   string
-	isDebug        bool
+	bsCfgPath           string
+	configPath          string
+	mainCfgPath         string
+	accountCfgPath      string
+	discoCfgPath        string
+	isDebug             bool
+	encryptedConfigPath string
 )
 
 type FileSystem struct {
@@ -80,11 +86,21 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 	rootCmd.PersistentFlags().StringVarP(&accountCfgPath, "sys-account-config-path", "a", defaultSysAccountConfigPath, "sys-account config path to use")
 	rootCmd.PersistentFlags().StringVarP(&discoCfgPath, "mod-disco-config-path", "i", defaultDiscoConfigPath, "mod-disco config path to use")
 	rootCmd.PersistentFlags().StringVarP(&bsCfgPath, "bootstrap-config-path", "b", defaultBsConfigPath, "bs config path to use")
-	rootCmd.PersistentFlags().StringVarP(&mainCfgPath, "main-config-path", "m", defaultMainCfgPath, "main config path to use")
+	rootCmd.PersistentFlags().StringVarP(&mainCfgPath, "main-config-path", "m", defaultMainCfgPath, "path to main config")
 	rootCmd.PersistentFlags().BoolVar(&isDebug, "debug", defaultDebug, "debug")
+	rootCmd.PersistentFlags().StringVarP(&encryptedConfigPath, "encrypted-config-dir", "e", defaultEncryptedConfigServerPath, "path to encrypted config directory")
+	rootCmd.PersistentFlags().StringVarP(&configPath, "config-output-dir", "c", defaultConfigDir, "path to decrypted config")
 
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
-		// configs
+		// encrypted configs
+		password := os.Getenv("BS_CRYPT_PASSWORD")
+		if password == "" {
+			logger.Fatal("uanble to get config secret from the environment")
+		}
+		err := bscrypt.DecryptAllFiles(encryptedConfigPath, configPath, password)
+		if err != nil {
+			logger.Fatal("unable to decrypt config: %v", err)
+		}
 		mainCfg, err := wrapper.NewConfig(mainCfgPath)
 		if err != nil {
 			logger.Fatalf(errSourcingConfig, "main-wrapper", err)

@@ -18,6 +18,8 @@
  include $(DEPLOY_BOILERPLATE_FSPATH)/mkcert.mk
 
 CONFIG_DIR = $(PWD)/config
+ENCRYPTED_CONFIG_DIR = $(PWD)/encrypted-config
+
 VENDOR_DIR = jb-build
 VERSION_DIR = $(PWD)/version
 BIN_DIR = $(PWD)/bin-all
@@ -28,6 +30,7 @@ TEMPLATE_DIR = github.com/getcouragenow/main/deploy/templates/maintemplatev2
 
 SERVER_ENTRYPOINT = $(PWD)/cmd/server/*.go
 CLI_ENTRYPOINT = $(PWD)/cmd/cli/*.go
+
 
 GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" -a -tags netgo
 
@@ -77,18 +80,19 @@ print:
 	@echo -- DEPLOY environment --
 	@echo DEPLOY_ENV: $(DEPLOY_ENV)
 	@echo DEPLOY_BASEURL: $(DEPLOY_BASEURL)
+	@echo "Please set BS_CRYPT_PASSWORD environment variable if it's empty via your shell"
+	@echo BS_CRYPT_PASSWORD: $(shell echo "$$BS_CRYPT_PASSWORD")
 	@echo
 
 dep-os: dep-os-delete
-	$(MAKE) jsonnet-dep
-	$(MAKE) jsonnetb-dep
-	$(MAKE) gb-dep
-	$(MAKE) fly-dep
-	$(MAKE) hug-dep
-	$(MAKE) gor-dep
-	$(MAKE) mkcert-dep
-	# BS-LANG & BS-CRYPT
-	$(MAKE) dep-os-internal
+	@$(MAKE) jsonnet-dep
+	@$(MAKE) jsonnetb-dep
+	@$(MAKE) gb-dep
+	@$(MAKE) fly-dep
+	@$(MAKE) hug-dep
+	@$(MAKE) gor-dep
+	@$(MAKE) mkcert-dep
+	@$(MAKE) dep-os-internal
 
 dep-os-internal:
 	@jb --jsonnetpkg-home=$(VENDOR_DIR) update # driven by jsonnet
@@ -96,13 +100,13 @@ dep-os-internal:
 	cd $(VENDOR_DIR)/github.com/getcouragenow/ops/bs-crypt && go build && sudo install -m755 bs-crypt $(PREFIX)/bs-crypt
 
 dep-os-delete:
-	$(MAKE) hug-dep-delete
-	$(MAKE) fly-dep-delete
-	$(MAKE) gor-dep-delete
-	$(MAKE) jsonnet-dep-delete
-	$(MAKE) jsonnetb-dep-delete
-	$(MAKE) gb-dep-delete
-	$(MAKE) mkcert-dep-delete
+	@$(MAKE) hug-dep-delete
+	@$(MAKE) fly-dep-delete
+	@$(MAKE) gor-dep-delete
+	@$(MAKE) jsonnet-dep-delete
+	@$(MAKE) jsonnetb-dep-delete
+	@$(MAKE) gb-dep-delete
+	@$(MAKE) mkcert-dep-delete
 	sudo rm -rf $(PREFIX)/bs-{lang,crypt}
 	rm -rf downloaded
 
@@ -119,11 +123,12 @@ dep-delete:
 gen:
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR)/client && flutter pub get && flutter pub upgrade
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
-	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
+	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
 		$(MAKE) FRONTEND_HOST=$(FRONTEND_HOST) \
 			FRONTEND_PORT=$(FRONTEND_PORT) \
 			FRONTEND_URL_WEB=$(FRONTEND_URL_WEB) \
 			FRONTEND_URL_NATIVE=$(FRONTEND_URL_NATIVE) this-flutter-gen
+	$(MAKE) config
 
 # build recipe
 build: # dep
@@ -135,6 +140,12 @@ build: # dep
 	go-bindata -fs -nomemcopy -pkg version -o $(VERSION_DIR)/version.go -prefix "version/" $(VERSION_DIR)/manifest.json
 	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
 	GOOS=linux GOARCH=amd64 $(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
+
+config: config-del
+	bs-crypt encrypt -s $(CONFIG_DIR) -d $(ENCRYPTED_CONFIG_DIR)
+
+config-del:
+	rm -rf $(ENCRYPTED_CONFIG_DIR)
 
 # docker recipe for local testing
 docker:
@@ -150,5 +161,5 @@ docker:
 	docker system prune --volumes -f
 
 fly:
+	flyctl secrets set BS_CRYPT_PASSWORD=$(shell echo "$$BS_CRYPT_PASSWORD")
 	flyctl deploy
-
