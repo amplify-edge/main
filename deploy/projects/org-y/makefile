@@ -18,13 +18,13 @@
  include $(DEPLOY_BOILERPLATE_FSPATH)/mkcert.mk
 
 CONFIG_DIR = $(PWD)/config
-#VENDOR_DIR = jb-build
-VENDOR_DIR = $(GOPATH)/src
+VENDOR_DIR = jb-build
 VERSION_DIR = $(PWD)/version
 BIN_DIR = $(PWD)/bin-all
 CLI_BIN = $(BIN_DIR)/maintemplatev2-cli
 SERVER_BIN = $(BIN_DIR)/maintemplatev2
-TEMPLATE_DIR = github.com/gutterbacon/main/deploy/templates/maintemplatev2
+SERVER_BIN_DEPLOY = $(BIN_DIR)/maintemplatev2-deploy
+TEMPLATE_DIR = github.com/getcouragenow/main/deploy/templates/maintemplatev2
 
 SERVER_ENTRYPOINT = $(PWD)/cmd/server/*.go
 CLI_ENTRYPOINT = $(PWD)/cmd/cli/*.go
@@ -67,12 +67,6 @@ ifeq ($(DEPLOY_ENV),DEV)
      DEPLOY_BASEURL=http://$(FLY_DNS_SUBDOMAIN).$(FLY_DNS_DOMAIN)
 endif
 
-JB_VERSION = 0.4.0
-GO_JSONNET_VERSION = 0.17.0
-GO_BINDATA_VERSION = 3.1.3
-uname_s = $(shell uname -s)
-uname_m = $(shell uname -m)
-
 .PHONY: all
 
 print:
@@ -86,7 +80,6 @@ print:
 	@echo
 
 dep-os: dep-os-delete
-	# Install go-bindata, jsonnet-bundler, go-jsonnet here
 	$(MAKE) jsonnet-dep
 	$(MAKE) jsonnetb-dep
 	$(MAKE) gb-dep
@@ -94,9 +87,13 @@ dep-os: dep-os-delete
 	$(MAKE) hug-dep
 	$(MAKE) gor-dep
 	$(MAKE) mkcert-dep
-	# BS-LANG
-	git clone https://github.com/getcouragenow/shared downloaded/shared && \
-		cd downloaded/shared/tool/bs-lang && go build && sudo install -m755 bs-lang /usr/local/bin/bs-lang
+	# BS-LANG & BS-CRYPT
+	$(MAKE) dep-os-internal
+
+dep-os-internal:
+	@jb --jsonnetpkg-home=$(VENDOR_DIR) update # driven by jsonnet
+	cd $(VENDOR_DIR)/github.com/getcouragenow/shared/tool/bs-lang && go build && sudo install -m755 bs-lang $(PREFIX)/bs-lang
+	cd $(VENDOR_DIR)/github.com/getcouragenow/ops/bs-crypt && go build && sudo install -m755 bs-crypt $(PREFIX)/bs-crypt
 
 dep-os-delete:
 	$(MAKE) hug-dep-delete
@@ -106,9 +103,10 @@ dep-os-delete:
 	$(MAKE) jsonnetb-dep-delete
 	$(MAKE) gb-dep-delete
 	$(MAKE) mkcert-dep-delete
+	sudo rm -rf $(PREFIX)/bs-{lang,crypt}
 	rm -rf downloaded
 
-all: dep-delete dep gen build
+all: dep-delete dep-os dep gen build
 
 dep: dep-os
 	# Create dirs for binaries
@@ -119,7 +117,6 @@ dep-delete:
 	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR) $(PWD)/certs $(FRONTEND_ABS_PREFIX)
 
 gen:
-#	@jb --jsonnetpkg-home=$(VENDOR_DIR) update
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR)/client && flutter pub get && flutter pub upgrade
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \

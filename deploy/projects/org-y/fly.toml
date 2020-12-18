@@ -1,4 +1,4 @@
-# fly.toml file generated for withered-morning-8272 on 2020-12-14T12:15:13Z
+# fly.toml file generated for org-y on 2020-12-18T03:31:40Z
 
 app = "org-y"
 
@@ -6,18 +6,19 @@ app = "org-y"
 source = "db"
 destination = "/app/db"
 
+
 [[services]]
-internal_port = 8080
-protocol = "tcp"
+  internal_port = 8080
+  protocol = "tcp"
 
-[services.concurrency]
-hard_limit = 25
-soft_limit = 20
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
 
-[[services.ports]]
-handlers = ["tls"]
-port = "443"
+  [[services.ports]]
+    handlers = ["tls"]
+    port = "443"
 
-[[services.tcp_checks]]
-interval = 10000
-timeout = 2000
+  [[services.tcp_checks]]
+    interval = 10000
+    timeout = 2000

@@ -12,7 +12,7 @@ uname_m = $(shell uname -m)
 PREFIX=/usr/local/bin
 MKCERT_BIN=mkcert
 MKCERT_OUTPUT_DIR=downloaded
-MKCERT_BIN_VERSION=3.22.0
+MKCERT_BIN_VERSION=1.4.3
 ifeq ($(OS),Windows_NT)
     MKCERT_BIN_PLATFORM:=windows-amd64
 endif
@@ -22,8 +22,9 @@ endif
 ifeq ($(uname_s),Linux)
 	MKCERT_BIN_PLATFORM:=linux-amd64
 endif
-MKCERT_BIN_FILE=go-MKCERT_$(MKCERT_BIN_VERSION)_$(MKCERT_BIN_PLATFORM)
-MKCERT_BIN_URL=https://github.com/google/go-MKCERT/releases/download/v$(MKCERT_BIN_VERSION)/$(MKCERT_BIN_FILE)
+MKCERT_BIN_FILE=mkcert-v$(MKCERT_BIN_VERSION)-$(MKCERT_BIN_PLATFORM)
+MKCERT_BIN_URL=https://github.com/FiloSottile/mkcert/releases/download/v$(MKCERT_BIN_VERSION)/$(MKCERT_BIN_FILE)
+#https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-darwin-amd64
 
 mkcert-print:
 	@echo -- MKCERT Dep --
