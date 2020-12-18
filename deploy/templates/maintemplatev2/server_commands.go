@@ -6,7 +6,6 @@ import (
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
-	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
 	"github.com/getcouragenow/sys/main/pkg"
@@ -19,7 +18,6 @@ import (
 	"google.golang.org/grpc"
 	"net"
 	"net/http"
-	"os"
 	"strings"
 )
 
@@ -35,11 +33,8 @@ const (
 )
 
 var (
-	configPath          string
-	bsCfgPath           = configPath + "/bootstrap-server.yml"
-	mainCfgPath         = configPath + "/main-server.yml"
-	accountCfgPath      = configPath + "/sysaccount.yml"
-	discoCfgPath        = configPath + "/moddisco.yml"
+	configPath string
+
 	isDebug             bool
 	encryptedConfigPath string
 )
@@ -85,14 +80,18 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
 		// encrypted configs
-		password := os.Getenv("CONFIG_PASSWORD")
-		if password == "" {
-			logger.Fatal("unable to get config secret from the environment")
-		}
-		err := bscrypt.DecryptAllFiles(encryptedConfigPath, configPath, password)
-		if err != nil {
-			logger.Fatal("unable to decrypt config: %v", err)
-		}
+		// password := os.Getenv("CONFIG_PASSWORD")
+		// if password == "" {
+		// 	logger.Fatal("unable to get config secret from the environment")
+		// }
+		// err := bscrypt.DecryptAllFiles(encryptedConfigPath, configPath, password)
+		// if err != nil {
+		// 	logger.Fatal("unable to decrypt config: %v", err)
+		// }
+		bsCfgPath := configPath + "/bootstrap-server.yml"
+		mainCfgPath := configPath + "/main-server.yml"
+		accountCfgPath := configPath + "/sysaccount.yml"
+		discoCfgPath := configPath + "/moddisco.yml"
 		mainCfg, err := wrapper.NewConfig(mainCfgPath)
 		if err != nil {
 			logger.Fatalf(errSourcingConfig, "main-wrapper", err)

@@ -28,13 +28,13 @@ ENV PORT $IMAGE_PORT
 ENV EXECUTABLE $IMAGE_EXECUTABLE
 #COPY --from=app-builder /go/src/app/bin-all/$IMAGE_EXECUTABLE /app/$IMAGE_EXECUTABLE
 #COPY --from=app-builder /go/src/app/bootstrap-data /app/bootstrap-data
-COPY encrypted-config /app/encrypted-config
+COPY config /app/config
 COPY certs  /app/certs
 COPY bin-all/$IMAGE_EXECUTABLE /app/maintemplatev2
 EXPOSE $PORT
 RUN chmod +x /app/maintemplatev2
 RUN ls -alh /app
-CMD ["./maintemplatev2","--config-output-dir","/app/config"]
+CMD ["./maintemplatev2","-c","/app/config"]
 
 LABEL org.opencontainers.image.created="${IMAGE_DATE}" \
     org.opencontainers.image.title="${IMAGE_NAME}" \
