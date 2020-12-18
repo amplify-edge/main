@@ -1,27 +1,30 @@
 # boot repo makefiles
-# BOILERPLATE_FSPATH=./../../../../boot/boilerplate
-# include $(BOILERPLATE_FSPATH)/help.mk
-# include $(BOILERPLATE_FSPATH)/os.mk
-# include $(BOILERPLATE_FSPATH)/gitr.mk
+ BOILERPLATE_FSPATH=./../../../../boot/boilerplate
+ include $(BOILERPLATE_FSPATH)/help.mk
+ include $(BOILERPLATE_FSPATH)/os.mk
+ include $(BOILERPLATE_FSPATH)/gitr.mk
 
 # main repo make files ( will later be in boot) and fly and hug mapped to tools.mk.
 # also use the dwn.mk for ALL the other tools we need, so we dont need gopaths and that slowness.
-# DEPLOY_BOILERPLATE_FSPATH=./../..
-# include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
-# include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
-# include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
-# include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
-# include $(DEPLOY_BOILERPLATE_FSPATH)/jb.mk
+ DEPLOY_BOILERPLATE_FSPATH=./../..
+ include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/hcl.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/go-bindata.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/jsonnet.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/jsonnetb.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/mkcert.mk
 
 CONFIG_DIR = $(PWD)/config
-#VENDOR_DIR = jb-build
-VENDOR_DIR = $(GOPATH)/src
+VENDOR_DIR = jb-build
 VERSION_DIR = $(PWD)/version
 BIN_DIR = $(PWD)/bin-all
 CLI_BIN = $(BIN_DIR)/maintemplatev2-cli
 SERVER_BIN = $(BIN_DIR)/maintemplatev2
-#TEMPLATE_DIR = github.com/gutterbacon/main/deploy/templates/maintemplatev2
-TEMPLATE_DIR = github.com/joe-getcourgagenow/main/deploy/templates/maintemplatev2
+SERVER_BIN_DEPLOY = $(BIN_DIR)/maintemplatev2-deploy
+TEMPLATE_DIR = github.com/getcouragenow/main/deploy/templates/maintemplatev2
 
 SERVER_ENTRYPOINT = $(PWD)/cmd/server/*.go
 CLI_ENTRYPOINT = $(PWD)/cmd/cli/*.go
@@ -64,12 +67,6 @@ ifeq ($(DEPLOY_ENV),DEV)
      DEPLOY_BASEURL=http://$(FLY_DNS_SUBDOMAIN).$(FLY_DNS_DOMAIN)
 endif
 
-JB_VERSION = 0.4.0
-GO_JSONNET_VERSION = 0.17.0
-GO_BINDATA_VERSION = 3.1.3
-uname_s = $(shell uname -s)
-uname_m = $(shell uname -m)
-
 .PHONY: all
 
 print:
@@ -82,27 +79,21 @@ print:
 	@echo DEPLOY_BASEURL: $(DEPLOY_BASEURL)
 	@echo
 
-dep-os:
-	# Install go-bindata, jsonnet-bundler, go-jsonnet here
-	if [ $(uname_s) = Linux ]; then \
-		curl -L -o /tmp/jb https://github.com/jsonnet-bundler/jsonnet-bundler/releases/download/v$(JB_VERSION)/jb-$(uname_s)-amd64 && \
-			chmod +x /tmp/jb && sudo install -Dm755 /tmp/jb /usr/local/bin/jb && \
-		curl -L https://github.com/google/go-jsonnet/releases/download/v$(GO_JSONNET_VERSION)/go-jsonnet_$(GO_JSONNET_VERSION)_$(uname_s)_$(uname_m).tar.gz | tar xvz -C /tmp && \
-			sudo install -Dm755 /tmp/jsonnet /usr/local/bin/jsonnet; \
-	elif [$(uname_s) = Darwin]; then \
-		brew install jb \
-		brew install go-jsonnet; \
-	fi
-	curl -L https://github.com/go-bindata/go-bindata/archive/v$(GO_BINDATA_VERSION).tar.gz | tar xvz -C /tmp && \
-		cd /tmp/go-bindata-$(GO_BINDATA_VERSION)/go-bindata && go build && sudo install -m755 go-bindata /usr/local/bin/go-bindata
-	git clone https://github.com/FiloSottile/mkcert /tmp/mkcert && cd /tmp/mkcert && \
-		go build -ldflags "-X main.Version=$(git describe --tags)" && sudo install -m755 mkcert /usr/local/bin/mkcert
-	git clone https://github.com/getcouragenow/shared /tmp/shared && \
-		cd /tmp/shared/tool/bs-lang && go build && sudo install -m755 bs-lang /usr/local/bin/bs-lang
-	# TODO
-#	$(MAKE) hug-dep
-#	$(MAKE) fly-dep
-#	$(MAKE) gor-dep
+dep-os: dep-os-delete
+	$(MAKE) jsonnet-dep
+	$(MAKE) jsonnetb-dep
+	$(MAKE) gb-dep
+	$(MAKE) fly-dep
+	$(MAKE) hug-dep
+	$(MAKE) gor-dep
+	$(MAKE) mkcert-dep
+	# BS-LANG & BS-CRYPT
+	$(MAKE) dep-os-internal
+
+dep-os-internal:
+	@jb --jsonnetpkg-home=$(VENDOR_DIR) update # driven by jsonnet
+	cd $(VENDOR_DIR)/github.com/getcouragenow/shared/tool/bs-lang && go build && sudo install -m755 bs-lang $(PREFIX)/bs-lang
+	cd $(VENDOR_DIR)/github.com/getcouragenow/ops/bs-crypt && go build && sudo install -m755 bs-crypt $(PREFIX)/bs-crypt
 
 dep-os-delete:
 	$(MAKE) hug-dep-delete
@@ -110,8 +101,12 @@ dep-os-delete:
 	$(MAKE) gor-dep-delete
 	$(MAKE) jsonnet-dep-delete
 	$(MAKE) jsonnetb-dep-delete
+	$(MAKE) gb-dep-delete
+	$(MAKE) mkcert-dep-delete
+	sudo rm -rf $(PREFIX)/bs-{lang,crypt}
+	rm -rf downloaded
 
-all: dep-delete dep gen build
+all: dep-delete dep-os dep gen build
 
 dep: dep-os
 	# Create dirs for binaries
@@ -122,7 +117,6 @@ dep-delete:
 	rm -rf $(VENDOR_DIR) $(BIN_DIR) $(VERSION_DIR) $(PWD)/certs $(FRONTEND_ABS_PREFIX)
 
 gen:
-#	@jb --jsonnetpkg-home=$(VENDOR_DIR) update
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR)/client && flutter pub get && flutter pub upgrade
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
@@ -140,6 +134,7 @@ build: # dep
 	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_WEB_PREFIX)" $(PWD)/flutter/build/web/...
 	go-bindata -fs -nomemcopy -pkg version -o $(VERSION_DIR)/version.go -prefix "version/" $(VERSION_DIR)/manifest.json
 	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
+	GOOS=linux GOARCH=amd64 $(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
 
 # docker recipe for local testing
 docker:

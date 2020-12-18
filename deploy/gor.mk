@@ -3,24 +3,24 @@
 
 include=./dwn.mk
 
-
 ### BIN
-GOR_BIN=$(PWD)/goreleaser
+PREFIX=/usr/local/bin
+GOR_OUTPUT_DIR=downloaded
+GOR_BIN=goreleaser
 # https://github.com/goreleaser/goreleaser/releases/tag/v0.149.0
 # https://github.com/goreleaser/goreleaser/releases/download/v0.149.0/goreleaser_Windows_x86_64.zip
 # https://github.com/goreleaser/goreleaser/releases/download/v0.149.0/goreleaser_Darwin_x86_64.tar.gz
 # https://github.com/goreleaser/goreleaser/releases/download/v0.149.0/goreleaser_Linux_arm64.tar.gz
 GOR_BIN_VERSION=0.149.0
-GOR_BIN_PLATFORM=??
 # switch for OS (https://stackoverflow.com/questions/714100/os-detecting-makefile)
-ifeq ($(OS_detected),Windows)
-    GOR_BIN_PLATFORM=Windows_x86_64.zip
+ifeq ($(OS),Windows)
+    GOR_BIN_PLATFORM:=Windows_x86_64.zip
 endif
-ifeq ($(OS_detected),Darwin)
-    GOR_BIN_PLATFORM=Darwin_x86_64.tar.gz
+ifeq ($(uname_s),Darwin)
+    GOR_BIN_PLATFORM:=Darwin_x86_64.tar.gz
 endif
-ifeq ($(OS_detected),Linux)
-    GOR_BIN_PLATFORM=Linux_arm64.tar.gz
+ifeq ($(uname_m),Linux)
+    GOR_BIN_PLATFORM:=Linux_x86_64.tar.gz
 endif
 GOR_BIN_FILE=goreleaser_$(GOR_BIN_PLATFORM)
 GOR_BIN_URL=https://github.com/goreleaser/goreleaser/releases/download/v$(GOR_BIN_VERSION)/$(GOR_BIN_FILE)
@@ -35,10 +35,22 @@ gor-print:
 	@echo
 	
 gor-dep: gor-dep-delete
-	$(MAKE) DWN_URL=$(GOR_BIN_URL) DWN_FILENAME=$(GOR_BIN_FILE) DWN_BIN_FSPATH=$(GOR_BIN) dwn-download 
-gor-dep-delete:
-	$(MAKE) DWN_URL=$(GOR_BIN_URL) DWN_FILENAME=$(GOR_BIN_FILE) DWN_BIN_FSPATH=$(GOR_BIN) dwn-delete 
+	$(MAKE) DWN_URL=$(GOR_BIN_URL) \
+		DWN_FILENAME=$(GOR_BIN_FILE) \
+ 		DWN_BIN_NAME=$(GOR_BIN) \
+ 		DWN_BIN_OUTPUT_DIR=$(GOR_OUTPUT_DIR) dwn-download
+	if [[ $(uname_s) = Darwin || $(uname_s) = Linux ]]; then \
+  		sudo install -m755 $(GOR_OUTPUT_DIR)/$(GOR_BIN) $(PREFIX)/$(GOR_BIN); \
+  	fi
 
+gor-dep-delete:
+	$(MAKE) DWN_URL=$(GOR_BIN_URL) \
+		DWN_FILENAME=$(GOR_BIN_FILE) \
+		DWN_BIN_NAME=$(GOR_BIN) \
+		DWN_BIN_OUTPUT_DIR=$(GOR_OUTPUT_DIR) dwn-delete
+	if [[ $(uname_s) = darwin || $(uname_s) = linux ]]; then \
+		sudo rm -rf $(PREFIX)/$(GOR_BIN); \
+	fi
 
 
 	
