@@ -62,7 +62,7 @@ FRONTEND_URL_NATIVE = "org-y.fly.dev"
 
 EMBED_OUTPUT_DIR = $(PWD)/cmd/server/
 
-BS_CRYPT_PASSWORD:=$(shell echo "$$BS_CRYPT_PASSWORD")
+CONFIG_PASSWORD:=$(shell echo "$$CONFIG_PASSWORD")
 
 DEPLOY_ENV=DEV
 DEPLOY_BASEURL=
@@ -83,8 +83,8 @@ print:
 	@echo -- DEPLOY environment --
 	@echo DEPLOY_ENV: $(DEPLOY_ENV)
 	@echo DEPLOY_BASEURL: $(DEPLOY_BASEURL)
-	@echo "Please set BS_CRYPT_PASSWORD environment variable if it's empty via your shell"
-	@echo BS_CRYPT_PASSWORD: $(shell echo "$$BS_CRYPT_PASSWORD")
+	@echo "Please set CONFIG_PASSWORD environment variable if it's empty via your shell"
+	@echo CONFIG_PASSWORD: $(shell echo "$$CONFIG_PASSWORD")
 	@echo
 
 dep-os: dep-os-delete
@@ -98,7 +98,7 @@ dep-os: dep-os-delete
 	@$(MAKE) dep-os-internal
 
 dep-os-internal:
-	@jb --jsonnetpkg-home=$(VENDOR_DIR) update # driven by jsonnet
+	@jb --jsonnetpkg-home=$(VENDOR_DIR) install && jb --jsonnetpkg-home=$(VENDOR_DIR) update # driven by jsonnet
 	cd $(VENDOR_DIR)/github.com/getcouragenow/shared/tool/bs-lang && go build && sudo install -m755 bs-lang $(PREFIX)/bs-lang
 	cd $(VENDOR_DIR)/github.com/getcouragenow/ops/bs-crypt && go build && sudo install -m755 bs-crypt $(PREFIX)/bs-crypt
 
@@ -153,7 +153,7 @@ config-del:
 
 # docker recipe for local testing
 docker:
-	docker build . -t "org-y:${IMAGE_REF}" \
+	docker build . -t "${FLY_APP_NAME}:${IMAGE_REF}" \
 		--build-arg IMAGE_REF=$(IMAGE_REF) \
 		--build-arg IMAGE_BASE=$(IMAGE_BASE) \
 		--build-arg IMAGE_DATE=$(IMAGE_DATE) \
@@ -179,9 +179,8 @@ fly:
 
 fly-create:
 	flyctl init --dockerfile --name org-y --org getcouragenow-org --port 8080 --overwrite
-	#flyctl regions --app $(FLY_APP_NAME) set ams
-	flyctl scale vm shared-cpu-1x --memory=1024 # 1GB
+#	flyctl scale vm shared-cpu-1x --memory=1024 # 1GB
 	flyctl volumes create db --region ams --app $(FLY_APP_NAME)
-	#flyctl secrets --app $(FLY_APP_NAME) set BS_CRYPT_PASSWORD=$(BS_CRYPT_PASSWORD)
+	flyctl secrets --app $(FLY_APP_NAME) set CONFIG_PASSWORD=$(CONFIG_PASSWORD) && \
 	cp fly.toml.bak fly.toml
 

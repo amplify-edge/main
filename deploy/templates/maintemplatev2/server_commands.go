@@ -85,9 +85,9 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
 		// encrypted configs
-		password := os.Getenv("BS_CRYPT_PASSWORD")
+		password := os.Getenv("CONFIG_PASSWORD")
 		if password == "" {
-			logger.Fatal("uanble to get config secret from the environment")
+			logger.Fatal("unable to get config secret from the environment")
 		}
 		err := bscrypt.DecryptAllFiles(encryptedConfigPath, configPath, password)
 		if err != nil {

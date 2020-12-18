@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -32,6 +33,10 @@ func (c *conf) getConf() *conf {
 
 func main() {
 	// test read files
+	testSecret := os.Getenv("TEST_SECRET")
+	if testSecret == "" {
+		log.Fatalf("unable to load TEST_SECRET environment variable")
+	}
 	var c conf
 	c.getConf()
 

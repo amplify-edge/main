@@ -30,7 +30,6 @@ ENV EXECUTABLE $IMAGE_EXECUTABLE
 #COPY --from=app-builder /go/src/app/bootstrap-data /app/bootstrap-data
 COPY encrypted-config /app/encrypted-config
 COPY certs  /app/certs
-RUN echo "executable name: $IMAGE_EXECUTABLE"
 COPY bin-all/$IMAGE_EXECUTABLE /app/maintemplatev2
 EXPOSE $PORT
 RUN chmod +x /app/maintemplatev2
