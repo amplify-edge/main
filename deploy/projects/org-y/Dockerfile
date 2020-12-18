@@ -1,4 +1,5 @@
 # BUILD DOCKER / PODMAN IMAGE
+
 #FROM cirrusci/flutter:beta as app-builder
 #RUN apt update && \
 #    add-apt-repository ppa:longsleep/golang-backports
@@ -9,19 +10,33 @@
 #RUN cd /go/src/app && make all
 #RUN ls -alh /go/src/app
 
-FROM alpine:latest
-RUN mkdir -p /app/db
+ARG IMAGE_BASE
+
+FROM alpine:3.12
+RUN mkdir -p /app/db/config
 WORKDIR /app
+ARG IMAGE_EXECUTABLE
+ARG IMAGE_REF
+ARG IMAGE_DATE
+ARG IMAGE_AUTHOR
+ARG IMAGE_NAME
+ARG IMAGE_ORG
+ARG IMAGE_FLAGS
+ARG IMAGE_PORT
+ARG BS_CRYPT_PASSWWORD
+ENV PORT $IMAGE_PORT
+ENV EXECUTABLE $IMAGE_EXECUTABLE
+ENV BS_CRYPT_PASSWORD $BS_CRYPT_PASSWORD
 #COPY --from=app-builder /go/src/app/bin-all/$IMAGE_EXECUTABLE /app/$IMAGE_EXECUTABLE
 #COPY --from=app-builder /go/src/app/bootstrap-data /app/bootstrap-data
-COPY config /app/config
+COPY encrypted-config /app/encrypted-config
 COPY certs  /app/certs
-COPY bin-all/maintemplatev2 /app/maintemplatev2
-ENV PORT=8080
-EXPOSE 8080
+RUN echo "executable name: $IMAGE_EXECUTABLE"
+COPY bin-all/$IMAGE_EXECUTABLE /app/maintemplatev2
+EXPOSE $PORT
 RUN chmod +x /app/maintemplatev2
 RUN ls -alh /app
-CMD ["./maintemplatev2"]
+CMD ["./maintemplatev2","--config-output-dir","/app/db/config"]
 
 LABEL org.opencontainers.image.created="${IMAGE_DATE}" \
     org.opencontainers.image.title="${IMAGE_NAME}" \

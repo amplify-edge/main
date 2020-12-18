@@ -16,8 +16,8 @@ COPY --from=app-builder /go/src/app/bin-all/$IMAGE_EXECUTABLE /app/$IMAGE_EXECUT
 COPY --from=app-builder /go/src/app/bootstrap-data /app/bootstrap-data
 COPY config /app/config
 COPY certs  /app/certs
-ENV PORT=9074
-EXPOSE 9074
+ENV PORT 8080
+EXPOSE 8080
 RUN chmod +x /app/maintemplatev2
 RUN ls -alh /app
 CMD ["./maintemplatev2"]
