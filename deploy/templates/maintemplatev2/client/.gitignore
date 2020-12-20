@@ -84,12 +84,3 @@ desktop/windows.syso
 
 packer/build
 packer/packer
-/lib/generated_plugin_registrant.dart
-/lib/core/i18n/generated/messages_all.dart
-/lib/core/i18n/generated/messages_de.dart
-/lib/core/i18n/generated/messages_en.dart
-/lib/core/i18n/generated/messages_es.dart
-/lib/core/i18n/generated/messages_fr.dart
-/lib/core/i18n/generated/messages_it.dart
-/lib/core/i18n/generated/messages_messages.dart
-/lib/core/i18n/generated/messages_ur.dart
