@@ -117,7 +117,7 @@ this-gen: this-gen-delete
 	$(MAKE) this-cert-gen
 	$(MAKE) gen-icons
 #	$(MAKE) gen-hive
-	$(MAKE) flu-gen-lang-all
+	#$(MAKE) flu-gen-lang-all
 	
 this-gen-delete:
 	# Refactor into config.mk

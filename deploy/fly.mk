@@ -13,7 +13,7 @@ FLY_BIN=flyctl
 FLY_OUTPUT_DIR=downloaded
 # https://github.com/superfly/flyctl/releases/tag/v0.0.153
 # https://github.com/superfly/flyctl/releases/download/v0.0.153/flyctl_0.0.153_macOS_x86_64.tar.gz
-FLY_BIN_VERSION=0.0.154
+FLY_BIN_VERSION=0.0.156
 # switch for OS (https://stackoverflow.com/questions/714100/os-detecting-makefile)
 ifeq ($(OS),Windows)
     FLY_BIN_PLATFORM:=Windows_x86_64
