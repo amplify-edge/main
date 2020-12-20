@@ -218,13 +218,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  equatable:
-    dependency: transitive
-    description:
-      name: equatable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.5"
   fake_async:
     dependency: transitive
     description:
@@ -252,7 +245,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.4"
+    version: "3.0.0-nullsafety.0"
   fixnum:
     dependency: transitive
     description:
@@ -311,14 +304,14 @@ packages:
       name: flutter_platform_widgets
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.72.0"
+    version: "1.0.0-nullsafety.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.11"
+    version: "2.0.0-nullsafety"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -434,15 +427,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0-nullsafety.2"
-  intl_translation:
-    dependency: "direct dev"
-    description:
-      path: "."
-      ref: "4c5e4638bf23444ab7d5d60f00f4319f37dee98c"
-      resolved-ref: "4c5e4638bf23444ab7d5d60f00f4319f37dee98c"
-      url: "https://github.com/gutterbacon/intl_translation"
-    source: git
-    version: "0.17.10+1"
   io:
     dependency: transitive
     description:
@@ -610,7 +594,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.1.0-nullsafety.1"
   pool:
     dependency: transitive
     description:
@@ -946,5 +930,5 @@ packages:
     source: hosted
     version: "1.2.0+2"
 sdks:
-  dart: ">=2.12.0-0.0 <3.0.0"
+  dart: ">=2.12.0-29.10.beta <3.0.0"
   flutter: ">=1.22.0 <2.0.0"

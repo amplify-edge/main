@@ -73,15 +73,16 @@ dependencies:
 
   # Architectural packages
   provider: ^4.3.2
-  provider_architecture: ^1.0.6
+  provider_architecture: ^1.1.1+1
   grpc: ^2.8.0
   protobuf: ^1.1.0
   intl: ^0.17.0-nullsafety.2
   #  get_it: ^3.1.0
   #  equatable:
   meta:
-  flutter_modular: ^2.0.0+1
-  flutter_platform_widgets: ^0.72.0
+#  flutter_modular: ^3.0.0-nullsafety.20
+  flutter_modular: ^2.0.1
+  flutter_platform_widgets: ^1.0.0-nullsafety.0
   # font_awesome_flutter:
   cupertino_icons: ^1.0.0
   flutter_web_plugins:
@@ -91,10 +92,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   # TODO use official package when it supports nullsafety
-  intl_translation:
-    git:
-      url: https://github.com/gutterbacon/intl_translation
-      ref: 4c5e4638bf23444ab7d5d60f00f4319f37dee98c
+  #  intl_translation: ^0.17.10+1
   build_runner: ^1.10.2
   hive_generator: ^0.8.2
   json_serializable: ^3.2.3

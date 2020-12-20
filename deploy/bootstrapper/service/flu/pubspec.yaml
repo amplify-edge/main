@@ -14,12 +14,12 @@ dependencies:
     sdk: flutter
 
   provider: ^4.3.2+2
-  provider_architecture: ^1.0.6
-  path_provider: ^1.6.7
-  equatable:
+  provider_architecture: ^1.1.1+1
+  path_provider: ^1.6.24
   meta:
-  flutter_modular: ^2.0.0+1
+  flutter_modular: ^2.0.1
   intl: ^0.17.0-nullsafety.2
+  #  intl_translation: ^0.17.10+1
   data_tables: ^1.0.3
   cupertino_icons: ^1.0.0
   #  font_awesome_flutter: ^8.7.0
@@ -32,16 +32,11 @@ dependencies:
     #      path: sys-account/service/flu
     #      ref: 1a260f05ca7de0a0f273225e1d7c234cd53b5e8f
     path: ../../../../../sys-share/sys-account/service/flu
-  file_picker: ^2.1.0
+  file_picker: ^3.0.0-nullsafety.0
   code_editor: ^1.0.1
   clipboard: ^0.1.2+8
 
 dev_dependencies:
-  # TODO use official package when it supports nullsafety
-  intl_translation:
-    git:
-      url: https://github.com/gutterbacon/intl_translation
-      ref: 4c5e4638bf23444ab7d5d60f00f4319f37dee98c
   flutter_test:
     sdk: flutter
 
