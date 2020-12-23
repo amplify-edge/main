@@ -16,8 +16,8 @@ ifeq ($(DWN_FILENAME_EXT),)
 	DWN_FILENAME_EXT += NONE
 endif
 
-uname_s = $(shell uname -s)
-uname_m = $(shell uname -m)
+uname_s := $(shell uname -s)
+uname_m := $(shell uname -m)
 
 dwn-print:
 	@echo

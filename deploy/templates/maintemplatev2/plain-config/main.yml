@@ -1,0 +1,12 @@
+"mainConfig":
+  "domain": "getcourage.org"
+  "embedDir": "./client/build/web"
+  "host": "127.0.0.1"
+  "isLocal": true
+  "port": 9074
+  "tls":
+    "enable": true
+    "isLocal": true
+    "localCertKeyPath": "./certs/local.key.pem"
+    "localCertPath": "./certs/local.pem"
+    "rootCaPath": "./certs/rootca.pem"

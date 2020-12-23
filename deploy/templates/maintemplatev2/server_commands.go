@@ -183,7 +183,8 @@ func createHttpHandler(logger *logrus.Entry, isGzipped bool, fileServer http.Han
 			w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 			w.Header().Set("Access-Control-Allow-Headers", fmt.Sprintf("%s,%s", defaultCorsHeaders, flyHeaders))
 			logger.Infof("Serving Endpoint: %s", r.URL.Path)
-			if strings.Contains(r.URL.Path, "v2") {
+			// if strings.Contains(r.URL.Path, "v2") {
+			if grpcWebServer.IsGrpcWebSocketRequest(r) || grpcWebServer.IsGrpcWebRequest(r) {
 				grpcWebServer.ServeHTTP(w, r)
 			} else {
 				if isGzipped {

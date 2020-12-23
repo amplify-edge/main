@@ -12,7 +12,7 @@ func main() {
 	if err != nil {
 		logrus.Fatalf("unable to open build version information: %v", err)
 	}
-	rootCmd := maintemplatev2.MainServerCommand(AssetFile(), b)
+	rootCmd := maintemplatev2.MainServerCommand(nil, b)
 	if err := rootCmd.Execute(); err != nil {
 		logrus.Fatalf("error running maintemplatev2: %v", err)
 	}

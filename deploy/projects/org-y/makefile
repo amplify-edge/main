@@ -1,12 +1,14 @@
 # boot repo makefiles
- BOILERPLATE_FSPATH=./../../../../boot/boilerplate
- include $(BOILERPLATE_FSPATH)/help.mk
- include $(BOILERPLATE_FSPATH)/os.mk
- include $(BOILERPLATE_FSPATH)/gitr.mk
+# docker cannot include directory outside of its context
+# BOILERPLATE_FSPATH=./../../../../boot/boilerplate
+# include $(BOILERPLATE_FSPATH)/help.mk
+# include $(BOILERPLATE_FSPATH)/os.mk
+# include $(BOILERPLATE_FSPATH)/gitr.mk
 
 # main repo make files ( will later be in boot) and fly and hug mapped to tools.mk.
 # also use the dwn.mk for ALL the other tools we need, so we dont need gopaths and that slowness.
- DEPLOY_BOILERPLATE_FSPATH=./../..
+# DEPLOY_BOILERPLATE_FSPATH=./../..
+ DEPLOY_BOILERPLATE_FSPATH=includes
  include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/hcl.mk
@@ -162,7 +164,8 @@ docker:
 		--build-arg IMAGE_AUTHOR=$(IMAGE_AUTHOR) \
 		--build-arg IMAGE_ORG=$(IMAGE_ORG) \
 		--build-arg IMAGE_FLAGS=$(IMAGE_FLAGS) \
-		--build-arg IMAGE_NAME=$(IMAGE_NAME)
+		--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+		--build-arg CONFIG_PASSWORD=$(CONFIG_PASSWORD)
 	docker system prune --volumes -f
 
 fly:
@@ -175,6 +178,7 @@ fly:
         	--build-arg IMAGE_AUTHOR=$(IMAGE_AUTHOR) \
         	--build-arg IMAGE_ORG=$(IMAGE_ORG) \
         	--build-arg IMAGE_FLAGS=$(IMAGE_FLAGS) \
+        	--build-arg CONFIG_PASSWORD=$(CONFIG_PASSWORD) \
         	--build-arg IMAGE_NAME=$(IMAGE_NAME)
 
 fly-create:

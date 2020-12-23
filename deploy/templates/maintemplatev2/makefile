@@ -49,6 +49,15 @@ VERIFY_TOKEN = ???
 ORG_ID  = ???
 PROJECT_ID = ???
 
+FRONTEND_BUILD_DIR = client/build/web/
+FRONTEND_PREFIX = client/build/web/
+FRONTEND_ABS_PREFIX = $(PWD)/client/build/web/
+VERSION_OUTPUT_DIR = version
+VERSION_PREFIX = $(VERSION_OUTPUT_DIR)/
+EMBED_OUTPUT_DIR = main/server/
+SERVER_ENTRYPOINT = main/server/*
+CLI_ENTRYPOINT = main/sdk-cli/*
+
 FRONTEND_RELEASE_CHANNEL = dev
 FRONTEND_URL_WEB = getcourage.org
 FRONTEND_URL_NATIVE = getcourage.org
@@ -56,6 +65,14 @@ FRONTEND_GITHASH = $(shell git rev-parse HEAD)
 FRONTEND_FLUTTER_CHANNEL = $(shell flutter --version | awk '/channel/ {print $$5}')
 FRONTEND_HOST = 127.0.0.1
 FRONTEND_PORT = 8080
+
+MAIN_TLS_ENABLE = true
+MAIN_TLS_LOCAL = true
+MAIN_DOMAIN = $(FRONTEND_URL_WEB)
+MAIN_HOST = $(FRONTEND_HOST)
+MAIN_PORT = $(FRONTEND_PORT)
+MAIN_IS_LOCAL = true
+MAIN_EMBED_DIR = $(FRONTEND_ABS_PREFIX)
 
 BUILD_FRONTEND_VERSION = $(FRONTEND_GITHASH)
 BUILD_SERVER_VERSION = $(shell git rev-parse HEAD)
@@ -67,14 +84,6 @@ BUILD_GITBRANCH = $(shell git symbolic-ref --short HEAD)
 BUILD_FLUTTER_VERSION = $(shell flutter --version | awk '/channel/ {print $$2}')
 
 GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" -a -tags netgo
-FRONTEND_BUILD_DIR = client/build/web/
-FRONTEND_PREFIX = client/build/web/
-FRONTEND_ABS_PREFIX = $(PWD)/client/build/web/
-VERSION_OUTPUT_DIR = version
-VERSION_PREFIX = $(VERSION_OUTPUT_DIR)/
-EMBED_OUTPUT_DIR = main/server/
-SERVER_ENTRYPOINT = main/server/*
-CLI_ENTRYPOINT = main/sdk-cli/*
 
 
 this-all: this-gen this-build this-run-server this-run-client
@@ -142,7 +151,22 @@ this-config-gen: this-config-dep
  		-V BOOTSTRAP_DOMAIN=$(FRONTEND_URL_WEB) > $(CONFIG_OUTPUT_DIR)/bootstrap-server.yml
 	jsonnet -S bootstrap-client.jsonnet \
  		-V BOOTSTRAP_DOMAIN=$(FRONTEND_URL_WEB) > $(CONFIG_OUTPUT_DIR)/bootstrap-client.yml
-	jsonnet -S main.jsonnet > $(CONFIG_OUTPUT_DIR)/main.yml
+	jsonnet -S main.jsonnet \
+		-V MAIN_TLS_ENABLE=$(MAIN_TLS_ENABLE) \
+		-V MAIN_TLS_LOCAL=$(MAIN_TLS_LOCAL) \
+		-V MAIN_DOMAIN=$(MAIN_DOMAIN) \
+		-V MAIN_HOST=$(MAIN_HOST) \
+		-V MAIN_PORT=$(MAIN_PORT) \
+		-V MAIN_IS_LOCAL=$(MAIN_IS_LOCAL) \
+		-V MAIN_EMBED_DIR=$(MAIN_EMBED_DIR) > $(CONFIG_OUTPUT_DIR)/main-server.yml
+	jsonnet -S main.jsonnet \
+		-V MAIN_TLS_ENABLE=$(MAIN_TLS_ENABLE) \
+		-V MAIN_TLS_LOCAL=$(MAIN_TLS_LOCAL) \
+		-V MAIN_DOMAIN=$(MAIN_DOMAIN) \
+		-V MAIN_HOST=$(MAIN_HOST) \
+		-V MAIN_PORT=$(MAIN_PORT) \
+		-V MAIN_IS_LOCAL=$(MAIN_IS_LOCAL) \
+		-V MAIN_EMBED_DIR=$(MAIN_EMBED_DIR) > $(CONFIG_OUTPUT_DIR)/main-client.yml
 
 this-flutter-gen:
 	jsonnet -S flutter-client.jsonnet \
