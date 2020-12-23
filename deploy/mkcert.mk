@@ -1,4 +1,4 @@
-# mkcert (gbd)
+# mkcert
 # https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-darwin-amd64
 include=./dwn.mk
 

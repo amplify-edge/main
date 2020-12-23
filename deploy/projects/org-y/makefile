@@ -12,6 +12,7 @@
  include $(DEPLOY_BOILERPLATE_FSPATH)/hcl.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/fly.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/go-bindata.mk
+ include $(DEPLOY_BOILERPLATE_FSPATH)/go-bindata-assetfs.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/gor.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/jsonnet.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/jsonnetb.mk
