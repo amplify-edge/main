@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-latest]
-        go-version: [1.15.]
+        go-version: [1.15.6]
         target: ["this-all",]
 
     runs-on: ${{ matrix.os }}
