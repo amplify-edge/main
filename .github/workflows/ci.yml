@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Set up Go 
-        uses: actions/setup-go@v1
+        uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
         id: go
@@ -46,8 +46,9 @@ jobs:
       - name: Check out the SHARED code into the Go module directory
         uses: actions/checkout@v2
         with:
-          path: go/src/github.com/${{ github.repository }}
           repository: getcouragenow/shared
+          path: go/src/github.com/${{ github.repository }}
+          
 
       - name: make ${{ matrix.target }}
         run: |
