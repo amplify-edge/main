@@ -53,8 +53,8 @@ jobs:
       - name: make ${{ matrix.target }}
         run: |
           # workaround for https://github.com/actions/setup-go/issues/14
-          export GOPATH=${GITHUB_WORKSPACE}/go
-          export PATH=$PATH:$GOPATH/bin
+          #export GOPATH=${GITHUB_WORKSPACE}/go
+          #export PATH=$PATH:$GOPATH/bin
           make $target
         working-directory: ${{ github.workspace }}/go/src/github.com/${{ github.repository }}
         env:
