@@ -46,7 +46,7 @@ gcloud-key-encode:
 
 
 
-this-all: this-print this-dep this-build this-print-end
+this-all: os-print this-print this-dep this-build this-print-end
 
 this-print: 
 	@echo
