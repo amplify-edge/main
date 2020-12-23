@@ -14,3 +14,4 @@ vendor
 /version.json
 /version/manifest.json
 /version/version.go
+/plain-config/

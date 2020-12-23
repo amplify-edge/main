@@ -1,3 +1,5 @@
+SHELL := bash
+.PHONY: this-config-gen this-config-dep this-gen this-cert-gen config-encrypt
 
 SHARED_FSPATH=./../../../../shared
 BOILERPLATE_FSPATH=$(SHARED_FSPATH)/boilerplate
@@ -24,7 +26,7 @@ SERVER_ADDRESS=127.0.0.1:9074
 EMAIL = superadmin@getcouragenow.org
 PASSWORD = superadmin
 
-CONFIG_OUTPUT_DIR = $(PWD)/config
+CONFIG_OUTPUT_DIR = $(PWD)/plain-config
 DB_ENCRYPT_KEY = yYz8Xjb4HBn4irGQpBWulURjQk2XmwES
 
 EMAIL = gutterbacon@protonmail.com
@@ -85,6 +87,8 @@ BUILD_FLUTTER_VERSION = $(shell flutter --version | awk '/channel/ {print $$2}')
 
 GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" -a -tags netgo
 
+export BS_CRYPT_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
+export CONFIG_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 
 this-all: this-gen this-build this-run-server this-run-client
 
@@ -179,7 +183,6 @@ this-flutter-gen:
  		-V FRONTEND_FLUTTER_CHANNEL=$(FRONTEND_FLUTTER_CHANNEL) > $(FLU_LIB_NAME)/assets/env.json
 
 this-config-dep:
-	go get -u -v github.com/go-bindata/go-bindata/...
 	jb install && jb update
 	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb install && jb update
 	#cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update
@@ -208,6 +211,9 @@ this-cert-gen-delete:
 
 this-cert-dep:
 	#brew install mkcert nss
+
+config-encrypt:
+	bs-crypt encrypt -s $(CONFIG_OUTPUT_DIR) -d encrypted-config
 
 
 this-build-deep:

@@ -4,12 +4,11 @@ go 1.15
 
 require (
 	github.com/NYTimes/gziphandler v1.1.1
-	github.com/getcouragenow/mod v0.0.0-20201218035308-a5b49fb1c8c0
+	github.com/getcouragenow/mod v0.0.0-20201220110828-41f922b153b6
 	github.com/getcouragenow/ops/bs-crypt v0.0.0-20201217090659-8c6ef1d444c3
 	github.com/getcouragenow/protoc-gen-cobra v0.3.1-0.20201005114840-ccc8cd57bcdc
 	github.com/getcouragenow/sys v0.0.0-20201218035624-ed792979a4c3
-	github.com/getcouragenow/sys-share v0.0.0-20201218044802-0904b5a33d11
-	github.com/go-bindata/go-bindata v3.1.2+incompatible // indirect
+	github.com/getcouragenow/sys-share v0.0.0-20201220110847-d644844a1e95
 	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/improbable-eng/grpc-web v0.13.0
@@ -23,8 +22,8 @@ require (
 	gopkg.in/yaml.v2 v2.3.0
 )
 
-//replace github.com/getcouragenow/sys-share => ../sys-share/
+replace github.com/getcouragenow/sys-share => ../sys-share/
 
-//replace github.com/getcouragenow/sys => ../sys
+replace github.com/getcouragenow/sys => ../sys
 
-//replace github.com/getcouragenow/mod => ../mod
+replace github.com/getcouragenow/mod => ../mod
