@@ -1,20 +1,20 @@
 # BUILD DOCKER / PODMAN IMAGE
-
-#FROM cirrusci/flutter:beta as app-builder
-#RUN apt update && \
-#    add-apt-repository ppa:longsleep/golang-backports
-#RUN apt install -y ca-certificates build-essential git golang-go libnss3-tools
-#RUN mkdir -p /usr/local/share/ca-certificates
-#WORKDIR /go/src/app
-#COPY . .
-#RUN cd /go/src/app && make all
-#RUN ls -alh /go/src/app
+FROM cirrusci/flutter:1.25.0-8.0.pre as app-builder
+ARG CONFIG_PASSWORD
+RUN apt update && \
+    add-apt-repository ppa:longsleep/golang-backports
+RUN apt install -y ca-certificates build-essential git golang-go libnss3-tools
+RUN mkdir -p /usr/local/share/ca-certificates
+WORKDIR /go/src/app
+COPY . .
+ENV BS_CRYPT_PASSWORD $CONFIG_PASSWORD
+RUN cd /go/src/app && make all
+RUN ls -alh /go/src/app
 
 ARG IMAGE_BASE=alpine:3.12
 
 FROM $IMAGE_BASE
-RUN mkdir -p /app/db/config
-RUN mkdir -p /app/config
+RUN mkdir -p /app/db
 WORKDIR /app
 ARG IMAGE_EXECUTABLE=maintemplatev2-deploy
 ARG IMAGE_REF
@@ -26,11 +26,13 @@ ARG IMAGE_FLAGS
 ARG IMAGE_PORT=8080
 ENV PORT $IMAGE_PORT
 ENV EXECUTABLE $IMAGE_EXECUTABLE
-#COPY --from=app-builder /go/src/app/bin-all/$IMAGE_EXECUTABLE /app/$IMAGE_EXECUTABLE
-#COPY --from=app-builder /go/src/app/bootstrap-data /app/bootstrap-data
-COPY config /app/config
-COPY certs  /app/certs
-COPY bin-all/$IMAGE_EXECUTABLE /app/maintemplatev2
+COPY --from=app-builder /go/src/app/bin-all/$IMAGE_EXECUTABLE /app/$IMAGE_EXECUTABLE
+COPY --from=app-builder /go/src/app/bootstrap-data /app/bootstrap-data
+COPY --from=app-builder /go/src/app/encrypted-config /app/encrypted-config
+COPY certs /app/certs
+#COPY encrypted-config /app/encrypted-config
+#COPY certs  /app/certs
+#COPY bin-all/$IMAGE_EXECUTABLE /app/maintemplatev2
 EXPOSE $PORT
 RUN chmod +x /app/maintemplatev2
 RUN ls -alh /app

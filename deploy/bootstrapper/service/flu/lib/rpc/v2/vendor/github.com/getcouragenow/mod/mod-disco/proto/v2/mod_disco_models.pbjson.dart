@@ -236,7 +236,7 @@ const NewDiscoProjectRequest$json = const {
     const {'1': 'sys_account_project_ref_name', '3': 18, '4': 1, '5': 9, '10': 'sysAccountProjectRefName'},
     const {'1': 'sys_account_org_ref_name', '3': 19, '4': 1, '5': 9, '10': 'sysAccountOrgRefName'},
     const {'1': 'image_filepath', '3': 20, '4': 3, '5': 9, '10': 'imageFilepath'},
-    const {'1': 'image_upload_arrays', '3': 21, '4': 3, '5': 12, '10': 'imageUploadArrays'},
+    const {'1': 'image_upload_arrays', '3': 21, '4': 3, '5': 9, '10': 'imageUploadArrays'},
   ],
 };
 

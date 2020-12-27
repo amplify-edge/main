@@ -3,8 +3,6 @@ package maintemplatev2
 import (
 	"fmt"
 	"github.com/NYTimes/gziphandler"
-	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
@@ -21,6 +19,9 @@ import (
 	"net/http"
 	"os"
 	"strings"
+
+	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
+	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
 )
 
 const (
@@ -183,7 +184,8 @@ func createHttpHandler(logger *logrus.Entry, isGzipped bool, fileServer http.Han
 			w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 			w.Header().Set("Access-Control-Allow-Headers", fmt.Sprintf("%s,%s", defaultCorsHeaders, flyHeaders))
 			logger.Infof("Serving Endpoint: %s", r.URL.Path)
-			if strings.Contains(r.URL.Path, "v2") {
+			ct := r.Header.Get("Content-Type")
+			if grpcWebServer.IsGrpcWebSocketRequest(r) || grpcWebServer.IsGrpcWebRequest(r) || grpcWebServer.IsAcceptableGrpcCorsRequest(r) || strings.Contains(ct, "application/grpc") {
 				grpcWebServer.ServeHTTP(w, r)
 			} else {
 				if isGzipped {

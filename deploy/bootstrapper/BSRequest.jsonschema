@@ -25,7 +25,7 @@
                             },
                             "logo_upload_bytes": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{avatarbytesgen:128}\" yaml:\"logo_upload_bytes,omitempty\""
+                                "description": "@inject_tag: fake:\"{logogen:128}\" yaml:\"logo_upload_bytes,omitempty\""
                             }
                         },
                         "additionalProperties": true,
@@ -65,7 +65,7 @@
                             },
                             "logo_upload_bytes": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{avatarbytesgen:128}\" yaml:\"logo_upload_bytes,omitempty\""
+                                "description": "@inject_tag: fake:\"{logogen:128}\" yaml:\"logo_upload_bytes,omitempty\""
                             }
                         },
                         "additionalProperties": true,
@@ -199,7 +199,7 @@
                                     "type": "string"
                                 },
                                 "type": "array",
-                                "description": "@inject_tag: fake:\"avatargenbytes:300\" yaml:\"image_upload_arrays,omitempty\""
+                                "description": "@inject_tag: fake:\"{logogen:300}\" yaml:\"image_upload_arrays,omitempty\""
                             }
                         },
                         "additionalProperties": true,
@@ -384,7 +384,7 @@
                             },
                             "avatar_upload_bytes": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{avatarbytesgen:128}\" yaml:\"avatar_upload_bytes,omitempty\"\n\nraw bytes upload for remote upload"
+                                "description": "@inject_tag: fake:\"{logogen:100}\" yaml:\"avatar_upload_bytes,omitempty\"\n\nraw bytes upload for remote upload"
                             },
                             "new_user_roles": {
                                 "items": {

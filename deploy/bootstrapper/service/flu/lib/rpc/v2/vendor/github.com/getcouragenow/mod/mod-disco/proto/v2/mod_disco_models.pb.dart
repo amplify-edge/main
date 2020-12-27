@@ -1578,7 +1578,7 @@ class NewDiscoProjectRequest extends $pb.GeneratedMessage {
     ..aOS(18, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sysAccountProjectRefName')
     ..aOS(19, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sysAccountOrgRefName')
     ..pPS(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imageFilepath')
-    ..p<$core.List<$core.int>>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imageUploadArrays', $pb.PbFieldType.PY)
+    ..pPS(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imageUploadArrays')
     ..hasRequiredFields = false
   ;
 
@@ -1774,7 +1774,7 @@ class NewDiscoProjectRequest extends $pb.GeneratedMessage {
   $core.List<$core.String> get imageFilepath => $_getList(19);
 
   @$pb.TagNumber(21)
-  $core.List<$core.List<$core.int>> get imageUploadArrays => $_getList(20);
+  $core.List<$core.String> get imageUploadArrays => $_getList(20);
 }
 
 class UpdateDiscoProjectRequest extends $pb.GeneratedMessage {

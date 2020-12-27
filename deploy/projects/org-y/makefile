@@ -1,12 +1,14 @@
 # boot repo makefiles
- BOILERPLATE_FSPATH=./../../../../boot/boilerplate
- include $(BOILERPLATE_FSPATH)/help.mk
- include $(BOILERPLATE_FSPATH)/os.mk
- include $(BOILERPLATE_FSPATH)/gitr.mk
+# docker cannot include directory outside of its context
+# BOILERPLATE_FSPATH=./../../../../boot/boilerplate
+# include $(BOILERPLATE_FSPATH)/help.mk
+# include $(BOILERPLATE_FSPATH)/os.mk
+# include $(BOILERPLATE_FSPATH)/gitr.mk
 
 # main repo make files ( will later be in boot) and fly and hug mapped to tools.mk.
 # also use the dwn.mk for ALL the other tools we need, so we dont need gopaths and that slowness.
- DEPLOY_BOILERPLATE_FSPATH=./../..
+# DEPLOY_BOILERPLATE_FSPATH=./../..
+ DEPLOY_BOILERPLATE_FSPATH=includes
  include $(DEPLOY_BOILERPLATE_FSPATH)/dwn.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/hug.mk
  include $(DEPLOY_BOILERPLATE_FSPATH)/hcl.mk
@@ -60,6 +62,14 @@ FRONTEND_HOST = "org-y.fly.dev"
 FRONTEND_PORT = 443
 FRONTEND_URL_WEB = "org-y.fly.dev"
 FRONTEND_URL_NATIVE = "org-y.fly.dev"
+
+MAIN_TLS_ENABLE = true
+MAIN_TLS_LOCAL = true
+MAIN_DOMAIN = $(FRONTEND_URL_WEB)
+MAIN_HOST = $(FRONTEND_HOST)
+MAIN_PORT = $(FRONTEND_PORT)
+MAIN_IS_LOCAL = true
+MAIN_EMBED_DIR = $(FRONTEND_ABS_PREFIX)
 
 EMBED_OUTPUT_DIR = $(PWD)/cmd/server/
 
@@ -126,7 +136,15 @@ dep-delete:
 
 gen:
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR)/client && flutter pub get && flutter pub upgrade
-	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) this-gen
+	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
+		$(MAKE) \
+			MAIN_TLS_ENABLE=$(MAIN_TLS_ENABLE) \
+			MAIN_TLS_LOCAL=$(MAIN_TLS_LOCAL) \
+			MAIN_DOMAIN=$(MAIN_DOMAIN) \
+			MAIN_HOST=$(MAIN_HOST) \
+			MAIN_PORT=$(MAIN_PORT) \
+			MAIN_IS_LOCAL=$(MAIN_IS_LOCAL) \
+			MAIN_EMBED_DIR=$(MAIN_EMBED_DIR) this-gen
 	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
 		$(MAKE) FRONTEND_HOST=$(FRONTEND_HOST) \
 			FRONTEND_PORT=$(FRONTEND_PORT) \
@@ -163,7 +181,8 @@ docker:
 		--build-arg IMAGE_AUTHOR=$(IMAGE_AUTHOR) \
 		--build-arg IMAGE_ORG=$(IMAGE_ORG) \
 		--build-arg IMAGE_FLAGS=$(IMAGE_FLAGS) \
-		--build-arg IMAGE_NAME=$(IMAGE_NAME)
+		--build-arg IMAGE_NAME=$(IMAGE_NAME) \
+		--build-arg CONFIG_PASSWORD=$(CONFIG_PASSWORD)
 	docker system prune --volumes -f
 
 fly:
@@ -176,6 +195,7 @@ fly:
         	--build-arg IMAGE_AUTHOR=$(IMAGE_AUTHOR) \
         	--build-arg IMAGE_ORG=$(IMAGE_ORG) \
         	--build-arg IMAGE_FLAGS=$(IMAGE_FLAGS) \
+        	--build-arg CONFIG_PASSWORD=$(CONFIG_PASSWORD) \
         	--build-arg IMAGE_NAME=$(IMAGE_NAME)
 
 fly-create:

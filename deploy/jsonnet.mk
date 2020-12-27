@@ -13,7 +13,7 @@ JSONNET_OUTPUT_DIR=downloaded
 JSONNET_BIN_VERSION=0.17.0
 JSONNET_BIN_PLATFORM= $(uname_s)_$(uname_m)
 # switch for OS (https://stackoverflow.com/questions/714100/os-detecting-makefile)
-JSONNET_BIN_FILE=go-jsonnet_$(JSONNET_BIN_VERSION)_$(JSONNET_BIN_PLATFORM)
+JSONNET_BIN_FILE=go-jsonnet_$(JSONNET_BIN_VERSION)_$(JSONNET_BIN_PLATFORM).tar.gz
 JSONNET_BIN_URL=https://github.com/google/go-jsonnet/releases/download/v$(JSONNET_BIN_VERSION)/$(JSONNET_BIN_FILE)
 
 

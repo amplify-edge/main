@@ -3,6 +3,9 @@
 
 include=./dwn.mk
 
+#uname_s := $(shell uname -s)
+#uname_m := $(shell uname -m)
+
 ### BIN
 PREFIX=/usr/local/bin
 GOR_OUTPUT_DIR=downloaded
@@ -19,7 +22,7 @@ endif
 ifeq ($(uname_s),Darwin)
     GOR_BIN_PLATFORM:=Darwin_x86_64.tar.gz
 endif
-ifeq ($(uname_m),Linux)
+ifeq ($(uname_s),Linux)
     GOR_BIN_PLATFORM:=Linux_x86_64.tar.gz
 endif
 GOR_BIN_FILE=goreleaser_$(GOR_BIN_PLATFORM)
@@ -31,6 +34,7 @@ gor-print:
 	@echo GOR_BIN_VERSION: 	$(GOR_BIN_VERSION)
 	@echo GOR_BIN_URL: 		$(GOR_BIN_URL)
 	@echo GOR_BIN_URLFILE: 	$(GOR_BIN_FILE)
+	@echo GOR_BIN_PLATFORM: $(GOR_BIN_PLATFORM)
 	@echo GOR_BIN: 			$(GOR_BIN)
 	@echo
 	

@@ -15,7 +15,7 @@
           "remote": "https://github.com/getcouragenow/main.git"
         }
       },
-      "version": "c5db020a0fec5053128972805a21b7e86d554878"
+      "version": "a3b5d409420e01b974449726e8eb239bc2686a87"
     },
     {
       "source": {
@@ -23,7 +23,7 @@
           "remote": "https://github.com/getcouragenow/sys-share.git"
         }
       },
-      "version": "f758c970d94ab5d7352c69c76564d597da40a3a3"
+      "version": "d644844a1e95eb41faebb15c958e63eba42d683a"
     },
     {
       "source": {
@@ -39,7 +39,7 @@
           "remote": "https://github.com/getcouragenow/mod.git"
         }
       },
-      "version": "a5b49fb1c8c0ed2ef42b2f0e266840b85c57c3a4"
+      "version": "41f922b153b638dbf16ebcf9ac31c671a7e8d8be"
     },
     {
       "source": {
