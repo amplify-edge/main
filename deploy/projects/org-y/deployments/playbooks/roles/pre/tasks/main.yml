@@ -1,0 +1,16 @@
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install prequisites
+  become: true
+  package:
+    state: latest
+    name:
+      - git
+      - stow
+      - mksh
+      - fzf
+      - ripgrep
