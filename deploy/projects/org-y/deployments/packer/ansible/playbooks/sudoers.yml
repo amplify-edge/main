@@ -1,0 +1,7 @@
+---
+#- hosts: gcn
+- hosts: default
+  roles:
+    - sudoers
+  vars:
+    sudoer_users: [ "ops" ]

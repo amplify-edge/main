@@ -1,6 +1,0 @@
----
-- hosts: gcn
-  roles:
-    - sudoers
-  vars:
-    sudoer_users: [ "ops" ]

@@ -1,0 +1,38 @@
+---
+- name: Copy dotfiles to remote
+  copy:
+    src: dotfiles.tgz
+    dest: '{{ dotfiles_user_dir }}/dotfiles.tgz'
+
+- name: Extract dotfiles
+  unarchive:
+    remote_src: yes
+    owner: '{{ dotfiles_user_name }}'
+    src: '{{ dotfiles_user_dir }}/dotfiles.tgz'
+    dest: '{{ dotfiles_user_dir }}'
+
+- name: Create $HOME/bin directory
+  file:
+    path: '{{ dotfiles_user_dir }}/bin'
+    owner: '{{ dotfiles_user_name }}'
+    state: directory
+
+- name: Copy install_dots.sh to remote bin
+  copy:
+    src: install_dots.sh
+    dest: '{{ dotfiles_user_dir }}/bin/install_dots.sh'
+    mode: 0755
+
+- name: Remove distro's bashrc and profile
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - '{{ dotfiles_user_dir }}/.bashrc'
+    - '{{ dotfiles_user_dir }}/.bash_profile'
+    - '{{ dotfiles_user_dir }}/.profile'
+
+- name: Install dotfiles
+  shell: '{{ dotfiles_user_dir }}/bin/install_dots.sh'
+  args:
+    chdir: '{{ dotfiles_user_dir }}/.dotdeb'

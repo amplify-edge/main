@@ -58,33 +58,33 @@ func NewMainService(
 	if err != nil {
 		logger.Fatalf("error creating mod-disco database: %v", err)
 	}
-	// var clientConn *grpc.ClientConn
-	// var dialOpts grpc.DialOption
-	// // cli options
-	// hostPort := fmt.Sprintf("%s:%d", mainCfg.MainConfig.HostAddress, mainCfg.MainConfig.Port)
-	// ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
-	// defer cancel()
+	var clientConn *grpc.ClientConn
+	var dialOpts grpc.DialOption
+	// cli options
+	hostPort := fmt.Sprintf("%s:%d", mainCfg.MainConfig.HostAddress, mainCfg.MainConfig.Port)
+	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	defer cancel()
 
-	// if mainCfg.MainConfig.TLS.Enable {
-	// 	creds, err := sharedConfig.ClientLoadCA(mainCfg.MainConfig.TLS.RootCAPath)
-	// 	if err != nil {
-	// 		return nil, fmt.Errorf("unable to load CA Root path: %v", err)
-	// 	}
-	// 	dialOpts = grpc.WithTransportCredentials(creds)
-	// } else {
-	// 	// dialOpts = grpc.WithInsecure()
-	// }
-	// clientConn, err = grpc.DialContext(
-	// 	ctx,
-	// 	hostPort,
-	// 	dialOpts,
-	// )
+	if mainCfg.MainConfig.TLS.Enable {
+		creds, err := sharedConfig.ClientLoadCA(mainCfg.MainConfig.TLS.RootCAPath)
+		if err != nil {
+			return nil, fmt.Errorf("unable to load CA Root path: %v", err)
+		}
+		dialOpts = grpc.WithTransportCredentials(creds)
+	} else {
+		dialOpts = grpc.WithInsecure()
+	}
+	clientConn, err = grpc.DialContext(
+		ctx,
+		hostPort,
+		dialOpts,
+	)
 	if err != nil {
 		return nil, fmt.Errorf("unable to create new client conn: %v", err)
 	}
 	discoSvcCfg, err := discoPkg.NewModDiscoServiceConfig(
-		// logger, discodb, discocfg, cbus, clientConn,
-		logger, discodb, discocfg, cbus, nil,
+		logger, discodb, discocfg, cbus, clientConn,
+		// logger, discodb, discocfg, cbus, nil,
 	)
 	if err != nil {
 		return nil, fmt.Errorf(errCreateModService, "disco", err)
