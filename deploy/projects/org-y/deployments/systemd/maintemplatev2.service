@@ -1,0 +1,14 @@
+[Unit]
+Description=Maintemplate v2
+Documentation=https://github.com/getcouragenow/shared-doc.git
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Environment=CONFIG_PASSWORD=<PUT_PASSWORD_HERE>
+ExecStart=/home/ops/app/bin-all/maintemplatev2 -c /home/ops/app/config -e /home/ops/app/encrypted-config
+Restart=always
+RestartSec=12
+
+[Install]
+WantedBy=default.target

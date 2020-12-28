@@ -13,4 +13,6 @@ jsonnetfmt
 /flutter/
 /config/
 /.env
-/deployments/.passwordfile
+/deployments/packer/ansible/.passwordfile
+/deployments/packer/packer.auto.pkrvars.hcl
+/deployments/packer/dist/

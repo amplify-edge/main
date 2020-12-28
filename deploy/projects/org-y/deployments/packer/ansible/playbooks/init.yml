@@ -1,5 +1,6 @@
 ---
-- hosts: gcn
+#- hosts: gcn
+- hosts: default
   tasks:
     - name: Ensure group "ops" exists with correct gid
       group:

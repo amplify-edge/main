@@ -1,0 +1,25 @@
+- name: Make sure universe repository is enabled
+  apt_repository:
+    repo: deb http://archive.ubuntu.com/ubuntu focal universe
+    state: present
+    update_cache: yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    update_cache: yes
+    upgrade: yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Install prequisites
+  become: true
+  package:
+    state: latest
+    name:
+      - git
+      - stow
+      - fzf
+      - ripgrep
+      - mosh
+      - unzip
