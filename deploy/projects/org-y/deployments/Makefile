@@ -6,7 +6,7 @@ VAULT_ID := testbed0
 all: deps encrypt init sudoers post-init
 
 deps:
-	ansible-galaxy post-init -r requirements.yml
+	ansible-galaxy install -r requirements.yml
 
 encrypt:
 	@ansible-vault encrypt_string --output extra_vars.yml --vault-password-file .passwordfile '${BPASSWD}' --name 'gcn_become_password' > extra_vars.yml

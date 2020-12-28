@@ -14,3 +14,4 @@
       - mksh
       - fzf
       - ripgrep
+      - mosh

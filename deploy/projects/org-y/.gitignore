@@ -13,3 +13,4 @@ jsonnetfmt
 /flutter/
 /config/
 /.env
+/deployments/.passwordfile
