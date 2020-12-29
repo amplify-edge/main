@@ -1,0 +1,11 @@
+- name: Enable caddy's debian repo
+  apt_repository:
+    repo: "deb [trusted=yes] https://apt.fury.io/caddy/ /"
+    state: present
+    update_cache: yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Install caddy
+  package:
+    name: caddy
+    state: latest

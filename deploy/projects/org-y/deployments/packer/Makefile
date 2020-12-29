@@ -9,8 +9,8 @@ WORK_DIR := ./
 CACHE_DIR := ./packer_cache/
 HCLOUD_OUT := ./dist/hcloud/maintemplatev2.log
 
-.PHONY: all
-all: build-hcloud
+.PHONY: all build-hcloud
+all: clean build-hcloud
 
 build-hcloud: $(HCLOUD_OUT)
 

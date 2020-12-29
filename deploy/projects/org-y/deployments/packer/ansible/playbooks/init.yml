@@ -14,6 +14,7 @@
       - username: ops
         password: "$6$G9QZLvk51J//AtjG$3AJ1.D9N07vZcvA01VujrnSMwrCbhtWl2bneZCwjZAfwjQ1fU8MwU9Bkh7hNpUaoW6ePlecRcc3vhtYuTcAJe/"
         group: "ops"
+        shell: /bin/bash
         home_create: yes
         authorized_keys:
           - "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
