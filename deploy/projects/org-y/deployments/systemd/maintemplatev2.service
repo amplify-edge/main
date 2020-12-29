@@ -5,8 +5,11 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
+WorkingDirectory=/var/www/org-y
 Environment=CONFIG_PASSWORD=<PUT_PASSWORD_HERE>
-ExecStart=/home/ops/app/bin-all/maintemplatev2 -c /home/ops/app/config -e /home/ops/app/encrypted-config
+User=nobody
+Group=nogroup
+ExecStart=/var/www/org-y/bin-all/maintemplatev2 -c /var/www/org-y/config -e /var/www/org-y/encrypted-config
 Restart=always
 RestartSec=12
 

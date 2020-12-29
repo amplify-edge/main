@@ -1,0 +1,3 @@
+maintemplate_user_name: 'ops'
+maintemplate_user_dir: '/home/{{ maintemplate_user_name }}'
+maintemplate_bind_mount_dir: '/var/www/org-y'
