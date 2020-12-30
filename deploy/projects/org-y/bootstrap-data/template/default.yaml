@@ -24,6 +24,7 @@ projects:
         org_name: sys_account_org_2
       projectdetails:
         goal: Vote factor watch detect pull sell science acid.
+        already_pledged: 0
         action_time: 1680604623000000000
         action_location: Faheyfurt
         min_pioneers: 9304
@@ -113,6 +114,7 @@ projects:
         org_name: sys_account_org_2
       projectdetails:
         goal: Consider east analysis challenge afford test representation sell.
+        already_pledged: 0
         action_time: 1637562016000000000
         action_location: Alexandreton
         min_pioneers: 4786
@@ -201,6 +203,7 @@ projects:
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUDKUWPLrxgUYQtAAACdklEQVR4nGyVPZKdMAyA5fHO0sVHYG/iHGVvYjIpci26LXMFZVK8culCwaCMfuEpoQDny0PIn2Qt/Od6SU94tefk4IuD1RbNwWaL2cHhYDFABnoAC9JXBxZkBLAgAx1YELqA/tZfnUhX5QYOBXsACVLvYBVwXGC7f57BIc/zAhykPYGVAd3ABjA/gUPAAlCWAF1AXeOVLpEmjKBDQ2/x2UG8/3mPxEhAPyJ1fYzTN1cUEPn2Gex8X0xQFVCJVlNYJfZEhCZZP9aINisDg5M3tJupJqATHVbKJgkPotOKPQvgm7WDgG98+6GyO6+/8+1ju8AH3x5a6sHrn3z7Axcg0xnXO0u+X8iSX65/F2TJrxeoKJIvMKFIvsI0FMlrgBlFMgboKJK3AANF8h6AUCRHqkUE43RGGoQqOdIgVMmeSCNUyZ7ITKiSPZFOqJI9kUG/RLI3PRD9VrGHp0EPkewtXYk+RbJ3cA3NlkjJAPIrMFJQ6OmzMOfEWk59ypurefslC4KsEEaSDD2VAeZcqJZLOeVi19wOJTcM5JaC99R08JbaEiA37lCFcrjkvz/jSGj60yMOjYJZJEvBdD+DJZ8lQBHJR7GR45J3CDCL5E0AahYsGSUb1Oqz5FWAzQeWvMiJXfVss2Q9wovNrcKbmBUUCWVTkWyiIIxdJ4eNB4S+CTjNBfKx49+e1oMIbfVJPyngGlQfuAyqdvBuOtEah0F/ApuNLSuzgPoEUAesgyGLfgerzT4D3f6+3MACMbbV9qL8AtqDAZqCeoHzng/LOz24g8NfNVAN1AAxDQwUB92Bt3/ztndQHcR58MW7gzd7foV/r78BAAD//07SGrEek0D5AAAAAElFTkSuQmCC
       projectdetails:
         goal: Resolve engine result name sort benefit display release.
+        already_pledged: 0
         action_time: 1653383799000000000
         action_location: Marvintown
         min_pioneers: 8263
@@ -294,6 +297,7 @@ projects:
         org_name: sys_account_org_0
       projectdetails:
         goal: Team task belong adopt licence resolve administration observe.
+        already_pledged: 0
         action_time: 1700159963000000000
         action_location: North Jast
         min_pioneers: 8861
@@ -383,6 +387,7 @@ projects:
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEU5Q1O3JONIA9eOAAACoElEQVR4nGzVP27dOBAGcNJcmJ1VbmceYzvTR/Edtl+p20sEyVXUpU2ZLgxSuAwNB4gKQRPM9w2HgZFXPNo/iCP+mZkX/vD5C98iPwbcGjwPuDP4uBssBv93g2KQzwEb4MpiUAlnFgtSMcqRxYKshJ7FgqwN0LJYECHsWSwIp8qWhX9Fg5CFQaIcOlwKCJIIJ2AH4MEDoLPt9R1wAi6FBtAgC2En7AqIvRF6CGWsGHACtqLTBlTAGXxKFdmLLm4EXQE9+GtXkVb0CMbCBLAHX7oORbYwNhcJto5AOMpFOLF7Be4SIRTOchB2m3kWHoyMLV2lzZNaAHy2DxAkgF12AXBycHgP4F1XhXeAPuEzgFe9KnwCWDLop80EDvNVP7n05vBK6A4vhMOhE84JK+CaUAEyoRA2h4WwO3D/WCUhEbpDJBwOnI6TNUBdIOUMUDm4DINC2BwWwu6QCc0hEbpDJBwOYRS7wyP+u5lQsao0oRA2B5ZK2h1YTKk5JEJ3iITDgXtP54QVcE2oAJlQCJvDQtgdMqE5JEJ3iITDIRDOCf8BrgkPLKEJ94QPDneELw63b/vxDYcn/fpbH0MOhoh0/sf6h+4A8O8EFGV4VThmA40vDhGZmF783RmQuwP6S1i619bK5O2rQeRQAdYfFNZeDQpBAJv1LbTmQogMZUdtHQVtrS/iad00eRQuK37kbs+AaOurgNFFmz7Y02i4ANSc7n4lRNScQiXccFPd2lbjfVhqAu7CqJ1AuJ8HUwEPhN16X0NehGq/LwoXYbPG1aL1lc16XUsGwRpoQ36GhZBE2kK4RvdryHHmMYK0ev3WUcMiDXWilWNBGlMpHZZp8pUQB9RvBuN3fXm27BuQvhu0ka4jP58GVIPHt4kdQvgVAAD//2Pgeu56APAkAAAAAElFTkSuQmCC
       projectdetails:
         goal: Advise approach allow century line south sign park.
+        already_pledged: 0
         action_time: 1727574734000000000
         action_location: Greenfort
         min_pioneers: 4030
@@ -472,6 +477,7 @@ projects:
         org_name: sys_account_org_0
       projectdetails:
         goal: Fear budget agree depend teach miss carry note.
+        already_pledged: 0
         action_time: 1714505701000000000
         action_location: Huelburgh
         min_pioneers: 4716
