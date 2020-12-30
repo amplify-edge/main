@@ -24,6 +24,7 @@ projects:
         org_name: sys_account_org_2
       projectdetails:
         goal: Vote factor watch detect pull sell science acid.
+        already_pledged: 0
         action_time: 1680604623000000000
         action_location: Faheyfurt
         min_pioneers: 9304
@@ -113,6 +114,7 @@ projects:
         org_name: sys_account_org_2
       projectdetails:
         goal: Consider east analysis challenge afford test representation sell.
+        already_pledged: 0
         action_time: 1637562016000000000
         action_location: Alexandreton
         min_pioneers: 4786
@@ -201,6 +203,7 @@ projects:
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUDKUWPLrxgUYQtAAACdklEQVR4nGyVPZKdMAyA5fHO0sVHYG/iHGVvYjIpci26LXMFZVK8culCwaCMfuEpoQDny0PIn2Qt/Od6SU94tefk4IuD1RbNwWaL2cHhYDFABnoAC9JXBxZkBLAgAx1YELqA/tZfnUhX5QYOBXsACVLvYBVwXGC7f57BIc/zAhykPYGVAd3ABjA/gUPAAlCWAF1AXeOVLpEmjKBDQ2/x2UG8/3mPxEhAPyJ1fYzTN1cUEPn2Gex8X0xQFVCJVlNYJfZEhCZZP9aINisDg5M3tJupJqATHVbKJgkPotOKPQvgm7WDgG98+6GyO6+/8+1ju8AH3x5a6sHrn3z7Axcg0xnXO0u+X8iSX65/F2TJrxeoKJIvMKFIvsI0FMlrgBlFMgboKJK3AANF8h6AUCRHqkUE43RGGoQqOdIgVMmeSCNUyZ7ITKiSPZFOqJI9kUG/RLI3PRD9VrGHp0EPkewtXYk+RbJ3cA3NlkjJAPIrMFJQ6OmzMOfEWk59ypurefslC4KsEEaSDD2VAeZcqJZLOeVi19wOJTcM5JaC99R08JbaEiA37lCFcrjkvz/jSGj60yMOjYJZJEvBdD+DJZ8lQBHJR7GR45J3CDCL5E0AahYsGSUb1Oqz5FWAzQeWvMiJXfVss2Q9wovNrcKbmBUUCWVTkWyiIIxdJ4eNB4S+CTjNBfKx49+e1oMIbfVJPyngGlQfuAyqdvBuOtEah0F/ApuNLSuzgPoEUAesgyGLfgerzT4D3f6+3MACMbbV9qL8AtqDAZqCeoHzng/LOz24g8NfNVAN1AAxDQwUB92Bt3/ztndQHcR58MW7gzd7foV/r78BAAD//07SGrEek0D5AAAAAElFTkSuQmCC
       projectdetails:
         goal: Resolve engine result name sort benefit display release.
+        already_pledged: 0
         action_time: 1653383799000000000
         action_location: Marvintown
         min_pioneers: 8263
@@ -294,6 +297,7 @@ projects:
         org_name: sys_account_org_0
       projectdetails:
         goal: Team task belong adopt licence resolve administration observe.
+        already_pledged: 0
         action_time: 1700159963000000000
         action_location: North Jast
         min_pioneers: 8861
@@ -383,6 +387,7 @@ projects:
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEU5Q1O3JONIA9eOAAACoElEQVR4nGzVP27dOBAGcNJcmJ1VbmceYzvTR/Edtl+p20sEyVXUpU2ZLgxSuAwNB4gKQRPM9w2HgZFXPNo/iCP+mZkX/vD5C98iPwbcGjwPuDP4uBssBv93g2KQzwEb4MpiUAlnFgtSMcqRxYKshJ7FgqwN0LJYECHsWSwIp8qWhX9Fg5CFQaIcOlwKCJIIJ2AH4MEDoLPt9R1wAi6FBtAgC2En7AqIvRF6CGWsGHACtqLTBlTAGXxKFdmLLm4EXQE9+GtXkVb0CMbCBLAHX7oORbYwNhcJto5AOMpFOLF7Be4SIRTOchB2m3kWHoyMLV2lzZNaAHy2DxAkgF12AXBycHgP4F1XhXeAPuEzgFe9KnwCWDLop80EDvNVP7n05vBK6A4vhMOhE84JK+CaUAEyoRA2h4WwO3D/WCUhEbpDJBwOnI6TNUBdIOUMUDm4DINC2BwWwu6QCc0hEbpDJBwOYRS7wyP+u5lQsao0oRA2B5ZK2h1YTKk5JEJ3iITDgXtP54QVcE2oAJlQCJvDQtgdMqE5JEJ3iITDIRDOCf8BrgkPLKEJ94QPDneELw63b/vxDYcn/fpbH0MOhoh0/sf6h+4A8O8EFGV4VThmA40vDhGZmF783RmQuwP6S1i619bK5O2rQeRQAdYfFNZeDQpBAJv1LbTmQogMZUdtHQVtrS/iad00eRQuK37kbs+AaOurgNFFmz7Y02i4ANSc7n4lRNScQiXccFPd2lbjfVhqAu7CqJ1AuJ8HUwEPhN16X0NehGq/LwoXYbPG1aL1lc16XUsGwRpoQ36GhZBE2kK4RvdryHHmMYK0ev3WUcMiDXWilWNBGlMpHZZp8pUQB9RvBuN3fXm27BuQvhu0ka4jP58GVIPHt4kdQvgVAAD//2Pgeu56APAkAAAAAElFTkSuQmCC
       projectdetails:
         goal: Advise approach allow century line south sign park.
+        already_pledged: 0
         action_time: 1727574734000000000
         action_location: Greenfort
         min_pioneers: 4030
@@ -472,6 +477,7 @@ projects:
         org_name: sys_account_org_0
       projectdetails:
         goal: Fear budget agree depend teach miss carry note.
+        already_pledged: 0
         action_time: 1714505701000000000
         action_location: Huelburgh
         min_pioneers: 4716
@@ -924,159 +930,3 @@ regular_users:
         survey_project_ref_name: survey_project_3
         sys_account_user_ref_name: user_14@getcouragenow.org
         survey_user_name: survey_user_14
-    - newaccounts:
-        email: user_15@getcouragenow.org
-        password: 'qCtSIe;g6O6:'
-        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUpNCO9Qr3Z+3xSAAABNklEQVR4nFTTsW3tIBTGca5cuPTbwCu8Mp1XyRgpItlRipQZ4Y4SohQpM0IYgZICcSLOwZg/xZV+cJH4+LA7x6P+7iJyOHcTEQmnZmiF9lG6rWuGVmgfZdtOzdAK7aNeZNQbdIc+oHfoFTqoDVqgCXLUBi3QBDlqgxZoghy1qepcr1TX6rx3/0zF9N/+3/RgyqYnpxU3PZuSKTs9UlMxRdWtau4SU1BNVdMli+JVc3tup7xKL94vVe5SUGlSv6r2rlhVTJtq60pV2bSr1q4aaU0mUS1dGjCqPk1zlwYMqi/TdKkG9Krv9j1dqgHtffyY3KWgrVX9djlrQKK26Zus9whlSCgPRShDQnkoQhkSykMRypBQ91EFawkK0DGq4CwJCtAxqiB7ggJ0jCq46wSFLoy/AAAA//+dXJDWG/cAYQAAAABJRU5ErkJggg
-        new_user_roles:
-          - role: 2
-            project_name: sys_account_project_3
-      surveyvalue:
-        support_role_values:
-          - support_role_type_ref_name: support_role_type_15
-            pledged: 19
-            comment: Income colour experience window.
-          - support_role_type_ref_name: support_role_type_16
-            pledged: 39
-            comment: Gallery teach find last.
-          - support_role_type_ref_name: support_role_type_17
-            pledged: 63
-            comment: Hit deal publication parent.
-        user_need_values:
-          - user_needs_type_ref_name: user_needs_type_17
-            comments: Index separate repeat maintenance.
-          - user_needs_type_ref_name: user_needs_type_19
-            comments: Document reveal family write.
-        survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_15@getcouragenow.org
-        survey_user_name: survey_user_15
-    - newaccounts:
-        email: user_16@getcouragenow.org
-        password: sR2-NrKRtU;d
-        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUlRxuft8UpCIgAAAABzElEQVR4nFyUsZHeIBCFn0YBISVwJfyhgxvjUq6ECx14DI5cxrXgDk6lbAkKFWi0nn0L+uFIxMewvH3LCjxHVkFRm70ASEaX0RuAaHQavQMIRofRDmA1sglsaTESm3CD0WbE4CIo1UJIWVDsu1ImCX7bN5Ci4BeJCQXBT66SVmEWiGpnLcIMkUgQ/HDaeu60tnVfmCbcMtP7QPsXOp6wHDO5QR/rTKcb9BFmutygjziTukEf6Qt9uKVmbyRVVbnFbf1xH2n0eocZ5Tts60u8U9LeMyGdXY3UMv1sxMD1b6N/DPvjdFExVzZCPqioNZHEFFetgVRNMWpdjL5TMWvljX6jYmn0QsXUdrp+aKc8uHNpCq+ed2nq7im1zDb6DS3rnZktH82t16k0R49W98EtwlSJZaqSt32vINJYXYSp8st0K/R33xiKfg73XjQPlDUN/ZKvkdIVhz5L50jxDEN/xmOkcKxDX4d9pHVf9oFkpEUgA20jYfOfso3aqbql2jc96cXDW2nf+M50Ev/x0tVkzyetAn89uBYE+qQo4NnBo8Ub3ikL+Mus1CkC3W9SgR6u5K+bnp3s5dOr526vomqnSOp3lXQsB4D/AQAA//97RRtdwmLlBQAAAABJRU5ErkJggg
-        new_user_roles:
-          - role: 3
-            project_name: sys_account_project_3
-      surveyvalue:
-        support_role_values:
-          - support_role_type_ref_name: support_role_type_15
-            pledged: 19
-            comment: Income colour experience window.
-          - support_role_type_ref_name: support_role_type_16
-            pledged: 39
-            comment: Gallery teach find last.
-          - support_role_type_ref_name: support_role_type_17
-            pledged: 63
-            comment: Hit deal publication parent.
-        user_need_values:
-          - user_needs_type_ref_name: user_needs_type_17
-            comments: Index separate repeat maintenance.
-          - user_needs_type_ref_name: user_needs_type_19
-            comments: Document reveal family write.
-        survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_16@getcouragenow.org
-        survey_user_name: survey_user_16
-    - newaccounts:
-        email: user_17@getcouragenow.org
-        password: oWA0__u,HBPK
-        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUlRxuft8UpCIgAAAABzElEQVR4nFyUsZHeIBCFn0YBISVwJfyhgxvjUq6ECx14DI5cxrXgDk6lbAkKFWi0nn0L+uFIxMewvH3LCjxHVkFRm70ASEaX0RuAaHQavQMIRofRDmA1sglsaTESm3CD0WbE4CIo1UJIWVDsu1ImCX7bN5Ci4BeJCQXBT66SVmEWiGpnLcIMkUgQ/HDaeu60tnVfmCbcMtP7QPsXOp6wHDO5QR/rTKcb9BFmutygjziTukEf6Qt9uKVmbyRVVbnFbf1xH2n0eocZ5Tts60u8U9LeMyGdXY3UMv1sxMD1b6N/DPvjdFExVzZCPqioNZHEFFetgVRNMWpdjL5TMWvljX6jYmn0QsXUdrp+aKc8uHNpCq+ed2nq7im1zDb6DS3rnZktH82t16k0R49W98EtwlSJZaqSt32vINJYXYSp8st0K/R33xiKfg73XjQPlDUN/ZKvkdIVhz5L50jxDEN/xmOkcKxDX4d9pHVf9oFkpEUgA20jYfOfso3aqbql2jc96cXDW2nf+M50Ev/x0tVkzyetAn89uBYE+qQo4NnBo8Ub3ikL+Mus1CkC3W9SgR6u5K+bnp3s5dOr526vomqnSOp3lXQsB4D/AQAA//97RRtdwmLlBQAAAABJRU5ErkJggg
-        new_user_roles:
-          - role: 3
-            project_name: sys_account_project_3
-      surveyvalue:
-        support_role_values:
-          - support_role_type_ref_name: support_role_type_15
-            pledged: 19
-            comment: Income colour experience window.
-          - support_role_type_ref_name: support_role_type_16
-            pledged: 39
-            comment: Gallery teach find last.
-          - support_role_type_ref_name: support_role_type_17
-            pledged: 63
-            comment: Hit deal publication parent.
-        user_need_values:
-          - user_needs_type_ref_name: user_needs_type_17
-            comments: Index separate repeat maintenance.
-          - user_needs_type_ref_name: user_needs_type_19
-            comments: Document reveal family write.
-        survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_17@getcouragenow.org
-        survey_user_name: survey_user_17
-    - newaccounts:
-        email: user_18@getcouragenow.org
-        password: E.Sb{:@i2?&n
-        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEVJQ0NXVmtEsE0WAAAB2klEQVR4nGyUMW4bMRBF/2ILlpvShWHmCClTBKGOoiO4dGF4ebQ9Co+gUoWgCf6fGUoIzILet7A4fH/IxfP4id349yQ6o5n/5RioondOy8Am+uC0DhTRJ6cysIq+OG0Di2jnVAfg1AG0Ea/3g9MAGuIBNoAqugALaRNdgZVURDegkFbRHdhIi8iASoJT/+/JHVvQobk6LU6b0+pUnIrT6rQ5LU7VCU4tSKquyLciC6pdvw7aulYOKl1Vg9auHQUtXbsNgsKc9Dz67F/+6pLEFZdrEquttyTupNyTuEtvdxrUR5z9uTRf7xm6UjGLgkxsMYuCTHM1i4JMuphFQS6+mUVBdqiaRUF2r5nZgRZlkrKDpv/osS5XaZY1WaHdcz+s3m65V+6sZRzadcuoZJTt9FIt/ZVEm7mx1N+ZKUv9mXmz1O/ZC5b6Nft00e3Lccb3w8/uj0mcX5Lk9Zokr7ckedUkedUw0G2bR9ePaY0O+tGtkcPuwpHRl1Pk9+kU2X5ENE7vj6CmW57d09Ph2dXpIwxp5+f9Jez8LryGnd+Tt7DzO1TTzqmHnaRoqAc1koaykzgNZaf7TEPZ6a7TUHb6DtBQdvpG0NDtjjA8h5UbnmbnHl+iGP8CAAD//1sjBf9uc2gVAAAAAElFTkSuQmCC
-        new_user_roles:
-          - role: 3
-            project_name: sys_account_project_3
-      surveyvalue:
-        support_role_values:
-          - support_role_type_ref_name: support_role_type_15
-            pledged: 19
-            comment: Income colour experience window.
-          - support_role_type_ref_name: support_role_type_16
-            pledged: 39
-            comment: Gallery teach find last.
-          - support_role_type_ref_name: support_role_type_17
-            pledged: 63
-            comment: Hit deal publication parent.
-        user_need_values:
-          - user_needs_type_ref_name: user_needs_type_17
-            comments: Index separate repeat maintenance.
-          - user_needs_type_ref_name: user_needs_type_19
-            comments: Document reveal family write.
-        survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_18@getcouragenow.org
-        survey_user_name: survey_user_18
-    - newaccounts:
-        email: user_19@getcouragenow.org
-        password: N)*lTSK%@4(.
-        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUqQGONkXpDVzSRAAABF0lEQVR4nHzTMW60MBAF4EEUlByBPcJf/kW0vkpugqMtUu4ROApEKVLmCOsjULqw/CJI2JmXaMcN+hCy581g4TUCiBJlAJC+1ZBaUkfqSQMpkEYSrF5IF9Ir6UqaSDMJjmZnl6tz+sWpmhP9ShucLvVOd1tnKveJ6Xr+eQYAi6xWTbZqi1VXrXpYDYhGAYvReBy+C1hVb0BWvQNF9QFU1ScA1W1Pdgh7Dk10/K38fr5r64d+2QNV1QFF1QJZ1QCrSoBkNG6xocGj0QBTmfTVqitWbbZqkpUspG2d6G7+o7n/Jz2RzqTAiqSFlEgrKZMKqZLAmkg3R9PjXapzenaqTk7a+LhLZ6e73Hmeyokkf+6miHwFAAD//2BRAvCWYCI9AAAAAElFTkSuQmCC
-        new_user_roles:
-          - role: 2
-            project_name: sys_account_project_3
-      surveyvalue:
-        support_role_values:
-          - support_role_type_ref_name: support_role_type_15
-            pledged: 19
-            comment: Income colour experience window.
-          - support_role_type_ref_name: support_role_type_16
-            pledged: 39
-            comment: Gallery teach find last.
-          - support_role_type_ref_name: support_role_type_17
-            pledged: 63
-            comment: Hit deal publication parent.
-        user_need_values:
-          - user_needs_type_ref_name: user_needs_type_17
-            comments: Index separate repeat maintenance.
-          - user_needs_type_ref_name: user_needs_type_19
-            comments: Document reveal family write.
-        survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_19@getcouragenow.org
-        survey_user_name: survey_user_19
-    - newaccounts:
-        email: user_20@getcouragenow.org
-        password: MR6&e-?aex1$
-        avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEVUDF0VAT2VcdWbAAABU0lEQVR4nNzUMW7rMBAE0CFUsPkA/wmia6QIwptZPJqCFOmSNiWPoNKFoA1mdje5g1nYegZXomjuAGUA2GzHfwBYUs9U3UMvVEvdqHWGNqqnTDc4UiyxULEJFLunDmBJ6aLamTqBlqp2ASs/XAb0VDMb2PhTaIelVrNJjT/1lC403XVxLaFNi+J0F1+th1SPxrVTl/bM9aYygF/UlLr0rjKgnZLKgEX68DLgkmbolfoaoUZ9BrBQ3ykM7bWe7a8b43G1mulU+Xh0/Y7Ss085KvUv9US11I2qe5SdUtywSjx7etJdMtcmFT9NxQ6XCqsL6kqsNl0q3EI6hsXYUNLBslBn4Wo2QsYJoTX7NjXV05KalA2aGsoCSVnAnAhdniGSMoSxErp79nRf4uG5FJqeWd3javc8Cw3POpeyru0h5WBNKSOXEVJ+llT+Zz36FD8BAAD//wbY6IjcXS1nAAAAAElFTkSuQmCC
-        new_user_roles:
-          - role: 2
-            project_name: sys_account_project_3
-      surveyvalue:
-        support_role_values:
-          - support_role_type_ref_name: support_role_type_15
-            pledged: 19
-            comment: Income colour experience window.
-          - support_role_type_ref_name: support_role_type_16
-            pledged: 39
-            comment: Gallery teach find last.
-          - support_role_type_ref_name: support_role_type_17
-            pledged: 63
-            comment: Hit deal publication parent.
-        user_need_values:
-          - user_needs_type_ref_name: user_needs_type_17
-            comments: Index separate repeat maintenance.
-          - user_needs_type_ref_name: user_needs_type_19
-            comments: Document reveal family write.
-        survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_20@getcouragenow.org
-        survey_user_name: survey_user_20

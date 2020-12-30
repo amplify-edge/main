@@ -35,8 +35,10 @@ func (b *BootstrapRepo) sharedExecutor(ctx context.Context, bsAll *fakedata.Boot
 
 func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject, regularUsers []*bsrpc.BSRegularAccount) error {
 	var err error
+	var cancel context.CancelFunc
+	ctx, cancel = context.WithTimeout(ctx, defaultTimeout)
+	defer cancel()
 	for _, supe := range supers {
-		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
 		supeRequest := &accountPkg.AccountNewRequest{
 			Email:    supe.GetInitialSuperuser().GetEmail(),
 			Password: supe.GetInitialSuperuser().GetPassword(),
@@ -53,52 +55,43 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 			return err
 		}
 		supeRequest.AvatarUploadBytes = base64.RawStdEncoding.EncodeToString(avatar)
-		if _, err = b.accClient.NewAccount(newCtx, supeRequest); err != nil {
-			cancel()
+		if _, err = b.accClient.NewAccount(ctx, supeRequest); err != nil {
 			return err
 		}
 	}
 
 	for _, org := range orgs {
-		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
-		if _, err = b.accClient.NewOrg(newCtx, accountPkg.OrgRequestFromProto(org.GetOrg())); err != nil {
-			cancel()
+		if _, err = b.accClient.NewOrg(ctx, accountPkg.OrgRequestFromProto(org.GetOrg())); err != nil {
 			return err
 		}
 	}
 	for _, proj := range projects {
-		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
-		if _, err = b.accClient.NewProject(newCtx, accountPkg.ProjectRequestFromProto(proj.GetProject())); err != nil {
-			cancel()
+		if _, err = b.accClient.NewProject(ctx, accountPkg.ProjectRequestFromProto(proj.GetProject())); err != nil {
 			return err
 		}
-		if _, err = b.discoClient.NewDiscoProject(newCtx, proj.GetProjectDetails()); err != nil {
+		if _, err = b.discoClient.NewDiscoProject(ctx, proj.GetProjectDetails()); err != nil {
 			return err
 		}
 		if proj.GetSurveySchema() != nil {
-			if _, err = b.discoClient.NewSurveyProject(newCtx, proj.GetSurveySchema()); err != nil {
+			if _, err = b.discoClient.NewSurveyProject(ctx, proj.GetSurveySchema()); err != nil {
 				return err
 			}
 		}
 	}
 
 	for _, reg := range regularUsers {
-		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
-		acc, err := b.accClient.NewAccount(newCtx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts()))
+		acc, err := b.accClient.NewAccount(ctx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts()))
 		if err != nil {
-			cancel()
 			return err
 		}
 		updRequest := &accountPkg.AccountUpdateRequest{
 			Id:       acc.GetId(),
 			Verified: true,
 		}
-		if _, err = b.accClient.UpdateAccount(newCtx, updRequest); err != nil {
-			cancel()
+		if _, err = b.accClient.UpdateAccount(ctx, updRequest); err != nil {
 			return err
 		}
-		if _, err = b.discoClient.NewSurveyUser(newCtx, reg.GetSurveyValue()); err != nil {
-			cancel()
+		if _, err = b.discoClient.NewSurveyUser(ctx, reg.GetSurveyValue()); err != nil {
 			return err
 		}
 	}
@@ -106,6 +99,9 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 }
 
 func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAccount, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject, regularAccounts []*bsrpc.BSRegularAccount) error {
+	var cancel context.CancelFunc
+	ctx, cancel = context.WithTimeout(ctx, defaultTimeout)
+	defer cancel()
 	var err error
 	for _, supe := range supers {
 		superReq := &accountRepo.SuperAccountRequest{
@@ -123,44 +119,38 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAcco
 	}
 
 	for _, org := range orgs {
-		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
-		if _, err = b.accRepo.NewOrg(newCtx, accountPkg.OrgRequestFromProto(org.GetOrg())); err != nil {
-			cancel()
+		if _, err = b.accRepo.NewOrg(ctx, accountPkg.OrgRequestFromProto(org.GetOrg())); err != nil {
 			return err
 		}
 	}
 	for _, proj := range projects {
-		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
-		if _, err = b.accRepo.NewProject(newCtx, accountPkg.ProjectRequestFromProto(proj.GetProject())); err != nil {
-			cancel()
+		if _, err = b.accRepo.NewProject(ctx, accountPkg.ProjectRequestFromProto(proj.GetProject())); err != nil {
 			return err
 		}
-		if _, err = b.discoRepo.NewDiscoProject(newCtx, proj.GetProjectDetails()); err != nil {
+		if _, err = b.discoRepo.NewDiscoProject(ctx, proj.GetProjectDetails()); err != nil {
 			return err
 		}
 		if proj.GetSurveySchema() != nil {
-			if _, err = b.discoRepo.NewSurveyProject(newCtx, proj.GetSurveySchema()); err != nil {
+			if _, err = b.discoRepo.NewSurveyProject(ctx, proj.GetSurveySchema()); err != nil {
 				return err
 			}
 		}
 	}
-	for _, reg := range regularAccounts {
-		newCtx, cancel := context.WithTimeout(ctx, defaultTimeout)
-		acc, err := b.accRepo.NewAccount(newCtx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts()))
+	for i, reg := range regularAccounts {
+		fmt.Printf("processing %d", i)
+		var acc *accountPkg.Account
+		acc, err = b.accRepo.NewAccount(ctx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts()))
 		if err != nil {
-			cancel()
 			return err
 		}
 		updRequest := &accountPkg.AccountUpdateRequest{
 			Id:       acc.GetId(),
 			Verified: true,
 		}
-		if _, err = b.accRepo.UpdateAccount(newCtx, updRequest); err != nil {
-			cancel()
+		if _, err = b.accRepo.UpdateAccount(ctx, updRequest); err != nil {
 			return err
 		}
-		if _, err = b.discoRepo.NewSurveyUser(newCtx, reg.GetSurveyValue()); err != nil {
-			cancel()
+		if _, err = b.discoRepo.NewSurveyUser(ctx, reg.GetSurveyValue()); err != nil {
 			return err
 		}
 	}
