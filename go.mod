@@ -8,7 +8,7 @@ require (
 	github.com/getcouragenow/ops/bs-crypt v0.0.0-20201217090659-8c6ef1d444c3
 	github.com/getcouragenow/protoc-gen-cobra v0.3.1-0.20201005114840-ccc8cd57bcdc
 	github.com/getcouragenow/sys v0.0.0-20201230052306-22a6aaf34655
-	github.com/getcouragenow/sys-share v0.0.0-20201220110847-d644844a1e95
+	github.com/getcouragenow/sys-share v0.0.0-20201230222439-331d409dcd61
 	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/improbable-eng/grpc-web v0.13.0

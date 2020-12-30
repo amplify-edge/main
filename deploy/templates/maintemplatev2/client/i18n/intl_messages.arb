@@ -1,0 +1,75 @@
+{
+  "@@last_modified": "2020-12-30T22:34:35.686192",
+  "tabadmin": "Admin",
+  "@tabadmin": {
+    "description": "text for admin tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tabhome": "Home",
+  "@tabhome": {
+    "description": "text for the home tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tabsurvey": "Survey",
+  "@tabsurvey": {
+    "description": "text for survey tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tabchat": "Chat",
+  "@tabchat": {
+    "description": "text for the chat tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tabIon": "Ion",
+  "@tabIon": {
+    "description": "text for the ion tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tabsettings": "Settings",
+  "@tabsettings": {
+    "description": "text for the settings tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tabwriter": "Writer",
+  "@tabwriter": {
+    "description": "text for the writer tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tabKanban": "Kanban",
+  "@tabKanban": {
+    "description": "Text for the Kanban tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tabmap": "Map",
+  "@tabmap": {
+    "description": "text for the writer tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tabSettings": "Settings",
+  "@tabSettings": {
+    "description": "text for the settings tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeLanguageSet": "Change Language",
+  "@changeLanguageSet": {
+    "description": "text for the change language text in settings screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeThemeSet": "Change Theme",
+  "@changeThemeSet": {
+    "description": "text for the change theme text in settings screen",
+    "type": "text",
+    "placeholders": {}
+  }
+}
