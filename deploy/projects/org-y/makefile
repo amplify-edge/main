@@ -58,10 +58,10 @@ IMAGE_FLAGS = ""
 FRONTEND_PREFIX = flutter/build/
 FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)web/
 FRONTEND_ABS_PREFIX = $(PWD)/$(FRONTEND_WEB_PREFIX)
-FRONTEND_HOST = "org-y.fly.dev"
+FRONTEND_HOST = "org-y.getcouragenow.org"
 FRONTEND_PORT = 443
-FRONTEND_URL_WEB = "org-y.fly.dev"
-FRONTEND_URL_NATIVE = "org-y.fly.dev"
+FRONTEND_URL_WEB = "org-y.getcouragenow.org"
+FRONTEND_URL_NATIVE = "org-y.getcouragenow.org"
 
 MAIN_TLS_ENABLE = true
 MAIN_TLS_LOCAL = true
