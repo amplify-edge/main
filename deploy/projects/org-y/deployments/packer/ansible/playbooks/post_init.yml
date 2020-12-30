@@ -2,16 +2,19 @@
 #- hosts: gcn
 - hosts: default
   vars:
-#    flutter_dir: '/opt/flutter'
+    #    flutter_dir: '/opt/flutter'
     ssh_custom_options:
       - "Include /etc/ssh/ssh_config.d/*"
     sshd_custom_options:
       - "AcceptEnv LANG"
     dotfiles_user_dir: "/home/ops"
     dotfiles_user_name: "ops"
+    maintemplate_user_name: "ops"
+    maintemplate_bind_mount_dir: '/var/www/org-y'
   roles:
     - pre
     - dotfiles
+    - caddy
+    - maintemplate
     - { role: dev-sec.os-hardening, become: yes }
     - { role: dev-sec.ssh-hardening, become: yes }
-

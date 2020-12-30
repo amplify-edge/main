@@ -75,6 +75,9 @@ EMBED_OUTPUT_DIR = $(PWD)/cmd/server/
 
 CONFIG_PASSWORD:=$(shell echo "$$CONFIG_PASSWORD")
 
+HCLOUD_IP = 157.90.28.25
+HCLOUD_USER = ops
+
 DEPLOY_ENV=DEV
 DEPLOY_BASEURL=
 ifeq ($(DEPLOY_ENV),PROD)
@@ -205,3 +208,8 @@ fly-create:
 	flyctl secrets --app $(FLY_APP_NAME) set CONFIG_PASSWORD=$(CONFIG_PASSWORD) && \
 	cp fly.toml.bak fly.toml
 
+
+deploy-hcloud:
+	for d in bin-all certs encrypted-config bootstrap-data; do \
+		scp -r $$d $(HCLOUD_USER)@$(HCLOUD_IP):/home/$(HCLOUD_USER)/app/; \
+	done

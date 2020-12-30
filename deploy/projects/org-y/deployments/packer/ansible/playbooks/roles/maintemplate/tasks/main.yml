@@ -1,0 +1,42 @@
+---
+- name: Make sure bindfs is installed
+  become: true
+  package:
+    state: latest
+    name:
+      - bindfs
+
+- name: Create $HOME/app directory
+  file:
+    path: '{{ item }}'
+    owner: '{{ maintemplate_user_name }}'
+    group: '{{ maintemplate_user_name }}'
+    state: directory
+    mode: 0770
+    recurse: yes
+    force: yes
+  with_items:
+    - '{{ maintemplate_user_dir }}/app'
+    - '{{ maintemplate_user_dir }}/app/bin-all'
+    - '{{ maintemplate_user_dir }}/app/db'
+    - '{{ maintemplate_user_dir }}/app/encrypted-config'
+    - '{{ maintemplate_user_dir }}/app/config'
+    - '{{ maintemplate_user_dir }}/app/certs'
+
+- name: Create bind-mount directory
+  become: true
+  file:
+    path: '{{ maintemplate_bind_mount_dir }}'
+    owner: nobody
+    group: nogroup
+    state: directory
+
+- name: Mount '{{ maintemplate_user_dir }}' to '{{ maintemplate_bind_mount_dir }}'
+  become: true
+  mount:
+    backup: yes
+    path: '{{ maintemplate_user_dir }}/app'
+    src: 'bindfs#{{ maintemplate_bind_mount_dir }}'
+    fstype: fuse
+    state: present
+    opts: 'force-user={{ maintemplate_user_name }},force-group={{ maintemplate_user_name }},create-for-user=nobody,create-for-group=nogroup,create-with-perms=0770,chgrp-ignore,chown-ignore,chmod-ignore'

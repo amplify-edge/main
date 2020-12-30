@@ -40,15 +40,16 @@ class BootstrapDetailsView extends StatelessWidget {
                         children: [
                           SizedBox(height: 10),
                           Text(
-                            BootstrapLocalizations.of(context).translate('pickImageAndCopyTheResultingValue'),
+                            BootstrapLocalizations.of(context)
+                                .translate('pickImageAndCopyTheResultingValue'),
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           SizedBox(height: 10),
-                          FilePickerWidget(),
-                          SizedBox(height: 20),
+                          // FilePickerWidget(),
+                          // SizedBox(height: 20),
                           CodeEditor(
                             model: model.getEditorModel(),
-                            edit: true,
+                            edit: false,
                             onSubmit: model.onSubmit,
                           ),
                         ],

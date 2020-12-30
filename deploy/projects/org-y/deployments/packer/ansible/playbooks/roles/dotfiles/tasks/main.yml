@@ -17,6 +17,12 @@
     owner: '{{ dotfiles_user_name }}'
     state: directory
 
+- name: Create $HOME/.local/share directory
+  file:
+    path: '{{ dotfiles_user_dir }}/.local/share'
+    owner: '{{ dotfiles_user_name }}'
+    state: directory
+
 - name: Copy install_dots.sh to remote bin
   copy:
     src: install_dots.sh
@@ -36,3 +42,10 @@
   shell: '{{ dotfiles_user_dir }}/bin/install_dots.sh'
   args:
     chdir: '{{ dotfiles_user_dir }}/.dotdeb'
+
+- name: Change file ownership, group and permissions for user's directory
+  file:
+    path: '{{ dotfiles_user_dir }}'
+    owner: '{{ dotfiles_user_name }}'
+    group: '{{ dotfiles_user_name }}'
+    recurse: yes
