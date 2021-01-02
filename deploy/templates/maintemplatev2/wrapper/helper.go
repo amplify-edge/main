@@ -105,8 +105,9 @@ func NewMainService(
 		logger,
 		sysSvc.SysAccountSvc.AuthRepo,
 		modDiscoSvc.ModDiscoRepo,
-		nil,
 		// clientConn,
+		nil,
+		cbus,
 	)
 
 	ms := &MainService{
@@ -121,6 +122,7 @@ func NewMainCLI(
 	logger *logrus.Entry,
 	mainCfg *MainConfig,
 	bsconfig *bscfg.BootstrapConfig,
+	cbus *corebus.CoreBus,
 ) (*MainSdkCli, error) {
 	var clientConn *grpc.ClientConn
 	dialOpts := []grpc.DialOption{grpc.WithBlock()}
@@ -168,6 +170,7 @@ func NewMainCLI(
 		nil,
 		nil,
 		clientConn,
+		cbus,
 	)
 	sysSharePkg.NewSysShareProxyClient(clientOptions...)
 

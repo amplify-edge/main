@@ -1,6 +1,7 @@
 package maintemplatev2
 
 import (
+	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
@@ -57,6 +58,7 @@ func MainCliCommand(version []byte) *cobra.Command {
 		logger,
 		mainCfg,
 		bscfg,
+		corebus.NewCoreBus(),
 	)
 	if err != nil {
 		logger.Fatalf(errCreateCli, err)
