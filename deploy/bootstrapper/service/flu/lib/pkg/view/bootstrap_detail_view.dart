@@ -1,5 +1,4 @@
 import 'package:bootstrapper/pkg/i18n/bootstrap_localization.dart';
-import 'package:bootstrapper/pkg/shared_widgets/file_picker/file_picker_widget.dart';
 import 'package:bootstrapper/pkg/view/view_model/bootstrap_detail_view_model.dart';
 import 'package:code_editor/code_editor.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,20 @@ class BootstrapDetailsView extends StatelessWidget {
                           .translate('bootstrapDetails'),
                     ),
                     actions: [
-                      
+                      TextButton(
+                        autofocus: false,
+                        onPressed: model.onExecuteBootstrap(context, id),
+                        child: Text(
+                          'Execute',
+                        ),
+                      ),
+                      TextButton(
+                        autofocus: false,
+                        onPressed: model.onExecuteBootstrap(context, id),
+                        child: Text(
+                          'Delete',
+                        ),
+                      ),
                     ],
                   ),
                   body: Padding(
@@ -42,12 +54,8 @@ class BootstrapDetailsView extends StatelessWidget {
                       child: Column(
                         children: [
                           SizedBox(height: 10),
-                          // Text(
-                          //   BootstrapLocalizations.of(context)
-                          //       .translate('pickImageAndCopyTheResultingValue'),
-                          //   style: Theme.of(context).textTheme.headline6,
-                          // ),
-                          SizedBox(height: 10),
+
+                          SizedBox(height: 30),
                           // FilePickerWidget(),
                           // SizedBox(height: 20),
                           CodeEditor(
