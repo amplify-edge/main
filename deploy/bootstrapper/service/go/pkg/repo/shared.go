@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
+	sysCorePkg "github.com/getcouragenow/sys-share/sys-core/service/go/pkg"
 	"io/ioutil"
 	"time"
 
@@ -38,6 +39,10 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, supers []*bsrpc.BSAcco
 	var cancel context.CancelFunc
 	ctx, cancel = context.WithTimeout(ctx, defaultTimeout)
 	defer cancel()
+	err = b.resetAll(ctx)
+	if err != nil {
+		return err
+	}
 	for _, supe := range supers {
 		supeRequest := &accountPkg.AccountNewRequest{
 			Email:    supe.GetInitialSuperuser().GetEmail(),
@@ -103,6 +108,10 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAcco
 	ctx, cancel = context.WithTimeout(ctx, defaultTimeout)
 	defer cancel()
 	var err error
+	err = b.resetAll(ctx)
+	if err != nil {
+		return err
+	}
 	for _, supe := range supers {
 		superReq := &accountRepo.SuperAccountRequest{
 			Email:    supe.InitialSuperuser.GetEmail(),
@@ -174,4 +183,27 @@ func (b *BootstrapRepo) sharedGenBS(bsAll *fakedata.BootstrapAll, joined, extens
 	default:
 		return "", fmt.Errorf("invalid filename extension: %s", extension)
 	}
+}
+
+func (b *BootstrapRepo) resetAll(ctx context.Context) error {
+	var err error
+	_, err = b.busClient.Broadcast(ctx, &sysCorePkg.EventRequest{
+		EventName:   "onResetAllModDisco",
+		Initiator:   "bootstrap-service",
+		UserId:      "",
+		JsonPayload: []byte{},
+	})
+	if err != nil {
+		return err
+	}
+	_, err = b.busClient.Broadcast(ctx, &sysCorePkg.EventRequest{
+		EventName:   "onResetAllSysAccount",
+		Initiator:   "bootstrap-service",
+		UserId:      "",
+		JsonPayload: []byte{},
+	})
+	if err != nil {
+		return err
+	}
+	return nil
 }

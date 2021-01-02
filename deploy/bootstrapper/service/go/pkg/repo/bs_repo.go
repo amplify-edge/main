@@ -5,6 +5,7 @@ import (
 	discoRpc "github.com/getcouragenow/mod/mod-disco/service/go/rpc/v2"
 	sysSharePkg "github.com/getcouragenow/sys-share/sys-account/service/go/pkg"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
+	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
 	accountRepo "github.com/getcouragenow/sys/sys-account/service/go/pkg/repo"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
@@ -20,9 +21,10 @@ type BootstrapRepo struct {
 	discoRepo   *discoRepo.ModDiscoRepo
 	accClient   *sysSharePkg.SysAccountProxyServiceClient // v3 via grpc
 	discoClient discoRpc.SurveyServiceClient              // v3 via grpc
+	busClient   *corebus.CoreBus
 }
 
-func NewBootstrapRepo(logger *log.Entry, domain, savePath string, accRepo *accountRepo.SysAccountRepo, discoRepo *discoRepo.ModDiscoRepo, cc grpc.ClientConnInterface) *BootstrapRepo {
+func NewBootstrapRepo(logger *log.Entry, domain, savePath string, accRepo *accountRepo.SysAccountRepo, discoRepo *discoRepo.ModDiscoRepo, cc grpc.ClientConnInterface, busClient *corebus.CoreBus) *BootstrapRepo {
 	if cc == nil && accRepo == nil && discoRepo == nil {
 		logger.Fatalf("invalid bootstrap repo argument: all repos and clients are nil")
 	}
@@ -48,6 +50,7 @@ func NewBootstrapRepo(logger *log.Entry, domain, savePath string, accRepo *accou
 		discoRepo:   discoRepo,
 		accClient:   accClient,
 		discoClient: discoClient,
+		busClient:   busClient,
 	}
 }
 

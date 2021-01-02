@@ -32,6 +32,9 @@ class BootstrapDetailsView extends StatelessWidget {
                       BootstrapLocalizations.of(context)
                           .translate('bootstrapDetails'),
                     ),
+                    actions: [
+                      
+                    ],
                   ),
                   body: Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -39,11 +42,11 @@ class BootstrapDetailsView extends StatelessWidget {
                       child: Column(
                         children: [
                           SizedBox(height: 10),
-                          Text(
-                            BootstrapLocalizations.of(context)
-                                .translate('pickImageAndCopyTheResultingValue'),
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
+                          // Text(
+                          //   BootstrapLocalizations.of(context)
+                          //       .translate('pickImageAndCopyTheResultingValue'),
+                          //   style: Theme.of(context).textTheme.headline6,
+                          // ),
                           SizedBox(height: 10),
                           // FilePickerWidget(),
                           // SizedBox(height: 20),
