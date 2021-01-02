@@ -21,8 +21,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "allOfYourDataWillBeDeleted" : MessageLookupByLibrary.simpleMessage("¡Todos tus datos serán eliminados!"),
     "bootstrapDetails" : MessageLookupByLibrary.simpleMessage("Detalles de Bootstrap"),
+    "bootstrapFileWillBeDeleted" : MessageLookupByLibrary.simpleMessage("¡El archivo Bootstrap será eliminado!"),
+    "cancel" : MessageLookupByLibrary.simpleMessage("Cancelar"),
+    "confirm" : MessageLookupByLibrary.simpleMessage("Confirmar"),
+    "deleteBootstrap" : MessageLookupByLibrary.simpleMessage("Eliminar Bootstrap"),
     "editBootstrap" : MessageLookupByLibrary.simpleMessage("Editar Bootstrap"),
+    "executeBootstrap" : MessageLookupByLibrary.simpleMessage("Ejecutar Bootstrap"),
     "listBootstrap" : MessageLookupByLibrary.simpleMessage("Lista Bootstrap"),
     "noBootstraps" : MessageLookupByLibrary.simpleMessage("Sin Bootstraps"),
     "pickImageAndCopyTheResultingValue" : MessageLookupByLibrary.simpleMessage("Elija la imagen y copie el valor resultante"),

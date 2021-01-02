@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-12-30T22:33:33.108907",
+  "@@last_modified": "2021-01-02T14:07:27.022524",
   "listBootstrap": "Lista Bootstrap",
   "@listBootstrap": {
     "description": "List Bootstrap",
@@ -27,6 +27,42 @@
   "bootstrapDetails": "Detalles de Bootstrap",
   "@bootstrapDetails": {
     "description": "Bootstrap File Content and Name",
+    "placeholders": {},
+    "type": "text"
+  },
+  "executeBootstrap": "Ejecutar Bootstrap",
+  "@executeBootstrap": {
+    "description": "Execute current bootstrap file",
+    "placeholders": {},
+    "type": "text"
+  },
+  "deleteBootstrap": "Eliminar Bootstrap",
+  "@deleteBootstrap": {
+    "description": "Delete current bootstrap file",
+    "placeholders": {},
+    "type": "text"
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "Cancel",
+    "placeholders": {},
+    "type": "text"
+  },
+  "confirm": "Confirmar",
+  "@confirm": {
+    "description": "Confirm",
+    "placeholders": {},
+    "type": "text"
+  },
+  "allOfYourDataWillBeDeleted": "¡Todos tus datos serán eliminados!",
+  "@allOfYourDataWillBeDeleted": {
+    "description": "Execute bootstrap dialog alert box",
+    "placeholders": {},
+    "type": "text"
+  },
+  "bootstrapFileWillBeDeleted": "¡El archivo Bootstrap será eliminado!",
+  "@bootstrapFileWillBeDeleted": {
+    "description": "Delete bootstrap dialog alert box",
     "placeholders": {},
     "type": "text"
   },

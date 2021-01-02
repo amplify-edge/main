@@ -21,9 +21,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "allOfYourDataWillBeDeleted" : MessageLookupByLibrary.simpleMessage("آپ کا سارا ڈیٹا حذف ہوجائے گا!"),
     "bootstrapDetails" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ کی تفصیلات"),
+    "bootstrapFileWillBeDeleted" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ فائل حذف ہوجائے گی!"),
+    "cancel" : MessageLookupByLibrary.simpleMessage("منسوخ کریں"),
+    "confirm" : MessageLookupByLibrary.simpleMessage("تصدیق کریں"),
+    "deleteBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ کو حذف کریں"),
     "editBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ میں ترمیم کریں"),
-    "listBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ کی فہرست"),
+    "executeBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ پر عمل کریں"),
+    "listBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ کی فہرست بنائیں"),
     "noBootstraps" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپس نہیں ہیں"),
     "pickImageAndCopyTheResultingValue" : MessageLookupByLibrary.simpleMessage("تصویر چنیں اور نتیجے کی قیمت کو کاپی کریں"),
     "selectBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ منتخب کریں")

@@ -1,7 +1,7 @@
-import 'dart:convert';
-
+import 'package:bootstrapper/pkg/i18n/bootstrap_localization.dart';
 import 'package:bootstrapper/pkg/shared_repositories/bootstrap_repo.dart';
 import 'package:code_editor/code_editor.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class BootstrapDetailViewModel extends ChangeNotifier {
@@ -84,6 +84,94 @@ class BootstrapDetailViewModel extends ChangeNotifier {
     return EditorModel(
       files: [_fileEditor],
     );
+  }
+
+  Function() onExecuteBootstrap(BuildContext context, String id) {
+    return () async {
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext dialogContext) {
+          return AlertDialog(
+            title: Text(BootstrapLocalizations.of(context)
+                .translate('executeBootstrap')),
+            content: Text(BootstrapLocalizations.of(context)
+                .translate('allOfYourDataWillBeDeleted')),
+            actions: <Widget>[
+              FlatButton(
+                child: Text(
+                    BootstrapLocalizations.of(context).translate('confirm')),
+                color: Colors.green.shade500,
+                textColor: Colors.white,
+                onPressed: () async {
+                  _setLoading(true);
+                  await BootstrapRepo.executeBootstrap(bsId: id)
+                      .then((_) => {_setLoading(false)})
+                      .catchError((e) {
+                    _setLoading(false);
+                    _setErrMsg("error deleting bootstrap");
+                  });
+                  Navigator.of(dialogContext).pop(); // Dismiss alert dialog
+                },
+              ),
+              FlatButton(
+                child: Text(
+                    BootstrapLocalizations.of(context).translate('cancel')),
+                color: Colors.red.shade500,
+                textColor: Colors.white,
+                onPressed: () {
+                  Navigator.of(dialogContext).pop(); // Dismiss alert dialog
+                },
+              ),
+            ],
+          );
+        },
+      );
+    };
+  }
+
+  Function() onDeleteBootstrap(BuildContext context, String id) {
+    return () async {
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext dialogContext) {
+          return AlertDialog(
+            title: Text(BootstrapLocalizations.of(context)
+                .translate('deleteBootstrap')),
+            content: Text(BootstrapLocalizations.of(context)
+                .translate('bootstrapFileWillBeDeleted')),
+            actions: <Widget>[
+              FlatButton(
+                child: Text(
+                    BootstrapLocalizations.of(context).translate('confirm')),
+                color: Colors.green.shade500,
+                textColor: Colors.white,
+                onPressed: () async {
+                  _setLoading(true);
+                  await BootstrapRepo.executeBootstrap(bsId: id)
+                      .then((_) => {_setLoading(false)})
+                      .catchError((e) {
+                    _setLoading(false);
+                    _setErrMsg("error executing bootstrap");
+                  });
+                  Navigator.of(dialogContext).pop(); // Dismiss alert dialog
+                },
+              ),
+              FlatButton(
+                child: Text(
+                    BootstrapLocalizations.of(context).translate('cancel')),
+                color: Colors.red.shade500,
+                textColor: Colors.white,
+                onPressed: () {
+                  Navigator.of(dialogContext).pop(); // Dismiss alert dialog
+                },
+              ),
+            ],
+          );
+        },
+      );
+    };
   }
 
   void onSubmit(String lang, String content) {

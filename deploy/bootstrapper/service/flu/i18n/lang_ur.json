@@ -1,6 +1,6 @@
 {
-  "@@last_modified": "2020-12-30T22:33:33.108907",
-  "listBootstrap": "بوٹسٹریپ کی فہرست",
+  "@@last_modified": "2021-01-02T14:07:27.022524",
+  "listBootstrap": "بوٹسٹریپ کی فہرست بنائیں",
   "@listBootstrap": {
     "description": "List Bootstrap",
     "placeholders": {},
@@ -27,6 +27,42 @@
   "bootstrapDetails": "بوٹسٹریپ کی تفصیلات",
   "@bootstrapDetails": {
     "description": "Bootstrap File Content and Name",
+    "placeholders": {},
+    "type": "text"
+  },
+  "executeBootstrap": "بوٹسٹریپ پر عمل کریں",
+  "@executeBootstrap": {
+    "description": "Execute current bootstrap file",
+    "placeholders": {},
+    "type": "text"
+  },
+  "deleteBootstrap": "بوٹسٹریپ کو حذف کریں",
+  "@deleteBootstrap": {
+    "description": "Delete current bootstrap file",
+    "placeholders": {},
+    "type": "text"
+  },
+  "cancel": "منسوخ کریں",
+  "@cancel": {
+    "description": "Cancel",
+    "placeholders": {},
+    "type": "text"
+  },
+  "confirm": "تصدیق کریں",
+  "@confirm": {
+    "description": "Confirm",
+    "placeholders": {},
+    "type": "text"
+  },
+  "allOfYourDataWillBeDeleted": "آپ کا سارا ڈیٹا حذف ہوجائے گا!",
+  "@allOfYourDataWillBeDeleted": {
+    "description": "Execute bootstrap dialog alert box",
+    "placeholders": {},
+    "type": "text"
+  },
+  "bootstrapFileWillBeDeleted": "بوٹسٹریپ فائل حذف ہوجائے گی!",
+  "@bootstrapFileWillBeDeleted": {
+    "description": "Delete bootstrap dialog alert box",
     "placeholders": {},
     "type": "text"
   },
