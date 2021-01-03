@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-01-02T14:07:27.022524",
+  "@@last_modified": "2021-01-03T03:56:57.741173",
   "listBootstrap": "Lista Bootstrap",
   "@listBootstrap": {
     "description": "List Bootstrap",
@@ -30,9 +30,21 @@
     "placeholders": {},
     "type": "text"
   },
+  "execute": "Ejecutar",
+  "@execute": {
+    "description": "Execute current bootstrap file",
+    "placeholders": {},
+    "type": "text"
+  },
   "executeBootstrap": "Ejecutar Bootstrap",
   "@executeBootstrap": {
     "description": "Execute current bootstrap file",
+    "placeholders": {},
+    "type": "text"
+  },
+  "delete": "Eliminar",
+  "@delete": {
+    "description": "Delete current bootstrap file",
     "placeholders": {},
     "type": "text"
   },
