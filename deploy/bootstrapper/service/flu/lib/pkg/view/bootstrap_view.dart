@@ -29,7 +29,12 @@ class BootstrapView extends StatelessWidget {
           routeWithIdPlaceholder: Modular.get<Paths>().bootstrapDetailsPage,
           detailsBuilder: (context, widgetId, isFullScreen) {
             return BootstrapDetailsView(
-                id: widgetId, isLoading: model.isLoading);
+              id: widgetId,
+              isLoading: model.isLoading,
+              deleteCallback: () async {
+                await model.refreshBootstrapList();
+              },
+            );
           },
           noItemsAvailable: Center(
             child: Text(

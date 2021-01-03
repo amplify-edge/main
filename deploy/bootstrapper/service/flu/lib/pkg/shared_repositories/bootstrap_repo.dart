@@ -1,7 +1,4 @@
-import 'dart:typed_data';
-
 import 'package:file_picker/file_picker.dart';
-import 'package:fixnum/fixnum.dart';
 import 'package:meta/meta.dart';
 import 'package:sys_core/sys_core.dart';
 import 'package:sys_share_sys_account_service/pkg/pkg.dart';
@@ -57,6 +54,17 @@ class BootstrapRepo {
       final client = await bsClient();
       final resp =
           client.executeBootstrap(req, options: await getCallOptions());
+      return resp;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<void> deleteBootstrap({@required String bsId}) async {
+    final req = GetBSRequest()..fileId = bsId;
+    try {
+      final client = await bsClient();
+      final resp = client.deleteBootstrap(req, options: await getCallOptions());
       return resp;
     } catch (e) {
       throw e;

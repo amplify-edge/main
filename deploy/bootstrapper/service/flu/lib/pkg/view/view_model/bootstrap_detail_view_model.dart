@@ -130,7 +130,8 @@ class BootstrapDetailViewModel extends ChangeNotifier {
     };
   }
 
-  Function() onDeleteBootstrap(BuildContext context, String id) {
+  Function() onDeleteBootstrap(
+      BuildContext context, String id, Function deleteCallback) {
     return () async {
       await showDialog<void>(
         context: context,
@@ -149,9 +150,10 @@ class BootstrapDetailViewModel extends ChangeNotifier {
                 textColor: Colors.white,
                 onPressed: () async {
                   _setLoading(true);
-                  await BootstrapRepo.executeBootstrap(bsId: id)
-                      .then((_) => {_setLoading(false)})
-                      .catchError((e) {
+                  await BootstrapRepo.deleteBootstrap(bsId: id).then((_) {
+                    deleteCallback();
+                    _setLoading(false);
+                  }).catchError((e) {
                     _setLoading(false);
                     _setErrMsg("error executing bootstrap");
                   });

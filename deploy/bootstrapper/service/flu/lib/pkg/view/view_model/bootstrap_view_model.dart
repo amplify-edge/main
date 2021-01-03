@@ -29,4 +29,9 @@ class BootstrapViewModel extends ChangeNotifier {
     });
     setLoading(false);
   }
+
+  Future<void> refreshBootstrapList() async {
+    _bootstrapList.clear();
+    await fetchBootstraps();
+  }
 }

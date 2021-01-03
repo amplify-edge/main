@@ -1,14 +1,14 @@
 {
     "branch": "master",
-    "date": "20210102053927",
+    "date": "20210103034304",
     "toolVersion": {
         "flutter": "1.25.0-8.1.pre",
         "golang": "go1.15.5"
     },
     "user": "gutterbacon",
     "version": {
-        "cli": "a6c135ae54baa394193efa66ba3562e04a698e9f",
-        "frontend": "a6c135ae54baa394193efa66ba3562e04a698e9f",
-        "server": "a6c135ae54baa394193efa66ba3562e04a698e9f"
+        "cli": "2634a395bbd6685bca3313cd4c4cbdf4cad344a7",
+        "frontend": "2634a395bbd6685bca3313cd4c4cbdf4cad344a7",
+        "server": "2634a395bbd6685bca3313cd4c4cbdf4cad344a7"
     }
 }
