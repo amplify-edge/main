@@ -210,6 +210,8 @@ fly-create:
 
 
 deploy-hcloud:
+	ssh $(HCLOUD_USER)@$(HCLOUD_IP) 'sudo systemctl stop maintemplatev2'
 	for d in bin-all certs encrypted-config bootstrap-data; do \
 		scp -r $$d $(HCLOUD_USER)@$(HCLOUD_IP):/home/$(HCLOUD_USER)/app/; \
 	done
+	ssh $(HCLOUD_USER)@$(HCLOUD_IP) 'sudo systemctl start maintemplatev2'
