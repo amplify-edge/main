@@ -1,7 +1,8 @@
 SHELL := bash
-.PHONY: this-config-gen this-config-dep this-gen this-cert-gen config-encrypt
+.PHONY: config-gen config-dep gen cert-gen config-encrypt
 
 SHARED_FSPATH=./../../../../shared
+DEP_FSPATH=./../../
 BOILERPLATE_FSPATH=$(SHARED_FSPATH)/boilerplate
 
 include $(BOILERPLATE_FSPATH)/help.mk
@@ -11,7 +12,12 @@ include $(BOILERPLATE_FSPATH)/go.mk
 include $(BOILERPLATE_FSPATH)/flu.mk
 include $(BOILERPLATE_FSPATH)/tool.mk
 
-# KEY_PATH = ???
+## DEPENDENCY PATH
+include $(DEP_FSPATH)/dwn.mk
+include $(DEP_FSPATH)/go-bindata.mk
+include $(DEP_FSPATH)/jsonnet.mk
+include $(DEP_FSPATH)/jsonnetb.mk
+include $(DEP_FSPATH)/mkcert.mk
 
 FLU_LIB_NAME = client
 FLU_SAMPLE_NAME = client
@@ -21,7 +27,7 @@ BIN_DIR=bin-all
 SDK_BIN=$(BIN_DIR)/maintemplatev2-sdk-cli
 SERVER_BIN=$(BIN_DIR)/maintemplatev2
 # TODO. Make config.
-SERVER_ADDRESS=127.0.0.1:9074
+SERVER_ADDRESS=127.0.0.1:8080
 
 EMAIL = superadmin@getcouragenow.org
 PASSWORD = superadmin
@@ -90,10 +96,12 @@ GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" 
 export BS_CRYPT_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 export CONFIG_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 
-this-all: this-gen this-build this-run-server this-run-client
+all: dep-os gen build run-server
+
+clean: dep-os-delete gen-delete build-delete
 
 ## Print all settings
-this-print: ## print
+print: ## print
 	$(MAKE) os-print
 	$(MAKE) flu-print
 	$(MAKE) flu-gen-lang-print
@@ -104,45 +112,54 @@ this-print: ## print
 	@echo FRONTEND_GITHASH: $(FRONTEND_GITHASH)
 	@echo FRONTEND_FLUTTER_CHANNEL: $(FRONTEND_FLUTTER_CHANNEL)
 
-this-build-delete:
+dep-os:
+	@$(MAKE) jsonnet-dep
+	@$(MAKE) jsonnetb-dep
+	@$(MAKE) gbd-dep
+	@$(MAKE) mkcert-dep
+
+dep-os-delete:
+	@$(MAKE) jsonnet-dep-delete
+	@$(MAKE) jsonnetb-dep-delete
+	@$(MAKE) gbd-dep-delete
+	@$(MAKE) mkcert-dep-delete
+
+build-delete:
 	rm -rf $(SDK_BIN) $(SERVER_BIN)
 	rm -rf ./assets
 
-this-embed:
+embed:
 	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_PREFIX)" $(FRONTEND_ABS_PREFIX)...
 	go-bindata -pkg version -fs -nomemcopy -o $(VERSION_OUTPUT_DIR)/version.go -prefix "$(VERSION_PREFIX)" $(VERSION_OUTPUT_DIR)/manifest.json
 
-
-this-build: this-build-delete this-version-gen
+build: build-delete version-gen
 	## Flutter first
-	$(MAKE) this-flutter-gen
+	$(MAKE) flutter-gen
 	$(MAKE) flu-web-build
-#	cp -Rv $(FRONTEND_BUILD_DIR) $(FRONTEND_ABS_PREFIX)
-	$(MAKE) this-embed
+	$(MAKE) embed
 	$(GO_LDFLAGS) -o $(SDK_BIN) $(CLI_ENTRYPOINT)
 	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
 
-
-this-gen: this-gen-delete
-	$(MAKE) this-config-dep
-	$(MAKE) this-config-gen
-	$(MAKE) this-cert-dep
-	$(MAKE) this-cert-gen
+gen: gen-delete
+	$(MAKE) config-gen
+	$(MAKE) cert-gen
+	$(MAKE) flu-gen-lang-all
 	$(MAKE) gen-icons
-#	$(MAKE) gen-hive
-	#$(MAKE) flu-gen-lang-all
+	$(MAKE) flutter-gen
+	$(MAKE) version-gen
+	$(MAKE) config-encrypt
 	
-this-gen-delete:
+gen-delete:
 	# Refactor into config.mk
-
 	# config
 	rm -rf $(CONFIG_OUTPUT_DIR)/*
+	rm -rf certs
 	# maybe the lang and grpc stuff.
 
-#this-config-delete:
+#config-delete:
 #	rm -rf $(CONFIG_OUTPUT_DIR)/*
 
-this-config-gen: this-config-dep
+config-gen: config-dep
 	mkdir -p $(CONFIG_OUTPUT_DIR)
 	@echo Generating Config
 	# OVERRIDES IF you need them
@@ -172,7 +189,7 @@ this-config-gen: this-config-dep
 		-V MAIN_IS_LOCAL=$(MAIN_IS_LOCAL) \
 		-V MAIN_EMBED_DIR=$(MAIN_EMBED_DIR) > $(CONFIG_OUTPUT_DIR)/main-client.yml
 
-this-flutter-gen:
+flutter-gen:
 	jsonnet -S flutter-client.jsonnet \
 		-V FRONTEND_HOST=$(FRONTEND_HOST) \
 		-V FRONTEND_PORT=$(FRONTEND_PORT) \
@@ -182,13 +199,12 @@ this-flutter-gen:
  		-V FRONTEND_GITHASH=$(FRONTEND_GITHASH) \
  		-V FRONTEND_FLUTTER_CHANNEL=$(FRONTEND_FLUTTER_CHANNEL) > $(FLU_LIB_NAME)/assets/env.json
 
-this-config-dep:
+config-dep:
 	jb install && jb update
 	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb install && jb update
-	#cd vendor/github.com/getcouragenow/sys/sys-core/service/go && jb install && jb update
 	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb install && jb update
 
-this-version-gen:
+version-gen:
 	mkdir -p $(VERSION_OUTPUT_DIR)
 	jsonnet -S build_info.jsonnet -V BUILD_FRONTEND_VERSION=$(BUILD_FRONTEND_VERSION) \
 		-V BUILD_SERVER_VERSION=$(BUILD_SERVER_VERSION) \
@@ -199,169 +215,161 @@ this-version-gen:
 		-V BUILD_USER=$(BUILD_USER) \
 		-V BUILD_DATE=$(BUILD_DATE) > $(VERSION_OUTPUT_DIR)/manifest.json
 
-this-cert-gen: this-cert-gen-delete
+cert-gen: cert-gen-delete
 	@mkdir -p $(CERT_DIR)
 	@mkcert -cert-file certs/local.pem -key-file certs/local.key.pem localhost 127.0.0.1 ::1
 	@cp $(MKCERT_CA_ROOT_DIR)/rootCA.pem $(CA_ROOT_NAME)
 	mkcert -install
 
-this-cert-gen-delete:
-	#mkcert -uninstall
+cert-gen-delete:
 	rm -rf $(CERT_DIR)/*.{pem,key,csr,crt}
-
-this-cert-dep:
-	#brew install mkcert nss
 
 config-encrypt:
 	bs-crypt encrypt -s $(CONFIG_OUTPUT_DIR) -d encrypted-config
 
 
-this-build-deep:
+build-deep:
 	# DO bottom up so we get the embeddings i think.
-	#cd ../sys-core && make this-build
-
-	#cd ../mod-main && make this-build
-	
 	# finally build the top :)
-	$(MAKE) this-build
+	$(MAKE) build
 
 ### RUN for CI
 
-this-run-server:
+run-server:
 	# TODO: fork to run in background
-	$(MAKE) this-server-run
-
+	mkdir -p db
+	$(SERVER_BIN) -c ./runtime-config
 	# TODO then call the sdk targets sequentially.
 	
-this-run-kill:
+run-kill:
 	# Works on mac
 	pkill -f $(SERVER_BIN)
 
-this-run-client:
-	$(MAKE) this-sdk-auth-signup
-	$(MAKE) this-sdk-auth-signin
+run-client:
+	$(MAKE) sdk-auth-signup
+	$(MAKE) sdk-auth-signin
 
 
-### For Dev
-
-this-sdk-run:
-	$(SDK_BIN)
-
-this-server-run: this-server-run-clean
-	mkdir -p db
-	$(SERVER_BIN) -a ./config/sysaccount.yml
-
-this-server-run-clean:
-	rm -rf db
-
-this-server-open:
-	open http://$(SERVER_ADDRESS)
-
-this-sdk-auth-signup:
-	@echo Running Example Register Client
-	$(SDK_BIN) sys-account auth-service register --email $(EMAIL) --password $(PASSWORD) --password-confirm $(PASSWORD)
-
-this-sdk-auth-signin:
-	@echo Running Example Login Client
-	$(SDK_BIN) sys-account auth-service signin --email $(EMAIL) --password $(PASSWORD) --server-addr $(SERVER_ADDRESS)
-
-this-sdk-auth-signin-super:
-	@echo Running Example Login Client
-	# export access token to the .token file
-	$(SDK_BIN) sys-account auth-service signin --email $(SUPER_EMAIL) --password $(SUPER_PASSWORD)
-
-this-sdk-auth-verify:
-	@echo Running Example Verify Client
-	$(SDK_BIN) sys-account auth-service verify-account --account-id $(ACCOUNT_ID) --verify-token $(VERIFY_TOKEN)
-
-this-sdk-accounts-new:
-	@echo Running Example New Account
-	$(SDK_BIN) sys-account account-service new-account -s $(SERVER_ADDRESS) --email gutterbacon@example.com --password gutterbacon123 --avatar-filepath ./testdata/avatar.png
-
-this-sdk-accounts-list:
-	@echo Running Example Accounts List
-	$(SDK_BIN) sys-account account-service list-accounts
-
-this-sdk-accounts-get:
-	@echo Running Example Accounts Get
-	$(SDK_BIN) sys-account account-service get-account --id $(ACCOUNT_ID)
-
-this-sdk-accounts-update:
-	@echo Running Example Accounts Update
-	$(SDK_BIN) sys-account account-service update-account --id $(ACCOUNT_ID)  --disabled
-
-this-sdk-accounts-assign-super:
-	@echo Assigning Account to Superuser
-	$(SDK_BIN) sys-account account-service assign-account-to-role --assigned-account-id $(ACCOUNT_ID) --role-all --role-role 4
-
-this-sdk-org-new:
-	@echo Running Example Create Org
-	$(SDK_BIN) sys-account org-proj-service new-org --name "ORG 1" --logo-filepath "./testdata/avatar.png"
-
-this-sdk-org-get:
-	@echo Running Example Get Org
-	$(SDK_BIN) sys-account org-proj-service get-org --id $(ORG_ID)
-
-this-sdk-org-list:
-	@echo Running Example List Org
-	$(SDK_BIN) sys-account org-proj-service list-org
-
-this-sdk-org-update:
-	@echo Running Example Update Org
-	$(SDK_BIN) sys-account org-proj-service update-org --id $(ORG_ID) --name "ORG 2" --contact "contact@getcouragenow.org"
-
-this-sdk-project-new:
-	@echo Running Example Create New Project
-	$(SDK_BIN) sys-account org-proj-service new-project --org-id $(ORG_ID) --name PROJECT1 --logo-filepath "./testdata/avatar.png"
-
-this-sdk-project-list:
-	@echo Running Example List Project
-	$(SDK_BIN) sys-account org-proj-service list-project
-
-this-sdk-project-get:
-	@echo Running Example Get Project
-	$(SDK_BIN) sys-account org-proj-service get-project --id $(PROJECT_ID)
-
-this-sdk-bench: this-sdk-bench-start this-sdk-bench-01 this-sdk-bench-02
-	@echo -- Example SDK Benchmark: End --
-
-this-sdk-bench-start:
-	@echo -- Example SDK Benchmark: Start --
-
-	@echo Running Example SDK Benchmark, Run server first!
-
-this-sdk-bench-01:
-	# Small
-	@echo USERS: 10
-	@echo DB CONNECTIONS: 1
-	$(SDK_BIN) sys-bench -e -t $(CA_ROOT_NAME) -s $(SERVER_ADDRESS) -j "./bench/fake-register-data.json" -p "../sys-share/sys-account/proto/v2/sys_account_services.proto" -n "v2.sys_account.services.AuthService.Register" -r 10 -c 1
-
-
-this-sdk-bench-02:
-	# Medium
-	@echo USERS: 100
-	@echo DB CONNECTIONS: 10
-	$(SDK_BIN) sys-bench -e -t $(CA_ROOT_NAME) -s $(SERVER_ADDRESS) -j "./bench/fake-register-data.json" -p "../sys-share/sys-account/proto/v2/sys_account_services.proto" -n "v2.sys_account.services.AuthService.Register" -r 100 -c 10
-
-this-sdk-bench-03:
-	# Medium
-	@echo USERS: 1000
-	@echo DB CONNECTIONS: 100
-	$(SDK_BIN) sys-bench -e -t $(CA_ROOT_NAME) -s $(SERVER_ADDRESS) -j "./bench/fake-register-data.json" -p "../sys-share/sys-account/proto/v2/sys_account_services.proto" -n "v2.sys_account.services.AuthService.Register" -r 1000 -c 100
-
-this-sdk-backup:
-	$(SDK_BIN) db-admin-service backup -s $(SERVER_ADDRESS) --tls --tls-ca-cert-file $(CA_ROOT_NAME) -o prettyjson
-
-this-sdk-list-backup:
-	$(SDK_BIN) db-admin-service list-backup -s $(SERVER_ADDRESS) --tls --tls-ca-cert-file $(CA_ROOT_NAME) -o prettyjson
-
-this-sdk-restore:
-	$(SDK_BIN) db-admin-service restore --backup-file $(BACKUP_FILE) --tls -s $(SERVER_ADDRESS) --tls-ca-cert-file $(CA_ROOT_NAME) -o prettyjson
-
-this-flu-web-run:
-	$(MAKE) flu-web-run
-
-this-flu-desk-run:
-	$(MAKE) flu-desk-run
-	
-
+#### For Dev
+#
+#sdk-run:
+#	$(SDK_BIN)
+#
+#server-run: server-run-clean
+#	mkdir -p db
+#	$(SERVER_BIN) -a ./config/sysaccount.yml
+#
+#server-run-clean:
+#	rm -rf db
+#
+#server-open:
+#	open http://$(SERVER_ADDRESS)
+#
+#sdk-auth-signup:
+#	@echo Running Example Register Client
+#	$(SDK_BIN) sys-account auth-service register --email $(EMAIL) --password $(PASSWORD) --password-confirm $(PASSWORD)
+#
+#sdk-auth-signin:
+#	@echo Running Example Login Client
+#	$(SDK_BIN) sys-account auth-service signin --email $(EMAIL) --password $(PASSWORD) --server-addr $(SERVER_ADDRESS)
+#
+#sdk-auth-signin-super:
+#	@echo Running Example Login Client
+#	# export access token to the .token file
+#	$(SDK_BIN) sys-account auth-service signin --email $(SUPER_EMAIL) --password $(SUPER_PASSWORD)
+#
+#sdk-auth-verify:
+#	@echo Running Example Verify Client
+#	$(SDK_BIN) sys-account auth-service verify-account --account-id $(ACCOUNT_ID) --verify-token $(VERIFY_TOKEN)
+#
+#sdk-accounts-new:
+#	@echo Running Example New Account
+#	$(SDK_BIN) sys-account account-service new-account -s $(SERVER_ADDRESS) --email gutterbacon@example.com --password gutterbacon123 --avatar-filepath ./testdata/avatar.png
+#
+#sdk-accounts-list:
+#	@echo Running Example Accounts List
+#	$(SDK_BIN) sys-account account-service list-accounts
+#
+#sdk-accounts-get:
+#	@echo Running Example Accounts Get
+#	$(SDK_BIN) sys-account account-service get-account --id $(ACCOUNT_ID)
+#
+#sdk-accounts-update:
+#	@echo Running Example Accounts Update
+#	$(SDK_BIN) sys-account account-service update-account --id $(ACCOUNT_ID)  --disabled
+#
+#sdk-accounts-assign-super:
+#	@echo Assigning Account to Superuser
+#	$(SDK_BIN) sys-account account-service assign-account-to-role --assigned-account-id $(ACCOUNT_ID) --role-all --role-role 4
+#
+#sdk-org-new:
+#	@echo Running Example Create Org
+#	$(SDK_BIN) sys-account org-proj-service new-org --name "ORG 1" --logo-filepath "./testdata/avatar.png"
+#
+#sdk-org-get:
+#	@echo Running Example Get Org
+#	$(SDK_BIN) sys-account org-proj-service get-org --id $(ORG_ID)
+#
+#sdk-org-list:
+#	@echo Running Example List Org
+#	$(SDK_BIN) sys-account org-proj-service list-org
+#
+#sdk-org-update:
+#	@echo Running Example Update Org
+#	$(SDK_BIN) sys-account org-proj-service update-org --id $(ORG_ID) --name "ORG 2" --contact "contact@getcouragenow.org"
+#
+#sdk-project-new:
+#	@echo Running Example Create New Project
+#	$(SDK_BIN) sys-account org-proj-service new-project --org-id $(ORG_ID) --name PROJECT1 --logo-filepath "./testdata/avatar.png"
+#
+#sdk-project-list:
+#	@echo Running Example List Project
+#	$(SDK_BIN) sys-account org-proj-service list-project
+#
+#sdk-project-get:
+#	@echo Running Example Get Project
+#	$(SDK_BIN) sys-account org-proj-service get-project --id $(PROJECT_ID)
+#
+#sdk-bench: sdk-bench-start sdk-bench-01 sdk-bench-02
+#	@echo -- Example SDK Benchmark: End --
+#
+#sdk-bench-start:
+#	@echo -- Example SDK Benchmark: Start --
+#
+#	@echo Running Example SDK Benchmark, Run server first!
+#
+#sdk-bench-01:
+#	# Small
+#	@echo USERS: 10
+#	@echo DB CONNECTIONS: 1
+#	$(SDK_BIN) sys-bench -e -t $(CA_ROOT_NAME) -s $(SERVER_ADDRESS) -j "./bench/fake-register-data.json" -p "../sys-share/sys-account/proto/v2/sys_account_services.proto" -n "v2.sys_account.services.AuthService.Register" -r 10 -c 1
+#
+#
+#sdk-bench-02:
+#	# Medium
+#	@echo USERS: 100
+#	@echo DB CONNECTIONS: 10
+#	$(SDK_BIN) sys-bench -e -t $(CA_ROOT_NAME) -s $(SERVER_ADDRESS) -j "./bench/fake-register-data.json" -p "../sys-share/sys-account/proto/v2/sys_account_services.proto" -n "v2.sys_account.services.AuthService.Register" -r 100 -c 10
+#
+#sdk-bench-03:
+#	# Medium
+#	@echo USERS: 1000
+#	@echo DB CONNECTIONS: 100
+#	$(SDK_BIN) sys-bench -e -t $(CA_ROOT_NAME) -s $(SERVER_ADDRESS) -j "./bench/fake-register-data.json" -p "../sys-share/sys-account/proto/v2/sys_account_services.proto" -n "v2.sys_account.services.AuthService.Register" -r 1000 -c 100
+#
+#sdk-backup:
+#	$(SDK_BIN) db-admin-service backup -s $(SERVER_ADDRESS) --tls --tls-ca-cert-file $(CA_ROOT_NAME) -o prettyjson
+#
+#sdk-list-backup:
+#	$(SDK_BIN) db-admin-service list-backup -s $(SERVER_ADDRESS) --tls --tls-ca-cert-file $(CA_ROOT_NAME) -o prettyjson
+#
+#sdk-restore:
+#	$(SDK_BIN) db-admin-service restore --backup-file $(BACKUP_FILE) --tls -s $(SERVER_ADDRESS) --tls-ca-cert-file $(CA_ROOT_NAME) -o prettyjson
+#
+#flu-web-run:
+#	$(MAKE) flu-web-run
+#
+#flu-desk-run:
+#	$(MAKE) flu-desk-run
+#
+#

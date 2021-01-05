@@ -104,7 +104,7 @@ print:
 dep-os: dep-os-delete
 	@$(MAKE) jsonnet-dep
 	@$(MAKE) jsonnetb-dep
-	@$(MAKE) gb-dep
+	@$(MAKE) gbd-dep
 	@$(MAKE) fly-dep
 	@$(MAKE) hug-dep
 	@$(MAKE) gor-dep
@@ -122,7 +122,7 @@ dep-os-delete:
 	@$(MAKE) gor-dep-delete
 	@$(MAKE) jsonnet-dep-delete
 	@$(MAKE) jsonnetb-dep-delete
-	@$(MAKE) gb-dep-delete
+	@$(MAKE) gbd-dep-delete
 	@$(MAKE) mkcert-dep-delete
 	sudo rm -rf $(PREFIX)/bs-{lang,crypt}
 	rm -rf downloaded
