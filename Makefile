@@ -80,28 +80,28 @@ this-build: v2 v3
 
 v2:
 	# Does full gen and build (web)
-	cd $(V2_BUILD) && $(MAKE) this-all
+	cd $(V2_BUILD) && $(MAKE) all
 
 v2-server-open:
-	cd $(V2_BUILD) && $(MAKE) this-server-open
+	cd $(V2_BUILD) && $(MAKE) server-open
 
 v2-server-run:
-	cd $(V2_BUILD) && $(MAKE) this-server-run
+	cd $(V2_BUILD) && $(MAKE) server-run
 
 v2-flu-web-run:
-	cd $(V2_BUILD) && $(MAKE) this-flu-web-run
+	cd $(V2_BUILD) && $(MAKE) flu-web-run
 
 v2-flu-desk-run:
-	cd $(V2_BUILD) && $(MAKE) this-flu-desk-run
+	cd $(V2_BUILD) && $(MAKE) flu-desk-run
 
 v2-sdk-auth-signup:
-	cd $(V2_BUILD) && $(MAKE) this-sdk-auth-signup
+	cd $(V2_BUILD) && $(MAKE) sdk-auth-signup
 
 v2-sdk-auth-signin:
-	cd $(V2_BUILD) && $(MAKE) this-sdk-auth-signin
+	cd $(V2_BUILD) && $(MAKE) sdk-auth-signin
 
 v2-sdk-accounts-list:
-	cd $(V2_BUILD) && $(MAKE) this-sdk-accounts-list
+	cd $(V2_BUILD) && $(MAKE) sdk-accounts-list
 
 v3:
 	# Does full gen and build (web)

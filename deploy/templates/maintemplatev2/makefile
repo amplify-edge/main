@@ -143,7 +143,7 @@ build: build-delete version-gen
 gen: gen-delete
 	$(MAKE) config-gen
 	$(MAKE) cert-gen
-	$(MAKE) flu-gen-lang-all
+	#$(MAKE) flu-gen-lang-all
 	$(MAKE) gen-icons
 	$(MAKE) flutter-gen
 	$(MAKE) version-gen
