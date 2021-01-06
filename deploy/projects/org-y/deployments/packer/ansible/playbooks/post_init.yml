@@ -1,6 +1,8 @@
 ---
 #- hosts: gcn
 - hosts: default
+  collections:
+    - devsec.hardening
   vars:
     #    flutter_dir: '/opt/flutter'
     ssh_custom_options:
@@ -11,10 +13,12 @@
     dotfiles_user_name: "ops"
     maintemplate_user_name: "ops"
     maintemplate_bind_mount_dir: '/var/www/org-y'
+    victoriametrics_version: "v1.51.0"
   roles:
     - pre
     - dotfiles
     - caddy
     - maintemplate
-    - { role: dev-sec.os-hardening, become: yes }
-    - { role: dev-sec.ssh-hardening, become: yes }
+    - { role: ansible-victoriametrics-role, become: yes }
+    - { role: os_hardening, become: yes }
+    - { role: ssh_hardening, become: yes }
