@@ -144,6 +144,7 @@ gen: gen-delete
 	$(MAKE) config-gen
 	$(MAKE) cert-gen
 	#$(MAKE) flu-gen-lang-all
+        cd client && flutter pub get && flutter pub upgrade
 	$(MAKE) gen-icons
 	$(MAKE) flutter-gen
 	$(MAKE) version-gen
