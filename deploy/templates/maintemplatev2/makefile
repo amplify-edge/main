@@ -100,6 +100,8 @@ export CONFIG_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 all: dep-os gen build
 
 clean: dep-os-delete gen-delete build-delete
+	rm -rf certs db encrypted-config runtime-config vendor version
+	
 
 ## Print all settings
 print: ## print
