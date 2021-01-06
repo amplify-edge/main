@@ -15,3 +15,5 @@ vendor
 /version/manifest.json
 /version/version.go
 /plain-config/
+/downloaded/
+/backup-config/

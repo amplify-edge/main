@@ -147,12 +147,12 @@ gen:
 			MAIN_HOST=$(MAIN_HOST) \
 			MAIN_PORT=$(MAIN_PORT) \
 			MAIN_IS_LOCAL=$(MAIN_IS_LOCAL) \
-			MAIN_EMBED_DIR=$(MAIN_EMBED_DIR) this-gen
-	@cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
-		$(MAKE) FRONTEND_HOST=$(FRONTEND_HOST) \
-			FRONTEND_PORT=$(FRONTEND_PORT) \
-			FRONTEND_URL_WEB=$(FRONTEND_URL_WEB) \
-			FRONTEND_URL_NATIVE=$(FRONTEND_URL_NATIVE) this-flutter-gen
+			FRONTEND_HOST=$(FRONTEND_HOST) \
+            FRONTEND_PORT=$(FRONTEND_PORT) \
+            FRONTEND_URL_WEB=$(FRONTEND_URL_WEB) \
+            FRONTEND_URL_NATIVE=$(FRONTEND_URL_NATIVE) \
+            VERSION_OUTPUT_DIR=$(VERSION_DIR) \
+			MAIN_EMBED_DIR=$(MAIN_EMBED_DIR) gen
 	$(MAKE) config
 
 # build recipe
@@ -160,8 +160,6 @@ build: # dep
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) flu-web-build
 	mkdir -p $(FRONTEND_ABS_PREFIX)
 	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build/web/* $(FRONTEND_ABS_PREFIX)
-	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && \
-		$(MAKE) VERSION_OUTPUT_DIR=$(VERSION_DIR) this-version-gen
 	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_WEB_PREFIX)" $(PWD)/flutter/build/web/...
 	go-bindata -fs -nomemcopy -pkg version -o $(VERSION_DIR)/version.go -prefix "version/" $(VERSION_DIR)/manifest.json
 	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
