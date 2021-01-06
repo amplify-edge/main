@@ -3,7 +3,7 @@ name: build-v2
 on:
   push:
     branches:
-      - master
+      - '*'
 
 jobs:
   all:
@@ -11,9 +11,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        os: [ ubuntu-latest, macos-latest ]
         go-version: [ 1.15.6 ]
-        target: [ "v2", ]
+        target: [ "this-all", ]
 
     runs-on: ${{ matrix.os }}
 
@@ -80,10 +80,6 @@ jobs:
           repository: getcouragenow/sys
           path: ${{ github.workspace }}/go/src/github.com/gutterbacon/sys
 
-      - name: List directories in the build path
-        run: ls -alh ${{ github.workspace }}/go/src/github.com/gutterbacon
-
-
       - name: make ${{ matrix.target }}
         run: |
           # workaround for https://github.com/actions/setup-go/issues/14
@@ -93,5 +89,6 @@ jobs:
         working-directory: ${{ github.workspace }}/go/src/github.com/gutterbacon/main
         env:
           CONFIG_PASSWORD: ${{ secrets.CONFIG_PASSWORD }}
+          CAROOT: ${{ github.workspace }}/certs
           target: ${{ matrix.target }}
 

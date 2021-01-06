@@ -82,6 +82,7 @@ MAIN_PORT = $(FRONTEND_PORT)
 MAIN_IS_LOCAL = true
 MAIN_EMBED_DIR = $(FRONTEND_ABS_PREFIX)
 
+VENDOR_DIR := $(PWD)/vendor
 BUILD_FRONTEND_VERSION = $(FRONTEND_GITHASH)
 BUILD_SERVER_VERSION = $(shell git rev-parse HEAD)
 BUILD_CLI_VERSION = $(BUILD_SERVER_VERSION)
@@ -96,7 +97,7 @@ GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" 
 export BS_CRYPT_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 export CONFIG_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 
-all: dep-os gen build run-server
+all: dep-os gen build
 
 clean: dep-os-delete gen-delete build-delete
 
@@ -118,6 +119,7 @@ dep-os:
 	@$(MAKE) gbd-dep
 	@$(MAKE) mkcert-dep
 
+
 dep-os-delete:
 	@$(MAKE) jsonnet-dep-delete
 	@$(MAKE) jsonnetb-dep-delete
@@ -126,7 +128,7 @@ dep-os-delete:
 
 build-delete:
 	rm -rf $(SDK_BIN) $(SERVER_BIN)
-	rm -rf ./assets
+	rm -rf $(EMBED_DIR)
 
 embed:
 	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_PREFIX)" $(FRONTEND_ABS_PREFIX)...
@@ -142,9 +144,11 @@ build: build-delete version-gen
 
 gen: gen-delete
 	$(MAKE) config-gen
+	cd $(VENDOR_DIR)/github.com/getcouragenow/shared/tool/bs-lang && go build && sudo install -m755 bs-lang $(PREFIX)/bs-lang
+	cd $(VENDOR_DIR)/github.com/getcouragenow/ops/bs-crypt && go build && sudo install -m755 bs-crypt $(PREFIX)/bs-crypt
 	$(MAKE) cert-gen
 	#$(MAKE) flu-gen-lang-all
-        cd client && flutter pub get && flutter pub upgrade
+	cd client && flutter pub get && flutter pub upgrade
 	$(MAKE) gen-icons
 	$(MAKE) flutter-gen
 	$(MAKE) version-gen

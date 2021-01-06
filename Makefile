@@ -43,10 +43,9 @@ gcloud-key-encode:
 	#- GCP_KEY: paste in encoded key
 
 
-
-
-
-this-all: os-print this-print this-dep this-build this-print-end
+# TODO: fix dependency installations
+#this-all: os-print this-print this-dep this-build this-print-end
+this-all: os-print this-print this-build this-print-end
 
 this-print: 
 	@echo
@@ -76,7 +75,9 @@ this-dep:
 	cd $(SHARED_FSPATH) && $(MAKE) this-all
 
 V2_BUILD=./deploy/templates/maintemplatev2
-this-build: v2 v3
+# TODO: fix v3
+#this-build: v2 v3
+this-build: v2
 
 v2:
 	# Does full gen and build (web)

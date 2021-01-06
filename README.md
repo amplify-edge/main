@@ -1,3 +1,5 @@
+![build-v2](https://github.com/gutterbacon/main/workflows/build-v2/badge.svg)
+
 # main
 
 All code is compiled from here.
