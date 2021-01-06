@@ -17,3 +17,5 @@ vendor
 /plain-config/
 /downloaded/
 /backup-config/
+/encrypted-config/
+/runtime-config/
