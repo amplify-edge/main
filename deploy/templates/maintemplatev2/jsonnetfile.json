@@ -13,6 +13,24 @@
     {
       "source": {
         "git": {
+          "remote": "https://github.com/getcouragenow/shared.git",
+          "subdir": "tool/bs-lang"
+        }
+      },
+      "version": "master"
+    },
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/getcouragenow/ops.git",
+          "subdir": "bs-crypt"
+        }
+      },
+      "version": "master"
+    },
+    {
+      "source": {
+        "git": {
           "remote": "https://github.com/getcouragenow/sys.git",
           "subdir": "sys-account/service/go"
         }

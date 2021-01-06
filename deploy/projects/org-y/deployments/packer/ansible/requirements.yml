@@ -1,7 +1,12 @@
 ---
 roles:
-  - name: dev-sec.os-hardening
-  - name: dev-sec.ssh-hardening
   - name: weareinteractive.users
   - name: 0x0i.systemd
-#  - name: mikeanth_dev.flutter_web
+  - src: https://github.com/dreamteam-gg/ansible-victoriametrics-role
+    type: git
+    version: master
+
+collections:
+  - name: https://github.com/dev-sec/ansible-collection-hardening
+    type: git
+    version: master
