@@ -1,12 +1,69 @@
-![build-v2](https://github.com/gutterbacon/main/workflows/build-v2/badge.svg)
-
 # main
 
-All code is compiled from here.
+All code is compiled from here to build the whole system.
 
-Follow the rabbit hole down ...
+The system is a module architecture.
+
+If you are developing on the system you need the build tools in the shared repo.
+
+## Bootstrapper
+
+This folder holds the protos that are used to generate fake test data.
+
+It can be used to bootstrap data for any template.
+
+## Projects
+
+This folder holds example projects.
+
+Each Project follows the exact same structure as a Template with a few extra bits:
+
+- Deployment holds the files used for deployment.
+- Config/ is encrypted.
+
+- **deployment flow**
+	- Download the latest release artifacts of:
+		- binaries
+			- server
+			- sdk-cli
+			- metrics.
+				- Victoria Metrics
+				- graphana
+		- config.
+		- bootstrap data.
+		- supervisors.
+			- linux ( systemd )
+			- darwin and windows we DONT have yet.
+	- Create a local Project folder
+		- Copy Org-y or other project structure locally.
+			- TODO: can use the sdk-cli to generate a project template that we embedded into the sdk-cli at buidl time.
+		- Create a encryption key ( using bs-crypt)  and put it somewhere you wont loose it.
+			- TODO: Need this to be part of sdk-cli
+	- Modify config as needed and then encrypt it.
+		- smtp, backup URL / token
+	- Modify bootstrap data as needed:
+		- How do we handle images ?
+	- Deploy it
+		- SSH script
+
 
 ## Templates
+
+This folder holds the main code of the Server and sdk-cli
+
+It has many templates that show how to run the system as a single bianry or as many binaries on many machines in order to scale the system out.
+
+If you look at maintemplatev2 you see our common patterns:
+
+- cli-commands.go contains all instantiation code for loading the cli and all the sub modules.
+- server_commands.go contains all instantiation code for loading the server and all the sub modules.
+- bootstrap-data/ holds the template used to bootstrap data.
+- client/ holds the main flutter client that then loads all the sub modules 
+- config/ holds the configs for the sub modules.
+- main/ holds the primary boot code of the Server and sdk-cli . It calls the server_commands.go and cli-commands.go respectivly.
+- wrapper/ holds some shared util code that all the above uses.
+
+See the README for each template to see how to build and run the code.
 
 - **maintemplatev2**
 	- single binary, and all architype
@@ -25,47 +82,4 @@ Follow the rabbit hole down ...
 			- make
 
 
-## Imports
 
-This imports the go grpc packages for all the modules in sys and does all the boilerplate to use them.
-
-Its intended to then be used by the other mains.
-
-It is then imported by Repo main/deploy/maintemplatev2 and Repo main/deploy/maintemplatev3
-
-maintemplatev2
-
-- single binary
-- so maintemplatev2/server imports Repo sys-shared/main/pkg/service-proxy.go
-- so maintemplatev2/server imports Repo mod/main/service.
-
-maintemplatev3
-
-- dual Sys and mod binary
-- so maintemplatev3/mainsys imports Repo sys-shared/main/service.
-- so maintemplatev3/mainmod imports Repo mod/main/service.
-
-## Wrapper
-
-Maybe needed...
-pkg that imports the sys go grpc client pkg for all the modules in sys so others do not have to do a ton of boilerplate.
-
-## SDK
-
-Maybe Imports the client wrapper ...
-
-Used at gen time and runtime.
-
-At gen time it does all the stuff a dev needs.
-It needs a real Server running to connect to also, because of the migrations aspects.
-
-At run time, it allows you to do ops style things, like running migrations or importing data.
-
-You can also ask it to open the Flutter web GUi if you prefer.
-
-## Server
-
-Maybe: Imports the server wrapper ...
-
-Runs the Server.
-Runs the Flutter GUI.
