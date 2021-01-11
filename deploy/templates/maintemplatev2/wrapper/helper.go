@@ -79,9 +79,16 @@ func NewMainService(
 		hostPort,
 		dialOpts,
 	)
+
 	if err != nil {
 		return nil, fmt.Errorf("unable to create new client conn: %v", err)
 	}
+	// initiate all sys-* service
+	sysSvc, err := sysPkg.NewService(sscfg, mainCfg.MainConfig.Domain)
+	if err != nil {
+		return nil, fmt.Errorf(errCreateSysService, "all", err)
+	}
+
 	discoSvcCfg, err := discoPkg.NewModDiscoServiceConfig(
 		logger, discodb, discocfg, cbus, clientConn,
 		// logger, discodb, discocfg, cbus, nil,
@@ -89,15 +96,9 @@ func NewMainService(
 	if err != nil {
 		return nil, fmt.Errorf(errCreateModService, "disco", err)
 	}
-	modDiscoSvc, err := discoPkg.NewModDiscoService(discoSvcCfg)
+	modDiscoSvc, err := discoPkg.NewModDiscoService(discoSvcCfg, sysSvc.SysAccountSvc.AllDBs)
 	if err != nil {
 		return nil, fmt.Errorf(errCreateModService, "disco", err)
-	}
-
-	// initiate all sys-* service
-	sysSvc, err := sysPkg.NewService(sscfg, mainCfg.MainConfig.Domain)
-	if err != nil {
-		return nil, fmt.Errorf(errCreateSysService, "all", err)
 	}
 
 	bsService := bsPkg.NewBootstrapService(
