@@ -11,6 +11,8 @@ Dev NOTE: new code happen sin main/client and main/server.
 
 - `export CONFIG_PASSWORD="mypass123"` (Define a CONFIG_PASSWORD env var to encrypt and decrypt config file)
 - `make all`
+- `make run-server`
+
 
 If anything goes wrong, go for a little clean :
 
