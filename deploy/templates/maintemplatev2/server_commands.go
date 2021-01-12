@@ -3,6 +3,7 @@ package maintemplatev2
 import (
 	"fmt"
 	"github.com/NYTimes/gziphandler"
+	"github.com/VictoriaMetrics/metrics"
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
@@ -187,6 +188,8 @@ func createHttpHandler(logger *logrus.Entry, isGzipped bool, fileServer http.Han
 			ct := r.Header.Get("Content-Type")
 			if grpcWebServer.IsGrpcWebSocketRequest(r) || grpcWebServer.IsGrpcWebRequest(r) || grpcWebServer.IsAcceptableGrpcCorsRequest(r) || strings.Contains(ct, "application/grpc") {
 				grpcWebServer.ServeHTTP(w, r)
+			} else if r.URL.RequestURI() == "/metrics" {
+				metricsHandler(w, r)
 			} else {
 				if isGzipped {
 					fileServer = gziphandler.GzipHandler(fileServer)
@@ -197,4 +200,8 @@ func createHttpHandler(logger *logrus.Entry, isGzipped bool, fileServer http.Han
 			}
 		}), &http2.Server{}),
 	}
+}
+
+func metricsHandler(w http.ResponseWriter, r *http.Request) {
+	metrics.WritePrometheus(w, true)
 }
