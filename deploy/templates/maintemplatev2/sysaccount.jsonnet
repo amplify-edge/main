@@ -40,7 +40,7 @@ local cfg = {
                deletePrevious: true,
            },
            cron: accMixin.CoreCron {
-               backupDir: "sysfiles-backup",
+               backupDir: "db/sys/sysfiles-backup",
                backupSchedule: "@daily",
            },
         },
