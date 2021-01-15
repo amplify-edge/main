@@ -21,3 +21,7 @@ If anything goes wrong, go for a little clean :
 .. and then `make all` again.
 
 The client listens on port `8080`, you can access it on https://localhost:8080.
+
+### Dev with hot reload
+
+`make flu-web-run` in a new terminal tab 

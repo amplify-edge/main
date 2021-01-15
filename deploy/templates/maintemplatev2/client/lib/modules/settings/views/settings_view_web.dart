@@ -53,7 +53,8 @@ class SettingsViewWeb extends StatelessWidget {
           ),
           ListTile(
             title: Text("Channel"),
-            subtitle: Text(env.releaseChannel),
+            subtitle: Text(env.releaseChannel ??
+                " "), // TODO: Fix that up, what value are we supposed to give is this is null ?
           ),
           // ListTile(
           //   title: Text("Url"),
@@ -74,7 +75,6 @@ class SettingsViewWeb extends StatelessWidget {
           ListTile(
             title: Text("Flutter channel"),
             subtitle: Text(env.flutterChannel),
-
           ),
         ]),
       ),
