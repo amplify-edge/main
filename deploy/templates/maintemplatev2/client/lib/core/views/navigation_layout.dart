@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sys_share_sys_account_service/view/widgets/nav_rail.dart';
@@ -19,8 +21,8 @@ class _NavigationLayoutState extends State<NavigationLayout> {
   Widget build(BuildContext context) {
     return AuthNavLayout(
       body: widget.body,
-      tabs: <Widget>[
-        TabItem(
+      tabs: LinkedHashMap.of(<String, Widget>{
+        Paths.adminRoute: TabItem(
           title: Text(
             AppLocalizations.of(context).tabadmin(),
             style: TextStyle(fontSize: 12),
@@ -30,7 +32,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
             Modular.to.pushNamed(Paths.adminRoute);
           },
         ),
-        TabItem(
+        Paths.modDisco: TabItem(
           title: Text(
             AppLocalizations.of(context).tabhome(),
             style: TextStyle(fontSize: 12),
@@ -40,7 +42,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
             Modular.to.pushNamed(Paths.modDisco);
           },
         ),
-        TabItem(
+        Paths.settings: TabItem(
           title: Text(
             AppLocalizations.of(context).tabsettings(),
             style: TextStyle(fontSize: 12),
@@ -48,10 +50,9 @@ class _NavigationLayoutState extends State<NavigationLayout> {
           icon: Icon(Icons.settings, size: 30),
           onTap: () {
             Modular.to.pushNamed(Paths.settings);
-            print("Settings tapped");
           },
         ),
-      ],
+      }),
       navigatorKey: Modular.navigatorKey,
     );
   }

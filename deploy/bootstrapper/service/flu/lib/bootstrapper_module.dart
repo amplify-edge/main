@@ -5,7 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sys_share_sys_account_service/pkg/guards/admin_guard.dart';
 import 'pkg/shared_repositories/bootstrap_repo.dart';
 
-class BootstrapperModule extends ChildModule with ChangeNotifier {
+class BootstrapperModule extends ChildModule {
   final String baseRoute;
   final String url;
 
@@ -33,7 +33,6 @@ class BootstrapperModule extends ChildModule with ChangeNotifier {
   List<ModularRouter> get routers => [
         ModularRouter('/',
             child: (_, args){ 
-              notifyListeners();
               return GuardianWidget(widget: BootstrapView());
             }),
         ModularRouter('/bootstraps',

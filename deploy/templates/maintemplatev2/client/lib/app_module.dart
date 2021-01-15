@@ -2,7 +2,6 @@ import 'package:bootstrapper/bootstrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:maintemplatev2/main.dart';
-import 'package:maintemplatev2/modules/startup/views/startup_view.dart';
 // import 'package:mod_chat/mod_chat.dart';
 
 //import 'package:mod_chat_beta/mod_chat.dart' as chatBeta;
@@ -45,12 +44,6 @@ class AppModule extends MainModule {
             baseRoute: Paths.adminRoute,
             url: url,
           ),
-          transition: TransitionType.custom,
-          customTransition: noTransition,
-        ),
-        ModularRouter(
-          Paths.startup,
-          child: (_, args) => StartupView(),
           transition: TransitionType.custom,
           customTransition: noTransition,
         ),
