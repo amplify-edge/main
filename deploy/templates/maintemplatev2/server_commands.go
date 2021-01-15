@@ -8,6 +8,7 @@ import (
 	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/getcouragenow/sys-share/sys-core/service/telemetry/ops"
 	"github.com/getcouragenow/sys/main/pkg"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
@@ -20,6 +21,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
@@ -41,6 +43,10 @@ var (
 
 	isDebug             bool
 	encryptedConfigPath string
+)
+
+const (
+	scrapeInterval = 10 * time.Second
 )
 
 type FileSystem struct {
@@ -126,6 +132,13 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 		if err != nil {
 			logger.Fatalf(errCreateService, "maintemplatev2", err)
 		}
+
+		// initiate application level monitoring
+		curWorkingDir, _ := os.Getwd()
+		opsMonitor := ops.NewOpsSystemMonitor(cmd.Context(), scrapeInterval, curWorkingDir)
+
+		go opsMonitor.Run()
+
 		// initiate grpc server
 		var grpcServer *grpc.Server
 		unaryInterceptors, streamInterceptors := mainSvc.Sys.InjectInterceptors(nil, nil)
@@ -202,6 +215,6 @@ func createHttpHandler(logger *logrus.Entry, isGzipped bool, fileServer http.Han
 	}
 }
 
-func metricsHandler(w http.ResponseWriter, r *http.Request) {
+func metricsHandler(w http.ResponseWriter, _ *http.Request) {
 	metrics.WritePrometheus(w, true)
 }
