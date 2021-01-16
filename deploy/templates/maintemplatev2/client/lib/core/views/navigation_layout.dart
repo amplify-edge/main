@@ -35,7 +35,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
                   ),
                   icon: Icon(Icons.people, size: 30),
                   onTap: () {
-                    Modular.to.pushNamed(Paths.adminRoute);
+                    Modular.to.navigate(Paths.adminRoute);
                   },
                 ),
                 Paths.modDisco: TabItem(
@@ -45,7 +45,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
                   ),
                   icon: Icon(Icons.home, size: 30),
                   onTap: () {
-                    Modular.to.pushNamed(Paths.modDisco);
+                    Modular.to.navigate(Paths.modDisco);
                   },
                 ),
                 Paths.settings: TabItem(
@@ -55,7 +55,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
                   ),
                   icon: Icon(Icons.settings, size: 30),
                   onTap: () {
-                    Modular.to.pushNamed(Paths.settings);
+                    Modular.to.navigate(Paths.settings);
                   },
                 ),
               }),

@@ -12,9 +12,6 @@ import '././core/core.dart';
 import 'modules/settings/settings.dart';
 import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
 
-// Bottom Up approach .....
-// import 'package:mod_geo/core/core.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -68,13 +65,7 @@ class _AppState extends State<App> {
         BootstrapLocalizationsDelegate(),
         SysCoreLocalizationsDelegate(),
         SysAccountLocalizationsDelegate(),
-        // ModGeoAppLocalizationsDelegate(model.locale),
-        // ModAccountLocalizationsDelegate(model.locale),
         ModDiscoLocalizationsDelegate(model.locale),
-        // ModChatLocalizationsDelegate(model.locale),
-        // ModWriteLocalizationsDelegate(model.locale),
-        // ModIonLocalizationsDelegate(model.locale),
-        // ModKanbanLocalizationsDelegate(model.locale),
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate
       ],
