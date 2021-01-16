@@ -8,8 +8,8 @@ class SettingsModule extends ChildModule {
   List<Bind> get binds => [];
 
   @override
-  List<ModularRouter> get routers =>
-      [ModularRouter(Paths.settings, child: (context, args) => SettingsView())];
+  List<ModularRoute> get routes =>
+      [ChildRoute(Paths.settings, child: (context, args) => SettingsView())];
 
-  static Inject get to => Inject<SettingsModule>.of();
+  static Inject get to => Inject<SettingsModule>();
 }
