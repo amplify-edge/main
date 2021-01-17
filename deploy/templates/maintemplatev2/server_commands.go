@@ -18,12 +18,13 @@ import (
 	"strings"
 	"time"
 
+	"github.com/winwisely268/go-grpc-victoriametrics"
+
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
 	"github.com/getcouragenow/sys-share/sys-core/service/telemetry/ops"
 	"github.com/getcouragenow/sys/main/pkg"
-	grpc_victoriametrics "github.com/winwisely268/go-grpc-victoriametrics"
 
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
@@ -163,7 +164,7 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 				grpcMw.WithStreamServerChain(streamInterceptors...),
 			)
 		}
-		grpc_victoriametrics.Register(grpcServer)
+		grpc_victoriametrics.Register(false, grpcServer)
 		mainSvc.Sys.RegisterServices(grpcServer)
 		mainSvc.Disco.RegisterServices(grpcServer)
 		mainSvc.BS.RegisterSvc(grpcServer)

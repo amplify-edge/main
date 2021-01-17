@@ -31,5 +31,3 @@ replace github.com/getcouragenow/sys-share => ../sys-share/
 replace github.com/getcouragenow/sys => ../sys
 
 replace github.com/getcouragenow/mod => ../mod
-
-replace github.com/winwisely268/go-grpc-victoriametrics => ../go-grpc-victoriametrics
