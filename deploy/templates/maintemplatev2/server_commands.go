@@ -4,12 +4,7 @@ import (
 	"fmt"
 	"github.com/NYTimes/gziphandler"
 	"github.com/VictoriaMetrics/metrics"
-	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/getcouragenow/sys-share/sys-core/service/telemetry/ops"
-	"github.com/getcouragenow/sys/main/pkg"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/sirupsen/logrus"
@@ -22,6 +17,13 @@ import (
 	"os"
 	"strings"
 	"time"
+
+	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
+	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
+	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/getcouragenow/sys-share/sys-core/service/telemetry/ops"
+	"github.com/getcouragenow/sys/main/pkg"
+	grpc_victoriametrics "github.com/winwisely268/go-grpc-victoriametrics"
 
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
@@ -142,6 +144,8 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 		// initiate grpc server
 		var grpcServer *grpc.Server
 		unaryInterceptors, streamInterceptors := mainSvc.Sys.InjectInterceptors(nil, nil)
+		unaryInterceptors = append(unaryInterceptors, grpc_victoriametrics.UnaryServerInterceptor)
+		streamInterceptors = append(streamInterceptors, grpc_victoriametrics.StreamServerInterceptor)
 		if mainCfg.MainConfig.TLS.Enable && mainCfg.MainConfig.TLS.IsLocal {
 			logger.Info("Running local server with tls enabled")
 			tlsCreds, err := sharedConfig.LoadTLSKeypair(mainCfg.MainConfig.TLS.LocalCertPath, mainCfg.MainConfig.TLS.LocalCertKeyPath)
@@ -159,6 +163,7 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 				grpcMw.WithStreamServerChain(streamInterceptors...),
 			)
 		}
+		grpc_victoriametrics.Register(grpcServer)
 		mainSvc.Sys.RegisterServices(grpcServer)
 		mainSvc.Disco.RegisterServices(grpcServer)
 		mainSvc.BS.RegisterSvc(grpcServer)

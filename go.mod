@@ -16,9 +16,12 @@ require (
 	github.com/sirupsen/logrus v1.7.0
 	github.com/spf13/cobra v1.1.1
 	github.com/stretchr/testify v1.6.1
-	golang.org/x/net v0.0.0-20201110031124-69a78807bb2b
-	golang.org/x/sys v0.0.0-20201211090839-8ad439b19e0f // indirect
-	google.golang.org/grpc v1.33.2
+	github.com/winwisely268/go-grpc-victoriametrics v0.0.0-20210117123204-926b4a552912
+	golang.org/x/net v0.0.0-20201224014010-6772e930b67b
+	golang.org/x/sys v0.0.0-20210113181707-4bcb84eeeb78 // indirect
+	golang.org/x/text v0.3.5 // indirect
+	google.golang.org/genproto v0.0.0-20210114201628-6edceaf6022f // indirect
+	google.golang.org/grpc v1.35.0
 	google.golang.org/protobuf v1.25.0
 	gopkg.in/yaml.v2 v2.3.0
 )
@@ -28,3 +31,5 @@ replace github.com/getcouragenow/sys-share => ../sys-share/
 replace github.com/getcouragenow/sys => ../sys
 
 replace github.com/getcouragenow/mod => ../mod
+
+replace github.com/winwisely268/go-grpc-victoriametrics => ../go-grpc-victoriametrics
