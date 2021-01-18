@@ -3,11 +3,8 @@ package maintemplatev2
 import (
 	"fmt"
 	"github.com/NYTimes/gziphandler"
-	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
+	"github.com/VictoriaMetrics/metrics"
 	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/getcouragenow/sys/main/pkg"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/sirupsen/logrus"
@@ -19,6 +16,15 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
+
+	"github.com/winwisely268/go-grpc-victoriametrics"
+
+	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
+	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
+	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/getcouragenow/sys-share/sys-core/service/telemetry/ops"
+	"github.com/getcouragenow/sys/main/pkg"
 
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
@@ -40,6 +46,10 @@ var (
 
 	isDebug             bool
 	encryptedConfigPath string
+)
+
+const (
+	scrapeInterval = 10 * time.Second
 )
 
 type FileSystem struct {
@@ -125,9 +135,18 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 		if err != nil {
 			logger.Fatalf(errCreateService, "maintemplatev2", err)
 		}
+
+		// initiate application level monitoring
+		curWorkingDir, _ := os.Getwd()
+		opsMonitor := ops.NewOpsSystemMonitor(cmd.Context(), scrapeInterval, curWorkingDir)
+
+		go opsMonitor.Run()
+
 		// initiate grpc server
 		var grpcServer *grpc.Server
 		unaryInterceptors, streamInterceptors := mainSvc.Sys.InjectInterceptors(nil, nil)
+		unaryInterceptors = append(unaryInterceptors, grpc_victoriametrics.UnaryServerInterceptor)
+		streamInterceptors = append(streamInterceptors, grpc_victoriametrics.StreamServerInterceptor)
 		if mainCfg.MainConfig.TLS.Enable && mainCfg.MainConfig.TLS.IsLocal {
 			logger.Info("Running local server with tls enabled")
 			tlsCreds, err := sharedConfig.LoadTLSKeypair(mainCfg.MainConfig.TLS.LocalCertPath, mainCfg.MainConfig.TLS.LocalCertKeyPath)
@@ -145,6 +164,7 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 				grpcMw.WithStreamServerChain(streamInterceptors...),
 			)
 		}
+		grpc_victoriametrics.Register(false, grpcServer)
 		mainSvc.Sys.RegisterServices(grpcServer)
 		mainSvc.Disco.RegisterServices(grpcServer)
 		mainSvc.BS.RegisterSvc(grpcServer)
@@ -187,6 +207,8 @@ func createHttpHandler(logger *logrus.Entry, isGzipped bool, fileServer http.Han
 			ct := r.Header.Get("Content-Type")
 			if grpcWebServer.IsGrpcWebSocketRequest(r) || grpcWebServer.IsGrpcWebRequest(r) || grpcWebServer.IsAcceptableGrpcCorsRequest(r) || strings.Contains(ct, "application/grpc") {
 				grpcWebServer.ServeHTTP(w, r)
+			} else if r.URL.RequestURI() == "/metrics" {
+				metricsHandler(w, r)
 			} else {
 				if isGzipped {
 					fileServer = gziphandler.GzipHandler(fileServer)
@@ -197,4 +219,8 @@ func createHttpHandler(logger *logrus.Entry, isGzipped bool, fileServer http.Han
 			}
 		}), &http2.Server{}),
 	}
+}
+
+func metricsHandler(w http.ResponseWriter, _ *http.Request) {
+	metrics.WritePrometheus(w, true)
 }

@@ -17,7 +17,7 @@ dependencies:
   provider_architecture: ^1.1.1+1
   path_provider: ^1.6.24
   meta:
-  flutter_modular: ^2.0.1
+  flutter_modular: ^3.0.0-0
   intl: ^0.17.0-nullsafety.2
   #  intl_translation: ^0.17.10+1
   data_tables: ^1.0.3
