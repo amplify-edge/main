@@ -6,6 +6,7 @@ import 'package:maintemplatev2/app_module.dart';
 import 'package:mod_disco/core/i18n/mod_disco_localization.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:sys_core/sys_core.dart';
+import 'package:asuka/asuka.dart' as asuka;
 import 'package:sys_share_sys_account_service/pkg/i18n/sys_account_localization.dart';
 
 import '././core/core.dart';
@@ -54,7 +55,7 @@ class _AppState extends State<App> {
     final model = provider.Provider.of<SettingsViewModel>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      builder: (context, child) => NavigationLayout(body: child),
+      builder: (context, child) => asuka.builder(context, child),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

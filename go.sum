@@ -493,6 +493,8 @@ github.com/winwisely268/go-grpc-victoriametrics v0.0.0-20210117104904-4806236fbe
 github.com/winwisely268/go-grpc-victoriametrics v0.0.0-20210117104904-4806236fbe94/go.mod h1:p5tdBAMoiYt//sWfZUqYeMCqo8PHT6/X9UzK6b4Holk=
 github.com/winwisely268/go-grpc-victoriametrics v0.0.0-20210117123204-926b4a552912 h1:qMCDAzstqNcWNgRW0481umh4FHBnF59lImSCPwv7Hj8=
 github.com/winwisely268/go-grpc-victoriametrics v0.0.0-20210117123204-926b4a552912/go.mod h1:p5tdBAMoiYt//sWfZUqYeMCqo8PHT6/X9UzK6b4Holk=
+github.com/winwisely268/go-grpc-victoriametrics v0.0.0-20210117131506-2598babca58f h1:v/n+HuiXbr0+tC6DDzmDOKJUEsgCamiIEP6D8n8eC0g=
+github.com/winwisely268/go-grpc-victoriametrics v0.0.0-20210117131506-2598babca58f/go.mod h1:p5tdBAMoiYt//sWfZUqYeMCqo8PHT6/X9UzK6b4Holk=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

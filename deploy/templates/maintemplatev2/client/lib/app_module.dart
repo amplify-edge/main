@@ -22,43 +22,51 @@ class AppModule extends MainModule {
   // here will be the routes of your module
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute(
-          Paths.adminRoute,
-          module: BootstrapperModule(
-            baseRoute: Paths.adminRoute,
-            url: url,
+        ChildRoute(
+          Paths.base,
+          child: (ctx, args) => NavigationLayout(
+            body: RouterOutlet(),
           ),
-          guards: [NavRailGuard()],
-          transition: TransitionType.custom,
-          customTransition: noTransition,
-        ),
-        ModuleRoute(
-          Paths.modDisco,
-          module: MainAppModule(
-            baseRoute: Paths.modDisco,
-            url: url,
-            urlNative: urlNative,
-          ),
-          guards: [NavRailGuard()],
-          transition: TransitionType.custom,
-          customTransition: noTransition,
-        ),
-        ModuleRoute(
-          Paths.modDisco,
-          module: VerifyModule(
-            baseRoute: Paths.sysAccount,
-            url: url,
-          ),
-          // guards: [NavRailGuard()],
-          transition: TransitionType.custom,
-          customTransition: noTransition,
-        ),
-        ModuleRoute(
-          Paths.settings,
-          module: SettingsModule(),
-          transition: TransitionType.custom,
-          customTransition: noTransition,
-          guards: [NavRailGuard()],
+          children: [
+            ModuleRoute(
+              Paths.adminRoute,
+              module: BootstrapperModule(
+                baseRoute: Paths.adminRoute,
+                url: url,
+              ),
+              guards: [NavRailGuard()],
+              transition: TransitionType.custom,
+              customTransition: noTransition,
+            ),
+            ModuleRoute(
+              Paths.modDisco,
+              module: MainAppModule(
+                baseRoute: Paths.modDisco,
+                url: url,
+                urlNative: urlNative,
+              ),
+              guards: [NavRailGuard()],
+              transition: TransitionType.custom,
+              customTransition: noTransition,
+            ),
+            ModuleRoute(
+              Paths.modDisco,
+              module: VerifyModule(
+                baseRoute: Paths.sysAccount,
+                url: url,
+              ),
+              // guards: [NavRailGuard()],
+              transition: TransitionType.custom,
+              customTransition: noTransition,
+            ),
+            ModuleRoute(
+              Paths.settings,
+              module: SettingsModule(),
+              transition: TransitionType.custom,
+              customTransition: noTransition,
+              guards: [NavRailGuard()],
+            ),
+          ],
         ),
       ];
 

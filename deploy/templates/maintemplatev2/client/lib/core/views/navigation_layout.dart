@@ -17,55 +17,42 @@ class NavigationLayout extends StatefulWidget {
 }
 
 class _NavigationLayoutState extends State<NavigationLayout> {
-  bool isStacked = false;
-
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      pages: [
-        MaterialPage(
-            key: ValueKey('maintemplatev2-nav-layout'),
-            child: AuthNavLayout(
-              body: widget.body,
-              tabs: LinkedHashMap.of(<String, Widget>{
-                Paths.adminRoute: TabItem(
-                  title: Text(
-                    AppLocalizations.of(context).tabadmin(),
-                    style: TextStyle(fontSize: 12),
-                  ),
-                  icon: Icon(Icons.people, size: 30),
-                  onTap: () {
-                    Modular.to.navigate(Paths.adminRoute);
-                  },
-                ),
-                Paths.modDisco: TabItem(
-                  title: Text(
-                    AppLocalizations.of(context).tabhome(),
-                    style: TextStyle(fontSize: 12),
-                  ),
-                  icon: Icon(Icons.home, size: 30),
-                  onTap: () {
-                    Modular.to.navigate(Paths.modDisco);
-                  },
-                ),
-                Paths.settings: TabItem(
-                  title: Text(
-                    AppLocalizations.of(context).tabsettings(),
-                    style: TextStyle(fontSize: 12),
-                  ),
-                  icon: Icon(Icons.settings, size: 30),
-                  onTap: () {
-                    Modular.to.navigate(Paths.settings);
-                  },
-                ),
-              }),
-            )),
-      ],
-      onPopPage: (route, result) {
-        if (!route.didPop(result)) return false;
-        setState(() => isStacked = false);
-        return true;
-      },
+    return AuthNavLayout(
+      body: widget.body,
+      tabs: LinkedHashMap.of(<String, Widget>{
+        Paths.adminRoute: TabItem(
+          title: Text(
+            AppLocalizations.of(context).tabadmin(),
+            style: TextStyle(fontSize: 12),
+          ),
+          icon: Icon(Icons.people, size: 30),
+          onTap: () {
+            Modular.to.navigate(Paths.adminRoute);
+          },
+        ),
+        Paths.modDisco: TabItem(
+          title: Text(
+            AppLocalizations.of(context).tabhome(),
+            style: TextStyle(fontSize: 12),
+          ),
+          icon: Icon(Icons.home, size: 30),
+          onTap: () {
+            Modular.to.navigate(Paths.modDisco);
+          },
+        ),
+        Paths.settings: TabItem(
+          title: Text(
+            AppLocalizations.of(context).tabsettings(),
+            style: TextStyle(fontSize: 12),
+          ),
+          icon: Icon(Icons.settings, size: 30),
+          onTap: () {
+            Modular.to.navigate(Paths.settings);
+          },
+        ),
+      }),
     );
   }
 }
