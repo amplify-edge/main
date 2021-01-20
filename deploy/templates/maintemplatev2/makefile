@@ -92,7 +92,7 @@ BUILD_GO_VERSION = $(shell go version | awk '{print $$3}')
 BUILD_GITBRANCH = $(shell git symbolic-ref --short HEAD)
 BUILD_FLUTTER_VERSION = $(shell flutter --version | awk '/channel/ {print $$2}')
 
-GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" -a -tags netgo
+GO_LDFLAGS = CGO_ENABLED=1 go build -ldflags "-X main.build=${VERSION_GITHASH}" -a -tags netgo
 
 export BS_CRYPT_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 export CONFIG_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
