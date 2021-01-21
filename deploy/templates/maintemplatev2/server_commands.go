@@ -7,6 +7,7 @@ import (
 	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
+	"github.com/opentracing/opentracing-go"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"golang.org/x/net/http2"
@@ -24,6 +25,7 @@ import (
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
 	"github.com/getcouragenow/sys-share/sys-core/service/telemetry/ops"
+	"github.com/getcouragenow/sys-share/sys-core/service/tracing"
 	"github.com/getcouragenow/sys/main/pkg"
 
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
@@ -123,6 +125,17 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 		if err != nil {
 			logger.Fatalf(errSourcingConfig, "bootstrapper", err)
 		}
+
+		// initiate global tracer
+		newTracerCfg := tracing.NewTracerConfig("127.0.0.1:6060", "maintemplatev2")
+		globalTracer, closer, err := tracing.NewTracer(newTracerCfg)
+		if err != nil {
+			logger.Fatal("cannot create tracer", err)
+		}
+		logger.Info("connect tracer")
+		opentracing.SetGlobalTracer(globalTracer)
+		defer closer.Close()
+		logger.Info("tracer connected")
 
 		mainSvc, err := wrapper.NewMainService(
 			logger,
