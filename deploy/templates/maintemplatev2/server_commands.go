@@ -138,7 +138,7 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 
 		// initiate application level monitoring
 		curWorkingDir, _ := os.Getwd()
-		opsMonitor := ops.NewOpsSystemMonitor(cmd.Context(), scrapeInterval, curWorkingDir)
+		opsMonitor := ops.NewOpsSystemMonitor(cmd.Context(), scrapeInterval, curWorkingDir, logger)
 
 		go opsMonitor.Run()
 
