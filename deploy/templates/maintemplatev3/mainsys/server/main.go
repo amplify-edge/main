@@ -28,8 +28,8 @@ func main() {
 	rootCmd.PersistentFlags().IntVarP(&mainexPort, "port", "p", defaultPort, "grpc port to run")
 
 	// logging
-	logger := zaplog.NewZapLogger("debug", "mainsys", true)
-	logger.InitLogger(map[string]string{"version": "3"})
+	logger := zaplog.NewZapLogger(zaplog.DEBUG, "mainsys", true, "")
+	logger.InitLogger(map[string]interface{}{"version": "3"})
 
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
 		return nil

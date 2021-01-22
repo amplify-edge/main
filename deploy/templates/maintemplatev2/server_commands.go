@@ -5,8 +5,6 @@ import (
 	"github.com/NYTimes/gziphandler"
 	"github.com/VictoriaMetrics/metrics"
 	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/opentracing/opentracing-go"
@@ -19,6 +17,9 @@ import (
 	"os"
 	"strings"
 	"time"
+
+	"github.com/getcouragenow/sys-share/sys-core/service/logging"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
 
 	"github.com/winwisely268/go-grpc-victoriametrics"
 
@@ -60,7 +61,8 @@ type FileSystem struct {
 	fs http.FileSystem
 }
 
-// Open opens file
+// Open opens file inside the embedded http filesystem
+// it takes the relative path of the index.html
 func (mfs FileSystem) Open(path string) (http.File, error) {
 	f, err := mfs.fs.Open(path)
 	if err != nil {
@@ -79,23 +81,22 @@ func (mfs FileSystem) Open(path string) (http.File, error) {
 	return f, nil
 }
 
-func MainServerCommand(system http.FileSystem, version []byte) (*cobra.Command, logging.Logger) {
+func MainServerCommand(system http.FileSystem, version []byte, applogger logging.Logger) *cobra.Command {
 	rootCmd := &cobra.Command{Use: "server"}
 	// persistent flags
 	rootCmd.PersistentFlags().BoolVar(&isDebug, "debug", defaultDebug, "debug")
 	rootCmd.PersistentFlags().StringVarP(&encryptedConfigPath, "encrypted-config-dir", "e", defaultEncryptedConfigServerPath, "path to encrypted config directory")
 	rootCmd.PersistentFlags().StringVarP(&configPath, "config-output-dir", "c", defaultConfigDir, "path to decrypted config")
 
-	// logging
-	var logger *zaplog.ZapLogger
-	if isDebug {
-		logger = zaplog.NewZapLogger("debug", defaultAppName, true)
-	} else {
-		logger = zaplog.NewZapLogger("info", defaultAppName, false)
-	}
-	logger.InitLogger(nil)
-
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
+		// server level logging
+		var logger *zaplog.ZapLogger
+		if isDebug {
+			logger = zaplog.NewZapLogger(zaplog.DEBUG, defaultAppName, true, "")
+		} else {
+			logger = zaplog.NewZapLogger(zaplog.INFO, defaultAppName, false, "")
+		}
+		logger.InitLogger(nil)
 		// encrypted configs
 		password := os.Getenv("CONFIG_PASSWORD")
 		if password == "" {
@@ -206,10 +207,10 @@ func MainServerCommand(system http.FileSystem, version []byte) (*cobra.Command, 
 
 	buildInfo, err := wrapper.ManifestFromFile(version)
 	if err != nil {
-		logger.Fatalf("unable to unmarshal build version information: %v", err)
+		applogger.Fatalf("unable to unmarshal build version information: %v", err)
 	}
 	rootCmd.AddCommand(buildInfo.CobraCommand())
-	return rootCmd, logger
+	return rootCmd
 }
 
 func createHttpHandler(logger logging.Logger, isGzipped bool, fileServer http.Handler, grpcWebServer *grpcweb.WrappedGrpcServer) *http.Server {

@@ -1,10 +1,11 @@
 package maintemplatev2
 
 import (
+	"github.com/spf13/cobra"
+
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
 	"github.com/getcouragenow/sys-share/sys-core/service/logging"
 	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
-	"github.com/spf13/cobra"
 
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
@@ -24,7 +25,7 @@ const (
 	defaultCliDebug             = true
 )
 
-func MainCliCommand(version []byte) (*cobra.Command, logging.Logger){
+func MainCliCommand(version []byte) (*cobra.Command, logging.Logger) {
 	var rootCmd = &cobra.Command{
 		Use:   commandName,
 		Short: commandName,
@@ -36,9 +37,9 @@ func MainCliCommand(version []byte) (*cobra.Command, logging.Logger){
 	// logging
 	var logger *zaplog.ZapLogger
 	if isDebug {
-		logger = zaplog.NewZapLogger("debug", defaultAppName, true)
+		logger = zaplog.NewZapLogger(zaplog.DEBUG, defaultAppName, true, "")
 	} else {
-		logger = zaplog.NewZapLogger("info", defaultAppName, false)
+		logger = zaplog.NewZapLogger(zaplog.INFO, defaultAppName, false, "gcn-client.log")
 	}
 	logger.InitLogger(nil)
 

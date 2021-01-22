@@ -3,15 +3,16 @@ package main
 import (
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/version"
-	"log"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
 )
 
 func main() {
+	logger := zaplog.NewZapLogger(zaplog.WARN, "maintemplatev2", true, "")
 	b, err := version.Asset("manifest.json")
 	if err != nil {
-		log.Fatalf("unable to open build version information: %v", err)
+		logger.Fatalf("unable to open build version information: %v", err)
 	}
-	rootCmd, logger := maintemplatev2.MainServerCommand(nil, b)
+	rootCmd := maintemplatev2.MainServerCommand(nil, b, logger)
 	if err := rootCmd.Execute(); err != nil {
 		logger.Fatalf("error running maintemplatev2: %v", err)
 	}

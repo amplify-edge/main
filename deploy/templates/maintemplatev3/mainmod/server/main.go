@@ -50,8 +50,8 @@ func main() {
 	rootCmd.PersistentFlags().BoolVarP(&local, "local", "l", defaultLocal, "serve locally")
 	rootCmd.PersistentFlags().StringVarP(&staticDir, "directory", "d", defaultStaticDir, "directory to serve flutter build")
 
-	l := zaplog.NewZapLogger("debug", "mainmod", true)
-	l.InitLogger(map[string]string{"version": "3"})
+	l := zaplog.NewZapLogger(zaplog.DEBUG, "mainmod", true, "")
+	l.InitLogger(map[string]interface{}{"version": "3"})
 
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
 		// ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)

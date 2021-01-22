@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	l := zaplog.NewZapLogger("debug", "mainmod", true)
-	l.InitLogger(map[string]string{"version": "3"})
+	l := zaplog.NewZapLogger(zaplog.DEBUG, "mainmod", true, "")
+	l.InitLogger(map[string]interface{}{"version": "3"})
 
 	rootCmd := &cobra.Command{
 		Short: "mainmodv3 cli",
