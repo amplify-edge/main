@@ -145,8 +145,7 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, supers []*bsrpc.BSAcco
 			}
 		}
 	}
-	for i, reg := range regularAccounts {
-		fmt.Printf("processing %d", i)
+	for _, reg := range regularAccounts {
 		var acc *accountPkg.Account
 		acc, err = b.accRepo.NewAccount(ctx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts()))
 		if err != nil {

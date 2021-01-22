@@ -1,12 +1,8 @@
 package main
 
 import (
-	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
-	"github.com/sirupsen/logrus"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
 	"github.com/spf13/cobra"
-	"google.golang.org/grpc"
-
-	"github.com/getcouragenow/sys/main/pkg"
 )
 
 const (
@@ -32,32 +28,11 @@ func main() {
 	rootCmd.PersistentFlags().IntVarP(&mainexPort, "port", "p", defaultPort, "grpc port to run")
 
 	// logging
-	logger := logrus.New().WithField("bin", "maintemplatev3")
+	logger := zaplog.NewZapLogger("debug", "mainsys", true)
+	logger.InitLogger(map[string]string{"version": "3"})
 
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
-		// configs
-		sspaths := pkg.NewServiceConfigPaths(coreCfgPath, accountCfgPath)
-		sscfg, err := pkg.NewSysServiceConfig(logger, nil, sspaths, defaultPort)
-		if err != nil {
-			logger.Fatalf(errSourcingConfig, err)
-		}
-
-		// initiate all sys-* service
-		sysSvc, err := pkg.NewService(sscfg)
-		if err != nil {
-			logger.Fatalf(errCreateSysService, err)
-		}
-
-		// initiate grpc server
-		unaryInterceptors, streamInterceptors := sysSvc.InjectInterceptors(nil, nil)
-		grpcServer := grpc.NewServer(
-			grpcMw.WithUnaryServerChain(unaryInterceptors...),
-			grpcMw.WithStreamServerChain(streamInterceptors...),
-		)
-		sysSvc.RegisterServices(grpcServer)
-		grpcWebServer := sysSvc.RegisterGrpcWebServer(grpcServer)
-		// rutn server
-		return sysSvc.Run(grpcWebServer, nil)
+		return nil
 	}
 	if err := rootCmd.Execute(); err != nil {
 		logger.Fatalf("error running sys-main: %v", err)

@@ -6,8 +6,8 @@ import (
 	sysSharePkg "github.com/getcouragenow/sys-share/sys-account/service/go/pkg"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging"
 	accountRepo "github.com/getcouragenow/sys/sys-account/service/go/pkg/repo"
-	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"os"
 	"path/filepath"
@@ -16,7 +16,7 @@ import (
 type BootstrapRepo struct {
 	savePath    string
 	domain      string
-	logger      *log.Entry
+	logger      logging.Logger
 	accRepo     *accountRepo.SysAccountRepo
 	discoRepo   *discoRepo.ModDiscoRepo
 	accClient   *sysSharePkg.SysAccountProxyServiceClient // v3 via grpc
@@ -24,7 +24,7 @@ type BootstrapRepo struct {
 	busClient   *corebus.CoreBus
 }
 
-func NewBootstrapRepo(logger *log.Entry, domain, savePath string, accRepo *accountRepo.SysAccountRepo, discoRepo *discoRepo.ModDiscoRepo, cc grpc.ClientConnInterface, busClient *corebus.CoreBus) *BootstrapRepo {
+func NewBootstrapRepo(logger logging.Logger, domain, savePath string, accRepo *accountRepo.SysAccountRepo, discoRepo *discoRepo.ModDiscoRepo, cc grpc.ClientConnInterface, busClient *corebus.CoreBus) *BootstrapRepo {
 	if cc == nil && accRepo == nil && discoRepo == nil {
 		logger.Fatalf("invalid bootstrap repo argument: all repos and clients are nil")
 	}

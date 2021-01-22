@@ -7,8 +7,8 @@ import (
 	discoRepo "github.com/getcouragenow/mod/mod-disco/service/go/pkg/repo"
 	"github.com/getcouragenow/protoc-gen-cobra/client"
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging"
 	accountRepo "github.com/getcouragenow/sys/sys-account/service/go/pkg/repo"
-	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 )
@@ -18,7 +18,7 @@ type BootstrapService struct {
 	BsRepo       *repo.BootstrapRepo
 }
 
-func NewBootstrapService(cfg *bscfg.BootstrapConfig, l *log.Entry, accRepo *accountRepo.SysAccountRepo, discoRepo *discoRepo.ModDiscoRepo, cc grpc.ClientConnInterface, busClient *corebus.CoreBus) *BootstrapService {
+func NewBootstrapService(cfg *bscfg.BootstrapConfig, l logging.Logger, accRepo *accountRepo.SysAccountRepo, discoRepo *discoRepo.ModDiscoRepo, cc grpc.ClientConnInterface, busClient *corebus.CoreBus) *BootstrapService {
 	bsrepo := repo.NewBootstrapRepo(l, cfg.BSConfig.Domain, cfg.BSConfig.SavePath, accRepo, discoRepo, cc, busClient)
 	svc := bsrpc.NewBSServiceService(bsrepo)
 	return &BootstrapService{proxyService: svc, BsRepo: bsrepo}

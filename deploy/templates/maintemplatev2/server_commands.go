@@ -5,10 +5,11 @@ import (
 	"github.com/NYTimes/gziphandler"
 	"github.com/VictoriaMetrics/metrics"
 	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/opentracing/opentracing-go"
-	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
@@ -38,9 +39,10 @@ const (
 
 	defaultConfigDir                 = "./config"
 	defaultEncryptedConfigServerPath = "./encrypted-config"
-	defaultDebug                     = true
+	defaultDebug                     = false
 	defaultCorsHeaders               = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
-	flyHeaders                       = "Fly-Client-IP, Fly-Forwarded-Port, Fly-Region, Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
+	commonHeaders                    = "Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
+	defaultAppName                   = "maintemplatev2"
 )
 
 var (
@@ -77,21 +79,21 @@ func (mfs FileSystem) Open(path string) (http.File, error) {
 	return f, nil
 }
 
-func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
-	// logging
-	log := logrus.New()
-	if isDebug {
-		log.SetLevel(logrus.DebugLevel)
-	} else {
-		log.SetLevel(logrus.InfoLevel)
-	}
-	logger := log.WithField("maintemplate", "v2")
-
+func MainServerCommand(system http.FileSystem, version []byte) (*cobra.Command, logging.Logger) {
 	rootCmd := &cobra.Command{Use: "server"}
 	// persistent flags
 	rootCmd.PersistentFlags().BoolVar(&isDebug, "debug", defaultDebug, "debug")
 	rootCmd.PersistentFlags().StringVarP(&encryptedConfigPath, "encrypted-config-dir", "e", defaultEncryptedConfigServerPath, "path to encrypted config directory")
 	rootCmd.PersistentFlags().StringVarP(&configPath, "config-output-dir", "c", defaultConfigDir, "path to decrypted config")
+
+	// logging
+	var logger *zaplog.ZapLogger
+	if isDebug {
+		logger = zaplog.NewZapLogger("debug", defaultAppName, true)
+	} else {
+		logger = zaplog.NewZapLogger("info", defaultAppName, false)
+	}
+	logger.InitLogger(nil)
 
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
 		// encrypted configs
@@ -207,15 +209,15 @@ func MainServerCommand(system http.FileSystem, version []byte) *cobra.Command {
 		logger.Fatalf("unable to unmarshal build version information: %v", err)
 	}
 	rootCmd.AddCommand(buildInfo.CobraCommand())
-	return rootCmd
+	return rootCmd, logger
 }
 
-func createHttpHandler(logger *logrus.Entry, isGzipped bool, fileServer http.Handler, grpcWebServer *grpcweb.WrappedGrpcServer) *http.Server {
+func createHttpHandler(logger logging.Logger, isGzipped bool, fileServer http.Handler, grpcWebServer *grpcweb.WrappedGrpcServer) *http.Server {
 	return &http.Server{
 		Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Access-Control-Allow-Origin", "*")
 			w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-			w.Header().Set("Access-Control-Allow-Headers", fmt.Sprintf("%s,%s", defaultCorsHeaders, flyHeaders))
+			w.Header().Set("Access-Control-Allow-Headers", fmt.Sprintf("%s,%s", defaultCorsHeaders, commonHeaders))
 			logger.Infof("Serving Endpoint: %s", r.URL.Path)
 			ct := r.Header.Get("Content-Type")
 			if grpcWebServer.IsGrpcWebSocketRequest(r) || grpcWebServer.IsGrpcWebRequest(r) || grpcWebServer.IsAcceptableGrpcCorsRequest(r) || strings.Contains(ct, "application/grpc") {

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/sirupsen/logrus"
+	"log"
 
 	"github.com/getcouragenow/main/deploy/projects/org-y/version"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2"
@@ -10,10 +10,10 @@ import (
 func main() {
 	b, err := version.Asset("manifest.json")
 	if err != nil {
-		logrus.Fatalf("unable to open build version information: %v", err)
+		log.Fatalf("unable to open build version information: %v", err)
 	}
-	serverCmd := maintemplatev2.MainServerCommand(AssetFile(), b)
-	if err := serverCmd.Execute(); err != nil {
-		logrus.Fatalf("error running maintemplatev2: %v", err)
+	rootCmd, logger := maintemplatev2.MainServerCommand(nil, b)
+	if err := rootCmd.Execute(); err != nil {
+		logger.Fatalf("error running maintemplatev2: %v", err)
 	}
 }

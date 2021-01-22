@@ -3,11 +3,11 @@ package wrapper
 import (
 	"context"
 	"fmt"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging"
 	"time"
 
 	"github.com/getcouragenow/sys-share/sys-core/service/clihelper"
 
-	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 
@@ -47,7 +47,7 @@ type MainSdkCli struct {
 }
 
 func NewMainService(
-	logger *logrus.Entry,
+	logger logging.Logger,
 	sscfg *sysPkg.SysServiceConfig,
 	cbus *corebus.CoreBus,
 	mainCfg *MainConfig,
@@ -120,7 +120,7 @@ func NewMainService(
 }
 
 func NewMainCLI(
-	logger *logrus.Entry,
+	logger logging.Logger,
 	mainCfg *MainConfig,
 	bsconfig *bscfg.BootstrapConfig,
 	cbus *corebus.CoreBus,

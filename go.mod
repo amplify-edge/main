@@ -13,7 +13,7 @@ require (
 	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/improbable-eng/grpc-web v0.13.0
-	github.com/sirupsen/logrus v1.7.0
+	github.com/opentracing/opentracing-go v1.1.0
 	github.com/spf13/cobra v1.1.1
 	github.com/stretchr/testify v1.6.1
 	github.com/winwisely268/go-grpc-victoriametrics v0.0.0-20210117131506-2598babca58f
