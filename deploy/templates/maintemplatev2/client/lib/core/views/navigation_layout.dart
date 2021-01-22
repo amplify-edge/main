@@ -21,7 +21,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
   Widget build(BuildContext context) {
     return AuthNavLayout(
       body: widget.body,
-      tabs: LinkedHashMap.of(<String, Widget>{
+      adminTabs: LinkedHashMap.of(<String, TabItem>{
         Paths.adminRoute: TabItem(
           title: Text(
             AppLocalizations.of(context).tabadmin(),
@@ -32,6 +32,8 @@ class _NavigationLayoutState extends State<NavigationLayout> {
             Modular.to.navigate(Paths.adminRoute);
           },
         ),
+      }),
+      tabs: LinkedHashMap.of(<String, Widget>{
         Paths.modDisco: TabItem(
           title: Text(
             AppLocalizations.of(context).tabhome(),
