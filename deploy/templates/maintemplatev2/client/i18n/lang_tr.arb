@@ -1,48 +1,48 @@
 {
   "@@last_modified": "2021-01-25T02:50:37.485151",
-  "tabSuper": "SuperAdmin",
+  "tabSuper": "Süper Yönetici",
   "@tabSuper": {
     "description": "text for superadmin tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabadmin": "Admin",
+  "tabadmin": "Yönetici",
   "@tabadmin": {
     "description": "text for admin tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabhome": "Casa",
+  "tabhome": "Ev",
   "@tabhome": {
     "description": "text for the home tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabsurvey": "Sondaggio",
+  "tabsurvey": "Anket",
   "@tabsurvey": {
     "description": "text for survey tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabchat": "Chiacchierare",
+  "tabchat": "Sohbet",
   "@tabchat": {
     "description": "text for the chat tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabIon": "Ion",
+  "tabIon": "İyon",
   "@tabIon": {
     "description": "text for the ion tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabsettings": "impostazioni",
+  "tabsettings": "Ayarlar",
   "@tabsettings": {
     "description": "text for the settings tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabwriter": "scrittore",
+  "tabwriter": "yazar",
   "@tabwriter": {
     "description": "text for the writer tab",
     "placeholders": {},
@@ -54,25 +54,25 @@
     "placeholders": {},
     "type": "text"
   },
-  "tabmap": "Carta geografica",
+  "tabmap": "Harita",
   "@tabmap": {
     "description": "text for the writer tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabSettings": "impostazioni",
+  "tabSettings": "Ayarlar",
   "@tabSettings": {
     "description": "text for the settings tab",
     "placeholders": {},
     "type": "text"
   },
-  "changeLanguageSet": "Cambia lingua",
+  "changeLanguageSet": "Dili değiştir",
   "@changeLanguageSet": {
     "description": "text for the change language text in settings screen",
     "placeholders": {},
     "type": "text"
   },
-  "changeThemeSet": "Cambia tema",
+  "changeThemeSet": "Temayı değiştir",
   "@changeThemeSet": {
     "description": "text for the change theme text in settings screen",
     "placeholders": {},

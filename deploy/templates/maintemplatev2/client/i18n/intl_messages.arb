@@ -1,5 +1,11 @@
 {
-  "@@last_modified": "2021-01-24T13:41:31.555383",
+  "@@last_modified": "2021-01-25T02:50:37.485151",
+  "tabSuper": "SuperAdmin",
+  "@tabSuper": {
+    "description": "text for superadmin tab",
+    "type": "text",
+    "placeholders": {}
+  },
   "tabadmin": "Admin",
   "@tabadmin": {
     "description": "text for admin tab",

@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tabIon" : MessageLookupByLibrary.simpleMessage("Ion"),
     "tabKanban" : MessageLookupByLibrary.simpleMessage("Kanban"),
     "tabSettings" : MessageLookupByLibrary.simpleMessage("impostazioni"),
+    "tabSuper" : MessageLookupByLibrary.simpleMessage("SuperAdmin"),
     "tabadmin" : MessageLookupByLibrary.simpleMessage("Admin"),
     "tabchat" : MessageLookupByLibrary.simpleMessage("Chiacchierare"),
     "tabhome" : MessageLookupByLibrary.simpleMessage("Casa"),
