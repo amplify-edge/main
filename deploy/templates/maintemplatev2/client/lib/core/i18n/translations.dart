@@ -7,7 +7,7 @@ class Translations {
   String tabSuper() {
     return Intl.message(
       'SuperAdmin',
-      name: 'tabsuper',
+      name: 'tabSuper',
       desc: 'text for superadmin tab',
       locale: locale.toString(),
     );

@@ -63,7 +63,7 @@ class _AppState extends State<App> {
         BootstrapLocalizationsDelegate(),
         SysCoreLocalizationsDelegate(),
         SysAccountLocalizationsDelegate(),
-        ModDiscoLocalizationsDelegate(model.locale),
+        ModDiscoLocalizationsDelegate(),
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate
       ],
