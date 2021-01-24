@@ -1,84 +1,84 @@
 {
   "@@last_modified": "2021-01-25T01:21:40.874750",
-  "listBootstrap": "List Bootstrap",
+  "listBootstrap": "Bootstrap'i listeleyin",
   "@listBootstrap": {
     "description": "List Bootstrap",
     "placeholders": {},
     "type": "text"
   },
-  "editBootstrap": "Edit Bootstrap",
+  "editBootstrap": "Bootstrap'i Düzenle",
   "@editBootstrap": {
     "description": "Edit Bootstrap",
     "placeholders": {},
     "type": "text"
   },
-  "noBootstraps": "No Bootstraps",
+  "noBootstraps": "Önyükleme yok",
   "@noBootstraps": {
     "description": "No Bootstrap",
     "placeholders": {},
     "type": "text"
   },
-  "selectBootstrap": "Select Bootstrap",
+  "selectBootstrap": "Bootstrap'i seçin",
   "@selectBootstrap": {
     "description": "Select Bootstrap",
     "placeholders": {},
     "type": "text"
   },
-  "bootstrapDetails": "Bootstrap Details",
+  "bootstrapDetails": "Bootstrap Ayrıntıları",
   "@bootstrapDetails": {
     "description": "Bootstrap File Content and Name",
     "placeholders": {},
     "type": "text"
   },
-  "execute": "Execute",
+  "execute": "Yürüt",
   "@execute": {
     "description": "Execute current bootstrap file",
     "placeholders": {},
     "type": "text"
   },
-  "executeBootstrap": "Execute Bootstrap",
+  "executeBootstrap": "Bootstrap'i çalıştırın",
   "@executeBootstrap": {
     "description": "Execute current bootstrap file",
     "placeholders": {},
     "type": "text"
   },
-  "delete": "Delete",
+  "delete": "Sil",
   "@delete": {
     "description": "Delete current bootstrap file",
     "placeholders": {},
     "type": "text"
   },
-  "deleteBootstrap": "Delete Bootstrap",
+  "deleteBootstrap": "Bootstrap'i sil",
   "@deleteBootstrap": {
     "description": "Delete current bootstrap file",
     "placeholders": {},
     "type": "text"
   },
-  "cancel": "Cancel",
+  "cancel": "İptal etmek",
   "@cancel": {
     "description": "Cancel",
     "placeholders": {},
     "type": "text"
   },
-  "confirm": "Confirm",
+  "confirm": "Onaylamak",
   "@confirm": {
     "description": "Confirm",
     "placeholders": {},
     "type": "text"
   },
-  "allOfYourDataWillBeDeleted": "All of your data will be deleted!",
+  "allOfYourDataWillBeDeleted": "Tüm verileriniz silinecek!",
   "@allOfYourDataWillBeDeleted": {
     "description": "Execute bootstrap dialog alert box",
     "placeholders": {},
     "type": "text"
   },
-  "bootstrapFileWillBeDeleted": "Bootstrap file will be deleted!",
+  "bootstrapFileWillBeDeleted": "Bootstrap dosyası silinecek!",
   "@bootstrapFileWillBeDeleted": {
     "description": "Delete bootstrap dialog alert box",
     "placeholders": {},
     "type": "text"
   },
-  "pickImageAndCopyTheResultingValue": "Pick image and copy the resulting value",
+  "pickImageAndCopyTheResultingValue": "Resmi seçin ve elde edilen değeri kopyalayın",
   "@pickImageAndCopyTheResultingValue": {
     "description": "For Image / File Picker",
     "placeholders": {},
