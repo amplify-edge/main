@@ -6,6 +6,7 @@ import 'package:maintemplatev2/main.dart';
 import 'package:mod_disco/modules/mod_disco.dart';
 import 'package:sys_share_sys_account_service/view/screens/verify_module.dart';
 import 'package:sys_share_sys_account_service/view/widgets/view_model/auth_nav_view_model.dart';
+
 import 'core/core.dart';
 import 'modules/settings/settings_module.dart';
 
@@ -29,10 +30,19 @@ class AppModule extends MainModule {
           ),
           children: [
             ModuleRoute(
-              Paths.adminRoute,
+              Paths.superAdminRoute,
               module: BootstrapperModule(
-                baseRoute: Paths.adminRoute,
+                baseRoute: Paths.superAdminRoute,
                 url: url,
+              ),
+              guards: [NavRailGuard()],
+              transition: TransitionType.custom,
+              customTransition: noTransition,
+            ),
+            ModuleRoute(
+              Paths.adminRoute,
+              module: AdminDashboardModule(
+                baseRoute: Paths.adminRoute,
               ),
               guards: [NavRailGuard()],
               transition: TransitionType.custom,

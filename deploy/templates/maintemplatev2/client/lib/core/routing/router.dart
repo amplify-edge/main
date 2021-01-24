@@ -4,7 +4,8 @@ class Paths {
   static const String base = '/';
   static const String home = '/home';
   static const String chat = '/chat';
-  static const String adminRoute = '/admin';
+  static const String superAdminRoute = '/admin';
+  static const String adminRoute = '/dashboard';
 
   static const String ion = '/ion';
   static const String writer = '/writer';

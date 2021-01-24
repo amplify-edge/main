@@ -1,7 +1,8 @@
 import 'package:bootstrapper/pkg/routes/paths.dart';
 import 'package:bootstrapper/pkg/view/bootstrap_view.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'pkg/shared_repositories/bootstrap_repo.dart';
+
+import 'pkg/view/view_model/bootstrap_view_model.dart';
 
 class BootstrapperModule extends ChildModule {
   final String baseRoute;
@@ -17,8 +18,8 @@ class BootstrapperModule extends ChildModule {
 
   @override
   List<Bind> get binds => [
-        Bind.singleton((i) => Paths(baseRoute)),
-        Bind.lazySingleton((i) => BootstrapRepo()),
+        Bind.singleton((i) => SuperadminPaths(baseRoute)),
+        Bind.lazySingleton((i) => BootstrapViewModel())
       ];
 
   @override

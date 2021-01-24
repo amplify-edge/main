@@ -2,8 +2,8 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sys_share_sys_account_service/view/widgets/nav_rail.dart';
 import 'package:sys_share_sys_account_service/view/widgets/auth_nav_layout.dart';
+import 'package:sys_share_sys_account_service/view/widgets/nav_rail.dart';
 
 import '../core.dart';
 
@@ -27,9 +27,21 @@ class _NavigationLayoutState extends State<NavigationLayout> {
             AppLocalizations.of(context).tabadmin(),
             style: TextStyle(fontSize: 12),
           ),
-          icon: Icon(Icons.people, size: 30),
+          icon: Icon(Icons.dashboard, size: 30),
           onTap: () {
             Modular.to.navigate(Paths.adminRoute);
+          },
+        ),
+      }),
+      superAdminTabs: LinkedHashMap.of(<String, TabItem>{
+        Paths.superAdminRoute: TabItem(
+          title: Text(
+            AppLocalizations.of(context).tabSuper(),
+            style: TextStyle(fontSize: 12),
+          ),
+          icon: Icon(Icons.people, size: 30),
+          onTap: () {
+            Modular.to.navigate(Paths.superAdminRoute);
           },
         ),
       }),
