@@ -1,9 +1,11 @@
 package maintemplatev2
 
 import (
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+
+	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
 
 	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
 	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
@@ -23,7 +25,7 @@ const (
 	defaultCliDebug             = true
 )
 
-func MainCliCommand(version []byte) *cobra.Command {
+func MainCliCommand(version []byte) (*cobra.Command, logging.Logger) {
 	var rootCmd = &cobra.Command{
 		Use:   commandName,
 		Short: commandName,
@@ -33,13 +35,14 @@ func MainCliCommand(version []byte) *cobra.Command {
 	rootCmd.PersistentFlags().StringVarP(&bsCliCfgPath, "bootstrap-config-path", "b", defaultBsCliConfigPath, "bs config path to use")
 	rootCmd.PersistentFlags().StringVarP(&mainClientCfgPath, "main-config-path", "m", defaultMainConfigClientPath, "main config path to use")
 	// logging
-	log := logrus.New()
+	var logger *zaplog.ZapLogger
 	if isDebug {
-		log.SetLevel(logrus.DebugLevel)
+		logger = zaplog.NewZapLogger(zaplog.DEBUG, defaultAppName, true, "")
 	} else {
-		log.SetLevel(logrus.InfoLevel)
+		logger = zaplog.NewZapLogger(zaplog.INFO, defaultAppName, false, "gcn-client.log")
 	}
-	logger := log.WithField("maintemplate", "v2")
+	logger.InitLogger(nil)
+
 	buildInfo, err := wrapper.ManifestFromFile(version)
 	if err != nil {
 		logger.Fatalf("unable to unmarshal build version information: %v", err)
@@ -73,5 +76,5 @@ func MainCliCommand(version []byte) *cobra.Command {
 		mainCli.ModDisco,
 		buildInfo.CobraCommand(),
 	)
-	return rootCmd
+	return rootCmd, logger
 }

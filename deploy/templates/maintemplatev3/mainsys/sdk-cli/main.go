@@ -4,18 +4,19 @@ import (
 	//"github.com/getcouragenow/sys-share/pkg"
 	// FIX IS:
 	"github.com/getcouragenow/sys-share/sys-account/service/go/pkg"
-
-	log "github.com/sirupsen/logrus"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
 )
 
 func main() {
-	log.Println(" -- sdk cli -- ")
+	l := zaplog.NewZapLogger(zaplog.DEBUG, "mainmod", true, "")
+	l.InitLogger(map[string]interface{}{"version": "3"})
+
 	// load up sdk cli
 	spsc := pkg.NewSysShareProxyClient()
 	rootCmd := spsc.CobraCommand()
 
 	// starts proxy
 	if err := rootCmd.Execute(); err != nil {
-		log.Fatalf("command failed: %v", err)
+		l.Fatalf("command failed: %v", err)
 	}
 }

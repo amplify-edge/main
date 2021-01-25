@@ -31,7 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "editBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ میں ترمیم کریں"),
     "execute" : MessageLookupByLibrary.simpleMessage("پھانسی"),
     "executeBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ پر عمل کریں"),
-    "listBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ کی فہرست بنائیں"),
+    "listBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ کی فہرست"),
     "noBootstraps" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپس نہیں ہیں"),
     "pickImageAndCopyTheResultingValue" : MessageLookupByLibrary.simpleMessage("تصویر چنیں اور نتیجے کی قیمت کو کاپی کریں"),
     "selectBootstrap" : MessageLookupByLibrary.simpleMessage("بوٹسٹریپ منتخب کریں")

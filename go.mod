@@ -13,10 +13,10 @@ require (
 	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/improbable-eng/grpc-web v0.13.0
-	github.com/sirupsen/logrus v1.7.0
+	github.com/opentracing/opentracing-go v1.1.0
 	github.com/spf13/cobra v1.1.1
 	github.com/stretchr/testify v1.6.1
-	github.com/winwisely268/go-grpc-victoriametrics v0.0.0-20210117123204-926b4a552912
+	github.com/winwisely268/go-grpc-victoriametrics v0.0.0-20210117131506-2598babca58f
 	golang.org/x/net v0.0.0-20201224014010-6772e930b67b
 	golang.org/x/sys v0.0.0-20210113181707-4bcb84eeeb78 // indirect
 	golang.org/x/text v0.3.5 // indirect

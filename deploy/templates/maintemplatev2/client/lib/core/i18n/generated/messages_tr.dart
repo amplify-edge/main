@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a en locale. All the
+// This is a library that provides messages for a tr locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -17,22 +17,22 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'en';
+  String get localeName => 'tr';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "changeLanguageSet" : MessageLookupByLibrary.simpleMessage("Change Language"),
-    "changeThemeSet" : MessageLookupByLibrary.simpleMessage("Change Theme"),
-    "tabIon" : MessageLookupByLibrary.simpleMessage("Ion"),
+    "changeLanguageSet" : MessageLookupByLibrary.simpleMessage("Dili değiştir"),
+    "changeThemeSet" : MessageLookupByLibrary.simpleMessage("Temayı değiştir"),
+    "tabIon" : MessageLookupByLibrary.simpleMessage("İyon"),
     "tabKanban" : MessageLookupByLibrary.simpleMessage("Kanban"),
-    "tabSettings" : MessageLookupByLibrary.simpleMessage("Settings"),
-    "tabSuper" : MessageLookupByLibrary.simpleMessage("SuperAdmin"),
-    "tabadmin" : MessageLookupByLibrary.simpleMessage("Admin"),
-    "tabchat" : MessageLookupByLibrary.simpleMessage("Chat"),
-    "tabhome" : MessageLookupByLibrary.simpleMessage("Home"),
-    "tabmap" : MessageLookupByLibrary.simpleMessage("Map"),
-    "tabsettings" : MessageLookupByLibrary.simpleMessage("Settings"),
-    "tabsurvey" : MessageLookupByLibrary.simpleMessage("Survey"),
-    "tabwriter" : MessageLookupByLibrary.simpleMessage("Writer")
+    "tabSettings" : MessageLookupByLibrary.simpleMessage("Ayarlar"),
+    "tabSuper" : MessageLookupByLibrary.simpleMessage("Süper Yönetici"),
+    "tabadmin" : MessageLookupByLibrary.simpleMessage("Yönetici"),
+    "tabchat" : MessageLookupByLibrary.simpleMessage("Sohbet"),
+    "tabhome" : MessageLookupByLibrary.simpleMessage("Ev"),
+    "tabmap" : MessageLookupByLibrary.simpleMessage("Harita"),
+    "tabsettings" : MessageLookupByLibrary.simpleMessage("Ayarlar"),
+    "tabsurvey" : MessageLookupByLibrary.simpleMessage("Anket"),
+    "tabwriter" : MessageLookupByLibrary.simpleMessage("yazar")
   };
 }

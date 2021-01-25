@@ -6,6 +6,7 @@ import 'package:maintemplatev2/main.dart';
 import 'package:mod_disco/modules/mod_disco.dart';
 import 'package:sys_share_sys_account_service/view/screens/verify_module.dart';
 import 'package:sys_share_sys_account_service/view/widgets/view_model/auth_nav_view_model.dart';
+
 import 'core/core.dart';
 import 'modules/settings/settings_module.dart';
 
@@ -22,43 +23,60 @@ class AppModule extends MainModule {
   // here will be the routes of your module
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute(
-          Paths.adminRoute,
-          module: BootstrapperModule(
-            baseRoute: Paths.adminRoute,
-            url: url,
+        ChildRoute(
+          Paths.base,
+          child: (ctx, args) => NavigationLayout(
+            body: RouterOutlet(),
           ),
-          guards: [NavRailGuard()],
-          transition: TransitionType.custom,
-          customTransition: noTransition,
-        ),
-        ModuleRoute(
-          Paths.modDisco,
-          module: MainAppModule(
-            baseRoute: Paths.modDisco,
-            url: url,
-            urlNative: urlNative,
-          ),
-          guards: [NavRailGuard()],
-          transition: TransitionType.custom,
-          customTransition: noTransition,
-        ),
-        ModuleRoute(
-          Paths.modDisco,
-          module: VerifyModule(
-            baseRoute: Paths.sysAccount,
-            url: url,
-          ),
-          // guards: [NavRailGuard()],
-          transition: TransitionType.custom,
-          customTransition: noTransition,
-        ),
-        ModuleRoute(
-          Paths.settings,
-          module: SettingsModule(),
-          transition: TransitionType.custom,
-          customTransition: noTransition,
-          guards: [NavRailGuard()],
+          children: [
+            ModuleRoute(
+              Paths.superAdminRoute,
+              module: BootstrapperModule(
+                baseRoute: Paths.superAdminRoute,
+                url: url,
+              ),
+              guards: [NavRailGuard()],
+              transition: TransitionType.custom,
+              customTransition: noTransition,
+            ),
+            ModuleRoute(
+              Paths.adminRoute,
+              module: AdminDashboardModule(
+                baseRoute: Paths.adminRoute,
+              ),
+              guards: [NavRailGuard()],
+              transition: TransitionType.custom,
+              customTransition: noTransition,
+            ),
+            ModuleRoute(
+              Paths.modDisco,
+              module: MainAppModule(
+                baseRoute: Paths.modDisco,
+                url: url,
+                urlNative: urlNative,
+              ),
+              guards: [NavRailGuard()],
+              transition: TransitionType.custom,
+              customTransition: noTransition,
+            ),
+            ModuleRoute(
+              Paths.modDisco,
+              module: VerifyModule(
+                baseRoute: Paths.sysAccount,
+                url: url,
+              ),
+              // guards: [NavRailGuard()],
+              transition: TransitionType.custom,
+              customTransition: noTransition,
+            ),
+            ModuleRoute(
+              Paths.settings,
+              module: SettingsModule(),
+              transition: TransitionType.custom,
+              customTransition: noTransition,
+              guards: [NavRailGuard()],
+            ),
+          ],
         ),
       ];
 

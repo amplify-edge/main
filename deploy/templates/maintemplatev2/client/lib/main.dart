@@ -1,3 +1,4 @@
+import 'package:asuka/asuka.dart' as asuka;
 import 'package:bootstrapper/pkg/i18n/bootstrap_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,7 +11,6 @@ import 'package:sys_share_sys_account_service/pkg/i18n/sys_account_localization.
 
 import '././core/core.dart';
 import 'modules/settings/settings.dart';
-import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,16 +23,14 @@ void main() async {
   await settingsViewModel.fetchEnvVariables();
 
   runApp(
-    RootRestorationScope(
-      restorationId: 'mtpl2-root',
-      child: provider.ChangeNotifierProvider<SettingsViewModel>(
-        create: (context) => settingsViewModel,
-        child: ModularApp(
-            module: AppModule(
+    provider.ChangeNotifierProvider<SettingsViewModel>(
+      create: (context) => settingsViewModel,
+      child: ModularApp(
+        module: AppModule(
           // not convinced if this is the right place to do this url config ...
           url: settingsViewModel.envVariables.url,
           urlNative: settingsViewModel.envVariables.urlNative,
-        )),
+        ),
       ),
     ),
   );
@@ -54,7 +52,7 @@ class _AppState extends State<App> {
     final model = provider.Provider.of<SettingsViewModel>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      builder: (context, child) => NavigationLayout(body: child),
+      builder: (context, child) => asuka.builder(context, child),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -65,7 +63,7 @@ class _AppState extends State<App> {
         BootstrapLocalizationsDelegate(),
         SysCoreLocalizationsDelegate(),
         SysAccountLocalizationsDelegate(),
-        ModDiscoLocalizationsDelegate(model.locale),
+        ModDiscoLocalizationsDelegate(),
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate
       ],

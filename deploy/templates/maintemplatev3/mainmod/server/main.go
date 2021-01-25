@@ -2,9 +2,10 @@
 package main
 
 import (
+	"github.com/getcouragenow/sys-share/sys-core/service/logging"
+	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
 	"time"
 
-	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
 	// gcn packages
@@ -34,7 +35,7 @@ var (
 	staticDir string
 )
 
-func recoveryHandler(l *logrus.Entry) func(panic interface{}) error {
+func recoveryHandler(l logging.Logger) func(panic interface{}) error {
 	return func(panic interface{}) error {
 		l.Warnf("sys-account service recovered, reason: %v",
 			panic)
@@ -49,7 +50,8 @@ func main() {
 	rootCmd.PersistentFlags().BoolVarP(&local, "local", "l", defaultLocal, "serve locally")
 	rootCmd.PersistentFlags().StringVarP(&staticDir, "directory", "d", defaultStaticDir, "directory to serve flutter build")
 
-	l := logrus.New().WithField("svc", "mainmodv3")
+	l := zaplog.NewZapLogger(zaplog.DEBUG, "mainmod", true, "")
+	l.InitLogger(map[string]interface{}{"version": "3"})
 
 	rootCmd.RunE = func(cmd *cobra.Command, args []string) error {
 		// ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)

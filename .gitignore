@@ -7,3 +7,4 @@ jsonnetfile.lock.json
 /deploy/bootstrapper/proto/v2/vendor/
 /deploy/projects/org-y/vendor/
 /deploy/projects/org-y/downloaded/
+gcn.log

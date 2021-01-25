@@ -16,7 +16,7 @@ class BootstrapView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider.withConsumer(
-      viewModelBuilder: () => BootstrapViewModel(),
+      viewModelBuilder: () => Modular.get<BootstrapViewModel>(),
       onModelReady: (BootstrapViewModel model) async {
         await model.fetchBootstraps();
       },
@@ -26,7 +26,8 @@ class BootstrapView extends StatelessWidget {
           id: id,
           items: model.bootstrapList,
           labelBuilder: (item) => item.fileId,
-          routeWithIdPlaceholder: Modular.get<Paths>().bootstrapDetailsPage,
+          routeWithIdPlaceholder:
+              Modular.get<SuperadminPaths>().bootstrapDetailsPage,
           detailsBuilder: (context, widgetId, isFullScreen) {
             return BootstrapDetailsView(
               id: widgetId,
