@@ -21,6 +21,8 @@ The binaries are cross platform and you can run all downloads on Windows, Mac, L
 
 **Curl based downloads**
 
+TODO: Update these bash calls once the script and git tag / releases is done.
+
 Server:
 
 ```bash
