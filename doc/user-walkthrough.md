@@ -143,3 +143,4 @@ Now locally, just follow the same steps from Step 0 onwards.
 Highlight anything different. Caddy for exmaple and SSL Certs..
 
 
+- TODO. Domain repointing... When in the steps... Assume ONLY after new config applied that causes the new SuperAdmin to be applied fromthe config.
