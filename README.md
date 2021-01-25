@@ -6,6 +6,10 @@ The system is a module architecture.
 
 If you are developing on the system you need the build tools in the shared repo.
 
+User walk through to configure and deploy the system: https://github.com/getcouragenow/main/blob/master/doc/users.md
+
+Dev walk through to config and modify the code: https://github.com/getcouragenow/main/blob/master/doc/developers.md
+
 ## Bootstrapper
 
 This folder holds the protos that are used to generate fake test data.
