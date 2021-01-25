@@ -23,6 +23,32 @@ From nothing you need to:
 	- shared
 	- sys repo
 
+
+**deployment flow**
+- Download the latest release artifacts of:
+	- binaries
+		- server
+		- sdk-cli
+		- metrics.
+			- Victoria Metrics
+			- graphana
+	- config.
+	- bootstrap data.
+	- supervisors.
+		- linux ( systemd )
+		- darwin and windows we DONT have yet.
+- Create a local Project folder
+	- Copy Org-y or other project structure locally.
+		- TODO: can use the sdk-cli to generate a project template that we embedded into the sdk-cli at buidl time.
+	- Create a encryption key ( using bs-crypt)  and put it somewhere you wont loose it.
+		- TODO: Need this to be part of sdk-cli
+- Modify config as needed and then encrypt it.
+	- smtp, backup URL / token
+- Modify bootstrap data as needed:
+	- How do we handle images ?
+- Deploy it
+	- SSH script
+
 ## Modules
 
 How to add a new module:
