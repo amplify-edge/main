@@ -2,22 +2,48 @@
 
 This document is designed for Users that wish to deploy the system.
 
-Download the latest release binaries of the CLI and Server from Main at: https://github.com/getcouragenow/main/releases
 
-- CLI binary allows you to remotely talk to the server from your laptop.
+## Download
+
+The binaries are cross platform and you can run all downloads on Windows, Mac, Linux.
+
+- CLI binary allows you to remotely talk to the server from your laptop, plus to:
 	- Upload the encrypted config and bootstrappers.
 	- Activate a bootstrap that you uploaded to the server
 
 - Server binary is the only binary needed for the server. There are no other dependences like databases etc, because the server has an embedded encrypted database.
 
----
-
-Download the latest booty from Main at: https://github.com/getcouragenow/main/releases.
-
-- Booty helps you to locally configure the system.
-	- encrypt the config before you uplaod it to the server.
+- Booty helps you to locally configure the data that drives the system to:
+	- encrypt the config before you upload it to the server.
 	- encode the images into the bootstrap.
+	- Upload the config and bootstrap to the server.
 
+
+**Curl based downloads**
+
+Server:
+
+```bash
+curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
+```
+
+Cli:
+
+```bash
+curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
+```
+
+Booty:
+
+```bash
+curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
+```
+
+**Release downloads**
+
+Server and CLI: https://github.com/getcouragenow/main/releases
+
+Booty: https://github.com/getcouragenow/main/releases.
 
 ## Learning the system
 
