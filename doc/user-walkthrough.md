@@ -1,4 +1,4 @@
-# Users
+# User Walkthrough
 
 This document is designed for Users that wish to deploy the system.
 
@@ -45,7 +45,7 @@ Server and CLI: https://github.com/getcouragenow/main/releases
 
 Booty: https://github.com/getcouragenow/main/releases.
 
-## Learning the system
+## Play with the Demo
 
 Its best to get familiar with the system by playing with the Demo that is deployed by the dev team each day.
 
@@ -75,32 +75,67 @@ projectadmin:
 
 After you have played with the Live demo, you should move on to "Running it locally".
 
-## Running it locally
+## Provisioning locally
 
-Running it the Booty, CLi and Server locally is a good way to check everything works before you Deploy to the Server.
+Running  Booty, CLi and Server locally is a good way to check everything works before you Deploy to the Server.
 
-You should make a folder on your laptop or in git for your project.
-
-Grab an example project:
-
-You can start with one of our templates:
+You should make a folder on your laptop Or copy an example project:
 - org-y is all machine generated: https://github.com/getcouragenow/main/tree/master/deploy/projects/org-y
 - org-x is hand customise: https://github.com/getcouragenow/main/tree/master/deploy/projects/org-x
 
+Follwo these steps:
 
-Proejcts contain the following files:
+0. Install the booty tools
 
-- bootstrap-data 
-- config
+- TODO: booty commands ( joe ? ) 
 
-Then edit the config for your needs:
+Now you have the various tools installed that booty needs.
 
-- blah blah.. 
+1. Start the server. It is hardcoded with a super admin of:
+- username: superadmin@domain.org
+- password: superadmin
 
-Then edit the bootstap data:
+- TODO: server command
 
-- blah blah...
+Because it has no config it will error at http://127.0.0.1:80
+
+2. Use booty to make a SSL local cert
+
+- TODO: booty commands ( alex ? ) 
+
+Now try: https://127.0.0.1:443
+
+
+3. Edit your config using booty tools, and upload it to the server.
+
+- TODO: booty commands ( alex ? )
+
+- TODO: CLI commands to upload the config.
+
+Now you must restart the Server for the config to be seen by the Server.
+
+When the config is applied, you can test the for email, works by ?? Alex ?
+
+
+4. Edit the bootstrap using booty tools, and upload it to the server.
+
+ -TODO: Description of what bits to edit...
+
+- TODO: Booty commands ( alex ? )
+
 
 After you have gotten it running locally, you should move on to "Deploy local to Server".
 
-## Deploy local to Server
+## Provisioning remotely
+
+This is exactly the same process as what you did locally, except that you are doing it to a Remote production server.
+
+You should make a new folder for this because your config will be different from local one.
+
+SSH to your Server so you can install the binary:
+
+- Curl it down.
+- Install systemd
+- start it
+
+Now locally, just follow the same steps from Step 2 onwards.

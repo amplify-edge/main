@@ -1,6 +1,6 @@
-# Developers
+# Developer Walkthrough
 
-This document is designed for Developers that wish to deploy the system.
+This document is designed for Developers that wish to work on and compile the system.
 
 The system is designed as a modular architecture so that it extensible, and so the way you developer and build it is a little different from standard golang and flutter projects.
 

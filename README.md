@@ -10,11 +10,24 @@ This project provides a platform offering real time collaboration to allow organ
 
 Web CI : https://org-y.getcouragenow.org/
 
+## Issues
+
+Please raise issues here:
+
+Issues: https://github.com/getcouragenow/main/issues
+
+Include the following if pertinent:
+
+- Version info from the GUI. E.G: https://org-y.getcouragenow.org/#/settings
+- What you expected and what you got.
+- Steps so that we can reproduce the Issue.
+	- The bootstrap file if you feel it will help.
+
 ## Installation and Walkthrough docs
 
 User walkthrough to configure and deploy the system: https://github.com/getcouragenow/main/blob/master/doc/user-walkthrough.md
 
-Dev walkthrough to config and modify the code: https://github.com/getcouragenow/main/blob/master/doc/developers-walkthrough.md
+Dev walkthrough to config and modify the code: https://github.com/getcouragenow/main/blob/master/doc/developer-walkthrough.md
 
 ## Design docs
 
