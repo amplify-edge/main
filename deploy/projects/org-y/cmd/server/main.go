@@ -12,8 +12,8 @@ func main() {
 	if err != nil {
 		logger.Fatalf("unable to open build version information: %v", err)
 	}
-	rootCmd := maintemplatev2.MainServerCommand(nil, b, logger)
-	if err := rootCmd.Execute(); err != nil {
+	rootCmd := maintemplatev2.MainServerCommand(AssetFile(), b, logger)
+	if err = rootCmd.Execute(); err != nil {
 		logger.Fatalf("error running maintemplatev2: %v", err)
 	}
 }

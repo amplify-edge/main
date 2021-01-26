@@ -20,13 +20,13 @@ import (
 
 	"github.com/getcouragenow/sys-share/sys-core/service/logging"
 	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
+	"github.com/getcouragenow/sys-share/sys-core/service/telemetry/ops"
 
 	"github.com/winwisely268/go-grpc-victoriametrics"
 
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
 	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
 	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/getcouragenow/sys-share/sys-core/service/telemetry/ops"
 	"github.com/getcouragenow/sys-share/sys-core/service/tracing"
 	"github.com/getcouragenow/sys/main/pkg"
 

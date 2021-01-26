@@ -163,7 +163,7 @@ build: # dep
 	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_WEB_PREFIX)" $(PWD)/flutter/build/web/...
 	go-bindata -fs -nomemcopy -pkg version -o $(VERSION_DIR)/version.go -prefix "version/" $(VERSION_DIR)/manifest.json
 	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
-	GOOS=linux GOARCH=amd64 $(GO_LDFLAGS) -o $(SERVER_BIN_DEPLOY) $(SERVER_ENTRYPOINT)
+	GOOS=linux GOARCH=amd64 go build -o $(SERVER_BIN_DEPLOY) $(SERVER_ENTRYPOINT)
 
 config: config-del
 	bs-crypt encrypt -s $(CONFIG_DIR) -d $(ENCRYPTED_CONFIG_DIR)
