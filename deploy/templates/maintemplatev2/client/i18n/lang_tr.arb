@@ -1,48 +1,48 @@
 {
   "@@last_modified": "2021-01-26T18:38:38.587408",
-  "tabSuper": "SuperAdmin",
+  "tabSuper": "Süper Yönetici",
   "@tabSuper": {
     "description": "text for superadmin tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabadmin": "Administración",
+  "tabadmin": "Yönetici",
   "@tabadmin": {
     "description": "text for admin tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabhome": "Casa",
+  "tabhome": "Ev",
   "@tabhome": {
     "description": "text for the home tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabsurvey": "Encuesta",
+  "tabsurvey": "Anket",
   "@tabsurvey": {
     "description": "text for survey tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabchat": "Charla",
+  "tabchat": "Sohbet",
   "@tabchat": {
     "description": "text for the chat tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabIon": "Ion",
+  "tabIon": "İyon",
   "@tabIon": {
     "description": "text for the ion tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabsettings": "Configuraciones",
+  "tabsettings": "Ayarlar",
   "@tabsettings": {
     "description": "text for the settings tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabwriter": "Escritor",
+  "tabwriter": "yazar",
   "@tabwriter": {
     "description": "text for the writer tab",
     "placeholders": {},
@@ -54,31 +54,31 @@
     "placeholders": {},
     "type": "text"
   },
-  "tabmap": "Mapa",
+  "tabmap": "Harita",
   "@tabmap": {
     "description": "text for the writer tab",
     "placeholders": {},
     "type": "text"
   },
-  "tabSettings": "Configuraciones",
+  "tabSettings": "Ayarlar",
   "@tabSettings": {
     "description": "text for the settings tab",
     "placeholders": {},
     "type": "text"
   },
-  "changeLanguageSet": "Cambiar idioma",
+  "changeLanguageSet": "Dili değiştir",
   "@changeLanguageSet": {
     "description": "text for the change language text in settings screen",
     "placeholders": {},
     "type": "text"
   },
-  "changeThemeSet": "Cambiar de tema",
+  "changeThemeSet": "Temayı değiştir",
   "@changeThemeSet": {
     "description": "text for the change theme text in settings screen",
     "placeholders": {},
     "type": "text"
   },
-  "noMenuSelected": "No se ha seleccionado ningún menú, haga clic en cualquiera del carril de navegación",
+  "noMenuSelected": "Menü seçilmedi, lütfen navigasyon rayından herhangi birine tıklayın",
   "@noMenuSelected": {
     "description": "text for home page",
     "placeholders": {},
