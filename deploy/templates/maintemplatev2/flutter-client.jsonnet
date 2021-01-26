@@ -7,6 +7,7 @@ local cfg = {
         "de",
         "fr",
         "it",
+        "tr",
         "ur",
    ],
    channel: loadVar(prefixName="FRONTEND", env="RELEASE_CHANNEL").val,

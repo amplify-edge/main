@@ -52,7 +52,8 @@ class _AppState extends State<App> {
     final model = provider.Provider.of<SettingsViewModel>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      builder: (context, child) => asuka.builder(context, child),
+      builder: (context, child) =>
+          asuka.builder(context, NavigationLayout(body: child)),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

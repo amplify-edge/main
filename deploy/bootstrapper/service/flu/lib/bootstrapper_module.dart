@@ -25,13 +25,20 @@ class BootstrapperModule extends ChildModule {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (_, args) {
-          return BootstrapView();
+          return BootstrapView(
+            routePlaceholder: SuperadminPaths(baseRoute).bootstrapDetailsPage,
+          );
         }),
-        ChildRoute('/bootstraps', child: (_, args) => BootstrapView()),
+        ChildRoute('/bootstraps',
+            child: (_, args) => BootstrapView(
+                  routePlaceholder:
+                      SuperadminPaths(baseRoute).bootstrapDetailsPage,
+                )),
         ChildRoute(
           '/bootstraps/:id',
           child: (_, args) => BootstrapView(
             id: args.params['id'] ?? '',
+            routePlaceholder: SuperadminPaths(baseRoute).bootstrapDetailsPage,
           ),
         ),
       ];

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-01-25T02:50:37.485151",
+  "@@last_modified": "2021-01-26T10:55:44.851431",
   "tabSuper": "Höchster Vorgesetzter",
   "@tabSuper": {
     "description": "text for superadmin tab",
@@ -75,6 +75,12 @@
   "changeThemeSet": "Thema ändern",
   "@changeThemeSet": {
     "description": "text for the change theme text in settings screen",
+    "placeholders": {},
+    "type": "text"
+  },
+  "noMenuSelected": "Kein Menü ausgewählt, bitte klicken Sie auf eines in der Navigationsleiste",
+  "@noMenuSelected": {
+    "description": "text for home page",
     "placeholders": {},
     "type": "text"
   }

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-01-25T02:50:37.485151",
+  "@@last_modified": "2021-01-26T10:55:44.851431",
   "tabSuper": "SuperAdmin",
   "@tabSuper": {
     "description": "text for superadmin tab",
@@ -75,6 +75,12 @@
   "changeThemeSet": "Change Theme",
   "@changeThemeSet": {
     "description": "text for the change theme text in settings screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMenuSelected": "No menu selected, please click any from the navigation rail",
+  "@noMenuSelected": {
+    "description": "text for home page",
     "type": "text",
     "placeholders": {}
   }

@@ -2,6 +2,7 @@ import 'package:bootstrapper/bootstrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:maintemplatev2/core/routing/route_guard.dart';
+import 'package:maintemplatev2/core/views/home_page.dart';
 import 'package:maintemplatev2/main.dart';
 import 'package:mod_disco/modules/mod_disco.dart';
 import 'package:sys_share_sys_account_service/view/screens/verify_module.dart';
@@ -25,58 +26,56 @@ class AppModule extends MainModule {
   List<ModularRoute> get routes => [
         ChildRoute(
           Paths.base,
-          child: (ctx, args) => NavigationLayout(
-            body: RouterOutlet(),
+          child: (_, args) => RootPage(),
+          transition: TransitionType.custom,
+          customTransition: noTransition,
+        ),
+        ModuleRoute(
+          Paths.superAdminRoute,
+          module: BootstrapperModule(
+            baseRoute: Paths.superAdminRoute,
+            url: url,
           ),
-          children: [
-            ModuleRoute(
-              Paths.superAdminRoute,
-              module: BootstrapperModule(
-                baseRoute: Paths.superAdminRoute,
-                url: url,
-              ),
-              guards: [NavRailGuard()],
-              transition: TransitionType.custom,
-              customTransition: noTransition,
-            ),
-            ModuleRoute(
-              Paths.adminRoute,
-              module: AdminDashboardModule(
-                baseRoute: Paths.adminRoute,
-              ),
-              guards: [NavRailGuard()],
-              transition: TransitionType.custom,
-              customTransition: noTransition,
-            ),
-            ModuleRoute(
-              Paths.modDisco,
-              module: MainAppModule(
-                baseRoute: Paths.modDisco,
-                url: url,
-                urlNative: urlNative,
-              ),
-              guards: [NavRailGuard()],
-              transition: TransitionType.custom,
-              customTransition: noTransition,
-            ),
-            ModuleRoute(
-              Paths.modDisco,
-              module: VerifyModule(
-                baseRoute: Paths.sysAccount,
-                url: url,
-              ),
-              // guards: [NavRailGuard()],
-              transition: TransitionType.custom,
-              customTransition: noTransition,
-            ),
-            ModuleRoute(
-              Paths.settings,
-              module: SettingsModule(),
-              transition: TransitionType.custom,
-              customTransition: noTransition,
-              guards: [NavRailGuard()],
-            ),
-          ],
+          guards: [NavRailGuard()],
+          transition: TransitionType.custom,
+          customTransition: noTransition,
+        ),
+        ModuleRoute(
+          Paths.adminRoute,
+          module: AdminDashboardModule(
+            baseRoute: Paths.adminRoute,
+          ),
+          guards: [NavRailGuard()],
+          transition: TransitionType.custom,
+          customTransition: noTransition,
+        ),
+        ModuleRoute(
+          Paths.modDisco,
+          module: MainAppModule(
+            baseRoute: Paths.modDisco,
+            url: url,
+            urlNative: urlNative,
+          ),
+          guards: [NavRailGuard()],
+          transition: TransitionType.custom,
+          customTransition: noTransition,
+        ),
+        ModuleRoute(
+          Paths.modDisco,
+          module: VerifyModule(
+            baseRoute: Paths.sysAccount,
+            url: url,
+          ),
+          // guards: [NavRailGuard()],
+          transition: TransitionType.custom,
+          customTransition: noTransition,
+        ),
+        ModuleRoute(
+          Paths.settings,
+          module: SettingsModule(),
+          transition: TransitionType.custom,
+          customTransition: noTransition,
+          guards: [NavRailGuard()],
         ),
       ];
 

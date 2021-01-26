@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "changeLanguageSet" : MessageLookupByLibrary.simpleMessage("Cambia lingua"),
     "changeThemeSet" : MessageLookupByLibrary.simpleMessage("Cambia tema"),
+    "noMenuSelected" : MessageLookupByLibrary.simpleMessage("Nessun menu selezionato, fare clic su qualsiasi dalla barra di navigazione"),
     "tabIon" : MessageLookupByLibrary.simpleMessage("Ion"),
     "tabKanban" : MessageLookupByLibrary.simpleMessage("Kanban"),
     "tabSettings" : MessageLookupByLibrary.simpleMessage("impostazioni"),
