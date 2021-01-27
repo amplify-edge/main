@@ -1,9 +1,9 @@
 import 'package:bootstrapper/bootstrapper.dart';
 import 'package:bootstrapper/pkg/shared_repositories/bootstrap_repo.dart';
 import 'package:fixnum/fixnum.dart';
-import 'package:flutter/widgets.dart';
+import 'package:sys_share_sys_account_service/pkg/shared_services/base_model.dart';
 
-class BootstrapViewModel extends ChangeNotifier {
+class BootstrapViewModel extends BaseModel {
   String _errMsg = '';
   Int64 currentPageId = Int64.ZERO;
   bool _isLoading = false;
