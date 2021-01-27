@@ -61,7 +61,7 @@ class AppModule extends MainModule {
           customTransition: noTransition,
         ),
         ModuleRoute(
-          Paths.modDisco,
+          Paths.sysAccount,
           module: VerifyModule(
             baseRoute: Paths.sysAccount,
             url: url,

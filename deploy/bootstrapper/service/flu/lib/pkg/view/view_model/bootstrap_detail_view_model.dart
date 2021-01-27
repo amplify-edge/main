@@ -67,6 +67,7 @@ class BootstrapDetailViewModel extends ChangeNotifier {
     _setLoading(true);
     await BootstrapRepo.getBootstrap(bsId: _fileId).then((resp) {
       final fileContent = resp.content.toString();
+      print("FILECONTENT: $fileContent");
       _setFileEditor(
         FileEditor(
           name: resp.fileId.split('.').first,
@@ -94,13 +95,13 @@ class BootstrapDetailViewModel extends ChangeNotifier {
         builder: (BuildContext dialogContext) {
           return AlertDialog(
             title: Text(BootstrapLocalizations.of(context)
-                .translate('executeBootstrap')),
+                .executeBootstrap()),
             content: Text(BootstrapLocalizations.of(context)
                 .translate('allOfYourDataWillBeDeleted')),
             actions: <Widget>[
               FlatButton(
                 child: Text(
-                    BootstrapLocalizations.of(context).translate('confirm')),
+                    BootstrapLocalizations.of(context).confirm()),
                 color: Colors.green.shade500,
                 textColor: Colors.white,
                 onPressed: () async {
@@ -116,7 +117,7 @@ class BootstrapDetailViewModel extends ChangeNotifier {
               ),
               FlatButton(
                 child: Text(
-                    BootstrapLocalizations.of(context).translate('cancel')),
+                    BootstrapLocalizations.of(context).cancel()),
                 color: Colors.red.shade500,
                 textColor: Colors.white,
                 onPressed: () {

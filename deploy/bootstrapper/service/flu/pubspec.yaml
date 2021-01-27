@@ -22,6 +22,7 @@ dependencies:
   #  intl_translation: ^0.17.10+1
   data_tables: ^1.0.3
   cupertino_icons: ^1.0.0
+  random_string: ^2.1.0
   #  font_awesome_flutter: ^8.7.0
   #  flutter_material_pickers: ^1.8.1
   grpc: ^2.8.0

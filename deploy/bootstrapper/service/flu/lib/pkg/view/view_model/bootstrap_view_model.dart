@@ -7,7 +7,14 @@ class BootstrapViewModel extends ChangeNotifier {
   String _errMsg = '';
   Int64 currentPageId = Int64.ZERO;
   bool _isLoading = false;
-  List<BS> _bootstrapList;
+  List<BS> _bootstrapList = List<BS>.empty(growable: true);
+
+  BootstrapViewModel(List<BS> bsList) {
+    if (bsList != null && bsList.isNotEmpty) {
+      _bootstrapList = bsList;
+      notifyListeners();
+    }
+  }
 
   bool get isLoading => _isLoading;
 
@@ -33,5 +40,6 @@ class BootstrapViewModel extends ChangeNotifier {
   Future<void> refreshBootstrapList() async {
     _bootstrapList.clear();
     await fetchBootstraps();
+    notifyListeners();
   }
 }

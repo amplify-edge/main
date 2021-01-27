@@ -8,3 +8,4 @@ jsonnetfile.lock.json
 /deploy/projects/org-y/vendor/
 /deploy/projects/org-y/downloaded/
 gcn.log
+gcn-client.log

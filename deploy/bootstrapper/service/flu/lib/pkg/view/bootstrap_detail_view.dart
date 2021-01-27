@@ -6,11 +6,10 @@ import 'package:provider_architecture/_viewmodel_provider.dart';
 
 class BootstrapDetailsView extends StatelessWidget {
   final String id;
-  final bool isLoading;
   final Function deleteCallback;
 
   const BootstrapDetailsView(
-      {Key key, @required this.id, this.isLoading = false, this.deleteCallback})
+      {Key key, @required this.id, this.deleteCallback})
       : super(key: key);
 
   @override
@@ -27,21 +26,21 @@ class BootstrapDetailsView extends StatelessWidget {
             )
           : Scaffold(
               appBar: AppBar(
-                automaticallyImplyLeading: true,
+                automaticallyImplyLeading: false,
                 title: Text(
                   BootstrapLocalizations.of(context)
-                      .translate('bootstrapDetails'),
+                      .bootstrapDetails(),
                 ),
                 actions: [
                   IconButton(
                     autofocus: false,
-                    tooltip: BootstrapLocalizations.of(context).translate('execute'),
+                    tooltip: BootstrapLocalizations.of(context).execute(),
                     onPressed: model.onExecuteBootstrap(context, id),
                     icon: Icon(Icons.check, color: Colors.white),
                   ),
                   IconButton(
                     autofocus: false,
-                    tooltip: BootstrapLocalizations.of(context).translate('delete'),
+                    tooltip: BootstrapLocalizations.of(context).delete(),
                     onPressed: model.onDeleteBootstrap(context, id, deleteCallback),
                     icon: Icon(
                       Icons.delete_outline,
@@ -51,14 +50,11 @@ class BootstrapDetailsView extends StatelessWidget {
                 ],
               ),
               body: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(20.0),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      SizedBox(height: 10),
                       SizedBox(height: 30),
-                      // FilePickerWidget(),
-                      // SizedBox(height: 20),
                       CodeEditor(
                         model: model.getEditorModel(),
                         edit: false,
