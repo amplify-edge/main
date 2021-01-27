@@ -21,7 +21,6 @@ message BSOrg {
 message BSRequest {
   repeated BSOrg orgs = 1;
   repeated BSProject projects = 2;
-  repeated BSAccount superusers = 3;
   repeated BSRegularAccount regular_users = 4;
 }
 

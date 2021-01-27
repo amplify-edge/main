@@ -17,6 +17,7 @@ class RootPage extends StatelessWidget {
             Text(
               AppLocalizations.of(context).noMenuSelected(),
               style: Theme.of(context).textTheme.subtitle1,
+              textAlign: TextAlign.center,
             ),
           ],
         ),

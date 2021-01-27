@@ -124,7 +124,6 @@ class BSRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'BSRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'v2.main_bootstrap.services'), createEmptyInstance: create)
     ..pc<BSOrg>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'orgs', $pb.PbFieldType.PM, subBuilder: BSOrg.create)
     ..pc<BSProject>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'projects', $pb.PbFieldType.PM, subBuilder: BSProject.create)
-    ..pc<BSAccount>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'superusers', $pb.PbFieldType.PM, subBuilder: BSAccount.create)
     ..pc<BSRegularAccount>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'regularUsers', $pb.PbFieldType.PM, subBuilder: BSRegularAccount.create)
     ..hasRequiredFields = false
   ;
@@ -158,11 +157,8 @@ class BSRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.List<BSProject> get projects => $_getList(1);
 
-  @$pb.TagNumber(3)
-  $core.List<BSAccount> get superusers => $_getList(2);
-
   @$pb.TagNumber(4)
-  $core.List<BSRegularAccount> get regularUsers => $_getList(3);
+  $core.List<BSRegularAccount> get regularUsers => $_getList(2);
 }
 
 class BSAccount extends $pb.GeneratedMessage {

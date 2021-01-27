@@ -26,7 +26,6 @@ const BSRequest$json = const {
   '2': const [
     const {'1': 'orgs', '3': 1, '4': 3, '5': 11, '6': '.v2.main_bootstrap.services.BSOrg', '10': 'orgs'},
     const {'1': 'projects', '3': 2, '4': 3, '5': 11, '6': '.v2.main_bootstrap.services.BSProject', '10': 'projects'},
-    const {'1': 'superusers', '3': 3, '4': 3, '5': 11, '6': '.v2.main_bootstrap.services.BSAccount', '10': 'superusers'},
     const {'1': 'regular_users', '3': 4, '4': 3, '5': 11, '6': '.v2.main_bootstrap.services.BSRegularAccount', '10': 'regularUsers'},
   ],
 };

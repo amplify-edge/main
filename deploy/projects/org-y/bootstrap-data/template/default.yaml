@@ -553,11 +553,6 @@ projects:
             dropdownQuestion: Tacos craft beer dreamcatcher carry blog DIY flexitarian jean shorts pop-up?
         sys_account_project_ref_name: sys_account_project_5
         survey_project_name: survey_project_5
-superusers:
-  main_bootstrap_superusers:
-    - initialsuperuser:
-        email: ops_0@getcouragenow.org
-        password: 0ZSKDYllwJ49d0Gs
 regular_users:
   main_bootstrap_regular_users:
     - newaccounts:

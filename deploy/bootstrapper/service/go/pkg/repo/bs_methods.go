@@ -82,7 +82,6 @@ func (b *BootstrapRepo) GetBootstrap(ctx context.Context, in *bsrpc.GetBSRequest
 		Content: &bsrpc.BSRequest{
 			Orgs:       bsAll.GetOrgs(),
 			Projects:   bsAll.GetProjects(),
-			Superusers: bsAll.GetSuperUsers(),
 		},
 	}, nil
 }

@@ -1,0 +1,1 @@
+{"lvl":"fatal","time":1611731022.7379873,"caller":"sdk-cli/main.go:18","msg":"command failed: rpc error: code = Unknown desc = yaml: unmarshal errors:\n  line 556: field superusers not found in type fakedata.BootstrapAll","app":"maintemplatev2"}

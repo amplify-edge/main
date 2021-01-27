@@ -94,7 +94,7 @@
                                         "type": "string"
                                     }
                                 ],
-                                "description": "@inject_tag: fake:\"{number:1,1000}\" yaml:\"already_pledged\""
+                                "description": "@inject_tag: fake:\"skip\" yaml:\"already_pledged,omitempty\""
                             },
                             "action_time_nano": {
                                 "oneOf": [
@@ -300,30 +300,6 @@
                             "survey_project_name": {
                                 "type": "string",
                                 "description": "@inject_tag: fake:\"{nameseq:survey_project,false,none,false,false}\" yaml:\"survey_project_name\""
-                            }
-                        },
-                        "additionalProperties": true,
-                        "type": "object"
-                    }
-                },
-                "additionalProperties": true,
-                "type": "object"
-            },
-            "type": "array"
-        },
-        "superusers": {
-            "items": {
-                "$schema": "http://json-schema.org/draft-04/schema#",
-                "properties": {
-                    "initial_superuser": {
-                        "properties": {
-                            "email": {
-                                "type": "string",
-                                "description": "@inject_tag: fake:\"{mailseq:ops,false,none,false}\" yaml:\"email\""
-                            },
-                            "password": {
-                                "type": "string",
-                                "description": "@inject_tag: fake:\"{password:true,true,true,false,false,16}\" yaml:\"password\""
                             }
                         },
                         "additionalProperties": true,
