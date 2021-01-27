@@ -68,7 +68,6 @@ class BootstrapDetailViewModel extends BaseModel {
     _setLoading(true);
     await BootstrapRepo.getBootstrap(bsId: _fileId).then((resp) {
       final fileContent = resp.content.toString();
-      print("FILECONTENT: $fileContent");
       _setFileEditor(
         FileEditor(
           name: resp.fileId.split('.').first,

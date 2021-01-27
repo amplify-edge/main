@@ -2,9 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:sys_share_sys_account_service/view/widgets/auth_nav_layout.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:sys_share_sys_account_service/view/widgets/nav_rail.dart';
 
 import '../core.dart';
@@ -48,7 +46,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
         ),
       }),
       tabs: LinkedHashMap.of(<String, Widget>{
-        Paths.modDisco: TabItem(
+        Paths.modDiscoProject: TabItem(
           title: Text(
             AppLocalizations.of(context).tabhome(),
             style: TextStyle(fontSize: 12),

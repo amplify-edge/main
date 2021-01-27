@@ -4,6 +4,7 @@ import 'package:sys_share_sys_account_service/view/widgets/view_model/auth_nav_v
 class NavRailGuard implements RouteGuard {
   @override
   Future<bool> canActivate(String path, ModularRoute router) async {
+    print("CURRENT PATH: " + router.path);
     final navIdx = Modular.get<AuthNavViewModel>().getDynamicNavIndex(path);
     if (navIdx > 0) {
       Modular.get<AuthNavViewModel>().setCurrentNavIndex(navIdx);

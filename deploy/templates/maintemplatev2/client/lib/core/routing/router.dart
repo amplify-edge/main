@@ -13,6 +13,7 @@ class Paths {
   static const String modWriter = '/modWriter';
   static const String modGeo = '/geo';
   static const String modDisco = '/disco';
+  static const String modDiscoProject = '/disco/project';
   static const String modSurvey = '/survey';
   static const String modAccount = '/account';
   static const String modKanban = '/kanban';
