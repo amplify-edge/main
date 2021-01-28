@@ -22,14 +22,14 @@ class _NavigationLayoutState extends State<NavigationLayout> {
     return AuthNavLayout(
       body: widget.body,
       adminTabs: LinkedHashMap.of(<String, TabItem>{
-        Paths.adminRoute: TabItem(
+        Paths.adminDashboardRoute: TabItem(
           title: Text(
             AppLocalizations.of(context).tabadmin(),
             style: TextStyle(fontSize: 12),
           ),
           icon: Icon(Icons.dashboard, size: 30),
           onTap: () {
-            Modular.to.navigate(Paths.adminRoute);
+            Modular.to.navigate(Paths.adminDashboardRoute);
           },
         ),
       }),
@@ -53,7 +53,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
           ),
           icon: Icon(Icons.home, size: 30),
           onTap: () {
-            Modular.to.navigate(Paths.modDisco);
+            Modular.to.navigate(Paths.modDiscoProject);
           },
         ),
         Paths.settings: TabItem(
