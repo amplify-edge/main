@@ -387,6 +387,7 @@ class BS extends $pb.GeneratedMessage {
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fileId')
     ..aOM<$4.Timestamp>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'createdAt', subBuilder: $4.Timestamp.create)
     ..aOM<BSRequest>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content', subBuilder: BSRequest.create)
+    ..aOB(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isCurrentlyActive')
     ..hasRequiredFields = false
   ;
 
@@ -443,6 +444,15 @@ class BS extends $pb.GeneratedMessage {
   void clearContent() => clearField(3);
   @$pb.TagNumber(3)
   BSRequest ensureContent() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  $core.bool get isCurrentlyActive => $_getBF(3);
+  @$pb.TagNumber(4)
+  set isCurrentlyActive($core.bool v) { $_setBool(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasIsCurrentlyActive() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearIsCurrentlyActive() => clearField(4);
 }
 
 class ListBSResponse extends $pb.GeneratedMessage {

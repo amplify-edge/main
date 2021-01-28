@@ -1,11 +1,11 @@
 import 'package:bootstrapper/bootstrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:maintemplatev2/core/routing/route_guard.dart';
 import 'package:maintemplatev2/core/views/home_page.dart';
 import 'package:maintemplatev2/main.dart';
 import 'package:mod_disco/modules/mod_disco.dart';
 import 'package:sys_share_sys_account_service/view/screens/verify_module.dart';
+import 'package:sys_share_sys_account_service/pkg/guards/route_guard.dart';
 import 'package:sys_share_sys_account_service/view/widgets/view_model/auth_nav_view_model.dart';
 
 import 'core/core.dart';
@@ -29,6 +29,7 @@ class AppModule extends MainModule {
           child: (_, args) => RootPage(),
           transition: TransitionType.custom,
           customTransition: noTransition,
+          guards: [NavRailGuard()],
         ),
         ModuleRoute(
           Paths.superAdminRoute,

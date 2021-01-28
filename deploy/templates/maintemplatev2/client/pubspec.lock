@@ -370,7 +370,7 @@ packages:
       name: googleapis_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.12"
+    version: "0.2.12+1"
   graphs:
     dependency: transitive
     description:
@@ -812,6 +812,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0-nullsafety.3"
+  string_similarity:
+    dependency: transitive
+    description:
+      name: string_similarity
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   sys_core:
     dependency: transitive
     description:

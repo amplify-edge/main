@@ -81,10 +81,19 @@ class BootstrapDetailViewModel extends BaseModel {
     _setLoading(false);
   }
 
-  EditorModel getEditorModel() {
-    return EditorModel(
-      files: [_fileEditor],
-    );
+  Widget getEditorModel(BuildContext context) {
+    return _fileEditor != null
+        ? CodeEditor(
+            model: EditorModel(files: [_fileEditor]),
+            edit: false,
+            onSubmit: null,
+          )
+        : Center(
+            child: Text(
+              BootstrapLocalizations.of(context).noBootstraps(),
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+          );
   }
 
   Function() onExecuteBootstrap(BuildContext context, String id) {

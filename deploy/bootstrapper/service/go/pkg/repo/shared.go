@@ -16,17 +16,21 @@ const (
 	defaultTimeout = 5 * time.Second
 )
 
-func (b *BootstrapRepo) sharedExecutor(ctx context.Context, bsAll *fakedata.BootstrapAll) (err error) {
+func (b *BootstrapRepo) sharedExecutor(ctx context.Context, bsAll *fakedata.BootstrapAll, filename string) (err error) {
 	orgs := bsAll.GetOrgs()
 	projects := bsAll.GetProjects()
 	regs := bsAll.GetRegularUsers()
 	if b.accRepo != nil && b.discoRepo != nil {
-		return b.sharedExecv2(ctx, orgs, projects, regs)
+		err = b.sharedExecv2(ctx, orgs, projects, regs)
 	}
 	if b.accClient != nil && b.discoClient != nil {
-		return b.sharedExecv3(ctx, orgs, projects, regs)
+		err = b.sharedExecv3(ctx, orgs, projects, regs)
 	}
-	return fmt.Errorf("invalid argument, no repo or client defined for bootstrap")
+	if err != nil {
+		return err
+	}
+	return b.setIsActive(filename)
+	//return fmt.Errorf("invalid argument, no repo or client defined for bootstrap")
 }
 
 func (b *BootstrapRepo) sharedExecv3(ctx context.Context, orgs []*bsrpc.BSOrg, projects []*bsrpc.BSProject, regularUsers []*bsrpc.BSRegularAccount) error {

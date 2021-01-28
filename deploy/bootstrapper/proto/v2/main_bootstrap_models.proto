@@ -51,6 +51,7 @@ message BS {
   string file_id = 1;
   google.protobuf.Timestamp created_at = 2;
   BSRequest content = 3;
+  bool is_currently_active = 4;
 }
 
 message ListBSResponse {

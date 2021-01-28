@@ -8,15 +8,23 @@ class BootstrapViewModel extends BaseModel {
   Int64 currentPageId = Int64.ZERO;
   bool _isLoading = false;
   List<BS> _bootstrapList = List<BS>.empty(growable: true);
+  String _activeId = '';
 
   BootstrapViewModel(List<BS> bsList) {
     if (bsList != null && bsList.isNotEmpty) {
       _bootstrapList = bsList;
+      bsList.forEach((bs) {
+        if (bs.isCurrentlyActive) {
+          _activeId = bs.fileId;
+        }
+      });
       notifyListeners();
     }
   }
 
   bool get isLoading => _isLoading;
+
+  String get activeId => _activeId;
 
   List<BS> get bootstrapList => _bootstrapList;
 
@@ -31,6 +39,11 @@ class BootstrapViewModel extends BaseModel {
       if (_bootstrapList == null || _bootstrapList.isEmpty) {
         _bootstrapList = res.bootstraps;
       }
+      res.bootstraps.forEach((bs) {
+        if (bs.isCurrentlyActive) {
+          _activeId = bs.fileId;
+        }
+      });
     }).catchError((e) {
       throw e;
     });

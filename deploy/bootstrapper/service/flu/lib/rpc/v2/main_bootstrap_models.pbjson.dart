@@ -73,6 +73,7 @@ const BS$json = const {
     const {'1': 'file_id', '3': 1, '4': 1, '5': 9, '10': 'fileId'},
     const {'1': 'created_at', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
     const {'1': 'content', '3': 3, '4': 1, '5': 11, '6': '.v2.main_bootstrap.services.BSRequest', '10': 'content'},
+    const {'1': 'is_currently_active', '3': 4, '4': 1, '5': 8, '10': 'isCurrentlyActive'},
   ],
 };
 

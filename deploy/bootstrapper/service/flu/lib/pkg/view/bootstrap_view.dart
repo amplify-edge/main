@@ -37,6 +37,7 @@ class _BootstrapViewState extends State<BootstrapView> {
             : AdminMasterDetails<BS>(
                 enableSearchBar: false,
                 id: widget.id,
+                activeId: model.activeId,
                 items: model.bootstrapList,
                 labelBuilder: (item) => item.fileId,
                 routeWithIdPlaceholder: widget.routePlaceholder,
@@ -52,7 +53,7 @@ class _BootstrapViewState extends State<BootstrapView> {
                   child: Text(
                     BootstrapLocalizations.of(context)
                         .translate('noBootstraps'),
-                    style: Theme.of(context).copyWith().textTheme.headline4,
+                    style: Theme.of(context).copyWith().textTheme.subtitle2,
                     textAlign: TextAlign.center,
                   ),
                 ),

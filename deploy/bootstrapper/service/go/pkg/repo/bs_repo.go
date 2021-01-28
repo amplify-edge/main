@@ -14,14 +14,15 @@ import (
 )
 
 type BootstrapRepo struct {
-	savePath    string
-	domain      string
-	logger      logging.Logger
-	accRepo     *accountRepo.SysAccountRepo
-	discoRepo   *discoRepo.ModDiscoRepo
-	accClient   *sysSharePkg.SysAccountProxyServiceClient // v3 via grpc
-	discoClient discoRpc.SurveyServiceClient              // v3 via grpc
-	busClient   *corebus.CoreBus
+	savePath       string
+	activeFilePath string
+	domain         string
+	logger         logging.Logger
+	accRepo        *accountRepo.SysAccountRepo
+	discoRepo      *discoRepo.ModDiscoRepo
+	accClient      *sysSharePkg.SysAccountProxyServiceClient // v3 via grpc
+	discoClient    discoRpc.SurveyServiceClient              // v3 via grpc
+	busClient      *corebus.CoreBus
 }
 
 func NewBootstrapRepo(logger logging.Logger, domain, savePath string, accRepo *accountRepo.SysAccountRepo, discoRepo *discoRepo.ModDiscoRepo, cc grpc.ClientConnInterface, busClient *corebus.CoreBus) *BootstrapRepo {
@@ -43,14 +44,21 @@ func NewBootstrapRepo(logger logging.Logger, domain, savePath string, accRepo *a
 	if err != nil {
 		logger.Fatalf("unable to create bootstrap repo: %v", err)
 	}
+	// create new .active file that contains the name of currently active bootstrap
+	activeFilePath := filepath.Join(absPath, ".active")
+	_, err = os.OpenFile(activeFilePath, os.O_RDWR|os.O_CREATE, 0660)
+	if err != nil {
+		logger.Fatalf("unable to create bootstrap repo: %v", err)
+	}
 	return &BootstrapRepo{
-		domain:      domain,
-		savePath:    absPath,
-		accRepo:     accRepo,
-		discoRepo:   discoRepo,
-		accClient:   accClient,
-		discoClient: discoClient,
-		busClient:   busClient,
+		domain:         domain,
+		savePath:       absPath,
+		accRepo:        accRepo,
+		discoRepo:      discoRepo,
+		accClient:      accClient,
+		discoClient:    discoClient,
+		busClient:      busClient,
+		activeFilePath: activeFilePath,
 	}
 }
 
