@@ -26,7 +26,8 @@ class _NavigationLayoutState extends State<NavigationLayout> {
       adminTabs: LinkedHashMap.of(<String, TabItem>{
         Paths.adminDashboardRoute: TabItem(
           title: Text(
-            AppLocalizations.of(context).tabadmin(),
+            // AppLocalizations.of(context).tabadmin(),
+            'Admin',
             style: TextStyle(fontSize: 12),
           ),
           icon: Icon(Icons.dashboard, size: 30),
@@ -38,7 +39,8 @@ class _NavigationLayoutState extends State<NavigationLayout> {
       superAdminTabs: LinkedHashMap.of(<String, TabItem>{
         Paths.superAdminRoute: TabItem(
           title: Text(
-            AppLocalizations.of(context).tabSuper(),
+            // AppLocalizations.of(context).tabSuper(),
+            'SuperAdmin',
             style: TextStyle(fontSize: 12),
           ),
           icon: Icon(Icons.people, size: 30),
@@ -50,7 +52,8 @@ class _NavigationLayoutState extends State<NavigationLayout> {
       tabs: LinkedHashMap.of(<String, Widget>{
         Paths.modDiscoProject: TabItem(
           title: Text(
-            AppLocalizations.of(context).tabhome(),
+            // AppLocalizations.of(context).tabhome(),
+            'Home',
             style: TextStyle(fontSize: 12),
           ),
           icon: Icon(Icons.home, size: 30),
@@ -60,7 +63,8 @@ class _NavigationLayoutState extends State<NavigationLayout> {
         ),
         Paths.settings: TabItem(
           title: Text(
-            AppLocalizations.of(context).tabsettings(),
+            // AppLocalizations.of(context).tabsettings(),
+            'Settings',
             style: TextStyle(fontSize: 12),
           ),
           icon: Icon(Icons.settings, size: 30),

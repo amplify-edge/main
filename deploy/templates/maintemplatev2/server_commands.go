@@ -20,8 +20,6 @@ import (
 
 	"github.com/getcouragenow/sys-share/sys-core/service/logging"
 	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
-	"github.com/getcouragenow/sys-share/sys-core/service/telemetry/ops"
-
 	"github.com/winwisely268/go-grpc-victoriametrics"
 
 	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
@@ -153,10 +151,11 @@ func MainServerCommand(system http.FileSystem, version []byte, applogger logging
 		}
 
 		// initiate application level monitoring
-		curWorkingDir, _ := os.Getwd()
-		opsMonitor := ops.NewOpsSystemMonitor(cmd.Context(), scrapeInterval, curWorkingDir, logger)
-
-		go opsMonitor.Run()
+		// currently broken, needs glibc / CGO which we don't want to do.
+		//curWorkingDir, _ := os.Getwd()
+		//opsMonitor := ops.NewOpsSystemMonitor(cmd.Context(), scrapeInterval, curWorkingDir, logger)
+		//
+		//go opsMonitor.Run()
 
 		// initiate grpc server
 		var grpcServer *grpc.Server

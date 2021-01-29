@@ -6,6 +6,10 @@ import 'package:random_string/random_string.dart';
 import 'views/settings_view.dart';
 
 class SettingsModule extends ChildModule {
+  // final Function onChangeLanguageCallback;
+  //
+  // SettingsModule({@required this.onChangeLanguageCallback});
+
   @override
   List<Bind> get binds => [];
 
@@ -14,7 +18,8 @@ class SettingsModule extends ChildModule {
         ChildRoute(
           Paths.settings,
           child: (context, args) => SettingsView(
-            key: Key(randomString(32)),
+            key: Key(randomString(16)),
+            // onChangeLanguageCallback: onChangeLanguageCallback,
           ),
         ),
       ];

@@ -4,7 +4,14 @@ import 'package:maintemplatev2/modules/settings/view_models/settings_view_model.
 import 'package:provider/provider.dart';
 
 class SettingsViewWeb extends StatelessWidget {
-  SettingsViewWeb({Key key}) : super(key: key);
+  // final Function _onChangeLanguageCallback;
+
+  SettingsViewWeb({
+    Key key,
+    // @required Function onChangeLanguageCallback,
+  })
+  // : _onChangeLanguageCallback = onChangeLanguageCallback,
+  : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +50,7 @@ class SettingsViewWeb extends StatelessWidget {
               value: model.locale,
               onChanged: (Locale value) {
                 model.changeLanguage(value);
+                // _onChangeLanguageCallback();
               },
               items: model.supportedLocales
                   .map<DropdownMenuItem<Locale>>((Locale value) {
