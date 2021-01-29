@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sys_share_sys_account_service/view/widgets/auth_nav_layout.dart';
 import 'package:sys_share_sys_account_service/view/widgets/nav_rail.dart';
+import 'package:random_string/random_string.dart';
 
 import '../core.dart';
 
@@ -20,6 +21,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
   @override
   Widget build(BuildContext context) {
     return AuthNavLayout(
+      key: Key(randomString(16)),
       body: widget.body,
       adminTabs: LinkedHashMap.of(<String, TabItem>{
         Paths.adminDashboardRoute: TabItem(

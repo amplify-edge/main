@@ -11,8 +11,10 @@ class SettingsViewWeb extends StatelessWidget {
     final model = Provider.of<SettingsViewModel>(context);
     final env = model.envVariables;
     return Scaffold(
+      key: key,
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).tabSettings()),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Column(children: [
@@ -56,14 +58,6 @@ class SettingsViewWeb extends StatelessWidget {
             subtitle: Text(env.releaseChannel ??
                 " "), // TODO: Fix that up, what value are we supposed to give is this is null ?
           ),
-          // ListTile(
-          //   title: Text("Url"),
-          //   subtitle: Text(env.url),
-          // ),
-          // ListTile(
-          //   title: Text("UrlNative"),
-          //   subtitle: Text(env.urlNative),
-          // ),
           ListTile(
             title: Text("GitHash"),
             subtitle: Text(env.githash),

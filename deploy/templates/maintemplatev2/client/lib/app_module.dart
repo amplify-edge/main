@@ -5,21 +5,26 @@ import 'package:maintemplatev2/core/views/home_page.dart';
 import 'package:maintemplatev2/main.dart';
 import 'package:mod_disco/modules/mod_disco.dart';
 import 'package:sys_share_sys_account_service/view/screens/verify_module.dart';
-import 'package:sys_share_sys_account_service/pkg/guards/route_guard.dart';
 import 'package:sys_share_sys_account_service/view/widgets/view_model/auth_nav_view_model.dart';
 
 import 'core/core.dart';
+import 'core/routing/route_guard.dart';
 import 'modules/settings/settings_module.dart';
 
 class AppModule extends MainModule {
   final String url;
   final String urlNative;
+  final AuthNavViewModel authNavViewModel;
 
-  AppModule({this.url, this.urlNative});
+  AppModule({this.url, this.urlNative, this.authNavViewModel});
 
   // here will be any class you want to inject into your project (eg bloc, dependency)
   @override
-  List<Bind> get binds => [Bind.singleton((i) => AuthNavViewModel())];
+  List<Bind> get binds => [
+        Bind.singleton(
+          (i) => this.authNavViewModel ?? AuthNavViewModel(),
+        ),
+      ];
 
   // here will be the routes of your module
   @override
@@ -27,8 +32,8 @@ class AppModule extends MainModule {
         ChildRoute(
           Paths.base,
           child: (_, args) => RootPage(),
-          transition: TransitionType.custom,
-          customTransition: noTransition,
+          transition: TransitionType.noTransition,
+          // customTransition: noTransition,
           guards: [NavRailGuard()],
         ),
         ModuleRoute(

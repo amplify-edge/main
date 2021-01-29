@@ -8,6 +8,8 @@ import 'package:mod_disco/core/i18n/mod_disco_localization.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:sys_core/sys_core.dart';
 import 'package:sys_share_sys_account_service/pkg/i18n/sys_account_localization.dart';
+import 'package:hive/hive.dart';
+// import 'package:sys_share_sys_account_service/view/widgets/view_model/auth_nav_view_model.dart';
 
 import '././core/core.dart';
 import 'modules/settings/settings.dart';
@@ -18,7 +20,9 @@ void main() async {
   // configureApp();
 
   // init settings view model before starting app
+  await Hive.openBox('account');
   var settingsViewModel = SettingsViewModel();
+  // final authNavViewModel = AuthNavViewModel();
   // get env.json from assets
   await settingsViewModel.fetchEnvVariables();
 
