@@ -14,15 +14,14 @@ import 'modules/settings/settings_module.dart';
 class AppModule extends MainModule {
   final String url;
   final String urlNative;
-  final AuthNavViewModel authNavViewModel;
 
-  AppModule({this.url, this.urlNative, this.authNavViewModel});
+  AppModule({this.url, this.urlNative});
 
   // here will be any class you want to inject into your project (eg bloc, dependency)
   @override
   List<Bind> get binds => [
         Bind.singleton(
-          (i) => this.authNavViewModel ?? AuthNavViewModel(),
+          (i) => AuthNavViewModel(),
         ),
       ];
 
@@ -34,7 +33,6 @@ class AppModule extends MainModule {
           child: (_, args) => RootPage(),
           transition: TransitionType.noTransition,
           // customTransition: noTransition,
-          guards: [NavRailGuard()],
         ),
         ModuleRoute(
           Paths.superAdminRoute,
@@ -82,6 +80,11 @@ class AppModule extends MainModule {
           transition: TransitionType.custom,
           customTransition: noTransition,
           guards: [NavRailGuard()],
+        ),
+        WildcardRoute(
+          child: (_, args) => RootPage(),
+          transition: TransitionType.noTransition,
+          // customTransition: noTransition,
         ),
       ];
 
