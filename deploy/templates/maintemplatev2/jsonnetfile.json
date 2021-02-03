@@ -4,7 +4,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/sys-share.git",
+          "remote": "https://github.com/amplify-cms/sys-share.git",
           "subdir": "sys-core/service/config/mixins"
         }
       },
@@ -13,7 +13,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/shared.git",
+          "remote": "https://github.com/amplify-cms/shared.git",
           "subdir": "tool/bs-lang"
         }
       },
@@ -22,7 +22,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/ops.git",
+          "remote": "https://github.com/amplify-cms/ops.git",
           "subdir": "bs-crypt"
         }
       },
@@ -31,7 +31,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/sys.git",
+          "remote": "https://github.com/amplify-cms/sys.git",
           "subdir": "sys-account/service/go"
         }
       },
@@ -40,7 +40,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/sys.git",
+          "remote": "https://github.com/amplify-cms/sys.git",
           "subdir": "sys-core/service/go"
         }
       },
@@ -49,7 +49,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/mod.git",
+          "remote": "https://github.com/amplify-cms/mod.git",
           "subdir": "mod-disco/service/go"
         }
       },

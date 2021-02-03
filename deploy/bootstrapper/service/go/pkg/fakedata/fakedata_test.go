@@ -1,14 +1,14 @@
 package fakedata_test
 
 import (
-	"github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg/fakedata"
+	"github.com/amplify-cms/main/deploy/bootstrapper/service/go/pkg/fakedata"
 	"github.com/stretchr/testify/require"
 	"io/ioutil"
 	"testing"
 )
 
 func TestBootstrapFakeData(t *testing.T) {
-	fake, err := fakedata.BootstrapFakeData("getcouragenow.org")
+	fake, err := fakedata.BootstrapFakeData("amplify-cms.org")
 	require.NoError(t, err)
 	b, err := fake.MarshalPretty()
 	require.NoError(t, err)

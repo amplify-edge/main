@@ -5,7 +5,7 @@ import "google/protobuf/empty.proto";
 
 package v2.main_bootstrap.services;
 
-option go_package = "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2";
+option go_package = "github.com/amplify-cms/main/bootstrapper/service/go/rpc/v2";
 
 service BSService {
   // hide

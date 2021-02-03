@@ -21,7 +21,7 @@ GOOS=darwin
 GOARCH=amd64
 
 # brew cask install google-cloud-sdk
-GCLOUD_PROJECT_ID=v2-ci-getcouragenow-org
+GCLOUD_PROJECT_ID=v2-ci-amplify-cms-org
 
 gcloud-print:
 	#gcloud auth login
@@ -39,7 +39,7 @@ gcloud-key:
 gcloud-key-encode:
 	# encodes the key and uplaods to github
 	cat ~/my_awesome_secret_key.json | base64 | pbcopy
-	open https://github.com/organizations/getcouragenow/settings/secrets
+	open https://github.com/organizations/amplify-cms/settings/secrets
 	#- GCP_KEY: paste in encoded key
 
 

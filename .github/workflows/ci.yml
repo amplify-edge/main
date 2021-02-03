@@ -46,8 +46,8 @@ jobs:
       - name: Check out the SHARED code into the Go module directory
         uses: actions/checkout@v2
         with:
-          repository: getcouragenow/shared
-          path: ${{ github.workspace }}/go/src/github.com/getcouragenow/shared
+          repository: amplify-cms/shared
+          path: ${{ github.workspace }}/go/src/github.com/amplify-cms/shared
           
 
       - name: make ${{ matrix.target }}

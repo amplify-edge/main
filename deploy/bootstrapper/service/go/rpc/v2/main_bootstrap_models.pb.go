@@ -7,8 +7,8 @@
 package v2
 
 import (
-	v21 "github.com/getcouragenow/mod/mod-disco/service/go/rpc/v2"
-	v2 "github.com/getcouragenow/sys-share/sys-account/service/go/rpc/v2"
+	v21 "github.com/amplify-cms/mod/mod-disco/service/go/rpc/v2"
+	v2 "github.com/amplify-cms/sys-share/sys-account/service/go/rpc/v2"
 	proto "github.com/golang/protobuf/proto"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"

@@ -14,9 +14,9 @@ import (
 
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg/fakedata"
-	bsrpc "github.com/getcouragenow/main/deploy/bootstrapper/service/go/rpc/v2"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
+	"github.com/amplify-cms/main/deploy/bootstrapper/service/go/pkg/fakedata"
+	bsrpc "github.com/amplify-cms/main/deploy/bootstrapper/service/go/rpc/v2"
+	sharedConfig "github.com/amplify-cms/sys-share/sys-core/service/config"
 )
 
 const (

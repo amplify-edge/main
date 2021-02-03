@@ -49,25 +49,25 @@ dependencies:
   #   path: ../../mod-kanban/client
   # sys_core:
   # git:
-  # url: git://github.com/getcouragenow/sys.git
+  # url: git://github.com/amplify-cms/sys.git
   # path: sys-core/service/flu
 
   mod_disco:
     #    git:
-    #      url: git://github.com/getcouragenow/mod.git
+    #      url: git://github.com/amplify-cms/mod.git
     #      path: mod-disco/service/flu
     #      ref: cfafd56bf659673163d699fc761e4a73d6cb8bdd
     path: ../../../../../mod/mod-disco/service/flu
   bootstrapper:
     #    git:
-    #      url: git://github.com/getcouragenow/main.git
+    #      url: git://github.com/amplify-cms/main.git
     #      path: deploy/bootstrapper/service/flu
     #      ref: e940e1cde842537c62580a467b3e489bfa84085e
     path: ../../../bootstrapper/service/flu
 
   #sys_core:
   #  git:
-  #    url: git://github.com/getcouragenow/core-runtime.git
+  #    url: git://github.com/amplify-cms/core-runtime.git
   #    path: sys-core/client
   #    ref: master
 

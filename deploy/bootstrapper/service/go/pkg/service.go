@@ -1,14 +1,14 @@
 package pkg
 
 import (
-	bscfg "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg/repo"
-	bsrpc "github.com/getcouragenow/main/deploy/bootstrapper/service/go/rpc/v2"
-	discoRepo "github.com/getcouragenow/mod/mod-disco/service/go/pkg/repo"
-	"github.com/getcouragenow/protoc-gen-cobra/client"
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging"
-	accountRepo "github.com/getcouragenow/sys/sys-account/service/go/pkg/repo"
+	bscfg "github.com/amplify-cms/main/deploy/bootstrapper/service/go"
+	"github.com/amplify-cms/main/deploy/bootstrapper/service/go/pkg/repo"
+	bsrpc "github.com/amplify-cms/main/deploy/bootstrapper/service/go/rpc/v2"
+	discoRepo "github.com/amplify-cms/mod/mod-disco/service/go/pkg/repo"
+	"github.com/amplify-cms/protoc-gen-cobra/client"
+	corebus "github.com/amplify-cms/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging"
+	accountRepo "github.com/amplify-cms/sys/sys-account/service/go/pkg/repo"
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 )

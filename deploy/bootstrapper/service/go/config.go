@@ -2,7 +2,7 @@ package service
 
 import (
 	"fmt"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
+	sharedConfig "github.com/amplify-cms/sys-share/sys-core/service/config"
 	"gopkg.in/yaml.v2"
 	"os"
 )

@@ -1,5 +1,5 @@
-local coreTpl = import "vendor/github.com/getcouragenow/sys/sys-core/service/go/template.syscore.libsonnet";
-local loadVar = import "vendor/github.com/getcouragenow/sys-share/sys-core/service/config/mixin.loadfn.libsonnet";
+local coreTpl = import "vendor/github.com/amplify-cms/sys/sys-core/service/go/template.syscore.libsonnet";
+local loadVar = import "vendor/github.com/amplify-cms/sys-share/sys-core/service/config/mixin.loadfn.libsonnet";
 
 local cfg = {
     sysCoreConfig: {

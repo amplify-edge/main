@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/getcouragenow/main/deploy/projects/org-y/version"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
+	"github.com/amplify-cms/main/deploy/projects/org-y/version"
+	"github.com/amplify-cms/main/deploy/templates/maintemplatev2"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
 )
 
 func main() {

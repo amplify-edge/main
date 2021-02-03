@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
 	"github.com/spf13/cobra"
 )
 

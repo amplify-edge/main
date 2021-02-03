@@ -3,13 +3,13 @@ package repo
 import (
 	"context"
 	"fmt"
-	sysCorePkg "github.com/getcouragenow/sys-share/sys-core/service/go/pkg"
+	sysCorePkg "github.com/amplify-cms/sys-share/sys-core/service/go/pkg"
 	"io/ioutil"
 	"time"
 
-	"github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg/fakedata"
-	bsrpc "github.com/getcouragenow/main/deploy/bootstrapper/service/go/rpc/v2"
-	accountPkg "github.com/getcouragenow/sys-share/sys-account/service/go/pkg"
+	"github.com/amplify-cms/main/deploy/bootstrapper/service/go/pkg/fakedata"
+	bsrpc "github.com/amplify-cms/main/deploy/bootstrapper/service/go/rpc/v2"
+	accountPkg "github.com/amplify-cms/sys-share/sys-account/service/go/pkg"
 )
 
 const (

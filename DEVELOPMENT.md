@@ -3,7 +3,7 @@
 
 ## Working on an issue
 
-Developers use the [Kan Ban](https://github.com/orgs/getcouragenow/projects/1) to work out what to work on. Admins only: [Kan Ban](https://github.com/orgs/getcouragenow/projects/1/settings/linked_repositories)
+Developers use the [Kan Ban](https://github.com/orgs/amplify-cms/projects/1) to work out what to work on. Admins only: [Kan Ban](https://github.com/orgs/amplify-cms/projects/1/settings/linked_repositories)
 
 If you want to work on an issue, please first ensure that you understand the issue and the suggested approach. Ask the Team on Telegram if your not sure about something or the best way to approach the implementation.
 
@@ -154,7 +154,7 @@ Your .git/config should now be like this:
 	remote = origin
 	merge = refs/heads/master
 [remote "upstream"]
-	url = git@github.com-<FORKINGUSER>:getcouragenow/<REPO>
+	url = git@github.com-<FORKINGUSER>:amplify-cms/<REPO>
 	fetch = +refs/heads/*:refs/remotes/upstream/*
 
 ```
@@ -181,7 +181,7 @@ make M='<#ISSUENUMBERO> comment ...' gitr-fork-all
 
 When your PR is merged, check it builds correctly and then check the automated release works.
 
-CI: https://github.com/getcouragenow/<REPO>/actions
+CI: https://github.com/amplify-cms/<REPO>/actions
 
 ## Tracking the Channels
 
@@ -205,10 +205,10 @@ Server/
 
 SRV record matching;
 
-ci=maintemplate.ci.getcouragenow.org
+ci=maintemplate.ci.amplify-cms.org
 
-beta=maintemplate.beta.getcouragenow.org
+beta=maintemplate.beta.amplify-cms.org
 
-dev=maintemplate.dev.getcouragenow.org
+dev=maintemplate.dev.amplify-cms.org
 
-stable=maintemplate.stable.getcouragenow.org
+stable=maintemplate.stable.amplify-cms.org

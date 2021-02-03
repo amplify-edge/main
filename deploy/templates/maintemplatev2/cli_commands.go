@@ -3,12 +3,12 @@ package maintemplatev2
 import (
 	"github.com/spf13/cobra"
 
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
+	corebus "github.com/amplify-cms/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
 
-	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
+	bsSvc "github.com/amplify-cms/main/deploy/bootstrapper/service/go"
+	"github.com/amplify-cms/main/deploy/templates/maintemplatev2/wrapper"
 )
 
 var (

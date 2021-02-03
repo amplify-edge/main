@@ -1,4 +1,4 @@
-package org.getcouragenow.maintemplate
+package org.amplify-cms.maintemplate
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

@@ -2,14 +2,14 @@
 package main
 
 import (
-	"github.com/getcouragenow/sys-share/sys-core/service/logging"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
 	"time"
 
 	"github.com/spf13/cobra"
 
 	// gcn packages
-	// modpkg "github.com/getcouragenow/mod/main/pkg"
+	// modpkg "github.com/amplify-cms/mod/main/pkg"
 )
 
 const (

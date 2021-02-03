@@ -1,6 +1,6 @@
 # go-bindata-assetfs (gbda)
-# https://github.com/getcouragenow/go-bindata-assetfs/releases/tag/v1.0.4
-# https://github.com/getcouragenow/go-bindata-assetfs/releases/download/v1.0.4/go-bindata-assetfs_1.0.4_Windows_x86_64.tar.gz
+# https://github.com/amplify-cms/go-bindata-assetfs/releases/tag/v1.0.4
+# https://github.com/amplify-cms/go-bindata-assetfs/releases/download/v1.0.4/go-bindata-assetfs_1.0.4_Windows_x86_64.tar.gz
 
 include=./dwn.mk
 
@@ -19,7 +19,7 @@ ifeq ($(uname_s),Linux)
 	GBDA_BIN_PLATFORM:=linux_x86_64
 endif
 GBDA_BIN_FILE=go-bindata-assetfs_$(GBDA_BIN_VERSION)_$(GBDA_BIN_PLATFORM).tar.gz
-GBDA_BIN_URL=https://github.com/getcouragenow/go-bindata-assetfs/releases/download/v$(GBDA_BIN_VERSION)/$(GBDA_BIN_FILE)
+GBDA_BIN_URL=https://github.com/amplify-cms/go-bindata-assetfs/releases/download/v$(GBDA_BIN_VERSION)/$(GBDA_BIN_FILE)
 
 
 gbda-print:

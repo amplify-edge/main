@@ -29,7 +29,7 @@ SERVER_BIN=$(BIN_DIR)/maintemplatev2
 # TODO. Make config.
 SERVER_ADDRESS=127.0.0.1:8080
 
-EMAIL = superadmin@getcouragenow.org
+EMAIL = superadmin@amplify-cms.org
 PASSWORD = superadmin
 
 CONFIG_OUTPUT_DIR = $(PWD)/plain-config
@@ -37,9 +37,9 @@ DB_ENCRYPT_KEY = yYz8Xjb4HBn4irGQpBWulURjQk2XmwES
 
 EMAIL = gutterbacon@protonmail.com
 PASSWORD = test1235
-SUPER_EMAIL = superadmin@getcouragenow.org
+SUPER_EMAIL = superadmin@amplify-cms.org
 SUPER_PASSWORD = superadmin
-NEW_SUPER_EMAIL = gutterbacon@getcouragenow.org
+NEW_SUPER_EMAIL = gutterbacon@amplify-cms.org
 NEW_SUPER_PASSWORD = SmokeOnTheWater70s
 SYS_ACCOUNT_DB_ENCRYPT_KEY   = yYz8Xjb4HBn4irGQpBWulURjQk2XmwES
 SYS_ACCOUNT_SENDGRID_API_KEY = SOME_SENDGRID_API_KEY
@@ -145,8 +145,8 @@ build: build-delete version-gen
 
 gen: gen-delete
 	$(MAKE) config-gen
-	cd $(VENDOR_DIR)/github.com/getcouragenow/shared/tool/bs-lang && go build && sudo install -m755 bs-lang $(PREFIX)/bs-lang
-	cd $(VENDOR_DIR)/github.com/getcouragenow/ops/bs-crypt && go build && sudo install -m755 bs-crypt $(PREFIX)/bs-crypt
+	cd $(VENDOR_DIR)/github.com/amplify-cms/shared/tool/bs-lang && go build && sudo install -m755 bs-lang $(PREFIX)/bs-lang
+	cd $(VENDOR_DIR)/github.com/amplify-cms/shared/tool/bs-crypt && go build && sudo install -m755 bs-crypt $(PREFIX)/bs-crypt
 	$(MAKE) cert-gen
 	#$(MAKE) flu-gen-lang-all
 	cd client && flutter pub get && flutter pub upgrade
@@ -207,8 +207,8 @@ flutter-gen:
 
 config-dep:
 	jb install && jb update
-	cd vendor/github.com/getcouragenow/sys/sys-account/service/go && jb install && jb update
-	cd vendor/github.com/getcouragenow/mod/mod-disco/service/go && jb install && jb update
+	cd vendor/github.com/amplify-cms/sys/sys-account/service/go && jb install && jb update
+	cd vendor/github.com/amplify-cms/mod/mod-disco/service/go && jb install && jb update
 
 version-gen:
 	mkdir -p $(VERSION_OUTPUT_DIR)
@@ -322,7 +322,7 @@ run-client:
 #
 #sdk-org-update:
 #	@echo Running Example Update Org
-#	$(SDK_BIN) sys-account org-proj-service update-org --id $(ORG_ID) --name "ORG 2" --contact "contact@getcouragenow.org"
+#	$(SDK_BIN) sys-account org-proj-service update-org --id $(ORG_ID) --name "ORG 2" --contact "contact@amplify-cms.org"
 #
 #sdk-project-new:
 #	@echo Running Example Create New Project

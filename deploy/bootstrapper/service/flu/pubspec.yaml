@@ -29,7 +29,7 @@ dependencies:
   protobuf: ^1.1.0
   sys_share_sys_account_service:
     #    git:
-    #      url: git://github.com/getcouragenow/sys-share.git
+    #      url: git://github.com/amplify-cms/sys-share.git
     #      path: sys-account/service/flu
     #      ref: 1a260f05ca7de0a0f273225e1d7c234cd53b5e8f
     path: ../../../../../sys-share/sys-account/service/flu

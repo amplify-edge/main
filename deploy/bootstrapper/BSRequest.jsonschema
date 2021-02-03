@@ -21,7 +21,7 @@
                             },
                             "creator_id": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{randomstring:[ops@getcouragenow.org,contact@getcouragenow.org]}\" yaml:\"creator_id,omitempty\""
+                                "description": "@inject_tag: fake:\"{randomstring:[ops@amplify-cms.org,contact@amplify-cms.org]}\" yaml:\"creator_id,omitempty\""
                             },
                             "logo_upload_bytes": {
                                 "type": "string",
@@ -53,7 +53,7 @@
                             },
                             "creator_id": {
                                 "type": "string",
-                                "description": "@inject_tag: fake:\"{randomstring:[ops@getcouragenow.org, dev@getcouragenow.org]}\" yaml:\"creator_id,omitempty\""
+                                "description": "@inject_tag: fake:\"{randomstring:[ops@amplify-cms.org, dev@amplify-cms.org]}\" yaml:\"creator_id,omitempty\""
                             },
                             "org_id": {
                                 "type": "string",

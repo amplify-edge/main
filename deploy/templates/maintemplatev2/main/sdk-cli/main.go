@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/version"
+	"github.com/amplify-cms/main/deploy/templates/maintemplatev2"
+	"github.com/amplify-cms/main/deploy/templates/maintemplatev2/version"
 )
 
 func main() {

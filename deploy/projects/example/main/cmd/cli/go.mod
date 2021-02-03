@@ -1,4 +1,4 @@
-module github.com/getcouragenow/main/deploy/projects/example/go/cli
+module github.com/amplify-cms/main/deploy/projects/example/go/cli
 
 go 1.15
 

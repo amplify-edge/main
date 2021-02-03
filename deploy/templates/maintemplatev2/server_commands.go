@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/NYTimes/gziphandler"
 	"github.com/VictoriaMetrics/metrics"
-	bscrypt "github.com/getcouragenow/ops/bs-crypt/lib"
+	bscrypt "github.com/amplify-cms/shared/tool/bs-crypt/lib"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/opentracing/opentracing-go"
@@ -18,18 +18,18 @@ import (
 	"strings"
 	"time"
 
-	"github.com/getcouragenow/sys-share/sys-core/service/logging"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
 	"github.com/winwisely268/go-grpc-victoriametrics"
 
-	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/getcouragenow/sys-share/sys-core/service/tracing"
-	"github.com/getcouragenow/sys/main/pkg"
+	discoSvc "github.com/amplify-cms/mod/mod-disco/service/go"
+	sharedConfig "github.com/amplify-cms/sys-share/sys-core/service/config"
+	corebus "github.com/amplify-cms/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/amplify-cms/sys-share/sys-core/service/tracing"
+	"github.com/amplify-cms/sys/main/pkg"
 
-	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
+	bsSvc "github.com/amplify-cms/main/deploy/bootstrapper/service/go"
+	"github.com/amplify-cms/main/deploy/templates/maintemplatev2/wrapper"
 )
 
 const (

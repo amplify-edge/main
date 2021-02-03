@@ -1,13 +1,13 @@
 package repo
 
 import (
-	discoRepo "github.com/getcouragenow/mod/mod-disco/service/go/pkg/repo"
-	discoRpc "github.com/getcouragenow/mod/mod-disco/service/go/rpc/v2"
-	sysSharePkg "github.com/getcouragenow/sys-share/sys-account/service/go/pkg"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging"
-	accountRepo "github.com/getcouragenow/sys/sys-account/service/go/pkg/repo"
+	discoRepo "github.com/amplify-cms/mod/mod-disco/service/go/pkg/repo"
+	discoRpc "github.com/amplify-cms/mod/mod-disco/service/go/rpc/v2"
+	sysSharePkg "github.com/amplify-cms/sys-share/sys-account/service/go/pkg"
+	sharedConfig "github.com/amplify-cms/sys-share/sys-core/service/config"
+	corebus "github.com/amplify-cms/sys-share/sys-core/service/go/pkg/bus"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging"
+	accountRepo "github.com/amplify-cms/sys/sys-account/service/go/pkg/repo"
 	"google.golang.org/grpc"
 	"os"
 	"path/filepath"

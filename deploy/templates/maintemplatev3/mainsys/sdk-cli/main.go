@@ -1,10 +1,10 @@
 package main
 
 import (
-	//"github.com/getcouragenow/sys-share/pkg"
+	//"github.com/amplify-cms/sys-share/pkg"
 	// FIX IS:
-	"github.com/getcouragenow/sys-share/sys-account/service/go/pkg"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
+	"github.com/amplify-cms/sys-share/sys-account/service/go/pkg"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
 )
 
 func main() {

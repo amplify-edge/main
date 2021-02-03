@@ -5,23 +5,23 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/getcouragenow/sys-share/sys-core/service/clihelper"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging"
+	"github.com/amplify-cms/sys-share/sys-core/service/clihelper"
+	"github.com/amplify-cms/sys-share/sys-core/service/logging"
 
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 
-	bscfg "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	bsPkg "github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg"
-	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
-	discoPkg "github.com/getcouragenow/mod/mod-disco/service/go/pkg"
-	discoRpc "github.com/getcouragenow/mod/mod-disco/service/go/rpc/v2"
-	sysSharePkg "github.com/getcouragenow/sys-share/sys-account/service/go/pkg"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
-	sysCorePkg "github.com/getcouragenow/sys-share/sys-core/service/go/pkg"
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	sysPkg "github.com/getcouragenow/sys/main/pkg"
-	"github.com/getcouragenow/sys/sys-core/service/go/pkg/coredb"
+	bscfg "github.com/amplify-cms/main/deploy/bootstrapper/service/go"
+	bsPkg "github.com/amplify-cms/main/deploy/bootstrapper/service/go/pkg"
+	discoSvc "github.com/amplify-cms/mod/mod-disco/service/go"
+	discoPkg "github.com/amplify-cms/mod/mod-disco/service/go/pkg"
+	discoRpc "github.com/amplify-cms/mod/mod-disco/service/go/rpc/v2"
+	sysSharePkg "github.com/amplify-cms/sys-share/sys-account/service/go/pkg"
+	sharedConfig "github.com/amplify-cms/sys-share/sys-core/service/config"
+	sysCorePkg "github.com/amplify-cms/sys-share/sys-core/service/go/pkg"
+	corebus "github.com/amplify-cms/sys-share/sys-core/service/go/pkg/bus"
+	sysPkg "github.com/amplify-cms/sys/main/pkg"
+	"github.com/amplify-cms/sys/sys-core/service/go/pkg/coredb"
 )
 
 const (

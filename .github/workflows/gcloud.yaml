@@ -22,7 +22,7 @@ jobs:
       - name: Info
         uses: actions-hub/gcloud@master
         env:
-          PROJECT_ID: v2-ci-getcouragenow-org
+          PROJECT_ID: v2-ci-amplify-cms-org
           APPLICATION_CREDENTIALS: ${{ secrets.GCP_KEY }}
         with:
           args: info

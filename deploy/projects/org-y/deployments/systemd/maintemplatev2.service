@@ -1,6 +1,6 @@
 [Unit]
 Description=Maintemplate v2
-Documentation=https://github.com/getcouragenow/shared-doc.git
+Documentation=https://github.com/amplify-cms/shared-doc.git
 Wants=network-online.target
 After=network-online.target
 

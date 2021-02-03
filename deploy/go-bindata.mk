@@ -1,6 +1,6 @@
 # go-bindata (gbd)
-# https://github.com/getcouragenow/go-bindata/releases/tag/v3.1.5
-# https://github.com/getcouragenow/go-bindata/releases/download/v3.1.5/go-bindata_3.1.5_Darwin_x86_64.tar.gz
+# https://github.com/amplify-cms/go-bindata/releases/tag/v3.1.5
+# https://github.com/amplify-cms/go-bindata/releases/download/v3.1.5/go-bindata_3.1.5_Darwin_x86_64.tar.gz
 
 include=./dwn.mk
 
@@ -19,7 +19,7 @@ ifeq ($(uname_s),Linux)
 	GBD_BIN_PLATFORM:=linux_x86_64
 endif
 GBD_BIN_FILE=go-bindata_$(GBD_BIN_VERSION)_$(GBD_BIN_PLATFORM).tar.gz
-GBD_BIN_URL=https://github.com/getcouragenow/go-bindata/releases/download/v$(GBD_BIN_VERSION)/$(GBD_BIN_FILE)
+GBD_BIN_URL=https://github.com/amplify-cms/go-bindata/releases/download/v$(GBD_BIN_VERSION)/$(GBD_BIN_FILE)
 
 
 gbd-print:
