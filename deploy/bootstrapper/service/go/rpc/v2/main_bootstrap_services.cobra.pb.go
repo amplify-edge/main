@@ -15,9 +15,10 @@ import (
 func BSServiceClientCommand(options ...client.Option) *cobra.Command {
 	cfg := client.NewConfig(options...)
 	cmd := &cobra.Command{
-		Use:   cfg.CommandNamer("BSService"),
-		Short: "BSService service client",
-		Long:  "",
+		Use:    cfg.CommandNamer("BSService"),
+		Short:  "BSService service client",
+		Long:   "",
+		Hidden: false,
 	}
 	cfg.BindFlags(cmd.PersistentFlags())
 	cmd.AddCommand(
@@ -34,9 +35,10 @@ func _BSServiceNewBootstrapCommand(cfg *client.Config) *cobra.Command {
 	req := &NewBSRequest{}
 
 	cmd := &cobra.Command{
-		Use:   cfg.CommandNamer("NewBootstrap"),
-		Short: "NewBootstrap RPC client",
-		Long:  "hide",
+		Use:    cfg.CommandNamer("NewBootstrap"),
+		Short:  "NewBootstrap RPC client",
+		Long:   "hide",
+		Hidden: true,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if cfg.UseEnvVars {
 				if err := flag.SetFlagsFromEnv(cmd.Parent().PersistentFlags(), true, cfg.EnvVarNamer, cfg.EnvVarPrefix, "BSService"); err != nil {
@@ -89,9 +91,10 @@ func _BSServiceGetBootstrapCommand(cfg *client.Config) *cobra.Command {
 	req := &GetBSRequest{}
 
 	cmd := &cobra.Command{
-		Use:   cfg.CommandNamer("GetBootstrap"),
-		Short: "GetBootstrap RPC client",
-		Long:  "",
+		Use:    cfg.CommandNamer("GetBootstrap"),
+		Short:  "GetBootstrap RPC client",
+		Long:   "",
+		Hidden: false,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if cfg.UseEnvVars {
 				if err := flag.SetFlagsFromEnv(cmd.Parent().PersistentFlags(), true, cfg.EnvVarNamer, cfg.EnvVarPrefix, "BSService"); err != nil {
@@ -131,9 +134,10 @@ func _BSServiceListBootstrapCommand(cfg *client.Config) *cobra.Command {
 	req := &ListBSRequest{}
 
 	cmd := &cobra.Command{
-		Use:   cfg.CommandNamer("ListBootstrap"),
-		Short: "ListBootstrap RPC client",
-		Long:  "",
+		Use:    cfg.CommandNamer("ListBootstrap"),
+		Short:  "ListBootstrap RPC client",
+		Long:   "",
+		Hidden: false,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if cfg.UseEnvVars {
 				if err := flag.SetFlagsFromEnv(cmd.Parent().PersistentFlags(), true, cfg.EnvVarNamer, cfg.EnvVarPrefix, "BSService"); err != nil {
@@ -177,9 +181,10 @@ func _BSServiceExecuteBootstrapCommand(cfg *client.Config) *cobra.Command {
 	req := &GetBSRequest{}
 
 	cmd := &cobra.Command{
-		Use:   cfg.CommandNamer("ExecuteBootstrap"),
-		Short: "ExecuteBootstrap RPC client",
-		Long:  "",
+		Use:    cfg.CommandNamer("ExecuteBootstrap"),
+		Short:  "ExecuteBootstrap RPC client",
+		Long:   "",
+		Hidden: false,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if cfg.UseEnvVars {
 				if err := flag.SetFlagsFromEnv(cmd.Parent().PersistentFlags(), true, cfg.EnvVarNamer, cfg.EnvVarPrefix, "BSService"); err != nil {
@@ -219,9 +224,10 @@ func _BSServiceDeleteBootstrapCommand(cfg *client.Config) *cobra.Command {
 	req := &GetBSRequest{}
 
 	cmd := &cobra.Command{
-		Use:   cfg.CommandNamer("DeleteBootstrap"),
-		Short: "DeleteBootstrap RPC client",
-		Long:  "",
+		Use:    cfg.CommandNamer("DeleteBootstrap"),
+		Short:  "DeleteBootstrap RPC client",
+		Long:   "",
+		Hidden: false,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if cfg.UseEnvVars {
 				if err := flag.SetFlagsFromEnv(cmd.Parent().PersistentFlags(), true, cfg.EnvVarNamer, cfg.EnvVarPrefix, "BSService"); err != nil {

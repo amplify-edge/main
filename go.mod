@@ -10,6 +10,8 @@ require (
 	github.com/amplify-cms/shared/tool/bs-crypt v0.0.0-20210203071251-02b3d5f5ea2f
 	github.com/amplify-cms/sys v0.0.0-20201230052306-22a6aaf34655
 	github.com/amplify-cms/sys-share v0.0.0-20201231111816-770029a76658
+	github.com/amplify-cms/mod v0.0.0-20210125022154-d322f1c20671
+	github.com/amplify-cms/sys-share v0.0.0-20210125020216-b6b63a0d1eed
 	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/improbable-eng/grpc-web v0.13.0

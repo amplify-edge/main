@@ -38,7 +38,7 @@ const (
 
 	defaultConfigDir                 = "./config"
 	defaultEncryptedConfigServerPath = "./encrypted-config"
-	defaultDebug                     = false
+	defaultDebug                     = true
 	defaultCorsHeaders               = "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-User-Agent, X-Grpc-Web"
 	commonHeaders                    = "Via, X-Forwarded-For, X-Forwarded-Proto, X-Forwarded-SSL, X-Forwarded-Port"
 	defaultAppName                   = "maintemplatev2"

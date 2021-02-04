@@ -22,8 +22,8 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/amplify-cms/ops.git",
-          "subdir": "bs-crypt"
+          "remote": "https://github.com/amplify-cms/shared.git",
+          "subdir": "tool/bs-crypt"
         }
       },
       "version": "master"

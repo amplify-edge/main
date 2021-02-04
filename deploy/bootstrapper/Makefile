@@ -57,8 +57,8 @@ gen: gen-delete
 	cd proto/v2/ && jb install && jb update
 	@go generate
 	@echo "Generating Flutter Config"
-#   $(MAKE) flu-gen-all
-	$(MAKE) flu-gen-lang
+	# $(MAKE) flu-gen-all
+	# $(MAKE) flu-gen-lang
 
 gen-dep:
 	GO111MODULE=on go get github.com/chrusty/protoc-gen-jsonschema/cmd/protoc-gen-jsonschema
