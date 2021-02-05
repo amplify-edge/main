@@ -4,7 +4,7 @@ import (
 	discoRepo "github.com/amplify-cms/mod/mod-disco/service/go/pkg/repo"
 	discoRpc "github.com/amplify-cms/mod/mod-disco/service/go/rpc/v2"
 	sysSharePkg "github.com/amplify-cms/sys-share/sys-account/service/go/pkg"
-	sharedConfig "github.com/amplify-cms/sys-share/sys-core/service/config"
+	"github.com/amplify-cms/sys-share/sys-core/service/fileutils"
 	corebus "github.com/amplify-cms/sys-share/sys-core/service/go/pkg/bus"
 	"github.com/amplify-cms/sys-share/sys-core/service/logging"
 	accountRepo "github.com/amplify-cms/sys/sys-account/service/go/pkg/repo"
@@ -36,7 +36,7 @@ func NewBootstrapRepo(logger logging.Logger, domain, savePath string, accRepo *a
 		dc := discoRpc.NewSurveyServiceClient(cc)
 		discoClient = dc
 	}
-	ex, err := sharedConfig.PathExists(savePath)
+	ex, err := fileutils.PathExists(savePath)
 	if !ex || err != nil {
 		_ = os.MkdirAll(savePath, 0755)
 	}

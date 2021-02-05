@@ -1,0 +1,12 @@
+"bootstrapConfig":
+  "domain": "amplifyedge.org"
+  "savePath": "./bootstrap-data/client"
+"mainConfig":
+  "domain": "amplifyedge.org"
+  "isLocal": true
+  "tls":
+    "enable": true
+    "isLocal": true
+    "localCertKeyPath": "./certs/local.key.pem"
+    "localCertPath": "./certs/local.pem"
+    "rootCaPath": "./certs/rootca.pem"

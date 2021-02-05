@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/amplify-cms/sys-share/sys-core/service/fileutils"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -136,7 +137,7 @@ func (b *BootstrapRepo) ListBootstrap(ctx context.Context, in *bsrpc.ListBSReque
 		return nil, err
 	}
 	// TODO: pagination
-	dirContents, err := sharedConfig.ListFiles(b.savePath)
+	dirContents, err := fileutils.ListFiles(b.savePath)
 	var bses []*bsrpc.BS
 	for _, f := range dirContents {
 		if f.Name() != filepath.Base(b.activeFilePath) {

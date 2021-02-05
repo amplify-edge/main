@@ -7,22 +7,19 @@ import (
 	"github.com/amplify-cms/sys-share/sys-core/service/logging"
 	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
 
-	bsSvc "github.com/amplify-cms/main/deploy/bootstrapper/service/go"
 	"github.com/amplify-cms/main/deploy/templates/maintemplatev2/wrapper"
 )
 
 var (
-	bsCliCfgPath      string
-	mainClientCfgPath string
+	clientCfgPath string
 	isCliDebug        bool
 )
 
 const (
-	commandName                 = "cli"
-	errCreateCli                = "error creating cli for " + commandName + ": %v"
-	defaultBsCliConfigPath      = "./config/bootstrap-client.yml"
-	defaultMainConfigClientPath = "./config/main-client.yml"
-	defaultCliDebug             = true
+	commandName                       = "cli"
+	errCreateCli                      = "error creating cli for " + commandName + ": %v"
+	defaultMainConfigServerClientPath = "./config/config-client.yml"
+	defaultCliDebug                   = true
 )
 
 func MainCliCommand(version []byte) (*cobra.Command, logging.Logger) {
@@ -32,8 +29,7 @@ func MainCliCommand(version []byte) (*cobra.Command, logging.Logger) {
 	}
 
 	rootCmd.PersistentFlags().BoolVar(&isCliDebug, "debug", defaultCliDebug, "debug")
-	rootCmd.PersistentFlags().StringVarP(&bsCliCfgPath, "bootstrap-config-path", "b", defaultBsCliConfigPath, "bs config path to use")
-	rootCmd.PersistentFlags().StringVarP(&mainClientCfgPath, "main-config-path", "m", defaultMainConfigClientPath, "main config path to use")
+	rootCmd.PersistentFlags().StringVarP(&clientCfgPath, "client-config-path", "c", defaultMainConfigServerClientPath, "client config path to use")
 	// logging
 	var logger *zaplog.ZapLogger
 	if isDebug {
@@ -49,18 +45,16 @@ func MainCliCommand(version []byte) (*cobra.Command, logging.Logger) {
 	}
 
 	// configs
-	mainCfg, err := wrapper.NewConfig(mainClientCfgPath)
+	mainCfg, err := wrapper.NewClientConfig(clientCfgPath)
 	if err != nil {
 		logger.Fatalf(errSourcingConfig, "main-wrapper", err)
 	}
-	bscfg, err := bsSvc.NewConfig(bsCliCfgPath)
-	if err != nil {
-		logger.Fatalf(errSourcingConfig, "bootstrapper", err)
-	}
+	bscfg := mainCfg.BootstrapConfig
+
 	mainCli, err := wrapper.NewMainCLI(
 		logger,
-		mainCfg,
-		bscfg,
+		&mainCfg.MainConfigClient,
+		&bscfg,
 		corebus.NewCoreBus(),
 	)
 	if err != nil {

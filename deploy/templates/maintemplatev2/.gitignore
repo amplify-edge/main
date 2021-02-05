@@ -19,3 +19,5 @@ vendor
 /backup-config/
 /encrypted-config/
 /runtime-config/
+/wrapper/certs/
+/wrapper/db/

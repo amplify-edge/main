@@ -5,6 +5,8 @@ import (
 	"github.com/NYTimes/gziphandler"
 	"github.com/VictoriaMetrics/metrics"
 	bscrypt "github.com/amplify-cms/shared/tool/bs-crypt/lib"
+	"github.com/amplify-cms/sys-share/sys-core/service/certutils"
+	accountpkg "github.com/amplify-cms/sys/sys-account/service/go/pkg"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/opentracing/opentracing-go"
@@ -15,6 +17,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -22,13 +25,10 @@ import (
 	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
 	"github.com/winwisely268/go-grpc-victoriametrics"
 
-	discoSvc "github.com/amplify-cms/mod/mod-disco/service/go"
-	sharedConfig "github.com/amplify-cms/sys-share/sys-core/service/config"
 	corebus "github.com/amplify-cms/sys-share/sys-core/service/go/pkg/bus"
 	"github.com/amplify-cms/sys-share/sys-core/service/tracing"
 	"github.com/amplify-cms/sys/main/pkg"
 
-	bsSvc "github.com/amplify-cms/main/deploy/bootstrapper/service/go"
 	"github.com/amplify-cms/main/deploy/templates/maintemplatev2/wrapper"
 )
 
@@ -45,8 +45,7 @@ const (
 )
 
 var (
-	configPath string
-
+	configPath          string
 	isDebug             bool
 	encryptedConfigPath string
 )
@@ -104,28 +103,25 @@ func MainServerCommand(system http.FileSystem, version []byte, applogger logging
 		if err != nil {
 			logger.Fatal("unable to decrypt config: %v", err)
 		}
-		bsCfgPath := configPath + "/bootstrap-server.yml"
-		mainCfgPath := configPath + "/main-server.yml"
-		accountCfgPath := configPath + "/sysaccount.yml"
-		discoCfgPath := configPath + "/moddisco.yml"
-		mainCfg, err := wrapper.NewConfig(mainCfgPath)
+
+		serverConfig := filepath.Join(configPath, "config-server.yml")
+
+		mainCfg, err := wrapper.NewServerConfig(serverConfig)
 		if err != nil {
 			logger.Fatalf(errSourcingConfig, "main-wrapper", err)
 		}
-		sspaths := pkg.NewServiceConfigPaths(accountCfgPath)
 		cbus := corebus.NewCoreBus()
-		sscfg, err := pkg.NewSysServiceConfig(logger, nil, sspaths, mainCfg.MainConfig.Port, cbus)
+		accountSvcCfg, err := accountpkg.NewSysAccountServiceConfig(logger, "", cbus, &mainCfg.SysAccountConfig)
+		if err != nil {
+			logger.Fatal("unable to create sys-account config", err)
+		}
+		sspaths := pkg.NewServiceConfigPaths("", accountSvcCfg)
+		sscfg, err := pkg.NewSysServiceConfig(logger, nil, sspaths, mainCfg.MainConfigServer.Port, cbus)
 		if err != nil {
 			logger.Fatalf(errSourcingConfig, "sys-all", err)
 		}
-		discocfg, err := discoSvc.NewConfig(discoCfgPath)
-		if err != nil {
-			logger.Fatalf(errSourcingConfig, "mod-disco", err)
-		}
-		bscfg, err := bsSvc.NewConfig(bsCfgPath)
-		if err != nil {
-			logger.Fatalf(errSourcingConfig, "bootstrapper", err)
-		}
+		discocfg := mainCfg.ModDiscoConfig
+		bscfg := mainCfg.BootstrapConfig
 
 		// initiate global tracer
 		newTracerCfg := tracing.NewTracerConfig("127.0.0.1:6060", "maintemplatev2")
@@ -142,9 +138,9 @@ func MainServerCommand(system http.FileSystem, version []byte, applogger logging
 			logger,
 			sscfg,
 			cbus,
-			mainCfg,
-			discocfg,
-			bscfg,
+			&mainCfg.MainConfigServer,
+			&discocfg,
+			&bscfg,
 		)
 		if err != nil {
 			logger.Fatalf(errCreateService, "maintemplatev2", err)
@@ -162,9 +158,9 @@ func MainServerCommand(system http.FileSystem, version []byte, applogger logging
 		unaryInterceptors, streamInterceptors := mainSvc.Sys.InjectInterceptors(nil, nil)
 		unaryInterceptors = append(unaryInterceptors, grpc_victoriametrics.UnaryServerInterceptor)
 		streamInterceptors = append(streamInterceptors, grpc_victoriametrics.StreamServerInterceptor)
-		if mainCfg.MainConfig.TLS.Enable && mainCfg.MainConfig.TLS.IsLocal {
+		if mainCfg.MainConfigServer.TLS.Enable && mainCfg.MainConfigServer.TLS.IsLocal {
 			logger.Info("Running local server with tls enabled")
-			tlsCreds, err := sharedConfig.LoadTLSKeypair(mainCfg.MainConfig.TLS.LocalCertPath, mainCfg.MainConfig.TLS.LocalCertKeyPath)
+			tlsCreds, err := certutils.LoadTLSKeypair(mainCfg.MainConfigServer.TLS.LocalCertPath, mainCfg.MainConfigServer.TLS.LocalCertKeyPath)
 			if err != nil {
 				logger.Fatalf("error loading local tls certificate path and key path: %v", err)
 			}
@@ -184,18 +180,18 @@ func MainServerCommand(system http.FileSystem, version []byte, applogger logging
 		mainSvc.Disco.RegisterServices(grpcServer)
 		mainSvc.BS.RegisterSvc(grpcServer)
 		grpcWebServer := mainSvc.Sys.RegisterGrpcWebServer(grpcServer)
-		hostAddr := fmt.Sprintf("%s:%d", mainCfg.MainConfig.HostAddress, mainCfg.MainConfig.Port)
-		if mainCfg.MainConfig.IsLocal && mainCfg.MainConfig.TLS.Enable {
-			localTlsCertPath := mainCfg.MainConfig.TLS.LocalCertPath
-			localTlsKeyPath := mainCfg.MainConfig.TLS.LocalCertKeyPath
-			fileServer := http.FileServer(FileSystem{http.Dir(mainCfg.MainConfig.EmbedDir)})
+		hostAddr := fmt.Sprintf("%s:%d", mainCfg.MainConfigServer.HostAddress, mainCfg.MainConfigServer.Port)
+		if mainCfg.MainConfigServer.IsLocal && mainCfg.MainConfigServer.TLS.Enable {
+			localTlsCertPath := mainCfg.MainConfigServer.TLS.LocalCertPath
+			localTlsKeyPath := mainCfg.MainConfigServer.TLS.LocalCertKeyPath
+			fileServer := http.FileServer(FileSystem{http.Dir(mainCfg.MainConfigServer.EmbedDir)})
 			httpServer := createHttpHandler(logger, false, fileServer, grpcWebServer)
 			return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
-			// } else if !mainCfg.MainConfig.IsLocal && mainCfg.MainConfig.TLS.Enable {
+			// } else if !mainCfg.MainConfigServer.IsLocal && mainCfg.MainConfigServer.TLS.Enable {
 		} else {
 			fileServer := http.FileServer(system)
 			httpServer := createHttpHandler(logger, true, fileServer, grpcWebServer)
-			listener, err := net.Listen("tcp", fmt.Sprintf(":%d", mainCfg.MainConfig.Port))
+			listener, err := net.Listen("tcp", fmt.Sprintf(":%d", mainCfg.MainConfigServer.Port))
 			if err != nil {
 				return err
 			}
