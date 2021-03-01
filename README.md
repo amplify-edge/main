@@ -1,6 +1,6 @@
 # main
 
-**GetCourageNow.org** - A non-profit providing secure, open source, self organising software for Climate Change campaign organisations.
+**amplify-edge.org** - A non-profit providing secure, open source, self organising software for Climate Change campaign organisations.
 
 ## Introduction
 
@@ -10,11 +10,12 @@ This project provides a platform offering real time collaboration to allow organ
 
 Web CI : https://org-y.getcouragenow.org/
 
+
 ## Issues
 
 Please raise issues here:
 
-Issues: https://github.com/getcouragenow/main/issues
+Issues: https://github.com/amplify-edge/main/issues
 
 Include the following if pertinent:
 
@@ -25,31 +26,31 @@ Include the following if pertinent:
 
 ## Installation and Walkthrough docs
 
-User walkthrough to configure and deploy the system: https://github.com/getcouragenow/main/blob/master/doc/user-walkthrough.md
+User walkthrough to configure and deploy the system: https://github.com/amplify-edge/main/blob/master/doc/user-walkthrough.md
 
-Dev walkthrough to config and modify the code: https://github.com/getcouragenow/main/blob/master/doc/developer-walkthrough.md
+Dev walkthrough to config and modify the code: https://github.com/amplify-edge/main/blob/master/doc/developer-walkthrough.md
 
 ## Design docs
 
-See the [ARCHITECTURE.md](https://github.com/getcouragenow/main/tree/master/doc/ARCHITECTURE.md) for information on the architecture on the system.
+See the [ARCHITECTURE.md](https://github.com/amplify-edge/main/tree/master/doc/ARCHITECTURE.md) for information on the architecture on the system.
 
-See the [DEVELOPMENT.md](https://github.com/getcouragenow/main/tree/master/doc/DEVELOPMENT.md) for information on developing on the system.
+See the [DEVELOPMENT.md](https://github.com/amplify-edge/main/tree/master/doc/DEVELOPMENT.md) for information on developing on the system.
 
-See the [DEPLOYMENT.md](https://github.com/getcouragenow/main/tree/master/doc/DEPLOYMENT.md) for information on deploying the system.
+See the [DEPLOYMENT.md](https://github.com/amplify-edge/main/tree/master/doc/DEPLOYMENT.md) for information on deploying the system.
 
-See the [DEPLOYMENT.md](https://github.com/getcouragenow/main/tree/master/doc/MODULES.md) for information on the modularity of the system.
+See the [DEPLOYMENT.md](https://github.com/amplify-edge/main/tree/master/doc/MODULES.md) for information on the modularity of the system.
 
-See the [SECURITY.md](https://github.com/getcouragenow/main/tree/master/doc/SECURITY.md) for information on the security of the system.
+See the [SECURITY.md](https://github.com/amplify-edge/main/tree/master/doc/SECURITY.md) for information on the security of the system.
 
 ## Project docs
 
-The [Project Website](https://getcouragenow.org/) gives a general introduction about what the software is used for, the organisation behind it.
+The [Project Website](https://amplify-edge.org/) gives a general introduction about what the software is used for, the organisation behind it.
 
 The [Project Docs](https://docs.google.com/document/d/1caq1gSvHqVXVCOCGPsqi7I0fbF-Gdyryd07CL9yJ55o) explains the functionality.
 
 ## Contacts
 
-You can contact us at [Email](mailto:contact@getcouragenow.org) regarding any questions or if you would like a demo of the system.
+You can contact us at [Email](mailto:contact@amplify-edge.org) regarding any questions or if you would like a demo of the system.
 
 If your a developer and want help then your free to contact the DEV Team at [Telegram: https://t.me/gcn_dev](https://t.me/gcn_dev).
 
@@ -57,13 +58,13 @@ If your a developer and want help then your free to contact the DEV Team at [Tel
 
 **STATUS: Not yet...**
 
-https://github.com/getcouragenow/main/actions
+https://github.com/amplify-edge/main/actions
 
 ## Releases
 
 **STATUS: Not yet...**
 
-https://github.com/getcouragenow/main/releases
+https://github.com/amplify-edge/main/releases
 
 
 ## High Level code structure

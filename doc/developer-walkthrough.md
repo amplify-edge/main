@@ -11,7 +11,7 @@ The Booty tool helsp wrap those differences..
 From nothing you need to:
 
 - Get the Booty develop tool:
-	- Download latest release from https://github.com/getcouragenow/booty/releases
+	- Download latest release from https://github.com/amplify-edge/booty/releases
 	- If you want to work on the code you need:
 		- shared repo
 		- booty repo
@@ -65,7 +65,7 @@ How to add a new module:
 
 How to add a language.
 
-- Add the language identifier at: https://github.com/getcouragenow/sys-share/blob/master/sys-core/service/flu/lib/pkg/i18n/languages.dart
+- Add the language identifier at: https://github.com/amplify-edge/sys-share/blob/master/sys-core/service/flu/lib/pkg/i18n/languages.dart
 
 - Run the translation code generator in your flutter module using boots'y bs-trans tool.
 
