@@ -3,15 +3,15 @@
 
 The Architecture is designed to be an End to End secure system.
 
-See the [sys-core](https://github.com/getcouragenow/sys/tree/master/sys-core) for the code and domain model and the roles and permissions.
+See the [sys-core](https://github.com/amplify-edge/sys/tree/master/sys-core) for the code and domain model and the roles and permissions.
 
 ## Development Status
 
-https://github.com/getcouragenow/sys-share is a good place to start
+https://github.com/amplify-edge/sys-share is a good place to start
 
 This is system code that is shared with the Modules. Modules are written by others.
 
-https://github.com/getcouragenow/sys is the next place to look.
+https://github.com/amplify-edge/sys is the next place to look.
 
 This is where all state is stored. Its a bit beta. We plan to go back into that and do a fair bit of work.
 

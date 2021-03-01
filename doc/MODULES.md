@@ -42,7 +42,7 @@ STABLE. Looks like its enough for V2 and Vxxx going forward.
 
 ## Physical Topology
 
-Note: See the [DEPLOYMENT.md](https://github.com/getcouragenow/main/tree/master/DEPLOYMENT.md) for information on deploying the system.
+Note: See the [DEPLOYMENT.md](https://github.com/amplify-edge/main/tree/master/DEPLOYMENT.md) for information on deploying the system.
 
 For V2, it's all a single binary:
 

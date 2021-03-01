@@ -43,17 +43,17 @@ curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | s
 
 **Release downloads**
 
-Server and CLI: https://github.com/getcouragenow/main/releases
+Server and CLI: https://github.com/amplify-edge/main/releases
 
-Booty: https://github.com/getcouragenow/main/releases.
+Booty: https://github.com/amplify-edge/main/releases.
 
 ## Play with the Demo
 
 Its best to get familiar with the system by playing with the Demo that is deployed by the dev team each day.
 
-We call it org-y, and is all machine generated. The config and bootstrap data is at: https://github.com/getcouragenow/main/tree/master/deploy/projects/org-y
+We call it org-y, and is all machine generated. The config and bootstrap data is at: https://github.com/amplify-edge/main/tree/master/deploy/projects/org-y
 
-Its is deployed to https://org-y.getcouragenow.org/
+Its is deployed to https://org-y.amplify-edge.org/
 
 The Server boots with a hardcoded superadmin account that is hardcoded into the code. When you login and change it, the new one will be saved into the encrypted DB, and the one hard coded into the code will be ignored.
 
@@ -61,7 +61,7 @@ The bootstrap data has all the data, including all accounts other than super adm
 
 superadmin role:
 
-- username: superadmin@getcouragenow.org
+- username: superadmin@amplify-edge.org
 - password: superadmin
 
 orgadmin
@@ -81,7 +81,7 @@ After you have played with the Live demo, you should move on to "Running it loca
 
 Running  Booty, Cli and Server locally is a good way to check everything works before you Deploy to a real Server.
 
-Copy the existing Org-x project: https://github.com/getcouragenow/main/tree/master/deploy/projects/org-x
+Copy the existing Org-x project: https://github.com/amplify-edge/main/tree/master/deploy/projects/org-x
 
 
 Follow these steps:
