@@ -58,13 +58,6 @@ print-end:
 	@echo
 	@echo
 
-print-all:
-	$(MAKE) os-print
-	$(MAKE) gitr-print
-	$(MAKE) flu-print
-	$(MAKE) flu-gen-lang-print
-	$(MAKE) go-print
-
 dep:
 	$(SHELLCMD)
 	$(ADD_PATH)

@@ -37,7 +37,6 @@ CERT_DIR = ./certs
 CERT_SERVER_NAME ?= $(CERT_DIR)/local.pem
 CERT_SERVER_KEY ?= $(CERT_DIR)/local.key.pem
 CA_ROOT_NAME ?= $(CERT_DIR)/rootca.pem
-MKCERT_CA_ROOT_DIR = $(shell booty cert -CAROOT | awk 'END{print}')
 
 ACCOUNT_ID = ???
 VERIFY_TOKEN = ???
@@ -192,7 +191,7 @@ version-gen:
 cert-gen: cert-gen-delete
 	@mkdir -p $(CERT_DIR)
 	@booty cert -cert-file certs/local.pem -key-file certs/local.key.pem localhost 127.0.0.1 ::1
-	@cp $(MKCERT_CA_ROOT_DIR)/rootCA.pem $(CA_ROOT_NAME)
+	@booty cert-copy certs
 	@booty cert -install
 
 cert-gen-delete:
