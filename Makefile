@@ -44,7 +44,7 @@ GCLOUD_PROJECT_ID=v2-ci-amplify-cms-org
 
 # TODO: fix dependency installations
 #all: os-print print dep build print-end
-all: print build print-end
+all: print dep build print-end
 
 print:
 	@echo
