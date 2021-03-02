@@ -48,13 +48,13 @@ all: print build print-end
 
 print:
 	@echo
-	@echo "-- SYS: start --"
+	@echo "-- MAIN: start --"
 	@echo SDK_BIN: $(SDK_BIN)
 	@echo
 
 print-end:
 	@echo
-	@echo "-- SYS: end --"
+	@echo "-- MAIN: end --"
 	@echo
 	@echo
 
