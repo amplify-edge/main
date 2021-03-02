@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-import "vendor/github.com/amplify-cms/sys-share/sys-account/proto/v2/sys_account_models.proto";
-import "vendor/github.com/amplify-cms/mod/mod-disco/proto/v2/mod_disco_models.proto";
+import "vendor/github.com/amplify-edge/sys-share/sys-account/proto/v2/sys_account_models.proto";
+import "vendor/github.com/amplify-edge/mod/mod-disco/proto/v2/mod_disco_models.proto";
 import "google/protobuf/timestamp.proto";
 
 package v2.main_bootstrap.services;
 
-option go_package = "github.com/amplify-cms/main/bootstrapper/service/go/rpc/v2";
+option go_package = "go.amplifyedge.org/main-v2/bootstrapper/service/go/rpc/v2";
 
 message BSProject {
   v2.sys_account.services.ProjectRequest project = 1;

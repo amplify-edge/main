@@ -9,3 +9,6 @@ jsonnetfile.lock.json
 /deploy/projects/org-y/downloaded/
 gcn.log
 gcn-client.log
+/includes/
+.nvimlog
+/deploy/templates/maintemplatev2/wrapper/version/

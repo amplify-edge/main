@@ -3,16 +3,16 @@ package maintemplatev2
 import (
 	"github.com/spf13/cobra"
 
-	corebus "github.com/amplify-cms/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/amplify-cms/sys-share/sys-core/service/logging"
-	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
+	corebus "go.amplifyedge.org/sys-share-v2/sys-core/service/go/pkg/bus"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/logging"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/logging/zaplog"
 
-	"github.com/amplify-cms/main/deploy/templates/maintemplatev2/wrapper"
+	"go.amplifyedge.org/main-v2/deploy/templates/maintemplatev2/wrapper"
 )
 
 var (
 	clientCfgPath string
-	isCliDebug        bool
+	isCliDebug    bool
 )
 
 const (
@@ -22,7 +22,7 @@ const (
 	defaultCliDebug                   = true
 )
 
-func MainCliCommand(version []byte) (*cobra.Command, logging.Logger) {
+func MainCliCommand() (*cobra.Command, logging.Logger) {
 	var rootCmd = &cobra.Command{
 		Use:   commandName,
 		Short: commandName,
@@ -39,7 +39,7 @@ func MainCliCommand(version []byte) (*cobra.Command, logging.Logger) {
 	}
 	logger.InitLogger(nil)
 
-	buildInfo, err := wrapper.ManifestFromFile(version)
+	buildInfo, err := wrapper.ManifestFromFile(versionFile)
 	if err != nil {
 		logger.Fatalf("unable to unmarshal build version information: %v", err)
 	}

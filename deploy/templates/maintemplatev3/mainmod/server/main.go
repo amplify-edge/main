@@ -2,14 +2,14 @@
 package main
 
 import (
-	"github.com/amplify-cms/sys-share/sys-core/service/logging"
-	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/logging"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/logging/zaplog"
 	"time"
 
 	"github.com/spf13/cobra"
 
 	// gcn packages
-	// modpkg "github.com/amplify-cms/mod/main/pkg"
+	// modpkg "go.amplifyedge.org/mod-v2/main/pkg"
 )
 
 const (

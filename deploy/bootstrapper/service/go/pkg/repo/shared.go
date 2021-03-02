@@ -3,13 +3,13 @@ package repo
 import (
 	"context"
 	"fmt"
-	sysCorePkg "github.com/amplify-cms/sys-share/sys-core/service/go/pkg"
 	"io/ioutil"
 	"time"
 
-	"github.com/amplify-cms/main/deploy/bootstrapper/service/go/pkg/fakedata"
-	bsrpc "github.com/amplify-cms/main/deploy/bootstrapper/service/go/rpc/v2"
-	accountPkg "github.com/amplify-cms/sys-share/sys-account/service/go/pkg"
+	"go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go/pkg/fakedata"
+	bsrpc "go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go/rpc/v2"
+	accountRpc "go.amplifyedge.org/sys-share-v2/sys-account/service/go/rpc/v2"
+	coreRpc "go.amplifyedge.org/sys-share-v2/sys-core/service/go/rpc/v2"
 )
 
 const (
@@ -44,12 +44,12 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, orgs []*bsrpc.BSOrg, p
 	}
 
 	for _, org := range orgs {
-		if _, err = b.accClient.NewOrg(ctx, accountPkg.OrgRequestFromProto(org.GetOrg())); err != nil {
+		if _, err = b.orgClient.NewOrg(ctx, org.GetOrg()); err != nil {
 			return err
 		}
 	}
 	for _, proj := range projects {
-		if _, err = b.accClient.NewProject(ctx, accountPkg.ProjectRequestFromProto(proj.GetProject())); err != nil {
+		if _, err = b.orgClient.NewProject(ctx, proj.GetProject()); err != nil {
 			return err
 		}
 		if _, err = b.discoClient.NewDiscoProject(ctx, proj.GetProjectDetails()); err != nil {
@@ -63,11 +63,11 @@ func (b *BootstrapRepo) sharedExecv3(ctx context.Context, orgs []*bsrpc.BSOrg, p
 	}
 
 	for _, reg := range regularUsers {
-		acc, err := b.accClient.NewAccount(ctx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts()))
+		acc, err := b.accClient.NewAccount(ctx, reg.GetNewAccounts())
 		if err != nil {
 			return err
 		}
-		updRequest := &accountPkg.AccountUpdateRequest{
+		updRequest := &accountRpc.AccountUpdateRequest{
 			Id:       acc.GetId(),
 			Verified: true,
 		}
@@ -92,12 +92,12 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, orgs []*bsrpc.BSOrg, p
 	}
 
 	for _, org := range orgs {
-		if _, err = b.accRepo.NewOrg(ctx, accountPkg.OrgRequestFromProto(org.GetOrg())); err != nil {
+		if _, err = b.accRepo.NewOrg(ctx, org.GetOrg()); err != nil {
 			return err
 		}
 	}
 	for _, proj := range projects {
-		if _, err = b.accRepo.NewProject(ctx, accountPkg.ProjectRequestFromProto(proj.GetProject())); err != nil {
+		if _, err = b.accRepo.NewProject(ctx, proj.GetProject()); err != nil {
 			return err
 		}
 		if _, err = b.discoRepo.NewDiscoProject(ctx, proj.GetProjectDetails()); err != nil {
@@ -110,12 +110,12 @@ func (b *BootstrapRepo) sharedExecv2(ctx context.Context, orgs []*bsrpc.BSOrg, p
 		}
 	}
 	for _, reg := range regularAccounts {
-		var acc *accountPkg.Account
-		acc, err = b.accRepo.NewAccount(ctx, accountPkg.AccountNewRequestFromProto(reg.GetNewAccounts()))
+		var acc *accountRpc.Account
+		acc, err = b.accRepo.NewAccount(ctx, reg.GetNewAccounts())
 		if err != nil {
 			return err
 		}
-		updRequest := &accountPkg.AccountUpdateRequest{
+		updRequest := &accountRpc.AccountUpdateRequest{
 			Id:       acc.GetId(),
 			Verified: true,
 		}
@@ -150,7 +150,7 @@ func (b *BootstrapRepo) sharedGenBS(bsAll *fakedata.BootstrapAll, joined, extens
 
 func (b *BootstrapRepo) resetAll(ctx context.Context) error {
 	var err error
-	_, err = b.busClient.Broadcast(ctx, &sysCorePkg.EventRequest{
+	_, err = b.busClient.Broadcast(ctx, &coreRpc.EventRequest{
 		EventName:   "onResetAllModDisco",
 		Initiator:   "bootstrap-service",
 		UserId:      "",
@@ -159,7 +159,7 @@ func (b *BootstrapRepo) resetAll(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	_, err = b.busClient.Broadcast(ctx, &sysCorePkg.EventRequest{
+	_, err = b.busClient.Broadcast(ctx, &coreRpc.EventRequest{
 		EventName:   "onResetAllSysAccount",
 		Initiator:   "bootstrap-service",
 		UserId:      "",

@@ -1,7 +1,7 @@
 package wrapper_test
 
 import (
-	"github.com/amplify-cms/main/deploy/templates/maintemplatev2/wrapper"
+	"go.amplifyedge.org/main-v2/deploy/templates/maintemplatev2/wrapper"
 	"github.com/stretchr/testify/require"
 	"testing"
 )

@@ -35,6 +35,7 @@ void main() async {
           url: settingsViewModel.envVariables.url,
           urlNative: settingsViewModel.envVariables.urlNative,
         ),
+        child: App(),
       ),
     ),
   );

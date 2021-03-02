@@ -1,6 +1,6 @@
-local accMixin = import "vendor/github.com/amplify-cms/sys/sys-account/service/go/template.sysaccount.libsonnet";
-local discoTpl = import "vendor/github.com/amplify-cms/mod/mod-disco/service/go/template.moddisco.libsonnet";
-local loadVar = import "vendor/github.com/amplify-cms/sys-share/sys-core/service/config/mixins/mixin.loadfn.libsonnet";
+local accMixin = import "vendor/github.com/amplify-edge/sys/sys-account/service/go/template.sysaccount.libsonnet";
+local discoTpl = import "vendor/github.com/amplify-edge/mod/mod-disco/service/go/template.moddisco.libsonnet";
+local loadVar = import "vendor/github.com/amplify-edge/sys-share/sys-core/service/config/mixins/mixin.loadfn.libsonnet";
 local bsTpl = import "../../bootstrapper/service/go/template.bootstrap.jsonnet";
 
 local stringToBool(s) =

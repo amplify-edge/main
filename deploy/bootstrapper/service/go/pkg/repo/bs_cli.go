@@ -4,10 +4,10 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"github.com/amplify-cms/main/deploy/bootstrapper/service/go/pkg/fakedata"
-	"github.com/amplify-cms/protoc-gen-cobra/client"
-	"github.com/amplify-cms/protoc-gen-cobra/flag"
-	"github.com/amplify-cms/protoc-gen-cobra/iocodec"
+	"go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go/pkg/fakedata"
+	"go.amplifyedge.org/protoc-gen-cobra/client"
+	"go.amplifyedge.org/protoc-gen-cobra/flag"
+	"go.amplifyedge.org/protoc-gen-cobra/iocodec"
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -19,8 +19,8 @@ import (
 	"path/filepath"
 	"time"
 
-	bsrpc "github.com/amplify-cms/main/deploy/bootstrapper/service/go/rpc/v2"
-	sharedConfig "github.com/amplify-cms/sys-share/sys-core/service/config"
+	bsrpc "go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go/rpc/v2"
+	sharedConfig "go.amplifyedge.org/sys-share-v2/sys-core/service/config"
 )
 
 func (b *BootstrapRepo) GenerateBSBypassCmd(cfg *client.Config) *cobra.Command {

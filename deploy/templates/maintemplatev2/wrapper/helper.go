@@ -3,25 +3,25 @@ package wrapper
 import (
 	"context"
 	"fmt"
-	"github.com/amplify-cms/sys-share/sys-core/service/certutils"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/certutils"
 	"time"
 
-	"github.com/amplify-cms/sys-share/sys-core/service/clihelper"
-	"github.com/amplify-cms/sys-share/sys-core/service/logging"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/clihelper"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/logging"
 
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 
-	bscfg "github.com/amplify-cms/main/deploy/bootstrapper/service/go"
-	bsPkg "github.com/amplify-cms/main/deploy/bootstrapper/service/go/pkg"
-	discoSvc "github.com/amplify-cms/mod/mod-disco/service/go"
-	discoPkg "github.com/amplify-cms/mod/mod-disco/service/go/pkg"
-	discoRpc "github.com/amplify-cms/mod/mod-disco/service/go/rpc/v2"
-	sysSharePkg "github.com/amplify-cms/sys-share/sys-account/service/go/pkg"
-	sysCorePkg "github.com/amplify-cms/sys-share/sys-core/service/go/pkg"
-	corebus "github.com/amplify-cms/sys-share/sys-core/service/go/pkg/bus"
-	sysPkg "github.com/amplify-cms/sys/main/pkg"
-	"github.com/amplify-cms/sys/sys-core/service/go/pkg/coredb"
+	bscfg "go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go"
+	bsPkg "go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go/pkg"
+	discoSvc "go.amplifyedge.org/mod-v2/mod-disco/service/go"
+	discoPkg "go.amplifyedge.org/mod-v2/mod-disco/service/go/pkg"
+	discoRpc "go.amplifyedge.org/mod-v2/mod-disco/service/go/rpc/v2"
+	sysSharePkg "go.amplifyedge.org/sys-share-v2/sys-account/service/go/pkg"
+	sysCorePkg "go.amplifyedge.org/sys-share-v2/sys-core/service/go/pkg"
+	corebus "go.amplifyedge.org/sys-share-v2/sys-core/service/go/pkg/bus"
+	sysPkg "go.amplifyedge.org/sys-v2/main/pkg"
+	"go.amplifyedge.org/sys-v2/sys-core/service/go/pkg/coredb"
 )
 
 const (

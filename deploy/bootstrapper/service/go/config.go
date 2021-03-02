@@ -2,7 +2,7 @@ package service
 
 import (
 	"fmt"
-	"github.com/amplify-cms/sys-share/sys-core/service/fileutils"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/fileutils"
 	"gopkg.in/yaml.v2"
 	"os"
 )

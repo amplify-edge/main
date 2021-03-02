@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/amplify-cms/main/deploy/projects/org-y/version"
-	"github.com/amplify-cms/main/deploy/templates/maintemplatev2"
+	"go.amplifyedge.org/main-v2/deploy/projects/org-y/version"
+	"go.amplifyedge.org/main-v2/deploy/templates/maintemplatev2"
 	"log"
 )
 

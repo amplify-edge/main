@@ -11,7 +11,7 @@ import 'core/core.dart';
 import 'core/routing/route_guard.dart';
 import 'modules/settings/settings_module.dart';
 
-class AppModule extends MainModule {
+class AppModule extends Module {
   final String url;
   final String urlNative;
 
@@ -87,10 +87,6 @@ class AppModule extends MainModule {
           // customTransition: noTransition,
         ),
       ];
-
-// add your main widget here
-  @override
-  Widget get bootstrap => App();
 
   CustomTransition get noTransition => CustomTransition(
         transitionDuration: Duration.zero,

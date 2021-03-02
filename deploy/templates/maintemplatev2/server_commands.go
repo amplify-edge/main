@@ -1,16 +1,17 @@
 package maintemplatev2
 
 import (
+	"embed"
 	"fmt"
 	"github.com/NYTimes/gziphandler"
 	"github.com/VictoriaMetrics/metrics"
-	bscrypt "github.com/amplify-cms/shared/tool/bs-crypt/lib"
-	"github.com/amplify-cms/sys-share/sys-core/service/certutils"
-	accountpkg "github.com/amplify-cms/sys/sys-account/service/go/pkg"
 	grpcMw "github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/opentracing/opentracing-go"
 	"github.com/spf13/cobra"
+	bscrypt "go.amplifyedge.org/shared-v2/tool/bs-crypt/lib"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/certutils"
+	accountpkg "go.amplifyedge.org/sys-v2/sys-account/service/go/pkg"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 	"google.golang.org/grpc"
@@ -21,16 +22,22 @@ import (
 	"strings"
 	"time"
 
-	"github.com/amplify-cms/sys-share/sys-core/service/logging"
-	"github.com/amplify-cms/sys-share/sys-core/service/logging/zaplog"
 	"github.com/winwisely268/go-grpc-victoriametrics"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/logging"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/logging/zaplog"
 
-	corebus "github.com/amplify-cms/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/amplify-cms/sys-share/sys-core/service/tracing"
-	"github.com/amplify-cms/sys/main/pkg"
+	corebus "go.amplifyedge.org/sys-share-v2/sys-core/service/go/pkg/bus"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/tracing"
+	"go.amplifyedge.org/sys-v2/main/pkg"
 
-	"github.com/amplify-cms/main/deploy/templates/maintemplatev2/wrapper"
+	"go.amplifyedge.org/main-v2/deploy/templates/maintemplatev2/wrapper"
 )
+
+//go:embed version/manifest.json
+var versionFile []byte
+
+//go:embed client/build/web/*
+var assets embed.FS
 
 const (
 	errSourcingConfig = "error while sourcing config for %s: %v"
@@ -78,7 +85,7 @@ func (mfs FileSystem) Open(path string) (http.File, error) {
 	return f, nil
 }
 
-func MainServerCommand(system http.FileSystem, version []byte, applogger logging.Logger) *cobra.Command {
+func MainServerCommand(applogger logging.Logger) *cobra.Command {
 	rootCmd := &cobra.Command{Use: "server"}
 	// persistent flags
 	rootCmd.PersistentFlags().BoolVar(&isDebug, "debug", defaultDebug, "debug")
@@ -189,7 +196,8 @@ func MainServerCommand(system http.FileSystem, version []byte, applogger logging
 			return mainSvc.Sys.Run(hostAddr, grpcWebServer, httpServer, localTlsCertPath, localTlsKeyPath)
 			// } else if !mainCfg.MainConfigServer.IsLocal && mainCfg.MainConfigServer.TLS.Enable {
 		} else {
-			fileServer := http.FileServer(system)
+			fileServer := http.FileServer(http.FS(assets))
+			fileServer = http.StripPrefix("/client/build/web", fileServer)
 			httpServer := createHttpHandler(logger, true, fileServer, grpcWebServer)
 			listener, err := net.Listen("tcp", fmt.Sprintf(":%d", mainCfg.MainConfigServer.Port))
 			if err != nil {
@@ -200,7 +208,7 @@ func MainServerCommand(system http.FileSystem, version []byte, applogger logging
 		}
 	}
 
-	buildInfo, err := wrapper.ManifestFromFile(version)
+	buildInfo, err := wrapper.ManifestFromFile(versionFile)
 	if err != nil {
 		applogger.Fatalf("unable to unmarshal build version information: %v", err)
 	}

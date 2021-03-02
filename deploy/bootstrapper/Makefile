@@ -1,12 +1,7 @@
-SHARED_FSPATH=./../../../shared
-BOILERPLATE_FSPATH=$(SHARED_FSPATH)/boilerplate
+SHARED_FSPATH=./../../includes
 
-include $(BOILERPLATE_FSPATH)/help.mk
-include $(BOILERPLATE_FSPATH)/os.mk
-include $(BOILERPLATE_FSPATH)/gitr.mk
-include $(BOILERPLATE_FSPATH)/tool.mk
-include $(BOILERPLATE_FSPATH)/flu.mk
-
+include $(SHARED_FSPATH)/help.mk
+include $(SHARED_FSPATH)/flu.mk
 
 override FLU_SAMPLE_NAME = example
 override FLU_SAMPLE_FSPATH = $(PWD)/example/client/flu
@@ -18,24 +13,22 @@ EXAMPLE_EMAIL = superadmin@amplify-cms.org
 EXAMPLE_PASSWORD = superadmin
 EXAMPLE_SERVER_ADDRESS = 127.0.0.1:8888
 
-all: print build print-end
+all: print gen build print-end
 
 ## Print all settings
 print: ## print
 	@echo
-	@echo "-- SYS-CORE: start --"
+	@echo "-- BOOTSTRAPPER: start --"
 	@echo
-
-	$(MAKE) os-print
-
+	@booty os-print
+	@booty gw print
 	$(MAKE) flu-print
-
 	$(MAKE) flu-gen-lang-print
 
 
 print-end:
 	@echo
-	@echo "-- SYS-CORE: end --"
+	@echo "-- BOOTSTRAPPER: end --"
 	@echo
 
 
@@ -43,9 +36,9 @@ build: build-delete
 	@echo 'Building example golang and flutter binaries'
 	mkdir -p bin/all/{cli,client}/{go,flu}
 	@echo 'Building Golang binaries'
-	go build -v -o bin-all/cli/go/ ./example/cli/go/main.go
+	#go build -v -o bin-all/cli/go/ ./example/cli/go/main.go
 	@echo 'Building Flutter binary'
-	$(MAKE) flu-web-build
+#	$(MAKE) flu-web-build
 
 build-delete:
 	@echo 'Removing built go and flutter binaries'
@@ -53,21 +46,18 @@ build-delete:
 
 gen: gen-delete
 	@echo "Generating GRPC models and services for Go & Flutter"
+	$(MAKE) flu-config
 	@mkdir -p service/{flu/lib,go}/rpc/v2
-	cd proto/v2/ && jb install && jb update
+	cd proto/v2/ && booty jb install && booty jb update
 	@go generate
 	@echo "Generating Flutter Config"
 	# $(MAKE) flu-gen-all
 	# $(MAKE) flu-gen-lang
 
-gen-dep:
-	GO111MODULE=on go get github.com/chrusty/protoc-gen-jsonschema/cmd/protoc-gen-jsonschema
-	go install github.com/chrusty/protoc-gen-jsonschema/cmd/protoc-gen-jsonschema
-
-config-gen: config-dep
+config-gen: config-clean
 	@echo Generating Config
 	@mkdir -p service/flu/lib/assets
-	jsonnet -S service/go/flutter_base_repo.jsonnet \
+	@booty jsonnet -S service/go/flutter_base_repo.jsonnet \
 		-V SYS_CORE_HOST="127.0.0.1" \
 		-V SYS_CORE_PORT="8888" \
 		> ./service/flu/lib/assets/hostconfig.json
@@ -76,26 +66,6 @@ config-clean:
 	@echo Deleting previously generated config
 	rm -rf ./service/flu/lib/assets/hostconfig.json
 
-config-dep:
-	#cd service/go && jb install && jb update
-
 gen-delete: config-clean
 	@echo 'Removing generated protobuf definition (Go and Flutter)'
 	rm -rf service/{flu/lib,go}/rpc/v2/*.{dart,go}
-
-example-run:
-	@echo Running Example Login Client
-	./bin-all/cli/go/main auth-service login --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --server-addr $(EXAMPLE_SERVER_ADDRESS)
-
-example-register:
-	@echo Running Example Register Client
-	./bin-all/cli/go/main auth-service register --email $(EXAMPLE_EMAIL) --password $(EXAMPLE_PASSWORD) --password-confirm $(EXAMPLE_PASSWORD) --server-addr $(EXAMPLE_SERVER_ADDRESS)
-
-example-flutter-web-run:
-	@echo Running Example Flutter Client
-	$(MAKE) flu-web-run
-
-example-flutter-desk-run:
-	@echo Running Example Flutter Desk Client
-	# HAs a bug. Runs, but Desktop screen is black.
-	$(MAKE) flu-desk-build

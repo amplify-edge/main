@@ -5,7 +5,7 @@ import 'package:random_string/random_string.dart';
 
 import 'views/settings_view.dart';
 
-class SettingsModule extends ChildModule {
+class SettingsModule extends Module {
   // final Function onChangeLanguageCallback;
   //
   // SettingsModule({@required this.onChangeLanguageCallback});

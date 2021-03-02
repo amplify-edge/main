@@ -1,18 +1,11 @@
 package main
 
 import (
-	"log"
-
-	"github.com/amplify-cms/main/deploy/templates/maintemplatev2"
-	"github.com/amplify-cms/main/deploy/templates/maintemplatev2/version"
+	"go.amplifyedge.org/main-v2/deploy/templates/maintemplatev2"
 )
 
 func main() {
-	b, err := version.Asset("manifest.json")
-	if err != nil {
-		log.Fatalf("unable to open build version information: %v", err)
-	}
-	rootCmd, logger := maintemplatev2.MainCliCommand(b)
+	rootCmd, logger := maintemplatev2.MainCliCommand()
 	// starts proxy
 	if err := rootCmd.Execute(); err != nil {
 		logger.Fatalf("command failed: %v", err)

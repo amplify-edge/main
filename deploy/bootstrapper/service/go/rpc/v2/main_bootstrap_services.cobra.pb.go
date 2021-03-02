@@ -3,10 +3,10 @@
 package v2
 
 import (
-	client "github.com/amplify-cms/protoc-gen-cobra/client"
-	flag "github.com/amplify-cms/protoc-gen-cobra/flag"
-	iocodec "github.com/amplify-cms/protoc-gen-cobra/iocodec"
 	cobra "github.com/spf13/cobra"
+	client "go.amplifyedge.org/protoc-gen-cobra/client"
+	flag "go.amplifyedge.org/protoc-gen-cobra/flag"
+	iocodec "go.amplifyedge.org/protoc-gen-cobra/iocodec"
 	grpc "google.golang.org/grpc"
 	proto "google.golang.org/protobuf/proto"
 	io "io"

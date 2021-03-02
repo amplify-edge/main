@@ -1,11 +1,11 @@
 package fakedata
 
 import (
-	bsrpc "github.com/amplify-cms/main/deploy/bootstrapper/service/go/rpc/v2"
-	discoFake "github.com/amplify-cms/mod/mod-disco/service/go/pkg/fakedata"
-	accFake "github.com/amplify-cms/sys-share/sys-account/service/go/pkg/fakedata"
-	sharedConfig "github.com/amplify-cms/sys-share/sys-core/service/config"
-	"github.com/amplify-cms/sys-share/sys-core/service/fakehelper"
+	bsrpc "go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go/rpc/v2"
+	discoFake "go.amplifyedge.org/mod-v2/mod-disco/service/go/pkg/fakedata"
+	accFake "go.amplifyedge.org/sys-share-v2/sys-account/service/go/pkg/fakedata"
+	sharedConfig "go.amplifyedge.org/sys-share-v2/sys-core/service/config"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/fakehelper"
 )
 
 type bootstrapBsProjects struct {

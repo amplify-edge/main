@@ -2,10 +2,10 @@ package wrapper
 
 import (
 	"fmt"
-	bsService "github.com/amplify-cms/main/deploy/bootstrapper/service/go"
-	discoService "github.com/amplify-cms/mod/mod-disco/service/go"
-	"github.com/amplify-cms/sys-share/sys-core/service/fileutils"
-	sysAccountService "github.com/amplify-cms/sys/sys-account/service/go"
+	bsService "go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go"
+	discoService "go.amplifyedge.org/mod-v2/mod-disco/service/go"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/fileutils"
+	sysAccountService "go.amplifyedge.org/sys-v2/sys-account/service/go"
 	"gopkg.in/yaml.v2"
 )
 

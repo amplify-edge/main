@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/amplify-cms/sys-share/sys-core/service/fileutils"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/fileutils"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -15,9 +15,9 @@ import (
 
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"github.com/amplify-cms/main/deploy/bootstrapper/service/go/pkg/fakedata"
-	bsrpc "github.com/amplify-cms/main/deploy/bootstrapper/service/go/rpc/v2"
-	sharedConfig "github.com/amplify-cms/sys-share/sys-core/service/config"
+	"go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go/pkg/fakedata"
+	bsrpc "go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go/rpc/v2"
+	sharedConfig "go.amplifyedge.org/sys-share-v2/sys-core/service/config"
 )
 
 const (

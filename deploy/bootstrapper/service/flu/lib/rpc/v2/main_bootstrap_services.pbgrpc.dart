@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: main_bootstrap_services.proto
 //
-// @dart = 2.3
+// @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:async' as $async;
@@ -40,47 +40,37 @@ class BSServiceClient extends $grpc.Client {
           ($0.GetBSRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
 
-  BSServiceClient($grpc.ClientChannel channel, {$grpc.CallOptions options})
-      : super(channel, options: options);
+  BSServiceClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions? options,
+      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
 
   $grpc.ResponseFuture<$0.NewBSResponse> newBootstrap(
       $async.Stream<$0.NewBSRequest> request,
-      {$grpc.CallOptions options}) {
-    final call = $createCall(_$newBootstrap, request, options: options);
-    return $grpc.ResponseFuture(call);
+      {$grpc.CallOptions? options}) {
+    return $createStreamingCall(_$newBootstrap, request, options: options)
+        .single;
   }
 
   $grpc.ResponseFuture<$0.BS> getBootstrap($0.GetBSRequest request,
-      {$grpc.CallOptions options}) {
-    final call = $createCall(
-        _$getBootstrap, $async.Stream.fromIterable([request]),
-        options: options);
-    return $grpc.ResponseFuture(call);
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getBootstrap, request, options: options);
   }
 
   $grpc.ResponseFuture<$0.ListBSResponse> listBootstrap(
       $0.ListBSRequest request,
-      {$grpc.CallOptions options}) {
-    final call = $createCall(
-        _$listBootstrap, $async.Stream.fromIterable([request]),
-        options: options);
-    return $grpc.ResponseFuture(call);
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$listBootstrap, request, options: options);
   }
 
   $grpc.ResponseFuture<$1.Empty> executeBootstrap($0.GetBSRequest request,
-      {$grpc.CallOptions options}) {
-    final call = $createCall(
-        _$executeBootstrap, $async.Stream.fromIterable([request]),
-        options: options);
-    return $grpc.ResponseFuture(call);
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$executeBootstrap, request, options: options);
   }
 
   $grpc.ResponseFuture<$1.Empty> deleteBootstrap($0.GetBSRequest request,
-      {$grpc.CallOptions options}) {
-    final call = $createCall(
-        _$deleteBootstrap, $async.Stream.fromIterable([request]),
-        options: options);
-    return $grpc.ResponseFuture(call);
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$deleteBootstrap, request, options: options);
   }
 }
 

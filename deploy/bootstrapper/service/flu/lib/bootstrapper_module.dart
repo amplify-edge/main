@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:random_string/random_string.dart';
 
-class BootstrapperModule extends ChildModule {
+class BootstrapperModule extends Module {
   final String baseRoute;
   final String url;
 
