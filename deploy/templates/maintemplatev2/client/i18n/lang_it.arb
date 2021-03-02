@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-01-25T02:50:37.485151",
+  "@@last_modified": "2021-01-26T18:38:38.587408",
   "tabSuper": "SuperAdmin",
   "@tabSuper": {
     "description": "text for superadmin tab",
@@ -75,6 +75,12 @@
   "changeThemeSet": "Cambia tema",
   "@changeThemeSet": {
     "description": "text for the change theme text in settings screen",
+    "placeholders": {},
+    "type": "text"
+  },
+  "noMenuSelected": "Nessun menu selezionato, fare clic su qualsiasi dalla barra di navigazione",
+  "@noMenuSelected": {
+    "description": "text for home page",
     "placeholders": {},
     "type": "text"
   }

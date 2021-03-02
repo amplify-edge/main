@@ -1,4 +1,4 @@
-module github.com/getcouragenow/main/deploy/projects/org-x
+module github.com/amplify-cms/main/deploy/projects/org-x
 
 go 1.13
 

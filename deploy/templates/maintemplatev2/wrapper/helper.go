@@ -3,30 +3,29 @@ package wrapper
 import (
 	"context"
 	"fmt"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/certutils"
 	"time"
 
-	"github.com/getcouragenow/sys-share/sys-core/service/clihelper"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/clihelper"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/logging"
 
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 
-	bscfg "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	bsPkg "github.com/getcouragenow/main/deploy/bootstrapper/service/go/pkg"
-	discoSvc "github.com/getcouragenow/mod/mod-disco/service/go"
-	discoPkg "github.com/getcouragenow/mod/mod-disco/service/go/pkg"
-	discoRpc "github.com/getcouragenow/mod/mod-disco/service/go/rpc/v2"
-	sysSharePkg "github.com/getcouragenow/sys-share/sys-account/service/go/pkg"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
-	sysCorePkg "github.com/getcouragenow/sys-share/sys-core/service/go/pkg"
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	sysPkg "github.com/getcouragenow/sys/main/pkg"
-	"github.com/getcouragenow/sys/sys-core/service/go/pkg/coredb"
+	bscfg "go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go"
+	bsPkg "go.amplifyedge.org/main-v2/deploy/bootstrapper/service/go/pkg"
+	discoSvc "go.amplifyedge.org/mod-v2/mod-disco/service/go"
+	discoPkg "go.amplifyedge.org/mod-v2/mod-disco/service/go/pkg"
+	discoRpc "go.amplifyedge.org/mod-v2/mod-disco/service/go/rpc/v2"
+	sysSharePkg "go.amplifyedge.org/sys-share-v2/sys-account/service/go/pkg"
+	sysCorePkg "go.amplifyedge.org/sys-share-v2/sys-core/service/go/pkg"
+	corebus "go.amplifyedge.org/sys-share-v2/sys-core/service/go/pkg/bus"
+	sysPkg "go.amplifyedge.org/sys-v2/main/pkg"
+	"go.amplifyedge.org/sys-v2/sys-core/service/go/pkg/coredb"
 )
 
 const (
 	defaultTimeout      = 5 * time.Second
-	errSourcingConfig   = "error while sourcing config for %s: %v"
 	errCreateSysService = "error while creating sys-%s service: %v"
 	errCreateModService = "error while creating mod-%s service: %v"
 )
@@ -50,23 +49,23 @@ func NewMainService(
 	logger logging.Logger,
 	sscfg *sysPkg.SysServiceConfig,
 	cbus *corebus.CoreBus,
-	mainCfg *MainConfig,
+	mainCfg *MainServerConfig,
 	discocfg *discoSvc.ModDiscoConfig,
 	bsconfig *bscfg.BootstrapConfig,
 ) (*MainService, error) {
-	discodb, err := coredb.NewCoreDB(logger, &discocfg.ModDiscoConfig.SysCoreConfig, nil)
+	discodb, err := coredb.NewCoreDB(logger, &discocfg.SysCoreConfig, nil)
 	if err != nil {
 		logger.Fatalf("error creating mod-disco database: %v", err)
 	}
 	var clientConn *grpc.ClientConn
 	var dialOpts grpc.DialOption
 	// cli options
-	hostPort := fmt.Sprintf("%s:%d", mainCfg.MainConfig.HostAddress, mainCfg.MainConfig.Port)
+	hostPort := fmt.Sprintf("%s:%d", mainCfg.HostAddress, mainCfg.Port)
 	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
 	defer cancel()
 
-	if mainCfg.MainConfig.TLS.Enable {
-		creds, err := sharedConfig.ClientLoadCA(mainCfg.MainConfig.TLS.RootCAPath)
+	if mainCfg.TLS.Enable {
+		creds, err := certutils.ClientLoadCA(mainCfg.TLS.RootCAPath)
 		if err != nil {
 			return nil, fmt.Errorf("unable to load CA Root path: %v", err)
 		}
@@ -84,7 +83,7 @@ func NewMainService(
 		return nil, fmt.Errorf("unable to create new client conn: %v", err)
 	}
 	// initiate all sys-* service
-	sysSvc, err := sysPkg.NewService(sscfg, mainCfg.MainConfig.Domain)
+	sysSvc, err := sysPkg.NewService(sscfg, mainCfg.Domain)
 	if err != nil {
 		return nil, fmt.Errorf(errCreateSysService, "all", err)
 	}
@@ -121,7 +120,7 @@ func NewMainService(
 
 func NewMainCLI(
 	logger logging.Logger,
-	mainCfg *MainConfig,
+	mainCfg *MainClientConfig,
 	bsconfig *bscfg.BootstrapConfig,
 	cbus *corebus.CoreBus,
 ) (*MainSdkCli, error) {
@@ -130,25 +129,26 @@ func NewMainCLI(
 	// cli options
 	var cliOpts *clihelper.CLIOptions
 
-	hostPort := fmt.Sprintf("%s:%d", mainCfg.MainConfig.HostAddress, mainCfg.MainConfig.Port)
 	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
 	defer cancel()
 
-	if !mainCfg.MainConfig.IsLocal && mainCfg.MainConfig.TLS.Enable {
-		err := sharedConfig.DownloadCACert(mainCfg.MainConfig.TLS.RootCAPath, mainCfg.MainConfig.Domain)
-		creds, err := sharedConfig.ClientLoadCA(mainCfg.MainConfig.TLS.RootCAPath)
+	hostPort := fmt.Sprintf("%s:%d", mainCfg.Domain, mainCfg.Port)
+
+	if !mainCfg.IsLocal && mainCfg.TLS.Enable {
+		err := certutils.DownloadCACert(mainCfg.TLS.RootCAPath, mainCfg.Domain)
+		creds, err := certutils.ClientLoadCA(mainCfg.TLS.RootCAPath)
 		if err != nil {
-			return nil, fmt.Errorf("unable to load CA from domain: %s => %v", mainCfg.MainConfig.Domain, err)
+			return nil, fmt.Errorf("unable to load CA from domain: %s => %v", mainCfg.Domain, err)
 		}
 		dialOpts = append(dialOpts, grpc.WithTransportCredentials(creds))
-		cliOpts = clihelper.CLIWrapper(mainCfg.MainConfig.TLS.RootCAPath, hostPort, ".env")
-	} else if mainCfg.MainConfig.TLS.Enable && mainCfg.MainConfig.IsLocal {
-		creds, err := sharedConfig.ClientLoadCA(mainCfg.MainConfig.TLS.RootCAPath)
+		cliOpts = clihelper.CLIWrapper(mainCfg.TLS.RootCAPath, hostPort, ".env")
+	} else if mainCfg.TLS.Enable && mainCfg.IsLocal {
+		creds, err := certutils.ClientLoadCA(mainCfg.TLS.RootCAPath)
 		if err != nil {
 			return nil, fmt.Errorf("unable to load CA Root path: %v", err)
 		}
 		dialOpts = append(dialOpts, grpc.WithTransportCredentials(creds))
-		cliOpts = clihelper.CLIWrapper(mainCfg.MainConfig.TLS.RootCAPath, hostPort, ".env")
+		cliOpts = clihelper.CLIWrapper(mainCfg.TLS.RootCAPath, hostPort, ".env")
 	} else {
 		dialOpts = append(dialOpts, grpc.WithInsecure())
 		cliOpts = clihelper.CLIWrapper("", hostPort, ".env")

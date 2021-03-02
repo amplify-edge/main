@@ -2,6 +2,9 @@
 
 This is an example project.
 
+<<<<<<< HEAD
+Its is deployed to https://org-y.amplify-cms.org/
+=======
 Its is deployed to https://org-y.getcouragenow.org/
 
 
@@ -33,3 +36,4 @@ password: o,t|sq#q1-KF
 
 email: user_4@getcouragenow.org
 password: 9&&lp!5?EdQp
+>>>>>>> upstream/master

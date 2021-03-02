@@ -15,7 +15,7 @@ publish_to: none
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.6.0 <3.0.0'
+  sdk: '>=2.10.0-0 <3.0.0'
 
 dependencies:
   flutter:
@@ -49,25 +49,25 @@ dependencies:
   #   path: ../../mod-kanban/client
   # sys_core:
   # git:
-  # url: git://github.com/getcouragenow/sys.git
+  # url: git://github.com/amplify-cms/sys.git
   # path: sys-core/service/flu
 
   mod_disco:
     #    git:
-    #      url: git://github.com/getcouragenow/mod.git
+    #      url: git://github.com/amplify-cms/mod.git
     #      path: mod-disco/service/flu
     #      ref: cfafd56bf659673163d699fc761e4a73d6cb8bdd
     path: ../../../../../mod/mod-disco/service/flu
   bootstrapper:
     #    git:
-    #      url: git://github.com/getcouragenow/main.git
+    #      url: git://github.com/amplify-cms/main.git
     #      path: deploy/bootstrapper/service/flu
     #      ref: e940e1cde842537c62580a467b3e489bfa84085e
     path: ../../../bootstrapper/service/flu
 
   #sys_core:
   #  git:
-  #    url: git://github.com/getcouragenow/core-runtime.git
+  #    url: git://github.com/amplify-cms/core-runtime.git
   #    path: sys-core/client
   #    ref: master
 
@@ -95,10 +95,9 @@ dev_dependencies:
   intl_translation:
     git:
       url: https://github.com/gutterbacon/intl_translation
-      ref: 4c5e4638bf23444ab7d5d60f00f4319f37dee98c
+      ref: 248adfbd76ad3d3be702fb376cfa28112fa1a5b4
   #  intl_translation: ^0.17.10+1
-  build_runner: ^1.10.2
-  hive_generator: ^0.8.2
+  build_runner: ^1.11.0
   json_serializable: ^3.2.3
   flutter_launcher_icons: ^0.8.1
 

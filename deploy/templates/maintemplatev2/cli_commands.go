@@ -3,37 +3,33 @@ package maintemplatev2
 import (
 	"github.com/spf13/cobra"
 
-	corebus "github.com/getcouragenow/sys-share/sys-core/service/go/pkg/bus"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging"
-	"github.com/getcouragenow/sys-share/sys-core/service/logging/zaplog"
+	corebus "go.amplifyedge.org/sys-share-v2/sys-core/service/go/pkg/bus"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/logging"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/logging/zaplog"
 
-	bsSvc "github.com/getcouragenow/main/deploy/bootstrapper/service/go"
-	"github.com/getcouragenow/main/deploy/templates/maintemplatev2/wrapper"
+	"go.amplifyedge.org/main-v2/deploy/templates/maintemplatev2/wrapper"
 )
 
 var (
-	bsCliCfgPath      string
-	mainClientCfgPath string
-	isCliDebug        bool
+	clientCfgPath string
+	isCliDebug    bool
 )
 
 const (
-	commandName                 = "cli"
-	errCreateCli                = "error creating cli for " + commandName + ": %v"
-	defaultBsCliConfigPath      = "./config/bootstrap-client.yml"
-	defaultMainConfigClientPath = "./config/main-client.yml"
-	defaultCliDebug             = true
+	commandName                       = "cli"
+	errCreateCli                      = "error creating cli for " + commandName + ": %v"
+	defaultMainConfigServerClientPath = "./config/config-client.yml"
+	defaultCliDebug                   = true
 )
 
-func MainCliCommand(version []byte) (*cobra.Command, logging.Logger) {
+func MainCliCommand() (*cobra.Command, logging.Logger) {
 	var rootCmd = &cobra.Command{
 		Use:   commandName,
 		Short: commandName,
 	}
 
 	rootCmd.PersistentFlags().BoolVar(&isCliDebug, "debug", defaultCliDebug, "debug")
-	rootCmd.PersistentFlags().StringVarP(&bsCliCfgPath, "bootstrap-config-path", "b", defaultBsCliConfigPath, "bs config path to use")
-	rootCmd.PersistentFlags().StringVarP(&mainClientCfgPath, "main-config-path", "m", defaultMainConfigClientPath, "main config path to use")
+	rootCmd.PersistentFlags().StringVarP(&clientCfgPath, "client-config-path", "c", defaultMainConfigServerClientPath, "client config path to use")
 	// logging
 	var logger *zaplog.ZapLogger
 	if isDebug {
@@ -43,24 +39,22 @@ func MainCliCommand(version []byte) (*cobra.Command, logging.Logger) {
 	}
 	logger.InitLogger(nil)
 
-	buildInfo, err := wrapper.ManifestFromFile(version)
+	buildInfo, err := wrapper.ManifestFromFile(versionFile)
 	if err != nil {
 		logger.Fatalf("unable to unmarshal build version information: %v", err)
 	}
 
 	// configs
-	mainCfg, err := wrapper.NewConfig(mainClientCfgPath)
+	mainCfg, err := wrapper.NewClientConfig(clientCfgPath)
 	if err != nil {
 		logger.Fatalf(errSourcingConfig, "main-wrapper", err)
 	}
-	bscfg, err := bsSvc.NewConfig(bsCliCfgPath)
-	if err != nil {
-		logger.Fatalf(errSourcingConfig, "bootstrapper", err)
-	}
+	bscfg := mainCfg.BootstrapConfig
+
 	mainCli, err := wrapper.NewMainCLI(
 		logger,
-		mainCfg,
-		bscfg,
+		&mainCfg.MainConfigClient,
+		&bscfg,
 		corebus.NewCoreBus(),
 	)
 	if err != nil {

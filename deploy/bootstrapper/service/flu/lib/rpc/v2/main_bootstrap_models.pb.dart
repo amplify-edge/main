@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: main_bootstrap_models.proto
 //
-// @dart = 2.3
+// @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
@@ -10,8 +10,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'vendor/github.com/getcouragenow/sys-share/sys-account/proto/v2/sys_account_models.pb.dart' as $2;
-import 'vendor/github.com/getcouragenow/mod/mod-disco/proto/v2/mod_disco_models.pb.dart' as $3;
+import 'vendor/github.com/amplify-edge/sys-share/sys-account/proto/v2/sys_account_models.pb.dart' as $2;
+import 'vendor/github.com/amplify-edge/mod/mod-disco/proto/v2/mod_disco_models.pb.dart' as $3;
 import 'google/protobuf/timestamp.pb.dart' as $4;
 
 class BSProject extends $pb.GeneratedMessage {
@@ -23,7 +23,23 @@ class BSProject extends $pb.GeneratedMessage {
   ;
 
   BSProject._() : super();
-  factory BSProject() => create();
+  factory BSProject({
+    $2.ProjectRequest? project,
+    $3.NewDiscoProjectRequest? projectDetails,
+    $3.NewSurveyProjectRequest? surveySchema,
+  }) {
+    final _result = create();
+    if (project != null) {
+      _result.project = project;
+    }
+    if (projectDetails != null) {
+      _result.projectDetails = projectDetails;
+    }
+    if (surveySchema != null) {
+      _result.surveySchema = surveySchema;
+    }
+    return _result;
+  }
   factory BSProject.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory BSProject.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -35,7 +51,7 @@ class BSProject extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  BSProject copyWith(void Function(BSProject) updates) => super.copyWith((message) => updates(message as BSProject)); // ignore: deprecated_member_use
+  BSProject copyWith(void Function(BSProject) updates) => super.copyWith((message) => updates(message as BSProject)) as BSProject; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BSProject create() => BSProject._();
@@ -43,7 +59,7 @@ class BSProject extends $pb.GeneratedMessage {
   static $pb.PbList<BSProject> createRepeated() => $pb.PbList<BSProject>();
   @$core.pragma('dart2js:noInline')
   static BSProject getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BSProject>(create);
-  static BSProject _defaultInstance;
+  static BSProject? _defaultInstance;
 
   @$pb.TagNumber(1)
   $2.ProjectRequest get project => $_getN(0);
@@ -86,7 +102,15 @@ class BSOrg extends $pb.GeneratedMessage {
   ;
 
   BSOrg._() : super();
-  factory BSOrg() => create();
+  factory BSOrg({
+    $2.OrgRequest? org,
+  }) {
+    final _result = create();
+    if (org != null) {
+      _result.org = org;
+    }
+    return _result;
+  }
   factory BSOrg.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory BSOrg.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -98,7 +122,7 @@ class BSOrg extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  BSOrg copyWith(void Function(BSOrg) updates) => super.copyWith((message) => updates(message as BSOrg)); // ignore: deprecated_member_use
+  BSOrg copyWith(void Function(BSOrg) updates) => super.copyWith((message) => updates(message as BSOrg)) as BSOrg; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BSOrg create() => BSOrg._();
@@ -106,7 +130,7 @@ class BSOrg extends $pb.GeneratedMessage {
   static $pb.PbList<BSOrg> createRepeated() => $pb.PbList<BSOrg>();
   @$core.pragma('dart2js:noInline')
   static BSOrg getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BSOrg>(create);
-  static BSOrg _defaultInstance;
+  static BSOrg? _defaultInstance;
 
   @$pb.TagNumber(1)
   $2.OrgRequest get org => $_getN(0);
@@ -124,13 +148,28 @@ class BSRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'BSRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'v2.main_bootstrap.services'), createEmptyInstance: create)
     ..pc<BSOrg>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'orgs', $pb.PbFieldType.PM, subBuilder: BSOrg.create)
     ..pc<BSProject>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'projects', $pb.PbFieldType.PM, subBuilder: BSProject.create)
-    ..pc<BSAccount>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'superusers', $pb.PbFieldType.PM, subBuilder: BSAccount.create)
     ..pc<BSRegularAccount>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'regularUsers', $pb.PbFieldType.PM, subBuilder: BSRegularAccount.create)
     ..hasRequiredFields = false
   ;
 
   BSRequest._() : super();
-  factory BSRequest() => create();
+  factory BSRequest({
+    $core.Iterable<BSOrg>? orgs,
+    $core.Iterable<BSProject>? projects,
+    $core.Iterable<BSRegularAccount>? regularUsers,
+  }) {
+    final _result = create();
+    if (orgs != null) {
+      _result.orgs.addAll(orgs);
+    }
+    if (projects != null) {
+      _result.projects.addAll(projects);
+    }
+    if (regularUsers != null) {
+      _result.regularUsers.addAll(regularUsers);
+    }
+    return _result;
+  }
   factory BSRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory BSRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -142,7 +181,7 @@ class BSRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  BSRequest copyWith(void Function(BSRequest) updates) => super.copyWith((message) => updates(message as BSRequest)); // ignore: deprecated_member_use
+  BSRequest copyWith(void Function(BSRequest) updates) => super.copyWith((message) => updates(message as BSRequest)) as BSRequest; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BSRequest create() => BSRequest._();
@@ -150,7 +189,7 @@ class BSRequest extends $pb.GeneratedMessage {
   static $pb.PbList<BSRequest> createRepeated() => $pb.PbList<BSRequest>();
   @$core.pragma('dart2js:noInline')
   static BSRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BSRequest>(create);
-  static BSRequest _defaultInstance;
+  static BSRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<BSOrg> get orgs => $_getList(0);
@@ -158,11 +197,8 @@ class BSRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.List<BSProject> get projects => $_getList(1);
 
-  @$pb.TagNumber(3)
-  $core.List<BSAccount> get superusers => $_getList(2);
-
   @$pb.TagNumber(4)
-  $core.List<BSRegularAccount> get regularUsers => $_getList(3);
+  $core.List<BSRegularAccount> get regularUsers => $_getList(2);
 }
 
 class BSAccount extends $pb.GeneratedMessage {
@@ -172,7 +208,15 @@ class BSAccount extends $pb.GeneratedMessage {
   ;
 
   BSAccount._() : super();
-  factory BSAccount() => create();
+  factory BSAccount({
+    $2.LoginRequest? initialSuperuser,
+  }) {
+    final _result = create();
+    if (initialSuperuser != null) {
+      _result.initialSuperuser = initialSuperuser;
+    }
+    return _result;
+  }
   factory BSAccount.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory BSAccount.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -184,7 +228,7 @@ class BSAccount extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  BSAccount copyWith(void Function(BSAccount) updates) => super.copyWith((message) => updates(message as BSAccount)); // ignore: deprecated_member_use
+  BSAccount copyWith(void Function(BSAccount) updates) => super.copyWith((message) => updates(message as BSAccount)) as BSAccount; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BSAccount create() => BSAccount._();
@@ -192,7 +236,7 @@ class BSAccount extends $pb.GeneratedMessage {
   static $pb.PbList<BSAccount> createRepeated() => $pb.PbList<BSAccount>();
   @$core.pragma('dart2js:noInline')
   static BSAccount getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BSAccount>(create);
-  static BSAccount _defaultInstance;
+  static BSAccount? _defaultInstance;
 
   @$pb.TagNumber(1)
   $2.LoginRequest get initialSuperuser => $_getN(0);
@@ -214,7 +258,19 @@ class BSRegularAccount extends $pb.GeneratedMessage {
   ;
 
   BSRegularAccount._() : super();
-  factory BSRegularAccount() => create();
+  factory BSRegularAccount({
+    $2.AccountNewRequest? newAccounts,
+    $3.NewSurveyUserRequest? surveyValue,
+  }) {
+    final _result = create();
+    if (newAccounts != null) {
+      _result.newAccounts = newAccounts;
+    }
+    if (surveyValue != null) {
+      _result.surveyValue = surveyValue;
+    }
+    return _result;
+  }
   factory BSRegularAccount.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory BSRegularAccount.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -226,7 +282,7 @@ class BSRegularAccount extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  BSRegularAccount copyWith(void Function(BSRegularAccount) updates) => super.copyWith((message) => updates(message as BSRegularAccount)); // ignore: deprecated_member_use
+  BSRegularAccount copyWith(void Function(BSRegularAccount) updates) => super.copyWith((message) => updates(message as BSRegularAccount)) as BSRegularAccount; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BSRegularAccount create() => BSRegularAccount._();
@@ -234,7 +290,7 @@ class BSRegularAccount extends $pb.GeneratedMessage {
   static $pb.PbList<BSRegularAccount> createRepeated() => $pb.PbList<BSRegularAccount>();
   @$core.pragma('dart2js:noInline')
   static BSRegularAccount getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BSRegularAccount>(create);
-  static BSRegularAccount _defaultInstance;
+  static BSRegularAccount? _defaultInstance;
 
   @$pb.TagNumber(1)
   $2.AccountNewRequest get newAccounts => $_getN(0);
@@ -267,7 +323,19 @@ class NewBSRequest extends $pb.GeneratedMessage {
   ;
 
   NewBSRequest._() : super();
-  factory NewBSRequest() => create();
+  factory NewBSRequest({
+    $core.String? fileExtension,
+    $core.List<$core.int>? bsRequest,
+  }) {
+    final _result = create();
+    if (fileExtension != null) {
+      _result.fileExtension = fileExtension;
+    }
+    if (bsRequest != null) {
+      _result.bsRequest = bsRequest;
+    }
+    return _result;
+  }
   factory NewBSRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory NewBSRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -279,7 +347,7 @@ class NewBSRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  NewBSRequest copyWith(void Function(NewBSRequest) updates) => super.copyWith((message) => updates(message as NewBSRequest)); // ignore: deprecated_member_use
+  NewBSRequest copyWith(void Function(NewBSRequest) updates) => super.copyWith((message) => updates(message as NewBSRequest)) as NewBSRequest; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static NewBSRequest create() => NewBSRequest._();
@@ -287,7 +355,7 @@ class NewBSRequest extends $pb.GeneratedMessage {
   static $pb.PbList<NewBSRequest> createRepeated() => $pb.PbList<NewBSRequest>();
   @$core.pragma('dart2js:noInline')
   static NewBSRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NewBSRequest>(create);
-  static NewBSRequest _defaultInstance;
+  static NewBSRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get fileExtension => $_getSZ(0);
@@ -315,7 +383,15 @@ class NewBSResponse extends $pb.GeneratedMessage {
   ;
 
   NewBSResponse._() : super();
-  factory NewBSResponse() => create();
+  factory NewBSResponse({
+    $core.String? fileId,
+  }) {
+    final _result = create();
+    if (fileId != null) {
+      _result.fileId = fileId;
+    }
+    return _result;
+  }
   factory NewBSResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory NewBSResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -327,7 +403,7 @@ class NewBSResponse extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  NewBSResponse copyWith(void Function(NewBSResponse) updates) => super.copyWith((message) => updates(message as NewBSResponse)); // ignore: deprecated_member_use
+  NewBSResponse copyWith(void Function(NewBSResponse) updates) => super.copyWith((message) => updates(message as NewBSResponse)) as NewBSResponse; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static NewBSResponse create() => NewBSResponse._();
@@ -335,7 +411,7 @@ class NewBSResponse extends $pb.GeneratedMessage {
   static $pb.PbList<NewBSResponse> createRepeated() => $pb.PbList<NewBSResponse>();
   @$core.pragma('dart2js:noInline')
   static NewBSResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NewBSResponse>(create);
-  static NewBSResponse _defaultInstance;
+  static NewBSResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get fileId => $_getSZ(0);
@@ -354,7 +430,15 @@ class GetBSRequest extends $pb.GeneratedMessage {
   ;
 
   GetBSRequest._() : super();
-  factory GetBSRequest() => create();
+  factory GetBSRequest({
+    $core.String? fileId,
+  }) {
+    final _result = create();
+    if (fileId != null) {
+      _result.fileId = fileId;
+    }
+    return _result;
+  }
   factory GetBSRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory GetBSRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -366,7 +450,7 @@ class GetBSRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  GetBSRequest copyWith(void Function(GetBSRequest) updates) => super.copyWith((message) => updates(message as GetBSRequest)); // ignore: deprecated_member_use
+  GetBSRequest copyWith(void Function(GetBSRequest) updates) => super.copyWith((message) => updates(message as GetBSRequest)) as GetBSRequest; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static GetBSRequest create() => GetBSRequest._();
@@ -374,7 +458,7 @@ class GetBSRequest extends $pb.GeneratedMessage {
   static $pb.PbList<GetBSRequest> createRepeated() => $pb.PbList<GetBSRequest>();
   @$core.pragma('dart2js:noInline')
   static GetBSRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBSRequest>(create);
-  static GetBSRequest _defaultInstance;
+  static GetBSRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get fileId => $_getSZ(0);
@@ -391,11 +475,32 @@ class BS extends $pb.GeneratedMessage {
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fileId')
     ..aOM<$4.Timestamp>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'createdAt', subBuilder: $4.Timestamp.create)
     ..aOM<BSRequest>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content', subBuilder: BSRequest.create)
+    ..aOB(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isCurrentlyActive')
     ..hasRequiredFields = false
   ;
 
   BS._() : super();
-  factory BS() => create();
+  factory BS({
+    $core.String? fileId,
+    $4.Timestamp? createdAt,
+    BSRequest? content,
+    $core.bool? isCurrentlyActive,
+  }) {
+    final _result = create();
+    if (fileId != null) {
+      _result.fileId = fileId;
+    }
+    if (createdAt != null) {
+      _result.createdAt = createdAt;
+    }
+    if (content != null) {
+      _result.content = content;
+    }
+    if (isCurrentlyActive != null) {
+      _result.isCurrentlyActive = isCurrentlyActive;
+    }
+    return _result;
+  }
   factory BS.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory BS.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -407,7 +512,7 @@ class BS extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  BS copyWith(void Function(BS) updates) => super.copyWith((message) => updates(message as BS)); // ignore: deprecated_member_use
+  BS copyWith(void Function(BS) updates) => super.copyWith((message) => updates(message as BS)) as BS; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static BS create() => BS._();
@@ -415,7 +520,7 @@ class BS extends $pb.GeneratedMessage {
   static $pb.PbList<BS> createRepeated() => $pb.PbList<BS>();
   @$core.pragma('dart2js:noInline')
   static BS getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BS>(create);
-  static BS _defaultInstance;
+  static BS? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get fileId => $_getSZ(0);
@@ -447,6 +552,15 @@ class BS extends $pb.GeneratedMessage {
   void clearContent() => clearField(3);
   @$pb.TagNumber(3)
   BSRequest ensureContent() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  $core.bool get isCurrentlyActive => $_getBF(3);
+  @$pb.TagNumber(4)
+  set isCurrentlyActive($core.bool v) { $_setBool(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasIsCurrentlyActive() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearIsCurrentlyActive() => clearField(4);
 }
 
 class ListBSResponse extends $pb.GeneratedMessage {
@@ -456,7 +570,15 @@ class ListBSResponse extends $pb.GeneratedMessage {
   ;
 
   ListBSResponse._() : super();
-  factory ListBSResponse() => create();
+  factory ListBSResponse({
+    $core.Iterable<BS>? bootstraps,
+  }) {
+    final _result = create();
+    if (bootstraps != null) {
+      _result.bootstraps.addAll(bootstraps);
+    }
+    return _result;
+  }
   factory ListBSResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory ListBSResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -468,7 +590,7 @@ class ListBSResponse extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ListBSResponse copyWith(void Function(ListBSResponse) updates) => super.copyWith((message) => updates(message as ListBSResponse)); // ignore: deprecated_member_use
+  ListBSResponse copyWith(void Function(ListBSResponse) updates) => super.copyWith((message) => updates(message as ListBSResponse)) as ListBSResponse; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ListBSResponse create() => ListBSResponse._();
@@ -476,7 +598,7 @@ class ListBSResponse extends $pb.GeneratedMessage {
   static $pb.PbList<ListBSResponse> createRepeated() => $pb.PbList<ListBSResponse>();
   @$core.pragma('dart2js:noInline')
   static ListBSResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListBSResponse>(create);
-  static ListBSResponse _defaultInstance;
+  static ListBSResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<BS> get bootstraps => $_getList(0);
@@ -493,7 +615,31 @@ class ListBSRequest extends $pb.GeneratedMessage {
   ;
 
   ListBSRequest._() : super();
-  factory ListBSRequest() => create();
+  factory ListBSRequest({
+    $fixnum.Int64? perPageEntries,
+    $core.String? orderBy,
+    $core.String? currentPageId,
+    $core.bool? isDescending,
+    $core.List<$core.int>? filters,
+  }) {
+    final _result = create();
+    if (perPageEntries != null) {
+      _result.perPageEntries = perPageEntries;
+    }
+    if (orderBy != null) {
+      _result.orderBy = orderBy;
+    }
+    if (currentPageId != null) {
+      _result.currentPageId = currentPageId;
+    }
+    if (isDescending != null) {
+      _result.isDescending = isDescending;
+    }
+    if (filters != null) {
+      _result.filters = filters;
+    }
+    return _result;
+  }
   factory ListBSRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory ListBSRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
@@ -505,7 +651,7 @@ class ListBSRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  ListBSRequest copyWith(void Function(ListBSRequest) updates) => super.copyWith((message) => updates(message as ListBSRequest)); // ignore: deprecated_member_use
+  ListBSRequest copyWith(void Function(ListBSRequest) updates) => super.copyWith((message) => updates(message as ListBSRequest)) as ListBSRequest; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ListBSRequest create() => ListBSRequest._();
@@ -513,7 +659,7 @@ class ListBSRequest extends $pb.GeneratedMessage {
   static $pb.PbList<ListBSRequest> createRepeated() => $pb.PbList<ListBSRequest>();
   @$core.pragma('dart2js:noInline')
   static ListBSRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListBSRequest>(create);
-  static ListBSRequest _defaultInstance;
+  static ListBSRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $fixnum.Int64 get perPageEntries => $_getI64(0);

@@ -3,24 +3,24 @@ orgs:
     - org:
         name: sys_account_org_0
         contact: jenniebreitenberg@wyman.biz
-        creator_id: contact@getcouragenow.org
+        creator_id: contact@amplify-cms.org
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUFLV4aVVvN7byTAAACp0lEQVR4nHyVTRKdOAyE5WHhzdR4lrMa5yZcJUfIDfDNwlE4Akun8opOSS1LZBOqHo/6gEY/bVkOAPiOR3gU2RXsgINNOoAnQZUG4LMDg6BJBTATdNkA3DtwEuxSAFwJDhEA5w5cBBANZAQoEA1EfzfDgEjHk6BCpOGjYDIMKJwJOvS1W8GHYUCFrwSH5oRTAfO3JI8RoBjYLRYwDP37P0G1v78JhoXhhVqgL6B1PN+gOohXrEohyggNbAE68y/ZDi9IgOL5HwvIQbAH6My/B6gELUBh/jWAHM9qQ4isRoXIamWIDG92iAzaIUVOGiZFDLQExQxRE8hXC+QF/rXn5Lcj/HpKGW+wDdlOVoWgDanXG+wizUsaGfX5Atsjsn+8XybxeH0W0Lt2tTnAR++NABumXp40gZV+6uUVYMetxrjNHuZT3Nr9ucCGsHI30BQc5lwCW29Yl+Ca0xAxCDSYoSecNgdMeWgAVAIfU4qbSnZSeUy9fngiKEn5Cv2s00Ioah8k4Gc3C9feY2DVMsQ6w4tiATC5ZnUksPSbeZVLxwrUze8EjWW7CFhvLdsIYG3YH+/vEDbqmAmslcf1coA2m+Z+NXyNEPvvU8p8g3a7lcWnT73Uiy+wnfKXOLBXy5A/Hv+9ru3Rf17gdG/HcflH4zCP15lgLnOvg2EhRXwopojPgBTxqqQIRz5SBL7YQoTz60iRNa5ChPXJDcb1e2wfEqN2BvDJ+gS4CJYI52ZF7kH2ckWI8ImN4EtoOPgWX6HvZUYcBOWTY9mAlTZ2GlvwkZx6e0oza88EXT/gO55tbLuthivBoXd9X+1cf3O1wUAxe/k0bMDkmnsScOIwDM1/skozAbcuhqH562aPS64Ehy1I3951C+KIGAF+AGvbZf4/FTy/AgAA//+mGQr4LxPDRAAAAABJRU5ErkJggg
     - org:
         name: sys_account_org_1
         contact: misaelzemlak@haley.info
-        creator_id: ops@getcouragenow.org
+        creator_id: ops@amplify-cms.org
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEVHTC+V5fSwacKMAAABLUlEQVR4nOzUsU3EQBCF4V1NsOESEiDcAh24FFqgA1uisUEXENKCJRqwiBxYfmiyeW9zSG7CT7rbf2Svy33+bR4UHhWeFJ4VpgFWBVfYFHaFQ+FUuBQwwKrgCpvCrnAonAoaMk5diyEfbh6Q8toWkH7S92L0z9NRjM6ez2JUt1zFqB8oljeswGqUAbhRBrAZZQC7UQZwGGUAp1EGcBlnAMYZwDtnADfOAL45A/jhDNDyrwpfASmjfgakDLsFpIz2EZAyugfkUz2Wy8t7rJ+X94kz4J0z4I0z4hFQBrxyBrxwBjwedsqAx+uQMuB8heKEThnweOlSBjxeS56qV7lCb8gAi8I8XiqBrtAUTKEqlAEWhXn4yih0haZgClWhDPCm8KIwfIfv82fzGwAA//8yoOOtqjnQiQAAAABJRU5ErkJggg
     - org:
         name: sys_account_org_2
         contact: nolabrown@sanford.name
-        creator_id: contact@getcouragenow.org
+        creator_id: contact@amplify-cms.org
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUIDQ5Up/KIO7dSAAAA3ElEQVR4nNzVsU3EMBgFYIdIpCNXUqDLCkxAVmICzqN5FI/g0kUUIw6BuM9Q0XC88qte8fT/4fssbRc2oQpFyEISomCPrzXW1sLyXqOd65yhCkXIQhKiEICj8CDcCwchXCdceZbW2tsyPxf9AbMwCaMwCKGDk7AKizALkzAKgxA6eBGehKNwJ9wKNyFeQghJyEIRqrAJu9A6iEISslCEKmzCLrQOopCELBShXsK/yl+5Y7+Bg/AoPAsFGIRRmIRZWIRVOBWutpMahFGYhLl/7MAqnIDhx2m/BgAA//9hmyEfZJZjWgAAAABJRU5ErkJggg
 projects:
   main_bootstrap_projects:
     - project:
         name: sys_account_project_0
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUABVammFCM5xb1AAABwklEQVR4nOyUMc7UMBCFE1xMGYkL5BAcwNwA7sIBko5rGVH8V6BAOB1tJBekiPLQ867HMwui4692iij77a7nm+fEw7Neq94/gsTL2/55rOBdB6GCT6sCqaAkBRNvx7IpmAlC2RVEAimHgoVgKqcCEMzlUo0KYoFqVLAUNBGpAAVNZOLdiIImMhMEFDSRSCAoaCILwYSCJgKCGQVX0yCIKEDTIFgI1rsGAQjS3yOvfxlXEzFBsL8mkM0Aik27AVSfDwM4XDwN4PjLZQADApxIGgEnkoLXRhLAiaQJcCJpBpxIioATSQvgRBLgRb4QWJGvBFbkhcCKfCDYXQDwfSu4XCIAfrlEAPxcbSIAXpJNBMBn25dAbF8OJzYAji8PIoc8iOwCL7IJvEgSeJFV4EUGcQEs1yBuJ+I5iE/kGMQnsrO1FdkIrEi6P9EqYr78owKQ2UCfopHgrGBt2pmSQdsuyBwjqFhE5qBB1Wfk25vbhpuQuVzQ8QUZtf2mIvnSQ+Imks8KVB/5qKDnl7lc6PnEzOVCT3DO9SDrGU+Zy4W+C5Jr975P4cegZ+ZN5HsFJsVvFZgUP/Ly5h8xP+v/1u8AAAD//9MGV5DZI9UGAAAAAElFTkSuQmCC
-        creator_id: dev@getcouragenow.org
+        creator_id: dev@amplify-cms.org
         org_name: sys_account_org_2
       projectdetails:
         goal: Vote factor watch detect pull sell science acid.
@@ -110,7 +110,7 @@ projects:
     - project:
         name: sys_account_project_1
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEVhQUieDlUv83kUAAAC1klEQVR4nISWMY7XPBDFJ18+rakwJQWSOcKWFEi+CkfYkgJtwkn2Kuk4BuYGWWgibeRB78049n8bUszf+9OMY3ueX1b8+U/6c4cQOLxnjFeQr4xpbUFOgrwhAEyVYCkIoLMS6I4AEJR5eiAgLarlnQgAiTFoRUBdZoyqCBguqJakukriUFEtWXWTbDOjWhbVIovNjGpR1d2Sg6J6UtXDkqOiGnnnTJAU1cirgdWZ1cjTSLCgmnn6xOkwOpnHZ8X0WpnHZ5v5Y+DHAFjyHS/0ktTyik8aG979tYE4ANjCZuKpLalwc7sdVuTyhFiS1akd0IazOMX2jKlWHF9F9WmHzIZWVB9sA1ucuP9drJo/qC5sJfJkYnc2jnZTxSqR3RfmiaSNZU0rImGT2RRENYlMRSbTWHJ5fhHh9PLWwTuRBw7+7xq+b4Ofaofwyf+enxx8cxAbeHSQkwN1oBewJc3VwaS26NiBbSufDmbfuHbAtc96OPDDiwPg/rPuDqI1QEewUtDFQWIT4w0odhscZFv/DTgomNXB0jQ2gEphiQMKUm9BlS7WnXfJ6joomON0wBdiPAC7eX6L9kCNhRtQuNndQXSBDqDa+RQH5giyDKDYkW4OsnUydWCai7Y61X0xiYUOrLNwMwMuhukC1eXizqHPh4PHBoqDzw7+rA4+OPjdVPtG/vXciby/0XrsF+Iy6egvuEw62BK6SYfj2paZtN++btKzbbSbtIu8m/Rk5z2YtHVkMGn2bDRpNOeVSR+3Jp3N/i+TNmcaTNpUPpg0xsdo0oh1NOmVAh9MekPhr8GkC8DLYNI06BfLYMkK8Kx6iZjLK8q3mEkDbIvfZm4adZkrNZOWdo22btL11qSX1yad7cZ2k850nMGk2ZLRpOm+o0lHq+smHbWluUmH2tL8mx1O9/b2VZ8PemCTlMiMtGbSq3m2NJPmvw0TffKhCVdEOP9Hkb8BAAD//76m5l0tIyRVAAAAAElFTkSuQmCC
-        creator_id: dev@getcouragenow.org
+        creator_id: dev@amplify-cms.org
         org_name: sys_account_org_2
       projectdetails:
         goal: Consider east analysis challenge afford test representation sell.
@@ -198,7 +198,7 @@ projects:
         survey_project_name: survey_project_1
     - project:
         name: sys_account_project_2
-        creator_id: dev@getcouragenow.org
+        creator_id: dev@amplify-cms.org
         org_name: sys_account_org_1
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUDKUWPLrxgUYQtAAACdklEQVR4nGyVPZKdMAyA5fHO0sVHYG/iHGVvYjIpci26LXMFZVK8culCwaCMfuEpoQDny0PIn2Qt/Od6SU94tefk4IuD1RbNwWaL2cHhYDFABnoAC9JXBxZkBLAgAx1YELqA/tZfnUhX5QYOBXsACVLvYBVwXGC7f57BIc/zAhykPYGVAd3ABjA/gUPAAlCWAF1AXeOVLpEmjKBDQ2/x2UG8/3mPxEhAPyJ1fYzTN1cUEPn2Gex8X0xQFVCJVlNYJfZEhCZZP9aINisDg5M3tJupJqATHVbKJgkPotOKPQvgm7WDgG98+6GyO6+/8+1ju8AH3x5a6sHrn3z7Axcg0xnXO0u+X8iSX65/F2TJrxeoKJIvMKFIvsI0FMlrgBlFMgboKJK3AANF8h6AUCRHqkUE43RGGoQqOdIgVMmeSCNUyZ7ITKiSPZFOqJI9kUG/RLI3PRD9VrGHp0EPkewtXYk+RbJ3cA3NlkjJAPIrMFJQ6OmzMOfEWk59ypurefslC4KsEEaSDD2VAeZcqJZLOeVi19wOJTcM5JaC99R08JbaEiA37lCFcrjkvz/jSGj60yMOjYJZJEvBdD+DJZ8lQBHJR7GR45J3CDCL5E0AahYsGSUb1Oqz5FWAzQeWvMiJXfVss2Q9wovNrcKbmBUUCWVTkWyiIIxdJ4eNB4S+CTjNBfKx49+e1oMIbfVJPyngGlQfuAyqdvBuOtEah0F/ApuNLSuzgPoEUAesgyGLfgerzT4D3f6+3MACMbbV9qL8AtqDAZqCeoHzng/LOz24g8NfNVAN1AAxDQwUB92Bt3/ztndQHcR58MW7gzd7foV/r78BAAD//07SGrEek0D5AAAAAElFTkSuQmCC
       projectdetails:
@@ -288,7 +288,7 @@ projects:
     - project:
         name: sys_account_project_3
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEVeAFzSN8SQOyeRAAAANklEQVR4nGIYQsD+/38Y8///P6MC9BEY4kD+/////z+MCowKDDGB4QIGSzk2sgSGCgAEAAD//xXhtEdW6q72AAAAAElFTkSuQmCC
-        creator_id: ops@getcouragenow.org
+        creator_id: ops@amplify-cms.org
         org_name: sys_account_org_0
       projectdetails:
         goal: Team task belong adopt licence resolve administration observe.
@@ -376,7 +376,7 @@ projects:
         survey_project_name: survey_project_3
     - project:
         name: sys_account_project_4
-        creator_id: dev@getcouragenow.org
+        creator_id: dev@amplify-cms.org
         org_name: sys_account_org_2
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEU5Q1O3JONIA9eOAAACoElEQVR4nGzVP27dOBAGcNJcmJ1VbmceYzvTR/Edtl+p20sEyVXUpU2ZLgxSuAwNB4gKQRPM9w2HgZFXPNo/iCP+mZkX/vD5C98iPwbcGjwPuDP4uBssBv93g2KQzwEb4MpiUAlnFgtSMcqRxYKshJ7FgqwN0LJYECHsWSwIp8qWhX9Fg5CFQaIcOlwKCJIIJ2AH4MEDoLPt9R1wAi6FBtAgC2En7AqIvRF6CGWsGHACtqLTBlTAGXxKFdmLLm4EXQE9+GtXkVb0CMbCBLAHX7oORbYwNhcJto5AOMpFOLF7Be4SIRTOchB2m3kWHoyMLV2lzZNaAHy2DxAkgF12AXBycHgP4F1XhXeAPuEzgFe9KnwCWDLop80EDvNVP7n05vBK6A4vhMOhE84JK+CaUAEyoRA2h4WwO3D/WCUhEbpDJBwOnI6TNUBdIOUMUDm4DINC2BwWwu6QCc0hEbpDJBwOYRS7wyP+u5lQsao0oRA2B5ZK2h1YTKk5JEJ3iITDgXtP54QVcE2oAJlQCJvDQtgdMqE5JEJ3iITDIRDOCf8BrgkPLKEJ94QPDneELw63b/vxDYcn/fpbH0MOhoh0/sf6h+4A8O8EFGV4VThmA40vDhGZmF783RmQuwP6S1i619bK5O2rQeRQAdYfFNZeDQpBAJv1LbTmQogMZUdtHQVtrS/iad00eRQuK37kbs+AaOurgNFFmz7Y02i4ANSc7n4lRNScQiXccFPd2lbjfVhqAu7CqJ1AuJ8HUwEPhN16X0NehGq/LwoXYbPG1aL1lc16XUsGwRpoQ36GhZBE2kK4RvdryHHmMYK0ev3WUcMiDXWilWNBGlMpHZZp8pUQB9RvBuN3fXm27BuQvhu0ka4jP58GVIPHt4kdQvgVAAD//2Pgeu56APAkAAAAAElFTkSuQmCC
       projectdetails:
@@ -467,7 +467,7 @@ projects:
     - project:
         name: sys_account_project_5
         logo_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUEE1G5WUcjSYn9AAACHElEQVR4nHyWz+2dMAyAnUb65VKJBSplhQ7wJDpSB6gEo2UURuCYA8KVYxPbuGoOT/AB+fvZfhDaL3/7BT89+AEfD/5AdfepQ20WlA7LaUE9Ybks2E4oaLvAAwqaTgoekPEcV3hQF9gg46VgwwYJcYKEuNNPe0AhAEidMKjjbaROGGwDjN8BEuLNoDEoDFbqZIA6viZwMdgYVEQcICFiF9AIFAGLBaeAnUAWUGwfB4ObRxGQ7bCNQWewMkh2pjuDg8HCAOzigMHOIAvYcJ7KzeB+jkXAOg9z46u1P0Ae1Xn+lR/V4wELg2WeduF3l/0BmUFRPfjjL/XjgFczFqf99Sy3Fyjvz72uOmtt6/UCuinSEP19kg3XaaAavk7pYCo1nDgdqEMeA4Z5FmxDUQMQ+fcBZBPuBpBv2Awg8YZkDyA18TSAbMb+PxA+CZ2GYcPEwtTj4sLywwaFLbSbHI7h3wcVjjIedtAhCBOUCtIFLa24xnVWW6NB5Nd4kfDQiJIA0piTENOolCDUuJX567rkSlcuoT6zw5MM5u6lCZpLKJqDygSnS0qax+oEl0tsmgu3CdAlx5lPkwHNJliS9rApuNo3OgujnXaX6Nk8Gl2nfrlikblYoJXu9gVnCJlMSVoEzKKVaf3ZlDVgYArfOgY0pXEZwMiUx/SsWQScsetpZADW1Rfx3GEF1/r7j8AHfnvw/f1n4hu8298AAAD//6nMtpUyf7X8AAAAAElFTkSuQmCC
-        creator_id: ops@getcouragenow.org
+        creator_id: ops@amplify-cms.org
         org_name: sys_account_org_0
       projectdetails:
         goal: Fear budget agree depend teach miss carry note.
@@ -553,15 +553,10 @@ projects:
             dropdownQuestion: Tacos craft beer dreamcatcher carry blog DIY flexitarian jean shorts pop-up?
         sys_account_project_ref_name: sys_account_project_5
         survey_project_name: survey_project_5
-superusers:
-  main_bootstrap_superusers:
-    - initialsuperuser:
-        email: ops_0@getcouragenow.org
-        password: 0ZSKDYllwJ49d0Gs
 regular_users:
   main_bootstrap_regular_users:
     - newaccounts:
-        email: user_1@getcouragenow.org
+        email: user_1@amplify-cms.org
         password: '&e2.b7A!<PzS'
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUlRxuft8UpCIgAAAABzElEQVR4nFyUsZHeIBCFn0YBISVwJfyhgxvjUq6ECx14DI5cxrXgDk6lbAkKFWi0nn0L+uFIxMewvH3LCjxHVkFRm70ASEaX0RuAaHQavQMIRofRDmA1sglsaTESm3CD0WbE4CIo1UJIWVDsu1ImCX7bN5Ci4BeJCQXBT66SVmEWiGpnLcIMkUgQ/HDaeu60tnVfmCbcMtP7QPsXOp6wHDO5QR/rTKcb9BFmutygjziTukEf6Qt9uKVmbyRVVbnFbf1xH2n0eocZ5Tts60u8U9LeMyGdXY3UMv1sxMD1b6N/DPvjdFExVzZCPqioNZHEFFetgVRNMWpdjL5TMWvljX6jYmn0QsXUdrp+aKc8uHNpCq+ed2nq7im1zDb6DS3rnZktH82t16k0R49W98EtwlSJZaqSt32vINJYXYSp8st0K/R33xiKfg73XjQPlDUN/ZKvkdIVhz5L50jxDEN/xmOkcKxDX4d9pHVf9oFkpEUgA20jYfOfso3aqbql2jc96cXDW2nf+M50Ev/x0tVkzyetAn89uBYE+qQo4NnBo8Ub3ikL+Mus1CkC3W9SgR6u5K+bnp3s5dOr526vomqnSOp3lXQsB4D/AQAA//97RRtdwmLlBQAAAABJRU5ErkJggg
         new_user_roles:
@@ -584,10 +579,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_1@getcouragenow.org
+        sys_account_user_ref_name: user_1@amplify-cms.org
         survey_user_name: survey_user_1
     - newaccounts:
-        email: user_2@getcouragenow.org
+        email: user_2@amplify-cms.org
         password: wAzpc7J0p9I<
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEVJQ0NXVmtEsE0WAAAB2klEQVR4nGyUMW4bMRBF/2ILlpvShWHmCClTBKGOoiO4dGF4ebQ9Co+gUoWgCf6fGUoIzILet7A4fH/IxfP4id349yQ6o5n/5RioondOy8Am+uC0DhTRJ6cysIq+OG0Di2jnVAfg1AG0Ea/3g9MAGuIBNoAqugALaRNdgZVURDegkFbRHdhIi8iASoJT/+/JHVvQobk6LU6b0+pUnIrT6rQ5LU7VCU4tSKquyLciC6pdvw7aulYOKl1Vg9auHQUtXbsNgsKc9Dz67F/+6pLEFZdrEquttyTupNyTuEtvdxrUR5z9uTRf7xm6UjGLgkxsMYuCTHM1i4JMuphFQS6+mUVBdqiaRUF2r5nZgRZlkrKDpv/osS5XaZY1WaHdcz+s3m65V+6sZRzadcuoZJTt9FIt/ZVEm7mx1N+ZKUv9mXmz1O/ZC5b6Nft00e3Lccb3w8/uj0mcX5Lk9Zokr7ckedUkedUw0G2bR9ePaY0O+tGtkcPuwpHRl1Pk9+kU2X5ENE7vj6CmW57d09Ph2dXpIwxp5+f9Jez8LryGnd+Tt7DzO1TTzqmHnaRoqAc1koaykzgNZaf7TEPZ6a7TUHb6DtBQdvpG0NDtjjA8h5UbnmbnHl+iGP8CAAD//1sjBf9uc2gVAAAAAElFTkSuQmCC
         new_user_roles:
@@ -610,10 +605,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_2@getcouragenow.org
+        sys_account_user_ref_name: user_2@amplify-cms.org
         survey_user_name: survey_user_2
     - newaccounts:
-        email: user_3@getcouragenow.org
+        email: user_3@amplify-cms.org
         password: o,t|sq#q1-KF
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUqQGONkXpDVzSRAAABF0lEQVR4nHzTMW60MBAF4EEUlByBPcJf/kW0vkpugqMtUu4ROApEKVLmCOsjULqw/CJI2JmXaMcN+hCy581g4TUCiBJlAJC+1ZBaUkfqSQMpkEYSrF5IF9Ir6UqaSDMJjmZnl6tz+sWpmhP9ShucLvVOd1tnKveJ6Xr+eQYAi6xWTbZqi1VXrXpYDYhGAYvReBy+C1hVb0BWvQNF9QFU1ScA1W1Pdgh7Dk10/K38fr5r64d+2QNV1QFF1QJZ1QCrSoBkNG6xocGj0QBTmfTVqitWbbZqkpUspG2d6G7+o7n/Jz2RzqTAiqSFlEgrKZMKqZLAmkg3R9PjXapzenaqTk7a+LhLZ6e73Hmeyokkf+6miHwFAAD//2BRAvCWYCI9AAAAAElFTkSuQmCC
         new_user_roles:
@@ -628,7 +623,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 55
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -636,10 +631,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_3@getcouragenow.org
+        sys_account_user_ref_name: user_3@amplify-cms.org
         survey_user_name: survey_user_3
     - newaccounts:
-        email: user_4@getcouragenow.org
+        email: user_4@amplify-cms.org
         password: 9&&lp!5?EdQp
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEVUDF0VAT2VcdWbAAABU0lEQVR4nNzUMW7rMBAE0CFUsPkA/wmia6QIwptZPJqCFOmSNiWPoNKFoA1mdje5g1nYegZXomjuAGUA2GzHfwBYUs9U3UMvVEvdqHWGNqqnTDc4UiyxULEJFLunDmBJ6aLamTqBlqp2ASs/XAb0VDMb2PhTaIelVrNJjT/1lC403XVxLaFNi+J0F1+th1SPxrVTl/bM9aYygF/UlLr0rjKgnZLKgEX68DLgkmbolfoaoUZ9BrBQ3ykM7bWe7a8b43G1mulU+Xh0/Y7Ss085KvUv9US11I2qe5SdUtywSjx7etJdMtcmFT9NxQ6XCqsL6kqsNl0q3EI6hsXYUNLBslBn4Wo2QsYJoTX7NjXV05KalA2aGsoCSVnAnAhdniGSMoSxErp79nRf4uG5FJqeWd3javc8Cw3POpeyru0h5WBNKSOXEVJ+llT+Zz36FD8BAAD//wbY6IjcXS1nAAAAAElFTkSuQmCC
         new_user_roles:
@@ -654,7 +649,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 18
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -662,10 +657,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_4@getcouragenow.org
+        sys_account_user_ref_name: user_4@amplify-cms.org
         survey_user_name: survey_user_4
     - newaccounts:
-        email: user_5@getcouragenow.org
+        email: user_5@amplify-cms.org
         password: e;5uo*zQSLsi
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUiFjwkedYUV2OrAAABOklEQVR4nOyTsU0EMRREbTlw6BJMCXTgViiBkMzXGYcICCmBLeHCC04e5PHf1R+4kBBLSPvEnufP+9pw7zwJXTzEq6d085SHpwJPFSdHDWdHHZsjwAVGwAUmwAVmYPg4wMfBBTbABSrpm3pLFkqSF2WWIHOG7juEJv2qdC/iJYuzJD6juA6yh/As9HA8na3tI2/YjF54+8WI9+brosjMcluUOE8dizJnbVhU2KPjRKrsCJxJbfaPwEbq000CLiR6y8B10hudFuA26Z2+KzAmfXAz82n+fXLWDuAVwBeAjYSDmv1vvVntd+uWYneuhGx5Kz3ZLGuyuM/JqcPegY1Ct36rbbPuhVSxW5peytgNTmfZfEb6TOY6jN9b0Y3dOf/f5pHwN9+mb6sm1JIaVLtqXrfyY2N2vgMAAP//yzGSjg7eEA0AAAAASUVORK5CYII
         new_user_roles:
@@ -680,7 +675,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 12
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -688,10 +683,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_5@getcouragenow.org
+        sys_account_user_ref_name: user_5@amplify-cms.org
         survey_user_name: survey_user_5
     - newaccounts:
-        email: user_6@getcouragenow.org
+        email: user_6@amplify-cms.org
         password: '>I9svcEZC<,v'
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUMFwaAcgzQhCElAAACAklEQVR4nFyUvY3cMBCFn8BAId0BrwSHl+k6cAtbwoYbLJYCHDh0CS7FBC5weC3QcODwFCoQ9Iz5IWlbgQ7fgaOZb2a4AF4gzwUYf6fqdJXX3Ogmr9ToLq/c6CFhbJQlbNAKpEEF+DSoYnodtGEug3aksnQ6kEvsdE4soRNnFgz6xtKNMsmCp05fWUBSs2QGlvCuJ+SbYIm/Sa6WbynLL5JeSyz8SZ5eZ3hlJY/WhDfW7FSAhXXh3twja+LW+hJYoylKz8A6a3Lr51KDJrdexzpxzCFUnH/NqlqEz+8Jz/IxZgvAB/X5lxYLx0dJdDR6VkrHmHHaG92V4m4k/4xbo1NpVi9Mpy5KIyr5eIJQKJ1WoUmdMQtNa6ciBO0AovWlU1VBS558fD5VF4S3QmjImiC8kUJD1gSNdqUha4ImZNRlXdCFlLqeC7rQZxVs9MUFTeiHCjZ663sveu9CfjKRsj6h+Kz1PVfbCui342bbYJnSrpvmVSyH7iRmpXzK9gJRiZQ9B1LRsXHVli5FTVgyX+DBZM3HFdCaI7nl7Y5JKZF7LhlBaSGPjFxsrTN53pE3G6bcuyvykXy04pK5dJLz3ztdkM9x8oa8x04P5HZx9JblNQyqD69Mab951aZ/cSPLtrot2gKlEde71H7o5pGvd7fd42nU2afS7+oL/nv+BAAA///WAV/LU9WliwAAAABJRU5ErkJggg
         new_user_roles:
@@ -706,7 +701,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 17
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -714,10 +709,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_6@getcouragenow.org
+        sys_account_user_ref_name: user_6@amplify-cms.org
         survey_user_name: survey_user_6
     - newaccounts:
-        email: user_7@getcouragenow.org
+        email: user_7@amplify-cms.org
         password: b=wAY9tMW|=Y
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUOByil5V44omevAAACR0lEQVR4nGSUsW3mWAyER1CgUCU8l+DQgeHnUv4SrgO9wwUXugS3sB2YCwcbugSrBIUKBM1ihvolYPcFPzyAKfIjOcSf7xXADY+HCgALng81A92KmqKbgX5DjVQLMOyoi1W/ACNRt1QrUNgqrYYVqIxKBw4bMHGudOC4AeRS6cBxR0eulQ4sO3pyq3RgIQZyr3RgJUaSlQ6sbIXkBx04KXO+kHLamso/NytIzaLNr3RSonWGTr+idUQvJVqH9eRqWicfpEy7pNou2lHKtEi1m9awhdxNuxyKpj2rNS3u6o1kTmUi+U7yx6kOUk+lIXDDAx48h9YFFjzmdIfWR7fiCU8upg3Rb3jOWZc2xrDjBS9O2EqILyc/tRria7WpZ20SXA1V2rExxDdXLQf/ZYhvEdPA//hTfGtdxf4/P8W3ib7wjb/Et9ddfO/88jTVp4kf/PY0P9iseDJWk9+VvnL9pzJcX1H2K4Mqu7Kr6qsyE51Vm/YkcidOWnfp6oQ6eHVJ3b06qM5f3dVUrs6j4fWait85MS9lbrIn2kuVuxq/yV2qeUpf5DbelWjXMfcavWiX4VCjaGftU25TkNEfippf69NHPbW42v0t1zVKOjKXMNKtaxYZ8rW9oiJDF2CizwAZuhWT3JW+C/0xX9vabI9yKBQpVSs+ecn+0zQ3jMabaD65Ls3yaUdaDTSf/AkHig/9fvhDfHJyBkZlQ5dqYBT6wmVgjIpJhSl0qZDnDSV00/BPqiF0/XA7PBe6k+f8Xn1R/3q/AwAA//9DlF9KgAw29wAAAABJRU5ErkJggg
         new_user_roles:
@@ -732,7 +727,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 27
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -740,10 +735,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_7@getcouragenow.org
+        sys_account_user_ref_name: user_7@amplify-cms.org
         survey_user_name: survey_user_7
     - newaccounts:
-        email: user_8@getcouragenow.org
+        email: user_8@amplify-cms.org
         password: '*cH+$RQXbl1k'
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEU+XAD8cCTJFupLAAABe0lEQVR4nLzSvZEUMRAF4KcaQ+ZcBroMIIO5UNbD3QykDAiBUBCFgUkI2xQJyJSh0qO69QMO5m1b+81O12uNGqsuPpiR7Hfkg1+YIVufmVCnfvJkQt/yBJiGfnSTLB0dYB363kx9yTVVMn2rpipTGkapplxMqS/dgW6JkfmmqpZoegXEEiMzVMkSI/OlDwDSBg+qDLapBBSwmPR4aBjv49QGYrTBm3Kb0plYRhsOU8tT7W8a4ExtqVrf+vamvFQsb9UdOsuq2/x/1Cv0DP+vOK7lvRXX7M/UNZbs+bJ6toCPAN62yr83f6j222cB3Nal2hujK3csHaa62lR+6YNp7d1v1Tl1iKnPNtGEMHWJpoe5vRTNujjTBKY00kRPFJn04wYKXvTxm8pTdOvTkKPo/Bli1xDFF7ilIKHAiSsmL7HgWHK/WHCUo47l+cQCX5eCybchz4KzLTnT2efSxYLQt4IqcMoXXNxyqoucy3pH5NetF8T9G8CfAAAA///ElpU0iqBSHAAAAABJRU5ErkJggg
         new_user_roles:
@@ -758,7 +753,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 42
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -766,10 +761,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_8@getcouragenow.org
+        sys_account_user_ref_name: user_8@amplify-cms.org
         survey_user_name: survey_user_8
     - newaccounts:
-        email: user_9@getcouragenow.org
+        email: user_9@amplify-cms.org
         password: WGQ.k#3Xu{i{
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEVDSh5gjsT/8NkFAAABkUlEQVR4nNyUvXHrQAyEl8OAIdUBXwnqgK28EtQBr7Qr5TwOHAohAw7Xg8WB8oxjJWa2EgngW/wgn4VkBVCkZpIFBVVqIglUNKmRPIEGkxrIAzDsEYbcgR1HqI0GHDhDrWzACfrvFYunI1ikZhaAhVVqooeqbFKjf89Gkxo8No27lPJy5xHq4ergGeqfq5N0tZJsoHNtrEGb/wVtfhe0GTNoM1/QXrWI9qpTtBeDaMUX9tbOHvaWH76I9vJMtJefok2vgzb7ELTZo6DN/r2etff1TYosUouz/3n1fj9/qeztTZ2P5z/uwJBT0HwOxl7eoFmZ+vSMbTBg7pM1NX9r6VM3t8k8WailzeZ7GeOztsVHuU/y1lbzPY8pZ9vMb4DFPvgqTIztGPlB89txxB590vyunLFjXzSxQfv3VIDXNvb69eZTqiKi+HeiVQaPKVpl93yijcrYaaPqzWn7tVmdAWu/Nov4ts43i935wqVJtNYdHEW7d3cH0R7pvGjP7MpDVzQ7dhdt7uNNtFdfvwMAAP//i6dKoac2W7EAAAAASUVORK5CYII
         new_user_roles:
@@ -784,7 +779,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 30
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -792,10 +787,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_9@getcouragenow.org
+        sys_account_user_ref_name: user_9@amplify-cms.org
         survey_user_name: survey_user_9
     - newaccounts:
-        email: user_10@getcouragenow.org
+        email: user_10@amplify-cms.org
         password: PtHgNV1@*)3l
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEVDAQ8+JHjIayjZAAABcElEQVR4nHTUsRHcIBAF0GUUEKoDc2VcZF0pLsGhM+jMOHIZpgSFCjR8Dx8tsDO2onuakWD/Ryd6HQCKRCR5Gb2NvhiFtGovRtcqX42QFm0oRtcih2qENCVAMboWRVQj/Jw6gMyZVWkqAPI/7ahG9yKPy+hc1AZclRe5Z3GVLJJqdBv9MPo+1F7+Gq2W8esjIqfCZRF3qXxbWd/OUjddWaK0Hetj7YfXHbdOxSP3RUPTzoizSLypk3JMKuCielIBNxWoA5WKzO0AmhyoCKSI7MEUH4Uu9OeeQtFXCJTrdecdPVgk6W9hBZVRbay3nbhnPQ5UeoyoOix3xvE0loPjaYCB42nUvB2SZtv0VdPc2kDv0ULTt390JeZ+ZiRlNje1lVXeaD9XBaPjWhWNWJbKGTG3IW+0Mz1VMOqfmCoOoV956o/Rb7as+mWUeVaGghHP2JAz4tmcCkb9f0rljNq3sCgY+bTKGclnpqvX3wAAAP//k8cSoapeP6QAAAAASUVORK5CYII
         new_user_roles:
@@ -810,7 +805,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 36
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -818,10 +813,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_10@getcouragenow.org
+        sys_account_user_ref_name: user_10@amplify-cms.org
         survey_user_name: survey_user_10
     - newaccounts:
-        email: user_11@getcouragenow.org
+        email: user_11@amplify-cms.org
         password: p?uI*tCni;U6
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUJHC6SIgA+sGA3AAACLElEQVR4nHSUMa4UMRBEa+TAGSYkQJgjEBIg/I+yJ8EjcTCMCAj/EfARJnQwcqHq9sxGf6TdnWdtW11VbuP5PPxn09eO7hQBhH07nD4BSAiLfgAoiMPLTgATySmeQJjIp1EeQDpRnOqAXuu0Mh4AB2gUeSBwbKSVsSPxCE6VHYVHJHeVsYHsySiSLZA9axWZ3BPZilEl9+LUAZK2kozqokB1UThtBUb5okJ1zxNVPSZRvChQOjlQ9QJ9bTcVSeKBqhIkUb0oSFLpqDQvRfmmsgOpmWAVSuBNoSkPVEkD0IDtSZ/dX+4o9u/HytXpq9EhEwF8N/fHorxr79PFqhUgzkUWaSKKqTIdWZ6eFtguh1qx/KKb2p3ki7wsll/gVGrDaXPXz3Kl2SM5nUCORNLzAzkzyV9O1d70dCc9r06F/Efyp+UnelXcTpn8S16SMvmHPD1NJPI3OTxNUbOaJZDNrC9zUVEfyQWyZXUcuCjxSlMHNM4rTVE4rzRBtm1caYpwXGlalo87TZHSew/gBdcYKMkvN30D7KOdug1lvqmKmvfToV7TcVOzqbTO+yaNkTcdomaKuwUZfEl0roOfLLZp213ENZv5Hk55uaiJdMhsVNcAFnNxUVsrdqq4V/v39DRtp7rym2abD0Xmufnc7pbf2NSd3yh2fxw2lX5AAxs2n6XIJsXByvSzbi0nc+p5uSWZ4ZfiNsxhi9Im6iOAd+sW7ZbMh0UveOP5HwAA//8WsiTrjEOarQAAAABJRU5ErkJggg
         new_user_roles:
@@ -836,7 +831,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 38
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -844,10 +839,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_11@getcouragenow.org
+        sys_account_user_ref_name: user_11@amplify-cms.org
         survey_user_name: survey_user_11
     - newaccounts:
-        email: user_12@getcouragenow.org
+        email: user_12@amplify-cms.org
         password: G)2TH>==o:_=
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUgFRk7+hz1tuMXAAAARElEQVR4nGJgYPj/v4EBAf7/3/////8Dw453/////x9GAA8Z1P9HyD0Y5Q05Hir4D5d7MCx5IGA/zHkgIA/iAQIAAP//Y4CeNo8b9PIAAAAASUVORK5CYII
         new_user_roles:
@@ -862,7 +857,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 47
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -870,10 +865,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_12@getcouragenow.org
+        sys_account_user_ref_name: user_12@amplify-cms.org
         survey_user_name: survey_user_12
     - newaccounts:
-        email: user_13@getcouragenow.org
+        email: user_13@amplify-cms.org
         password: 36c=EOhCessj
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUkOx66QhE/WyFnAAABkklEQVR4nHyUMY7kIBRECxEQesINRuMr9A18lT3ChJuZo/koHIHQAeKv6jfQW1pNI3Xw3DZVvz58nGYGXOD6wGHWEYrTA7tZQ6xO39jMbqTbqSKZVWyNECqiWcHeSbEimF04jJQqYJZxWgawVeA0PqHgXoGj820KHhXYG3ei4FmB7aYKBfkoVTpoQCDFQncdiKRAOdaR/OPsVWVs9vT+XEpJKAoFISidQofQLrQJJaEoFISg9C30EPrAT8v/CfBcLvxyzUmf7mfSl3udtHsdi9i1YxG7di5i12wR2/Cim5kuasx7UWcvFhn8Nyn7wZl0+XGZVGD/UBUq8uYlu2RREPUuzpq4vqWiKtUWSeKSlLIkKOl+SfKf0hXt2P8rC+kb5c35uYWaUBcyJRFUSyaC766LibyJvIn8q5vzv91v8WN8t/kN/zP2TE5t6EWfW304Cz63bLr2ucVqvKKTc4vPvdpjHJ5nEs/jV0dKPCYntbyE1LlTG+nGRpU+kg83Haw56tPR8ujYb3f+io9Vlb8BAAD//+5EjIwtbvmyAAAAAElFTkSuQmCC
         new_user_roles:
@@ -888,7 +883,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 28
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -896,10 +891,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_13@getcouragenow.org
+        sys_account_user_ref_name: user_13@amplify-cms.org
         survey_user_name: survey_user_13
     - newaccounts:
-        email: user_14@getcouragenow.org
+        email: user_14@amplify-cms.org
         password: 5C57Oh=#LigL
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUgHR8HDj8fa741AAABzklEQVR4nFTTP47cOgwGcBoqVOoGz3OEd4AAnqPMEabcYjH0zeIgRcpcgYsttktcuhD8BfwjW3blH3Y1MvmR1J4J4i/DRfluWl3/PXq9nqbNj9W3Trm+m6pp3F6deGPTbsew8nwoY+VFBTsGYTnEEF5Nsx7DwltTVlXToscw897EKpiECAAxZiqdiBK0JGAnPUenaisJqKT3UTmkTUhaErARW7sOLdbD3X9K6yMqTdaDBJXQyzsZeo8oZtJPf3MV19OVFtKSH5Ga6x66kbfKeoAlcgV+w9oU+oX2X6qf8Na7fiBCMi2IOF3cgjcdI2Ia4zpXietcGdQp7b2G2ou2i54X3S7y536R9BrWXmnrlWuvsvca0WvC3Im17EOAnBqA9VQCtlMZqKcKsJ/SpKZLWt8PcbzdaMR6pPywDfy/q3mlb1GzkIY0Rs2h+Aix+SueYQnFgop+PkVQU5MdZLH1SB4+mqrVLFk12EClU4vWLCUWadWaD1Vb7NHEsM1UiWnRv/lS2/oW1U6hDGGbyFGVVNI0QHzIi10P8bF28YcPcjZNHz66rvHThzWZyudOp/LX1sJdiNKXdBr+zm0MtE9/qFfsrg6M5dfLnn8BAAD//1ipIdfuPqWpAAAAAElFTkSuQmCC
         new_user_roles:
@@ -914,7 +909,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 11
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -922,10 +917,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_14@getcouragenow.org
+        sys_account_user_ref_name: user_14@amplify-cms.org
         survey_user_name: survey_user_14
     - newaccounts:
-        email: user_15@getcouragenow.org
+        email: user_15@amplify-cms.org
         password: 'qCtSIe;g6O6:'
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUpNCO9Qr3Z+3xSAAABNklEQVR4nFTTsW3tIBTGca5cuPTbwCu8Mp1XyRgpItlRipQZ4Y4SohQpM0IYgZICcSLOwZg/xZV+cJH4+LA7x6P+7iJyOHcTEQmnZmiF9lG6rWuGVmgfZdtOzdAK7aNeZNQbdIc+oHfoFTqoDVqgCXLUBi3QBDlqgxZoghy1qepcr1TX6rx3/0zF9N/+3/RgyqYnpxU3PZuSKTs9UlMxRdWtau4SU1BNVdMli+JVc3tup7xKL94vVe5SUGlSv6r2rlhVTJtq60pV2bSr1q4aaU0mUS1dGjCqPk1zlwYMqi/TdKkG9Krv9j1dqgHtffyY3KWgrVX9djlrQKK26Zus9whlSCgPRShDQnkoQhkSykMRypBQ91EFawkK0DGq4CwJCtAxqiB7ggJ0jCq46wSFLoy/AAAA//+dXJDWG/cAYQAAAABJRU5ErkJggg
         new_user_roles:
@@ -948,10 +943,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_15@getcouragenow.org
+        sys_account_user_ref_name: user_15@amplify-cms.org
         survey_user_name: survey_user_15
     - newaccounts:
-        email: user_16@getcouragenow.org
+        email: user_16@amplify-cms.org
         password: sR2-NrKRtU;d
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUlRxuft8UpCIgAAAABzElEQVR4nFyUsZHeIBCFn0YBISVwJfyhgxvjUq6ECx14DI5cxrXgDk6lbAkKFWi0nn0L+uFIxMewvH3LCjxHVkFRm70ASEaX0RuAaHQavQMIRofRDmA1sglsaTESm3CD0WbE4CIo1UJIWVDsu1ImCX7bN5Ci4BeJCQXBT66SVmEWiGpnLcIMkUgQ/HDaeu60tnVfmCbcMtP7QPsXOp6wHDO5QR/rTKcb9BFmutygjziTukEf6Qt9uKVmbyRVVbnFbf1xH2n0eocZ5Tts60u8U9LeMyGdXY3UMv1sxMD1b6N/DPvjdFExVzZCPqioNZHEFFetgVRNMWpdjL5TMWvljX6jYmn0QsXUdrp+aKc8uHNpCq+ed2nq7im1zDb6DS3rnZktH82t16k0R49W98EtwlSJZaqSt32vINJYXYSp8st0K/R33xiKfg73XjQPlDUN/ZKvkdIVhz5L50jxDEN/xmOkcKxDX4d9pHVf9oFkpEUgA20jYfOfso3aqbql2jc96cXDW2nf+M50Ev/x0tVkzyetAn89uBYE+qQo4NnBo8Ub3ikL+Mus1CkC3W9SgR6u5K+bnp3s5dOr526vomqnSOp3lXQsB4D/AQAA//97RRtdwmLlBQAAAABJRU5ErkJggg
         new_user_roles:
@@ -966,7 +961,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 13
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -974,10 +969,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_16@getcouragenow.org
+        sys_account_user_ref_name: user_16@amplify-cms.org
         survey_user_name: survey_user_16
     - newaccounts:
-        email: user_17@getcouragenow.org
+        email: user_17@amplify-cms.org
         password: oWA0__u,HBPK
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUlRxuft8UpCIgAAAABzElEQVR4nFyUsZHeIBCFn0YBISVwJfyhgxvjUq6ECx14DI5cxrXgDk6lbAkKFWi0nn0L+uFIxMewvH3LCjxHVkFRm70ASEaX0RuAaHQavQMIRofRDmA1sglsaTESm3CD0WbE4CIo1UJIWVDsu1ImCX7bN5Ci4BeJCQXBT66SVmEWiGpnLcIMkUgQ/HDaeu60tnVfmCbcMtP7QPsXOp6wHDO5QR/rTKcb9BFmutygjziTukEf6Qt9uKVmbyRVVbnFbf1xH2n0eocZ5Tts60u8U9LeMyGdXY3UMv1sxMD1b6N/DPvjdFExVzZCPqioNZHEFFetgVRNMWpdjL5TMWvljX6jYmn0QsXUdrp+aKc8uHNpCq+ed2nq7im1zDb6DS3rnZktH82t16k0R49W98EtwlSJZaqSt32vINJYXYSp8st0K/R33xiKfg73XjQPlDUN/ZKvkdIVhz5L50jxDEN/xmOkcKxDX4d9pHVf9oFkpEUgA20jYfOfso3aqbql2jc96cXDW2nf+M50Ev/x0tVkzyetAn89uBYE+qQo4NnBo8Ub3ikL+Mus1CkC3W9SgR6u5K+bnp3s5dOr526vomqnSOp3lXQsB4D/AQAA//97RRtdwmLlBQAAAABJRU5ErkJggg
         new_user_roles:
@@ -1000,10 +995,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_17@getcouragenow.org
+        sys_account_user_ref_name: user_17@amplify-cms.org
         survey_user_name: survey_user_17
     - newaccounts:
-        email: user_18@getcouragenow.org
+        email: user_18@amplify-cms.org
         password: E.Sb{:@i2?&n
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEVJQ0NXVmtEsE0WAAAB2klEQVR4nGyUMW4bMRBF/2ILlpvShWHmCClTBKGOoiO4dGF4ebQ9Co+gUoWgCf6fGUoIzILet7A4fH/IxfP4id349yQ6o5n/5RioondOy8Am+uC0DhTRJ6cysIq+OG0Di2jnVAfg1AG0Ea/3g9MAGuIBNoAqugALaRNdgZVURDegkFbRHdhIi8iASoJT/+/JHVvQobk6LU6b0+pUnIrT6rQ5LU7VCU4tSKquyLciC6pdvw7aulYOKl1Vg9auHQUtXbsNgsKc9Dz67F/+6pLEFZdrEquttyTupNyTuEtvdxrUR5z9uTRf7xm6UjGLgkxsMYuCTHM1i4JMuphFQS6+mUVBdqiaRUF2r5nZgRZlkrKDpv/osS5XaZY1WaHdcz+s3m65V+6sZRzadcuoZJTt9FIt/ZVEm7mx1N+ZKUv9mXmz1O/ZC5b6Nft00e3Lccb3w8/uj0mcX5Lk9Zokr7ckedUkedUw0G2bR9ePaY0O+tGtkcPuwpHRl1Pk9+kU2X5ENE7vj6CmW57d09Ph2dXpIwxp5+f9Jez8LryGnd+Tt7DzO1TTzqmHnaRoqAc1koaykzgNZaf7TEPZ6a7TUHb6DtBQdvpG0NDtjjA8h5UbnmbnHl+iGP8CAAD//1sjBf9uc2gVAAAAAElFTkSuQmCC
         new_user_roles:
@@ -1018,7 +1013,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 20
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -1026,10 +1021,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_18@getcouragenow.org
+        sys_account_user_ref_name: user_18@amplify-cms.org
         survey_user_name: survey_user_18
     - newaccounts:
-        email: user_19@getcouragenow.org
+        email: user_19@amplify-cms.org
         password: N)*lTSK%@4(.
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUqQGONkXpDVzSRAAABF0lEQVR4nHzTMW60MBAF4EEUlByBPcJf/kW0vkpugqMtUu4ROApEKVLmCOsjULqw/CJI2JmXaMcN+hCy581g4TUCiBJlAJC+1ZBaUkfqSQMpkEYSrF5IF9Ir6UqaSDMJjmZnl6tz+sWpmhP9ShucLvVOd1tnKveJ6Xr+eQYAi6xWTbZqi1VXrXpYDYhGAYvReBy+C1hVb0BWvQNF9QFU1ScA1W1Pdgh7Dk10/K38fr5r64d+2QNV1QFF1QJZ1QCrSoBkNG6xocGj0QBTmfTVqitWbbZqkpUspG2d6G7+o7n/Jz2RzqTAiqSFlEgrKZMKqZLAmkg3R9PjXapzenaqTk7a+LhLZ6e73Hmeyokkf+6miHwFAAD//2BRAvCWYCI9AAAAAElFTkSuQmCC
         new_user_roles:
@@ -1044,7 +1039,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 13
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -1052,10 +1047,10 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_19@getcouragenow.org
+        sys_account_user_ref_name: user_19@amplify-cms.org
         survey_user_name: survey_user_19
     - newaccounts:
-        email: user_20@getcouragenow.org
+        email: user_20@amplify-cms.org
         password: MR6&e-?aex1$
         avatar_upload_bytes: iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEVUDF0VAT2VcdWbAAABU0lEQVR4nNzUMW7rMBAE0CFUsPkA/wmia6QIwptZPJqCFOmSNiWPoNKFoA1mdje5g1nYegZXomjuAGUA2GzHfwBYUs9U3UMvVEvdqHWGNqqnTDc4UiyxULEJFLunDmBJ6aLamTqBlqp2ASs/XAb0VDMb2PhTaIelVrNJjT/1lC403XVxLaFNi+J0F1+th1SPxrVTl/bM9aYygF/UlLr0rjKgnZLKgEX68DLgkmbolfoaoUZ9BrBQ3ykM7bWe7a8b43G1mulU+Xh0/Y7Ss085KvUv9US11I2qe5SdUtywSjx7etJdMtcmFT9NxQ6XCqsL6kqsNl0q3EI6hsXYUNLBslBn4Wo2QsYJoTX7NjXV05KalA2aGsoCSVnAnAhdniGSMoSxErp79nRf4uG5FJqeWd3javc8Cw3POpeyru0h5WBNKSOXEVJ+llT+Zz36FD8BAAD//wbY6IjcXS1nAAAAAElFTkSuQmCC
         new_user_roles:
@@ -1070,7 +1065,7 @@ regular_users:
             pledged: 39
             comment: Gallery teach find last.
           - support_role_type_ref_name: support_role_type_17
-            pledged: 63
+            pledged: 23
             comment: Hit deal publication parent.
         user_need_values:
           - user_needs_type_ref_name: user_needs_type_17
@@ -1078,6 +1073,6 @@ regular_users:
           - user_needs_type_ref_name: user_needs_type_19
             comments: Document reveal family write.
         survey_project_ref_name: survey_project_3
-        sys_account_user_ref_name: user_20@getcouragenow.org
+        sys_account_user_ref_name: user_20@amplify-cms.org
         survey_user_name: survey_user_20
 

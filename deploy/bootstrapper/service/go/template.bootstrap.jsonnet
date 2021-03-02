@@ -1,7 +1,7 @@
 {
     local cfg = self,
     SavePath:: "./bses",
-    Domain:: "getcouragenow.org",
+    Domain:: "amplify-cms.org",
     bootstrapConfig: {
         savePath: cfg.SavePath,
         domain: cfg.Domain,

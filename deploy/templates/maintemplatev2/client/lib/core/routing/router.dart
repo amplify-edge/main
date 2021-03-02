@@ -6,6 +6,7 @@ class Paths {
   static const String chat = '/chat';
   static const String superAdminRoute = '/admin';
   static const String adminRoute = '/dashboard';
+  static const String adminDashboardRoute = '/dashboard/orgs';
 
   static const String ion = '/ion';
   static const String writer = '/writer';
@@ -13,6 +14,7 @@ class Paths {
   static const String modWriter = '/modWriter';
   static const String modGeo = '/geo';
   static const String modDisco = '/disco';
+  static const String modDiscoProject = '/disco/projects';
   static const String modSurvey = '/survey';
   static const String modAccount = '/account';
   static const String modKanban = '/kanban';

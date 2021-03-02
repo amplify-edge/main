@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-import "vendor/github.com/getcouragenow/sys-share/sys-account/proto/v2/sys_account_models.proto";
-import "vendor/github.com/getcouragenow/mod/mod-disco/proto/v2/mod_disco_models.proto";
+import "vendor/github.com/amplify-edge/sys-share/sys-account/proto/v2/sys_account_models.proto";
+import "vendor/github.com/amplify-edge/mod/mod-disco/proto/v2/mod_disco_models.proto";
 import "google/protobuf/timestamp.proto";
 
 package v2.main_bootstrap.services;
 
-option go_package = "github.com/getcouragenow/main/bootstrapper/service/go/rpc/v2";
+option go_package = "go.amplifyedge.org/main-v2/bootstrapper/service/go/rpc/v2";
 
 message BSProject {
   v2.sys_account.services.ProjectRequest project = 1;
@@ -21,7 +21,6 @@ message BSOrg {
 message BSRequest {
   repeated BSOrg orgs = 1;
   repeated BSProject projects = 2;
-  repeated BSAccount superusers = 3;
   repeated BSRegularAccount regular_users = 4;
 }
 
@@ -52,6 +51,7 @@ message BS {
   string file_id = 1;
   google.protobuf.Timestamp created_at = 2;
   BSRequest content = 3;
+  bool is_currently_active = 4;
 }
 
 message ListBSResponse {

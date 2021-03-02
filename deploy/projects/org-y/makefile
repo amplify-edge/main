@@ -29,7 +29,7 @@ BIN_DIR = $(PWD)/bin-all
 CLI_BIN = $(BIN_DIR)/maintemplatev2-cli
 SERVER_BIN = $(BIN_DIR)/maintemplatev2
 SERVER_BIN_DEPLOY = $(BIN_DIR)/maintemplatev2-deploy
-TEMPLATE_DIR = github.com/getcouragenow/main/deploy/templates/maintemplatev2
+TEMPLATE_DIR = github.com/gutterbacon/main/deploy/templates/maintemplatev2
 
 SERVER_ENTRYPOINT = $(PWD)/cmd/server/*.go
 CLI_ENTRYPOINT = $(PWD)/cmd/cli/*.go
@@ -58,10 +58,10 @@ IMAGE_FLAGS = ""
 FRONTEND_PREFIX = flutter/build/
 FRONTEND_WEB_PREFIX = $(FRONTEND_PREFIX)web/
 FRONTEND_ABS_PREFIX = $(PWD)/$(FRONTEND_WEB_PREFIX)
-FRONTEND_HOST = "org-y.getcouragenow.org"
+FRONTEND_HOST = "org-y.amplify-cms.org"
 FRONTEND_PORT = 443
-FRONTEND_URL_WEB = "org-y.getcouragenow.org"
-FRONTEND_URL_NATIVE = "org-y.getcouragenow.org"
+FRONTEND_URL_WEB = "org-y.amplify-cms.org"
+FRONTEND_URL_NATIVE = "org-y.amplify-cms.org"
 
 MAIN_TLS_ENABLE = true
 MAIN_TLS_LOCAL = true
@@ -113,8 +113,8 @@ dep-os: dep-os-delete
 
 dep-os-internal:
 	@jb --jsonnetpkg-home=$(VENDOR_DIR) install && jb --jsonnetpkg-home=$(VENDOR_DIR) update # driven by jsonnet
-	cd $(VENDOR_DIR)/github.com/getcouragenow/shared/tool/bs-lang && go build && sudo install -m755 bs-lang $(PREFIX)/bs-lang
-	cd $(VENDOR_DIR)/github.com/getcouragenow/ops/bs-crypt && go build && sudo install -m755 bs-crypt $(PREFIX)/bs-crypt
+	cd $(VENDOR_DIR)/github.com/amplify-cms/shared/tool/bs-lang && go build && sudo install -m755 bs-lang $(PREFIX)/bs-lang
+	cd $(VENDOR_DIR)/github.com/amplify-cms/shared/tool/bs-crypt && go build && sudo install -m755 bs-crypt $(PREFIX)/bs-crypt
 
 dep-os-delete:
 	@$(MAKE) hug-dep-delete
@@ -160,52 +160,16 @@ build: # dep
 	cd $(VENDOR_DIR)/$(TEMPLATE_DIR) && $(MAKE) flu-web-build
 	mkdir -p $(FRONTEND_ABS_PREFIX)
 	cp -Rv $(VENDOR_DIR)/$(TEMPLATE_DIR)/client/build/web/* $(FRONTEND_ABS_PREFIX)
-	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_WEB_PREFIX)" $(PWD)/flutter/build/web/...
-	go-bindata -fs -nomemcopy -pkg version -o $(VERSION_DIR)/version.go -prefix "version/" $(VERSION_DIR)/manifest.json
+#	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_WEB_PREFIX)" $(PWD)/flutter/build/web/...
+#	go-bindata -fs -nomemcopy -pkg version -o $(VERSION_DIR)/version.go -prefix "version/" $(VERSION_DIR)/manifest.json
 	$(GO_LDFLAGS) -o $(SERVER_BIN) $(SERVER_ENTRYPOINT)
-	GOOS=linux GOARCH=amd64 $(GO_LDFLAGS) -o $(SERVER_BIN_DEPLOY) $(SERVER_ENTRYPOINT)
+	$(GO_LDFLAGS) -o $(SERVER_BIN_DEPLOY) $(SERVER_ENTRYPOINT)
 
 config: config-del
 	bs-crypt encrypt -s $(CONFIG_DIR) -d $(ENCRYPTED_CONFIG_DIR)
 
 config-del:
 	rm -rf $(ENCRYPTED_CONFIG_DIR)
-
-# docker recipe for local testing
-docker:
-	docker build . -t "${FLY_APP_NAME}:${IMAGE_REF}" \
-		--build-arg IMAGE_REF=$(IMAGE_REF) \
-		--build-arg IMAGE_BASE=$(IMAGE_BASE) \
-		--build-arg IMAGE_DATE=$(IMAGE_DATE) \
-		--build-arg IMAGE_EXECUTABLE=$(IMAGE_EXECUTABLE) \
-		--build-arg IMAGE_PORT=$(IMAGE_PORT) \
-		--build-arg IMAGE_AUTHOR=$(IMAGE_AUTHOR) \
-		--build-arg IMAGE_ORG=$(IMAGE_ORG) \
-		--build-arg IMAGE_FLAGS=$(IMAGE_FLAGS) \
-		--build-arg IMAGE_NAME=$(IMAGE_NAME) \
-		--build-arg CONFIG_PASSWORD=$(CONFIG_PASSWORD)
-	docker system prune --volumes -f
-
-fly:
-	flyctl deploy \
-			--build-arg IMAGE_REF=$(IMAGE_REF) \
-        	--build-arg IMAGE_BASE=$(IMAGE_BASE) \
-        	--build-arg IMAGE_DATE=$(IMAGE_DATE) \
-        	--build-arg IMAGE_EXECUTABLE=$(IMAGE_EXECUTABLE) \
-        	--build-arg IMAGE_PORT=$(IMAGE_PORT) \
-        	--build-arg IMAGE_AUTHOR=$(IMAGE_AUTHOR) \
-        	--build-arg IMAGE_ORG=$(IMAGE_ORG) \
-        	--build-arg IMAGE_FLAGS=$(IMAGE_FLAGS) \
-        	--build-arg CONFIG_PASSWORD=$(CONFIG_PASSWORD) \
-        	--build-arg IMAGE_NAME=$(IMAGE_NAME)
-
-fly-create:
-	flyctl init --dockerfile --name org-y --org getcouragenow-org --port 8080 --overwrite
-#	flyctl scale vm shared-cpu-1x --memory=1024 # 1GB
-	flyctl volumes create db --region ams --app $(FLY_APP_NAME)
-	flyctl secrets --app $(FLY_APP_NAME) set CONFIG_PASSWORD=$(CONFIG_PASSWORD) && \
-	cp fly.toml.bak fly.toml
-
 
 deploy-hcloud:
 	ssh $(HCLOUD_USER)@$(HCLOUD_IP) 'sudo systemctl stop maintemplatev2'

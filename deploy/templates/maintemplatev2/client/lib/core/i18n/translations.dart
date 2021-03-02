@@ -120,4 +120,13 @@ class Translations {
       locale: locale.toString(),
     );
   }
+
+  String noMenuSelected() {
+    return Intl.message(
+      'No menu selected, please click any from the navigation rail',
+      name: 'noMenuSelected',
+      desc: 'text for home page',
+      locale: locale.toString(),
+    );
+  }
 }

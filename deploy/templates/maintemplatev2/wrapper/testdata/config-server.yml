@@ -1,0 +1,122 @@
+"bootstrapConfig":
+  "domain": "amplifyedge.org"
+  "savePath": "./bootstrap-data/server"
+"mainConfig":
+  "domain": "amplifyedge.org"
+  "embedDir": "/home/franksn/go/src/github.com/gutterbacon/main/deploy/templates/maintemplatev2/client/build/web/"
+  "host": "127.0.0.1"
+  "isLocal": true
+  "port": 8080
+  "tls":
+    "enable": true
+    "isLocal": true
+    "localCertKeyPath": "./certs/local.key.pem"
+    "localCertPath": "./certs/local.pem"
+    "rootCaPath": "./certs/rootca.pem"
+"modDiscoConfig":
+  "busClientRoutes":
+  - "/v2.sys_account.services.OrgProjService/NewProject"
+  - "/v2.sys_account.services.OrgProjService/UpdateProject"
+  - "/v2.sys_account.services.OrgProjService/DeleteProject"
+  - "/v2.sys_account.services.OrgProjService/NewOrg"
+  - "/v2.sys_account.services.OrgProjService/UpdateOrg"
+  - "/v2.sys_account.services.OrgProjService/DeleteOrg"
+  "jwt":
+    "access":
+      "expiry": 3600
+      "secret": "some_jwt_access_secret"
+    "refresh":
+      "expiry": 360000
+      "secret": "some_jwt_refresh_secret"
+  "sysCoreConfig":
+    "cron":
+      "backupDir": "./db/mod/backup"
+      "backupSchedule": "@daily"
+      "rotateSchedule": "@every 24h"
+    "db":
+      "dbDir": "./db/mod"
+      "deletePrevious": true
+      "encryptKey": "yYz8Xjb4HBn4irGQpBWulURjQk2XmwES"
+      "name": "disco.db"
+      "rotationDuration": 1
+  "sysFileConfig":
+    "cron":
+      "backupDir": "db/mod/file-backup"
+      "backupSchedule": "@daily"
+      "rotateSchedule": "@every 24h"
+    "db":
+      "dbDir": "./db/mod"
+      "deletePrevious": true
+      "encryptKey": "A9bhbid5ODrKQVvd9MY17P5MZ"
+      "name": "disco-files.db"
+      "rotationDuration": 1
+  "unauthenticatedRoutes":
+  - "/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo"
+"sysAccountConfig":
+  "initialSuperUsers":
+  - "avatar": "iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAABlBMVEUuXT1CB5MPWvsYAAAALUlEQVR4nGJABfX///9vYGBgkP////+DUd6Q442C4QsGUzob5VGYNwEBAAD//34m/hCjepStAAAAAElFTkSuQmCC"
+    "email": "test@example.com"
+    "password": "supertest"
+  "jwt":
+    "access":
+      "expiry": 3600
+      "secret": "some_jwt_access_secret"
+    "refresh":
+      "expiry": 360000
+      "secret": "some_jwt_refresh_secret"
+  "mailConfig":
+    "copyright": "SOME_COPYRIGHT_MSG"
+    "logoUrl": "https://via.placeholder.com/500x500?text=YOUR+LOGO+HERE"
+    "productName": "SOME_PRODUCT"
+    "senderMail": "gutterbacon@example.com"
+    "senderName": "gutterbacon"
+    "sendgrid":
+      "apiKey": "SENDGRID_API_KEY_HERE"
+    "smtp":
+      "email": "winwisely268@gmail.com"
+      "host": "smtp.gmail.com"
+      "password": "blablabla"
+      "port": 465
+    "troubleContact": "SOME_TROUBLESHOOT_CONTACT_HERE"
+  "superUserFilePath": "./config/supers.yml"
+  "sysCoreConfig":
+    "cron":
+      "backupDir": "./db/sys/sysaccount-backup"
+      "backupSchedule": "@daily"
+      "rotateSchedule": "@every 24h"
+    "db":
+      "dbDir": "./db/sys"
+      "deletePrevious": true
+      "encryptKey": "yYz8Xjb4HBn4irGQpBWulURjQk2XmwES"
+      "name": "sysaccount.db"
+      "rotationDuration": 1
+  "sysFileConfig":
+    "cron":
+      "backupDir": "db/sys/sysfiles-backup"
+      "backupSchedule": "@daily"
+      "rotateSchedule": "@every 24h"
+    "db":
+      "dbDir": "./db/sys"
+      "deletePrevious": true
+      "encryptKey": "A9bhbid5ODrKQVvd9MY17P5MZ"
+      "name": "sysfiles.db"
+      "rotationDuration": 1
+  "unauthenticatedRoutes":
+  - "/v2.sys_account.services.AuthService/Login"
+  - "/v2.sys_account.services.AuthService/Register"
+  - "/v2.sys_account.services.AuthService/ResetPassword"
+  - "/v2.sys_account.services.AuthService/ForgotPassword"
+  - "/v2.sys_account.services.AuthService/RefreshAccessToken"
+  - "/v2.sys_account.services.AuthService/VerifyAccount"
+  - "/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo"
+  - "/v2.sys_account.services.OrgProjService/ListOrg"
+  - "/v2.sys_account.services.OrgProjService/ListNonSubscribedOrgs"
+  - "/v2.sys_account.services.OrgProjService/ListProject"
+  - "/v2.sys_account.services.OrgProjService/GetOrg"
+  - "/v2.sys_account.services.OrgProjService/GetProject"
+  - "/v2.mod_disco.services.SurveyService/ListDiscoProject"
+  - "/v2.mod_disco.services.SurveyService/GetDiscoProject"
+  - "/v2.mod_disco.services.SurveyService/GenTempId"
+  - "/v2.mod_disco.services.SurveyService/ListSurveyProject"
+  - "/v2.mod_disco.services.SurveyService/GetSurveyProject"
+  - "/v2.mod_disco.services.SurveyService/NewSurveyUser"

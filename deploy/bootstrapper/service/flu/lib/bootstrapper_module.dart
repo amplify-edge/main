@@ -1,10 +1,10 @@
 import 'package:bootstrapper/pkg/routes/paths.dart';
 import 'package:bootstrapper/pkg/view/bootstrap_view.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:random_string/random_string.dart';
 
-import 'pkg/view/view_model/bootstrap_view_model.dart';
-
-class BootstrapperModule extends ChildModule {
+class BootstrapperModule extends Module {
   final String baseRoute;
   final String url;
 
@@ -19,19 +19,32 @@ class BootstrapperModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind.singleton((i) => SuperadminPaths(baseRoute)),
-        Bind.lazySingleton((i) => BootstrapViewModel())
       ];
 
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (_, args) {
-          return BootstrapView();
+          return BootstrapView(
+            key: Key(randomString(32)),
+            bsList: args.data ?? [],
+            routePlaceholder: SuperadminPaths(baseRoute).bootstrapDetailsPage,
+          );
         }),
-        ChildRoute('/bootstraps', child: (_, args) => BootstrapView()),
+        ChildRoute(
+          '/bootstraps',
+          child: (_, args) => BootstrapView(
+            key: Key(randomString(32)),
+            bsList: args.data ?? [],
+            routePlaceholder: SuperadminPaths(baseRoute).bootstrapDetailsPage,
+          ),
+        ),
         ChildRoute(
           '/bootstraps/:id',
           child: (_, args) => BootstrapView(
+            key: Key(randomString(32)),
+            bsList: args.data ?? [],
             id: args.params['id'] ?? '',
+            routePlaceholder: SuperadminPaths(baseRoute).bootstrapDetailsPage,
           ),
         ),
       ];

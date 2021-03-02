@@ -4,7 +4,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/sys-share.git",
+          "remote": "https://go.amplifyedge.org/sys-share-v2.git",
           "subdir": "sys-core/service/config"
         }
       },
@@ -13,7 +13,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/sys.git",
+          "remote": "https://go.amplifyedge.org/sys-v2.git",
           "subdir": "sys-account/service/go"
         }
       },
@@ -22,7 +22,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/sys.git",
+          "remote": "https://go.amplifyedge.org/sys-v2.git",
           "subdir": "sys-core/service/go"
         }
       },

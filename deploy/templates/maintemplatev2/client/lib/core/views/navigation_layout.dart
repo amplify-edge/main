@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sys_share_sys_account_service/view/widgets/auth_nav_layout.dart';
 import 'package:sys_share_sys_account_service/view/widgets/nav_rail.dart';
+import 'package:random_string/random_string.dart';
 
 import '../core.dart';
 
@@ -20,23 +21,26 @@ class _NavigationLayoutState extends State<NavigationLayout> {
   @override
   Widget build(BuildContext context) {
     return AuthNavLayout(
+      key: Key(randomString(16)),
       body: widget.body,
       adminTabs: LinkedHashMap.of(<String, TabItem>{
-        Paths.adminRoute: TabItem(
+        Paths.adminDashboardRoute: TabItem(
           title: Text(
-            AppLocalizations.of(context).tabadmin(),
+            // AppLocalizations.of(context).tabadmin(),
+            'Admin',
             style: TextStyle(fontSize: 12),
           ),
           icon: Icon(Icons.dashboard, size: 30),
           onTap: () {
-            Modular.to.navigate(Paths.adminRoute);
+            Modular.to.navigate(Paths.adminDashboardRoute);
           },
         ),
       }),
       superAdminTabs: LinkedHashMap.of(<String, TabItem>{
         Paths.superAdminRoute: TabItem(
           title: Text(
-            AppLocalizations.of(context).tabSuper(),
+            // AppLocalizations.of(context).tabSuper(),
+            'SuperAdmin',
             style: TextStyle(fontSize: 12),
           ),
           icon: Icon(Icons.people, size: 30),
@@ -46,19 +50,21 @@ class _NavigationLayoutState extends State<NavigationLayout> {
         ),
       }),
       tabs: LinkedHashMap.of(<String, Widget>{
-        Paths.modDisco: TabItem(
+        Paths.modDiscoProject: TabItem(
           title: Text(
-            AppLocalizations.of(context).tabhome(),
+            // AppLocalizations.of(context).tabhome(),
+            'Home',
             style: TextStyle(fontSize: 12),
           ),
           icon: Icon(Icons.home, size: 30),
           onTap: () {
-            Modular.to.navigate(Paths.modDisco);
+            Modular.to.navigate(Paths.modDiscoProject);
           },
         ),
         Paths.settings: TabItem(
           title: Text(
-            AppLocalizations.of(context).tabsettings(),
+            // AppLocalizations.of(context).tabsettings(),
+            'Settings',
             style: TextStyle(fontSize: 12),
           ),
           icon: Icon(Icons.settings, size: 30),

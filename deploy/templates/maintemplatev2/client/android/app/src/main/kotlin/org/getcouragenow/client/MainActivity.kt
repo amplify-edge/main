@@ -1,4 +1,4 @@
-package org.getcouragenow.client
+package org.amplify-cms.client
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -4,15 +4,24 @@ import 'package:maintemplatev2/modules/settings/view_models/settings_view_model.
 import 'package:provider/provider.dart';
 
 class SettingsViewWeb extends StatelessWidget {
-  SettingsViewWeb({Key key}) : super(key: key);
+  // final Function _onChangeLanguageCallback;
+
+  SettingsViewWeb({
+    Key key,
+    // @required Function onChangeLanguageCallback,
+  })
+  // : _onChangeLanguageCallback = onChangeLanguageCallback,
+  : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<SettingsViewModel>(context);
     final env = model.envVariables;
     return Scaffold(
+      key: key,
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).tabSettings()),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Column(children: [
@@ -41,6 +50,7 @@ class SettingsViewWeb extends StatelessWidget {
               value: model.locale,
               onChanged: (Locale value) {
                 model.changeLanguage(value);
+                // _onChangeLanguageCallback();
               },
               items: model.supportedLocales
                   .map<DropdownMenuItem<Locale>>((Locale value) {
@@ -56,14 +66,6 @@ class SettingsViewWeb extends StatelessWidget {
             subtitle: Text(env.releaseChannel ??
                 " "), // TODO: Fix that up, what value are we supposed to give is this is null ?
           ),
-          // ListTile(
-          //   title: Text("Url"),
-          //   subtitle: Text(env.url),
-          // ),
-          // ListTile(
-          //   title: Text("UrlNative"),
-          //   subtitle: Text(env.urlNative),
-          // ),
           ListTile(
             title: Text("GitHash"),
             subtitle: Text(env.githash),

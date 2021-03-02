@@ -3,8 +3,9 @@ import 'package:bootstrapper/pkg/shared_repositories/bootstrap_repo.dart';
 import 'package:code_editor/code_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:sys_share_sys_account_service/pkg/shared_services/base_model.dart';
 
-class BootstrapDetailViewModel extends ChangeNotifier {
+class BootstrapDetailViewModel extends BaseModel {
   String _fileContent = '';
   String _fileId = '';
   String _errMsg = '';
@@ -80,10 +81,19 @@ class BootstrapDetailViewModel extends ChangeNotifier {
     _setLoading(false);
   }
 
-  EditorModel getEditorModel() {
-    return EditorModel(
-      files: [_fileEditor],
-    );
+  Widget getEditorModel(BuildContext context) {
+    return _fileEditor != null
+        ? CodeEditor(
+            model: EditorModel(files: [_fileEditor]),
+            edit: false,
+            onSubmit: null,
+          )
+        : Center(
+            child: Text(
+              BootstrapLocalizations.of(context).noBootstraps(),
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+          );
   }
 
   Function() onExecuteBootstrap(BuildContext context, String id) {
@@ -93,14 +103,12 @@ class BootstrapDetailViewModel extends ChangeNotifier {
         barrierDismissible: true,
         builder: (BuildContext dialogContext) {
           return AlertDialog(
-            title: Text(BootstrapLocalizations.of(context)
-                .translate('executeBootstrap')),
+            title: Text(BootstrapLocalizations.of(context).executeBootstrap()),
             content: Text(BootstrapLocalizations.of(context)
                 .translate('allOfYourDataWillBeDeleted')),
             actions: <Widget>[
               FlatButton(
-                child: Text(
-                    BootstrapLocalizations.of(context).translate('confirm')),
+                child: Text(BootstrapLocalizations.of(context).confirm()),
                 color: Colors.green.shade500,
                 textColor: Colors.white,
                 onPressed: () async {
@@ -115,8 +123,7 @@ class BootstrapDetailViewModel extends ChangeNotifier {
                 },
               ),
               FlatButton(
-                child: Text(
-                    BootstrapLocalizations.of(context).translate('cancel')),
+                child: Text(BootstrapLocalizations.of(context).cancel()),
                 color: Colors.red.shade500,
                 textColor: Colors.white,
                 onPressed: () {

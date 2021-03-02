@@ -154,7 +154,11 @@ Your .git/config should now be like this:
 	remote = origin
 	merge = refs/heads/master
 [remote "upstream"]
+<<<<<<< HEAD:DEVELOPMENT.md
+	url = git@github.com-<FORKINGUSER>:amplify-cms/<REPO>
+=======
 	url = git@github.com-<FORKINGUSER>:amplify-edge/<REPO>
+>>>>>>> upstream/master:doc/DEVELOPMENT.md
 	fetch = +refs/heads/*:refs/remotes/upstream/*
 
 ```
@@ -181,7 +185,11 @@ make M='<#ISSUENUMBERO> comment ...' gitr-fork-all
 
 When your PR is merged, check it builds correctly and then check the automated release works.
 
+<<<<<<< HEAD:DEVELOPMENT.md
+CI: https://github.com/amplify-cms/<REPO>/actions
+=======
 CI: https://github.com/amplify-edge/<REPO>/actions
+>>>>>>> upstream/master:doc/DEVELOPMENT.md
 
 ## Tracking the Channels
 
@@ -205,6 +213,15 @@ Server/
 
 SRV record matching;
 
+<<<<<<< HEAD:DEVELOPMENT.md
+ci=maintemplate.ci.amplify-cms.org
+
+beta=maintemplate.beta.amplify-cms.org
+
+dev=maintemplate.dev.amplify-cms.org
+
+stable=maintemplate.stable.amplify-cms.org
+=======
 ci=maintemplate.ci.amplify-edge.org
 
 beta=maintemplate.beta.amplify-edge.org
@@ -212,3 +229,4 @@ beta=maintemplate.beta.amplify-edge.org
 dev=maintemplate.dev.amplify-edge.org
 
 stable=maintemplate.stable.amplify-edge.org
+>>>>>>> upstream/master:doc/DEVELOPMENT.md

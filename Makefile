@@ -1,83 +1,73 @@
+# Download Booty
+BOOTY_URL := https://raw.githubusercontent.com/amplify-edge/booty/master/scripts
 
-SHARED_FSPATH=./../shared
-BOILERPLATE_FSPATH=$(SHARED_FSPATH)/boilerplate
+ifeq ($(OS),Windows_NT)
+	BOOTY_URL:=$(BOOTY_URL)/install.ps1
+else
+	BOOTY_URL:=$(BOOTY_URL)/install.sh
+endif
 
-include $(BOILERPLATE_FSPATH)/help.mk
-include $(BOILERPLATE_FSPATH)/os.mk
-include $(BOILERPLATE_FSPATH)/gitr.mk
-include $(BOILERPLATE_FSPATH)/tool.mk
-include $(BOILERPLATE_FSPATH)/grpc.mk
-include $(BOILERPLATE_FSPATH)/flu.mk
-include $(BOILERPLATE_FSPATH)/go.mk
-
-
-
-# For deploy to linux
-GOOS=linux
-GOARCH=amd64
-
-# For dev
-GOOS=darwin
-GOARCH=amd64
+SHELLCMD :=
+ADD_PATH :=
+ifeq ($(OS),Windows_NT)
+	SHELLCMD:=powershell -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "Invoke-WebRequest -useb $(BOOTY_URL) | Invoke-Expression"
+	ADD_PATH:=export PATH=$$PATH:"/C/booty" # workaround for github CI
+else
+	SHELLCMD:=curl -fsSL $(BOOTY_URL) | bash
+	ADD_PATH:=echo $$PATH
+endif
 
 # brew cask install google-cloud-sdk
-GCLOUD_PROJECT_ID=v2-ci-getcouragenow-org
+GCLOUD_PROJECT_ID=v2-ci-amplify-cms-org
 
-gcloud-print:
-	#gcloud auth login
-	gcloud config set project $(GCLOUD_PROJECT_ID)
-	gcloud iam service-accounts list --project $(GCLOUD_PROJECT_ID)
-	gcloud run services list --platform managed
-	gcloud compute instances list
-	gcloud container images list --repository
-gcloud-key:
-	# makes the key 
-	gcloud iam service-accounts keys \
-       create ~/my_awesome_secret_key.json \
-       --iam-account 519128392337-compute@developer.gserviceaccount.com \
-       --project $(GCLOUD_PROJECT_ID)
-gcloud-key-encode:
-	# encodes the key and uplaods to github
-	cat ~/my_awesome_secret_key.json | base64 | pbcopy
-	open https://github.com/organizations/getcouragenow/settings/secrets
-	#- GCP_KEY: paste in encoded key
+#gcloud-print:
+#	#gcloud auth login
+#	gcloud config set project $(GCLOUD_PROJECT_ID)
+#	gcloud iam service-accounts list --project $(GCLOUD_PROJECT_ID)
+#	gcloud run services list --platform managed
+#	gcloud compute instances list
+#	gcloud container images list --repository
+#
+#gcloud-key:
+#	# makes the key
+#	gcloud iam service-accounts keys \
+#       create ~/my_awesome_secret_key.json \
+#       --iam-account 519128392337-compute@developer.gserviceaccount.com \
+#       --project $(GCLOUD_PROJECT_ID)
+#
+#gcloud-key-encode:
+#	# encodes the key and uplaods to github
+#	cat ~/my_awesome_secret_key.json | base64 | pbcopy
+#	open https://github.com/organizations/amplify-cms/settings/secrets
+#	#- GCP_KEY: paste in encoded key
 
 
 # TODO: fix dependency installations
-#this-all: os-print this-print this-dep this-build this-print-end
-this-all: os-print this-print this-build this-print-end
+#all: os-print print dep build print-end
+all: print dep build print-end
 
-this-print: 
+print:
 	@echo
-	@echo "-- SYS: start --"
+	@echo "-- MAIN: start --"
 	@echo SDK_BIN: $(SDK_BIN)
 	@echo
 
-this-print-end:
+print-end:
 	@echo
-	@echo "-- SYS: end --"
+	@echo "-- MAIN: end --"
 	@echo
 	@echo
 
-this-print-all:
-	
-	$(MAKE) os-print
-	
-	$(MAKE) gitr-print
-	
-	$(MAKE) flu-print
-
-	$(MAKE) flu-gen-lang-print
-
-	$(MAKE) go-print
-
-this-dep:
-	cd $(SHARED_FSPATH) && $(MAKE) this-all
+dep:
+	$(SHELLCMD)
+	$(ADD_PATH)
+	@booty install-all
+	@booty extract includes
 
 V2_BUILD=./deploy/templates/maintemplatev2
 # TODO: fix v3
-#this-build: v2 v3
-this-build: v2
+#build: v2 v3
+build: v2
 
 v2:
 	# Does full gen and build (web)
@@ -106,25 +96,25 @@ v2-sdk-accounts-list:
 
 v3:
 	# Does full gen and build (web)
-	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-all
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) all
 
 v3-sys-server-run:
-	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-sys-server-run
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) sys-server-run
 	
 v3-mod-server-run:
-	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-mod-server-run
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) mod-server-run
 
 v3-sys-sdk-auth-signup:
-	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-sys-sdk-auth-signup
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) sys-sdk-auth-signup
 
 v3-sys-sdk-auth-signin:
-	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-sys-sdk-auth-signin
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) sys-sdk-auth-signin
 
 v3-sys-sdk-accounts-list:
-	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-sys-sdk-accounts-list
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) sys-sdk-accounts-list
 
 v3-mod-sdk-get:
-	cd ./deploy/templates/maintemplatev3 && $(MAKE) this-mod-sdk-get
+	cd ./deploy/templates/maintemplatev3 && $(MAKE) mod-sdk-get
 
 ### For Local dev. Does NOT do big Gen !
 v3-flu-web-run:

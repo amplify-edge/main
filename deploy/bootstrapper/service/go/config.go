@@ -2,7 +2,7 @@ package service
 
 import (
 	"fmt"
-	sharedConfig "github.com/getcouragenow/sys-share/sys-core/service/config"
+	"go.amplifyedge.org/sys-share-v2/sys-core/service/fileutils"
 	"gopkg.in/yaml.v2"
 	"os"
 )
@@ -12,34 +12,27 @@ const (
 )
 
 type BootstrapConfig struct {
-	BSConfig Config `yaml:"bootstrapConfig" json:"bootstrapConfig"`
-}
-
-func (b BootstrapConfig) Validate() error {
-	return b.BSConfig.validate()
-}
-
-type Config struct {
 	SavePath string `yaml:"savePath" json:"savePath"`
 	Domain   string `yaml:"domain" json:"domain"`
 }
 
-func (c Config) validate() error {
+func (c BootstrapConfig) Validate() error {
 	if c.SavePath == "" {
-		return fmt.Errorf(errParsingConfig, "savepath is empty")
+		return fmt.Errorf(errParsingConfig, "bootstrap", "savepath is empty")
 	}
-	if ex, _ := sharedConfig.PathExists(c.SavePath); !ex {
+	if ex, _ := fileutils.PathExists(c.SavePath); !ex {
 		_ = os.MkdirAll(c.SavePath, 0755)
 	}
 	if c.Domain == "" {
-		return fmt.Errorf(errParsingConfig, "domain is empty")
+		return fmt.Errorf(errParsingConfig, "bootstrap", "domain is empty")
 	}
 	return nil
 }
 
+// NewConfig creates BootstrapConfig from a yaml file
 func NewConfig(filepath string) (*BootstrapConfig, error) {
 	cfg := &BootstrapConfig{}
-	f, err := sharedConfig.LoadFile(filepath)
+	f, err := fileutils.LoadFile(filepath)
 	if err != nil {
 		return nil, err
 	}

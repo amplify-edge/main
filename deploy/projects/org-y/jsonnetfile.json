@@ -4,47 +4,47 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/shared.git"
+          "remote": "https://github.com/gutterbacon/shared.git"
         }
       },
-      "version": "master"
+      "version": "35c46a12b8becb82c555ad76e7f6093a5b921064"
     },
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/main.git"
+          "remote": "https://github.com/gutterbacon/main.git"
         }
       },
-      "version": "9b55fd2450b400de995777d417273b671ae5eeb4"
+      "version": "a063967d4f8b772e4cbd6c864def5a5b6e7a5c34"
     },
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/sys-share.git"
+          "remote": "https://github.com/gutterbacon/sys-share.git"
         }
       },
-      "version": "770029a76658a42d7119016ec4eb9e024c3b0584"
+      "version": "df164c313418f397fd7ccc53483be8ed6a047993"
     },
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/sys.git"
+          "remote": "https://github.com/gutterbacon/sys.git"
         }
       },
-      "version": "fc5126ba1a2acb9595f307ffe966a7b4b7227fd3"
+      "version": "e3e43f9e78e7bd0f73589a14d7928b7e891030fd"
     },
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/mod.git"
+          "remote": "https://github.com/gutterbacon/mod.git"
         }
       },
-      "version": "2ed47f770d739f8348b7e6519f1637bfb1346db1"
+      "version": "c8f7d7ad30bab08cef7d0393e2fab78c89e8f4e1"
     },
     {
       "source": {
         "git": {
-          "remote": "https://github.com/getcouragenow/ops.git"
+          "remote": "https://github.com/gutterbacon/ops.git"
         }
       },
       "version": "master"
