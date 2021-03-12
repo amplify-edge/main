@@ -72,7 +72,7 @@ jobs:
         with:
           ref: master
           repository: amplify-edge/sys
-          token: ${{ secrets.GIT_HUB_TOKEN }} # stored in GitHub secrets
+          #token: ${{ secrets.GIT_HUB_TOKEN }} # stored in GitHub secrets
           path: ${{ github.workspace }}/go/src/github.com/amplify-edge/sys
 
       - name: make ${{ matrix.target }}
