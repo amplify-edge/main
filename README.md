@@ -1,6 +1,10 @@
 # main
 
-**amplify-edge.org** - A non-profit providing secure, open source, self organising software for Climate Change campaign organisations.
+**amplify-edge.org** - A non-profit providing secure, open source, self organising software for everyones.
+
+## Users
+
+GetCourageNow.org ( https://www.getcouragenow.org/ ) - Climate Change Organisation
 
 ## Introduction
 
