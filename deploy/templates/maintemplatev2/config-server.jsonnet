@@ -17,7 +17,7 @@ local config = {
       isLocal: stringToBool(loadVar("MAIN", env="TLS_LOCAL").val),
       localCertPath: "./certs/local.pem",
       localCertKeyPath: "./certs/local.key.pem",
-      rootCaPath: "./certs/rootca.pem"
+      rootCaPath: "./certs/rootCA.pem"
     },
     // bootstrap-server
     bsCfg:: bsTpl.bootstrapConfig {
