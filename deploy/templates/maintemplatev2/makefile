@@ -83,7 +83,7 @@ GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" 
 export BS_CRYPT_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 export CONFIG_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 
-all: print gen build
+all: print gen build run-server
 
 clean: gen-delete build-delete
 	rm -rf $(CERT_DIR) db encrypted-config runtime-config $(VENDOR_DIR) $(VERSION_OUTPUT_DIR)
@@ -106,8 +106,6 @@ build-delete:
 
 embed:
 	cp -Rv $(FRONTEND_ABS_PREFIX) $(EMBED_OUTPUT_DIR)
-#	go-bindata -fs -nomemcopy -o $(EMBED_OUTPUT_DIR)/assets.go -prefix "$(FRONTEND_PREFIX)" $(FRONTEND_ABS_PREFIX)...
-#	go-bindata -pkg version -fs -nomemcopy -o $(VERSION_OUTPUT_DIR)/version.go -prefix "$(VERSION_PREFIX)" $(VERSION_OUTPUT_DIR)/manifest.json
 
 build: build-delete version-gen
 	## Flutter first
@@ -152,7 +150,7 @@ config-gen: config-dep
 		-V MAIN_HOST=$(MAIN_HOST) \
 		-V MAIN_PORT=$(MAIN_PORT) \
 		-V MAIN_IS_LOCAL=$(MAIN_IS_LOCAL) \
-		-V MAIN_EMBED_DIR=$(MAIN_EMBED_DIR) | awk '(NR>1)' > $(CONFIG_OUTPUT_DIR)/config-server.yml
+		-V MAIN_EMBED_DIR=$(MAIN_EMBED_DIR) > $(CONFIG_OUTPUT_DIR)/config-server.yml
 	booty jsonnet -S config-client.jsonnet \
 		-V MAIN_TLS_ENABLE=$(MAIN_TLS_ENABLE) \
 		-V MAIN_TLS_LOCAL=$(MAIN_TLS_LOCAL) \
@@ -160,7 +158,7 @@ config-gen: config-dep
 		-V MAIN_HOST=$(MAIN_HOST) \
 		-V MAIN_PORT=$(MAIN_PORT) \
 		-V MAIN_IS_LOCAL=$(MAIN_IS_LOCAL) \
-		-V MAIN_EMBED_DIR=$(MAIN_EMBED_DIR) | awk '(NR>1)' > $(CONFIG_OUTPUT_DIR)/config-client.yml
+		-V MAIN_EMBED_DIR=$(MAIN_EMBED_DIR) > $(CONFIG_OUTPUT_DIR)/config-client.yml
 
 flutter-gen:
 	booty jsonnet -S flutter-client.jsonnet \
@@ -170,7 +168,7 @@ flutter-gen:
  		-V FRONTEND_URL_WEB=$(FRONTEND_URL_WEB) \
  		-V FRONTEND_URL_NATIVE=$(FRONTEND_URL_NATIVE) \
  		-V FRONTEND_GITHASH=$(FRONTEND_GITHASH) \
- 		-V FRONTEND_FLUTTER_CHANNEL=$(FRONTEND_FLUTTER_CHANNEL) | awk '(NR>1)' > $(FLU_LIB_NAME)/assets/env.json
+ 		-V FRONTEND_FLUTTER_CHANNEL=$(FRONTEND_FLUTTER_CHANNEL) > $(FLU_LIB_NAME)/assets/env.json
 
 config-dep:
 	@booty jb install && booty jb update
@@ -186,7 +184,7 @@ version-gen:
 		-V BUILD_FLUTTER_VERSION=$(BUILD_FLUTTER_VERSION) \
 		-V BUILD_GITBRANCH=$(BUILD_GITBRANCH) \
 		-V BUILD_USER=$(BUILD_USER) \
-		-V BUILD_DATE=$(BUILD_DATE) | awk '(NR>1)' > $(VERSION_OUTPUT_DIR)/manifest.json
+		-V BUILD_DATE=$(BUILD_DATE) > $(VERSION_OUTPUT_DIR)/manifest.json
 
 cert-gen: cert-gen-delete
 	@mkdir -p $(CERT_DIR)
@@ -210,9 +208,8 @@ build-deep:
 run-server:
 	# TODO: fork to run in background
 	mkdir -p db
-	$(SERVER_BIN) -c ./runtime-config
-	# TODO then call the sdk targets sequentially.
-	
+	(timeout 12s $(SERVER_BIN) -c ./runtime-config -e ./encrypted-config; exit 0)
+
 run-kill:
 	# Works on mac
 	pkill -f $(SERVER_BIN)
