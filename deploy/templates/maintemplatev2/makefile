@@ -83,7 +83,7 @@ GO_LDFLAGS = CGO_ENABLED=0 go build -ldflags "-X main.build=${VERSION_GITHASH}" 
 export BS_CRYPT_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 export CONFIG_PASSWORD = $(shell echo "$${CONFIG_PASSWORD}")
 
-all: print gen build
+all: print gen build run-server
 
 clean: gen-delete build-delete
 	rm -rf $(CERT_DIR) db encrypted-config runtime-config $(VENDOR_DIR) $(VERSION_OUTPUT_DIR)
@@ -208,9 +208,8 @@ build-deep:
 run-server:
 	# TODO: fork to run in background
 	mkdir -p db
-	$(SERVER_BIN) -c ./runtime-config
-	# TODO then call the sdk targets sequentially.
-	
+	(timeout 12s $(SERVER_BIN) -c ./runtime-config -e ./encrypted-config; exit 0)
+
 run-kill:
 	# Works on mac
 	pkill -f $(SERVER_BIN)
