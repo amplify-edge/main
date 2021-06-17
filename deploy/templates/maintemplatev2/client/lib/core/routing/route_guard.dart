@@ -3,6 +3,9 @@ import 'package:sys_share_sys_account_service/view/widgets/view_model/auth_nav_v
 
 class NavRailGuard implements RouteGuard {
   @override
+  String get guardedRoute => null;
+
+  @override
   Future<bool> canActivate(String path, ModularRoute router) async {
     print("CURRENT ROUTE: $path");
     var authNavVm = Modular.get<AuthNavViewModel>();
